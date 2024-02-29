@@ -1,0 +1,16 @@
+#HybridController configuration file, Plant: Default SMA
+Version              HyCtl
+
+SpntRamp.PwrAtRateMax               12000      #maximum rate of active power setpoint for hole system in MW/min
+SpntRamp.PwrRtRateMax               12000      #maximum rate of reactive power setpoint for hole system in MVar/min
+SpntRamp.PwrAtSpntFilterTm          0.1        #Active power setpoint filter time, if greater than 0 ramps are disabled.
+SpntRamp.PwrRtSpntFilterTm          0.1        #Reactive power setpoint filter time, if greater than 0 ramps are disabled.
+SpntRamp.PvPwrAtFallRateMax         100        #maximum negative rate of active power setpoint for pv system in %/s (of related actual power) $2053$
+SpntRamp.PvPwrAtRiseRateMax         100        #maximum positive rate of active power setpoint for pv system in %/s (of related actual power) $2054$
+SpntRamp.BatPwrAtFallRateMax        100        #maximum negative rate of active power setpoint for battery system in %/s (of related actual power) $2048$
+SpntRamp.BatPwrAtRiseRateMax        100        #maximum positive rate of active power setpoint for battery system in %/s (of related actual power) $2049$
+PvPwrAtCtrl.CtrlKi                  6.0        #Control parameter intregral gain for the power PID controller
+PvPwrAtCtrl.CtrlKp                  5.0          #Control parameter proportional gain  for the power PI controller
+PvPwrAtCtrl.Ena                     0          #Enables the PI controller
+
+#End of HybridController configuration file
