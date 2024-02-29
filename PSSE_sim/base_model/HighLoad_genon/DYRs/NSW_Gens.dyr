@@ -1,0 +1,519 @@
+/ Argyle SF
+1  'USRMDL' 1 'SMAPPC131' 4 0 60 150 20 70
+      201 401 1 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 -1 0 0
+      0 0.01 2.5 0.04 0 0.01 2.5 0.04 0 0
+      1 0 0.050165 0.11739 0 1 0.04 0 1 0.2
+      0.2 -0.6 0.6 0.885 0.885 1.135 1.135 1 1 0.01
+      2.5 0.04 0 0 82.5 82.5 2 0.15 0.075 0.4
+      0.01 0 0.002417 0.002417 0 47.35 48.1833333333333 49.0166666666667 49.85 50.15
+      50.9833333333333 51.8166666666667 52.65 1 0.67 0.33 0 0 -0.33 -0.67
+      -1 0 1 1 0 1 1 0 0 0
+      0.8 0.9 0.95 0.99 1.01 1.05 1.1 1.2 0.5 0.4
+      0.2 0 0 -0.3 -0.5 -0.6 -0.2863 0.2863 -0.2863 0.2863
+      0.025 0.7466 10000 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+ /
+1  'USRMDL' 1 'SMASC166' 1 1 1 200 60 300 801
+      1 1 0 0.8 1 0 1 0 0.35 1
+      0 5 0.5 2 0 0.9 0.5 1 0.9 0.9
+      0 0.15 0.075 0.5 1 5 2 6 10 10
+      0.15 0.12 0.15 0.12 16 0.0209 0.01 0 20 0.1
+      2 0.4 0.85 0 0.125 0.1 1.4 0.1 1.3 1
+      1.2 3 1.2 3 1.2 3 0.8 5 0.8 5
+      0.4 2 0.4 2 0.4 2 52.6 2 51.6 122
+      51.1 602 51.1 602 51.1 602 51.1 602 48.8 602
+      48.4 122 46.4 2 46.4 2 46.4 2 46.4 2
+      30 10 80 80 0 1 50 30 0 0
+      1 1 0 9999 0.7 1 0.001 0 0.7 1
+      1 1 0 1 1 2 2 0 0 1
+      0.9 0.95 1 1.05 1.1 30 2 2 2 2
+      30 0.02 1 50 1 0 0.5 0.9 1.1 0
+      0 0 0 0.01 1.66666666666666E-04 0.001 0.1 0.5 80 0.2
+      0.2 0.065 2 0.005 600 50 300 0.005 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+      0 0 0 0 0 0 0 0 0 0
+ /
+401,'OLTC1T', 201 ,  1,30,0,30.0/
+
+/##################################################################################
+/ Gunnedah SF
+/ Ingeteam Inverters - Configuration Parameters													
+2500	'USRMDL'	1	'ING1BI1_1'	101	1	12	85	25	54				
+				2400	2500	1	1	2500	1	1	1	0	1
+				90	90								
+				0.005	0.005	0.007	1	0.025	1	1	0	0	0.2
+				0	0.2	0	0	8	1	0	1	0	1
+				0	0	0	8	0.005	0.005	1	0.064	0.064	1.1
+				1.0	-1.0	1	1.0	-1.0	0.9	1.0	-1.0	0.1	1.3
+				4	1.2	20	1.18	0	0	2.1	0.8	20	0.85
+				0.1	1.042	620	1.022	650	1.012	0.1	0.938	620	0.978
+				650	0.988	0.85	0	0.35	2	0	2	0	2
+				1.14	0	1.15	0	1.3	-1	0	0	0.35	0
+				0.85	1	1	0.4	1.428	/				
+/													
+2500	'USRMDL'	1	'EMSPCI1'	107	0	54	141	14	26				
+				2200	2200	2300	1	2	0	2	0	0	1
+				4	3	3	1	2500	0	0	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0						
+				0.07	0.07	0.07	0.9797	150	0.9997	100	1.0003	100	1.0403
+				0	1.0212	0	1.0212	0	1.0212	0	1	100	1
+				100	1	100	1	100	1	100	0.7648	0	20
+				20	0.3301	3.0565	1	0	0	7.873	0	0	0.72
+				4.966	1.1	39.5	-39.5	1	39.5	-39.5	0.9	39.5	-39.5
+				0.9	39.5	-39.5	0.5	39.5	-39.5	0.014	0.014	0.014	0.31831
+				1.271	0.318309886	0	2.7	1.1	1	0.9	0.9	0.6	100
+				39.5	39.5	39.5	39.5	39.5	50	39.5	39.5	39.5	39.5
+				39.5	0	39.5	39.5	39.5	39.5	39.5	0	39.5	39.5
+				39.5	39.5	39.5	0	39.5	39.5	39.5	39.5	39.5	0
+				39.5	39.5	39.5	39.5	39.5	100	-39.5	-39.5	-39.5	-39.5
+				-39.5	50	-39.5	-39.5	-39.5	-39.5	-39.5	0	-39.5	-39.5
+				-39.5	-39.5	-39.5	0	-39.5	-39.5	-39.5	-39.5	-39.5	0
+				-39.5	-39.5	-39.5	-39.5	-39.5	0	-39.5	-39.5	-39.5	-39.5
+				-39.5	/
+2200, 'OLTC1T', 2300, 1, 25.0, 0.0, 3.0/
+
+/##################################################################################
+/Metz SF
+// PPC Model
+2000 'USRMDL' 1 'SMAPPC139' 4 0 60 165 23 93 5300 5400 -1 1
+                          0 0 0 0 0 0 0 0 0 0
+                          0 0 0 0 0 0 0 0 0 0
+                          0 0 0 0 0 0 0 0 0 0
+                          0 0 0 0 0 0 0 0 0 0
+                          0 0 0 0 0 0 0 0 0 0
+                          0 0 0 -1 0 0
+                          2.0
+                          0.05 1.0 0.04 0.0
+                          0.05 1.0 0.04 0.0
+                          0.0 0.99 0.0 0.050165 -0.0361
+                          0.3 2.0 0.04 0.0 0.8519
+                          0.04 0.04 -1.0 1.0
+                          0.86 0.86 1.14 1.14 0.2 1.0
+                          0.05 1.0 0.04 0.00 0.0
+                          135.0 81.0
+                          2.0 0.015 0.015 0.4 0.01 0.0
+                          0.0085185 0.0085185 0.0
+                          45.0 47.0 48.235 49.985 50.015 51.765 53.0 55.0
+                          0.8519 0.8519 0.8519 0.0 0.0 -0.8519 -0.8519 -0.8519
+                          0.0 0.01 0.01 0.0 1.0 1.0
+                          0.0
+                          0.0 0.0
+                          0.8 0.9 0.95 0.99 1.01 1.05 1.1 1.2
+                          0.5 0.4 0.2 0.0 0.0 -0.3 -0.5 -0.6
+                          -0.5608 0.5608
+                          -0.5608 0.5608
+                          0.0 0.874 100.0 0.0 0.0 0.0                          
+                          0.0 0.15 0.3 0.45 0.6 0.75 0.9 1.0                          
+                          -0.1 -0.1 -0.2 -0.25 -0.3 -0.4 -0.5 -0.6                          
+                          0.0 0.15 0.3 0.45 0.6 0.75 0.9 1.0                          
+                          0.15 0.2 0.35 0.4 0.45 0.5 0.66 0.6                          
+                          0.0 0.05 0.0 0.8519                          
+                          0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 2.0 0.0
+                          0.01 0.0 0.0 0.3 -0.3 0.1 -0.1 0.0
+						  0.0 50.0 50.0 0.01 0.0
+						  100.0 0.0
+/                         CtlMod
+/                         KP_PF KI_PF PFXdcrTm PFDB
+/                         KP_Vol KI_Vol (needs to be tuned depending on grid impedance) VolXdcrTm VolDB
+/                         PFNomTot VolNomTot QNomTotHyb VolDiff HybCtlTun
+/                         KP_P KI_P PXdcrTm PDB PNomTot
+/                         QCommTm PCommTm QSptLimNeg QSptLimPos
+/                         FRTThrVolNomMin Reserved FRTThrVolNomMax Reserved FRTHldTm Reserved
+/                         KP_Q KI_Q QXdcrTm QDB QNomTot
+/                         PRefTot QRefTot
+/                         WCtlHzMod PHzStr PHzStop PWGra HzFltTm WCtlHzDrgIndEna
+/                         PNomTotGraMin PNomTotGraMax FSCFlag
+/                         FD_IPXArr_0 FD_IPXArr_1 FD_IPXArr_2 FD_IPXArr_3 ... FD_IPXArr_7
+/                         FD_IPYArr_0 FD_IPYArr_1 FD_IPYArr_2 FD_IPYArr_3 ... FD_IPYArr_7
+/                         RRCFlag FallRateMax RiseRateMax PDiffMin PSuppMax PPVChargeMax
+/                         Reserved 
+/                         PPltCtl QPltCtl
+/                         QV_QSXArr_0 QV_QSXArr_1 QV_QSXArr_2 QV_QSXArr_3 ... QV_QSXArr_7
+/                         QV_QSYArr_0 QV_QSYArr_1 QV_QSYArr_2 QV_QSYArr_3 ... QV_QSYArr_7
+/                         QLimNeg QLimPos
+/                         VDroopQLimNeg VDroopQLimPos
+/                         PSptLimMin PSptLimMax WCtlHzWGraUp Reserved Reserved Reserved
+/                         QP_NegQXArr_0 QP_NegQXArr_1 QP_NegQXArr_2 QP_NegQXArr_3 ... QP_NegQXArr_7
+/                         QP_NegQYArr_0 QP_NegQYArr_1 QP_NegQYArr_2 QP_NegQYArr_3 ... QP_NegQYArr_7
+/                         QP_PosQXArr_0 QP_PosQXArr_1 QP_PosQXArr_2 QP_PosQXArr_3 ... QP_PosQXArr_7
+/                         QP_PosQYArr_0 QP_PosQYArr_1 QP_PosQYArr_2 QP_PosQYArr_3 ... QP_PosQYArr_7
+/                         QPEna QPWFltTm PLimNeg PLimPos
+/                         Reserved Reserved Reserved Reserved
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+/                         SecCtl_KI SecCtl_KP SecCtl_Krev SecCtl_DBUp SecCtl_DBLo SecCtl_OutMax SecCtl_OutMin SecCtl_Ena
+/                         Pf_Act_Twt PfAct_HiLim Pf_Act_LoLim VtgDroop_Hyst VtgDroop_DynLimEna
+/                         FrqMeas_UpLim FrqMeas_LoLim
+
+// Inverter Model
+2000 'USRMDL' 1 'SMASC174' 1 1 1 200 60 300
+                          2000
+                          1.0 1.0 0.0 0.8 1.0 0.0 1.0 0.0 0.6                          
+                          1.0 0.0 5.0 0.5 2.0                          
+                          0.0 0.9 0.5 1.0 0.9 0.9                          
+                          0.0 0.15 0.08 0.4                          
+                          1.0 1.0                          
+                          2.0 0.0 6.0 4.0                          
+                          0.15 0.13 0.13 0.11 10.0 1.0                          
+                          0.01 0.0 1.0 0.2 10.0 0.8 0.82                          
+                          0.0 0.125 0.1                          
+                          1.4 0.10 1.4 0.10 1.32 0.10 1.25 0.75 1.15 1.0
+                          0.85 12.0 0.8 5.0 0.65 1.5 0.65 1.5 0.65 1.5                          
+                          55.0 0.1 55.0 0.1 55.0 0.1 55.0 0.1 55.0 0.1 53.0 60.0                          
+                          46.9 60.0 45.0 0.1 45.0 0.1 45.0 0.1 45.0 0.1 45.0 0.1                          
+                          30.0 10.0 10.0 30.0 0.0 0.0 1.0 0.0                          
+                          0.0 0.0 1.0 0.0                          
+                          0.0 9999.0 0.7 1.0 0.001 0.0 0.7 1.0                          
+                          1.0 1.0
+                          0.0 0.6
+                          1 2.0 2.0 0.0 0.0
+                          1.0
+                          0.0 0.95 1.0 1.05 2.0
+                          2.0 2.0 2.0 2.0 2.0 2.0
+                          0.01 1.0
+                          1.0
+                          1.0
+                          1.0 0.5 0.9 1.1
+                          0.0 0.0 0.0 0.0
+                          0.01 0.000167 0.001
+                          0.6 0.5 80.0                          
+                          0.75 0.65 0.045 2.0                          
+                          0.005 550.0 50.0 5.0 0.1
+                          0.0 0.0
+                          0.0 4.0 4.0 1.0 0.87 0.0 0.0 6.0 6.0 1.0
+                          1.15 2.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0/
+/                         PPrim PWNom QVArNom PFLim PFPF PFPFExt QVArMod QoDEna QoDQMax
+/                         VArCtlVol_Volref VArCtlVol_VolDB VArCtlVol_VArGra VArCtlVol_VArMax VArCtlVol_VArTm
+/                         PFPFExtStr PFPFStr PFWStr PFPFExtStop PFPFStop PFWStop
+/                         WCtlHzMod PHzStr PHzStop PWGra
+/                         WGra VArGra
+/                         FRTMod FRTArGraNom FRTArGraNomHi FRTArGraNomLo
+/                         FRTDbVolMax FRTDbVolMaxHyst FRTDbVolMin FRTDbVolMinHyst FRT_AmpDGra Reserved
+/                         VArCmdFilTm FRT_VolFilMod FRT_VolDFilTm FRT_WaitTm FRT_AmpQGra FRTSpkMtgLo FRTSpkMtgHi
+/                         Reserved Reserved Reserved
+/                         VCtl_Hi5Lim VCtl_Hi5LimTm ... VCtl_Hi1Lim VCtl_Hi1LimTm
+/                         VCtl_Lo1Lim VCtl_Lo1LimTm ... VCtl_Lo5Limm VCtl_Lo5LimTm
+/                         HzCtl_Hi6Lim HzCtl_Hi6LimTm ... HzCtl_Hi1Lim HzCtl_Hi1LimTm
+/                         HzCtl_Lo1Lim HzCtl_Lo1LimTm ... HzCtl_Lo6Lim HzCtl_Lo6LimTm
+/                         KPLL1 PLLFlag KPPLL2 KIPLL2 HzFltTm PLLFlag2 KPPLL3 KIPLL3
+/                         Reserved Reserved GenTrpFlag PPrioEna
+/                         SMASCSFlag DisChargeTm SOCIni KP_C KI_C CDB CNom FSCScale
+/                         ChargePMax ChargePMin
+/                         MGCFlag QVArscale
+/                         VREps FRT_AmpDLim FRT_AmpQLim Reserved Reserved
+/                         GriMngInvVArMod
+/                         VArCtlVolLoVolRef3 VArCtlVolLoVolRef2 VArCtlVolLoVolRef1HiVolRef1 VArCtlVolHiVolRef2 VArCtlVolHiVolRef3
+/                         VArCtlVolLoGra3 VArCtlVolLoGra2 VArCtlVolLoGra1
+/                         VArCtlVolHiGra1 VArCtlVolHiGra2 VArCtlVolHiGra3
+/                         VArCtlVolVArSptFilTm VolNomSpt
+/                         Frt_AmpQFilTm
+/                         IniSchemeFlag
+/                         VArCtlVolVolNomSptMod VArCtlVolVolFilTm VArCtlVolVolMin VArCtlVolVolMax
+/                         PwrCtl_VolDQFilTm Reserved Reserved Reserved
+/                         Pll_Inv_TLength Pll_Inv_TSample Pll_Inv_TimeStep
+/                         Pll_Inv_HzFilOff2On_Vol Pll_Inv_HzFilOff2On_NomSum Pll_Inv_HzFilOn2Off_NomSum
+/                         Pll_Inv_HzFilOn2Wt_Vol Pll_Inv_HzFilWt2On_Vol Pll_Inv_SetTm Pll_Inv_DmpRto
+/                         Pll_Inv_VolDQFilTm Pll_Inv_VolDQRtg Pll_Inv_Fn Pll_Inv_HzGraLim Pll_Inv_HzFilTm
+/                         Reserved Reserved 
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+
+/##################################################################################
+/New England SF
+210756	'USRMDL'	1	'EMSPCI0'	107	0	54	141	12	28				
+				210753	210753	210772	1	2	0	2	0	0	1
+				4	3	3	1	210756	0	210759	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0						
+				0.07	0.07	0.07	0.989	100	0.997	100	1.003	100	1.02
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0.8485	0	50
+				50	0.3301	3.0565	1	0	0	7.874	0	0	0.58
+				5.7304	1.1	39.5	-39.5	1	39.5	-39.5	0.9	39.5	-39.5
+				0	39.5	-39.5	0	39.5	-39.5	0.014	0.014	0.014	0.318
+				1.043	0.318	0	3.2	1.1	1	0.9	0	0	100
+				29.17	39.5	39.5	39.5	39.5	97.22	39.5	39.5	39.5	39.5
+				39.5	0	39.5	39.5	39.5	39.5	39.5	0	39.5	39.5
+				39.5	39.5	39.5	0	39.5	39.5	39.5	39.5	39.5	0
+				39.5	39.5	39.5	39.5	39.5	100	-39.5	-39.5	-39.5	-39.5
+				-39.5	50	-39.5	-39.5	-39.5	-39.5	-39.5	0	-39.5	-39.5
+				-39.5	-39.5	-39.5	0	-39.5	-39.5	-39.5	-39.5	-39.5	0
+				-39.5	-39.5	-39.5	-39.5	-39.5	0	-39.5	-39.5	-39.5	-39.5
+				-39.5	/								
+												
+210762	'USRMDL'	1	'EMSPCI0'	107	0	54	141	12	28				
+				210753	210753	210773	1	2	0	2	0	0	1
+				4	3	3	1	210762	0	210765	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0						
+				0.07	0.07	0.07	0.989	100	0.997	100	1.003	100	1.02
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0.8485	0	50
+				50	0.3301	3.0565	1	0	0	7.874	0	0	0.58
+				5.7304	1.1	39.5	-39.5	1	39.5	-39.5	0.9	39.5	-39.5
+				0	39.5	-39.5	0	39.5	-39.5	0.014	0.014	0.014	0.318
+				1.043	0.318	0	3.2	1.1	1	0.9	0	0	100
+				29.17	39.5	39.5	39.5	39.5	97.22	39.5	39.5	39.5	39.5
+				39.5	0	39.5	39.5	39.5	39.5	39.5	0	39.5	39.5
+				39.5	39.5	39.5	0	39.5	39.5	39.5	39.5	39.5	0
+				39.5	39.5	39.5	39.5	39.5	100	-39.5	-39.5	-39.5	-39.5
+				-39.5	50	-39.5	-39.5	-39.5	-39.5	-39.5	0	-39.5	-39.5
+				-39.5	-39.5	-39.5	0	-39.5	-39.5	-39.5	-39.5	-39.5	0
+				-39.5	-39.5	-39.5	-39.5	-39.5	0	-39.5	-39.5	-39.5	-39.5
+				-39.5	/								
+												
+210768	'USRMDL'	1	'EMSPCI0'	107	0	54	141	12	28				
+				210753	210753	210774	1	2	0	2	0	0	1
+				4	3	3	1	210768	0	210771	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0						
+				0.07	0.07	0.07	0.989	100	0.997	100	1.003	100	1.02
+				0	0	0	0	0	0	0	0	0	0
+				0	0	0	0	0	0	0	0.8650	0	50
+				50	0.3301	3.0565	1	0	0	7.874	0	0	0.58
+				5.7304	1.1	39.5	-39.5	1	39.5	-39.5	0.9	39.5	-39.5
+				0	39.5	-39.5	0	39.5	-39.5	0.014	0.014	0.014	0.318
+				1.043	0.318	0	3.2	1.1	1	0.9	0	0	100
+				29.17	39.5	39.5	39.5	39.5	97.22	39.5	39.5	39.5	39.5
+				39.5	0	39.5	39.5	39.5	39.5	39.5	0	39.5	39.5
+				39.5	39.5	39.5	0	39.5	39.5	39.5	39.5	39.5	0
+				39.5	39.5	39.5	39.5	39.5	100	-39.5	-39.5	-39.5	-39.5
+				-39.5	50	-39.5	-39.5	-39.5	-39.5	-39.5	0	-39.5	-39.5
+				-39.5	-39.5	-39.5	0	-39.5	-39.5	-39.5	-39.5	-39.5	0
+				-39.5	-39.5	-39.5	-39.5	-39.5	0	-39.5	-39.5	-39.5	-39.5
+				-39.5	/								
+												
+
+210756	'USRMDL'	1	'ING1BI'	101	1	12	85	22	52				
+				210755	210756	1	1	210756	1	1	1	0	1
+				72	72								
+				0.005	0.005	0.007	1	0.025	0.2	0.04	0	0	0.2
+				0	0.2	0	0	8	1	0	1	0	1
+				0	0	0	8	0.003	0.003	1	0.064	0.064	1.1
+				0.7	-0.7	1	0.7	-0.7	0.9	0.7	-0.7	0.01	1.4
+				0.3	1.3	4	1.2	0	0	2.5	0.8	11	0.85
+				0.1	1.042	600	1.022	650	1.012	0.1	0.938	600	0.978
+				650	0.988	0.85	0	0.6025	0.99	0	1	0	1
+				1.2	0	1.37	-1	1.5	-1	0	0	0.6025	0.134
+				0.85	1	0	0.154	1.0	/				
+													
+210759	'USRMDL'	1	'ING1BI'	101	1	12	85	22	52				
+				210758	210759	1	1	210759	1	1	1	0	1
+				72	72								
+				0.005	0.005	0.007	1	0.025	0.2	0.04	0	0	0.2
+				0	0.2	0	0	8	1	0	1	0	1
+				0	0	0	8	0.003	0.003	1	0.064	0.064	1.1
+				0.7	-0.7	1	0.7	-0.7	0.9	0.7	-0.7	0.01	1.4
+				0.3	1.3	4	1.2	0	0	2.5	0.8	11	0.85
+				0.1	1.042	600	1.022	650	1.012	0.1	0.938	600	0.978
+				650	0.988	0.85	0	0.6025	0.99	0	1	0	1
+				1.2	0	1.37	-1	1.5	-1	0	0	0.6025	0.134
+				0.85	1	0	0.154	1.0	/	
+
+210762	'USRMDL'	1	'ING1BI'	101	1	12	85	22	52				
+				210761	210762	1	1	210762	1	1	1	0	1
+				72	72								
+				0.005	0.005	0.007	1	0.025	0.2	0.04	0	0	0.2
+				0	0.2	0	0	8	1	0	1	0	1
+				0	0	0	8	0.003	0.003	1	0.064	0.064	1.1
+				0.7	-0.7	1	0.7	-0.7	0.9	0.7	-0.7	0.01	1.4
+				0.3	1.3	4	1.2	0	0	2.5	0.8	11	0.85
+				0.1	1.042	600	1.022	650	1.012	0.1	0.938	600	0.978
+				650	0.988	0.85	0	0.6025	0.99	0	1	0	1
+				1.2	0	1.37	-1	1.5	-1	0	0	0.6025	0.134
+				0.85	1	0	0.154	1.0	/	
+
+210765	'USRMDL'	1	'ING1BI'	101	1	12	85	22	52				
+				210764	210765	1	1	210765	1	1	1	0	1
+				72	72								
+				0.005	0.005	0.007	1	0.025	0.2	0.04	0	0	0.2
+				0	0.2	0	0	8	1	0	1	0	1
+				0	0	0	8	0.003	0.003	1	0.064	0.064	1.1
+				0.7	-0.7	1	0.7	-0.7	0.9	0.7	-0.7	0.01	1.4
+				0.3	1.3	4	1.2	0	0	2.5	0.8	11	0.85
+				0.1	1.042	600	1.022	650	1.012	0.1	0.938	600	0.978
+				650	0.988	0.85	0	0.6025	0.99	0	1	0	1
+				1.2	0	1.37	-1	1.5	-1	0	0	0.6025	0.134
+				0.85	1	0	0.154	1.0	/		
+
+210768	'USRMDL'	1	'ING1BI'	101	1	12	85	22	52				
+				210767	210768	1	1	210768	1	1	1	0	1
+				113	113								
+				0.005	0.005	0.007	1	0.025	0.2	0.04	0	0	0.2
+				0	0.2	0	0	8	1	0	1	0	1
+				0	0	0	8	0.003	0.003	1	0.064	0.064	1.1
+				0.7	-0.7	1	0.7	-0.7	0.9	0.7	-0.7	0.01	1.4
+				0.3	1.3	4	1.2	0	0	2.5	0.8	11	0.85
+				0.1	1.042	600	1.022	650	1.012	0.1	0.938	600	0.978
+				650	0.988	0.85	0	0.6025	0.99	0	1	0	1
+				1.2	0	1.37	-1	1.5	-1	0	0	0.6025	0.134
+				0.85	1	0	0.154	1.0	/
+
+210771	'USRMDL'	1	'ING1BI'	101	1	12	85	22	52				
+				210770	210771	1	1	210771	1	1	1	0	1
+				113	113								
+				0.005	0.005	0.007	1	0.025	0.2	0.04	0	0	0.2
+				0	0.2	0	0	8	1	0	1	0	1
+				0	0	0	8	0.003	0.003	1	0.064	0.064	1.1
+				0.7	-0.7	1	0.7	-0.7	0.9	0.7	-0.7	0.01	1.4
+				0.3	1.3	4	1.2	0	0	2.5	0.8	11	0.85
+				0.1	1.042	600	1.022	650	1.012	0.1	0.938	600	0.978
+				650	0.988	0.85	0	0.6025	0.99	0	1	0	1
+				1.2	0	1.37	-1	1.5	-1	0	0	0.6025	0.134
+				0.85	1	0	0.154	1.0	/	
+
+/##################################################################################
+/Tamworth SF
+100 'USRMDL' 1 'SMAPPC130' 4 0 55 150 20 70 106 800003 -1 1
+                          0 0 0 0 0 0 0 0 0 0
+                          0 0 0 0 0 0 0 0 0 0
+                          0 0 0 0 0 0 0 0 0 0
+                          0 0 0 0 0 0 0 0 0 0
+                          0 0 0 0 0 0 0 0 0 0
+                          0
+                          2.0
+                          0.0 0.5 0.04 0.0
+                          0.0 0.5 0.04 0.0
+                          0.0 1.0123 0.0 0.0502 0.0
+                          0.1 1.0 0.04 0.0 0.9
+                          0.04 0.04 -1.0 1.0
+                          0.82 0.0 1.17 0.0 0.1 0.0
+                          0.0 1.0 0.04 0.0 0.1
+                          0.0 50.16
+                          2.0 0.015 0.00 0.312 0.02 0.0
+                          0.04 0.12 0.0
+                          47.4850 47.9850 48.9850 49.9850 50.0150 51.0150 52.0150 52.5150
+                          0.7800 0.6240 0.3120 0.0 0.0 -0.3120 -0.6240 -0.7800
+                          0.0 1.0 1.0 0.0 1.0 1.0
+                          0.0
+                          0.0 0.0
+                          0.8 0.9 0.95 0.99 1.01 1.05 1.1 1.2
+                          0.5 0.4 0.2 0.0 0.0 -0.3 -0.5 -0.6
+                          -0.5119 0.5119
+                          -0.5119 0.5119
+                          0.0 0.93 1.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.05
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0/
+/                         CtlMod
+/                         KP_PF KI_PF PFXdcrTm PFDB
+/                         KP_Vol KI_Vol (needs to be tuned depending on grid impedance) VolXdcrTm VolDB
+/                         PFNomTot VolNomTot QNomTotHyb VolDiff HybCtlTun
+/                         KP_P KI_P PXdcrTm PDB PNomTot
+/                         QCommTm PCommTm QSptLimNeg QSptLimPos
+/                         FRTThrVolNomMin Reserved FRTThrVolNomMax Reserved FRTHldTm Reserved
+/                         KP_Q KI_Q QXdcrTm QDB QNomTot
+/                         PRefTot QRefTot
+/                         WCtlHzMod PHzStr PHzStop PWGra HzFltTm WCtlHzDrgIndEna
+/                         PNomTotGraMin PNomTotGraMax FSCFlag
+/                         FD_IPXArr_0 FD_IPXArr_1 FD_IPXArr_2 FD_IPXArr_3 ... FD_IPXArr_7
+/                         FD_IPYArr_0 FD_IPYArr_1 FD_IPYArr_2 FD_IPYArr_3 ... FD_IPYArr_7
+/                         RRCFlag FallRateMax RiseRateMax PDiffMin PSuppMax PPVChargeMax
+/                         Reserved 
+/                         PPltCtl QPltCtl
+/                         QV_QSXArr_0 QV_QSXArr_1 QV_QSXArr_2 QV_QSXArr_3 ... QV_QSXArr_7
+/                         QV_QSYArr_0 QV_QSYArr_1 QV_QSYArr_2 QV_QSYArr_3 ... QV_QSYArr_7
+/                         QLimNeg QLimPos
+/                         VDroopQLimNeg VDroopQLimPos
+/                         PSptLimMin PSptLimMax WCtlHzWGraUp Reserved Reserved Reserved
+/                         QP_NegQXArr_0 QP_NegQXArr_1 QP_NegQXArr_2 QP_NegQXArr_3 ... QP_NegQXArr_7
+/                         QP_NegQYArr_0 QP_NegQYArr_1 QP_NegQYArr_2 QP_NegQYArr_3 ... QP_NegQYArr_7
+/                         QP_PosQXArr_0 QP_PosQXArr_1 QP_PosQXArr_2 QP_PosQXArr_3 ... QP_PosQXArr_7
+/                         QP_PosQYArr_0 QP_PosQYArr_1 QP_PosQYArr_2 QP_PosQYArr_3 ... QP_PosQYArr_7
+/                         QPEna QPWFltTm
+/                         Reserved Reserved Reserved Reserved Reserved Reserved
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+/
+
+100 'USRMDL' 1 'SMASC161' 1 1 0 160 40 200
+                          1.0 0.8587 0.0 0.8 1.0 1.0 1.0 0.0 0.3
+                          1.0 0.0 5.0 0.5 2.0
+                          0.0 0.9 0.5 1.0 0.9 0.9
+                          0.0 0.15 0.05 0.4
+                          1.0 2.0
+                          2.0 6.0 6.0 6.0
+                          0.185 0.165 0.17 0.15 10.0 0.0
+                          0.01 1.0 1.0 0.10 1.0 0.3 0.75
+                          0.0 0.0 0.0
+                          1.40 0.020 1.40 0.020 1.3 1.00 1.24 3.0 1.16 20.0
+                          0.8 5.0 0.4 2.0 0.0 2.0 0.0 2.0 0.0 2.0
+                          55.0 0.02 53.0 60.0 53.0 60.0 53.0 60.0 53.0 60.0 53.0 60.0
+                          47.0 60.0 47.0 60.0 47.0 60.0 47.0 60.0 47.0 60.0 45.0 0.02
+                          20.0 1.0 50.0 30.0 0.0 0.0 5.0 0.3
+                          0.0 0.0 1.0 0.0
+                          0.0 360.0 0.5 0.01 0.05 0.0 0.5 1.0
+                          1.0 1.0
+                          0.0 0.6
+                          0.5 2.0 2.0 0.0 0.0
+                          1.0
+                          0.0 0.945 1.0 1.055 2.0
+                          5.0 5.0 5.0 5.0 5.0 5.0
+                          0.01 1.0
+                          1.0
+                          0.0
+                          1.0 0.5 0.9 1.1
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0 0.0 0.0 0.0/
+/                         PPrim PWNom QVArNom PFLim PFPF PFPFExt QVArMod QoDEna QoDQMax
+/                         VArCtlVol_Volref VArCtlVol_VolDB VArCtlVol_VArGra VArCtlVol_VArMax VArCtlVol_VArTm
+/                         PFPFExtStr PFPFStr PFWStr PFPFExtStop PFPFStop PFWStop
+/                         WCtlHzMod PHzStr PHzStop PWGra
+/                         WGra VArGra
+/                         FRTMod FRTArGraNom FRTArGraNomHi FRTArGraNomLo
+/                         FRTDbVolMax FRTDbVolMaxHyst FRTDbVolMin FRTDbVolMinHyst FRT_AmpDGra Reserved
+/                         VArCmdFilTm FRT_VolFilMod FRT_VolDFilTm FRT_WaitTm FRT_AmpQGra FRTSpkMtgLo FRTSpkMtgHi
+/                         Reserved Reserved Reserved
+/                         VCtl_Hi5Lim VCtl_Hi5LimTm ... VCtl_Hi1Lim VCtl_Hi1LimTm
+/                         VCtl_Lo1Lim VCtl_Lo1LimTm ... VCtl_Lo5Limm VCtl_Lo5LimTm
+/                         HzCtl_Hi6Lim HzCtl_Hi6LimTm ... HzCtl_Hi1Lim HzCtl_Hi1LimTm
+/                         HzCtl_Lo1Lim HzCtl_Lo1LimTm ... HzCtl_Lo6Lim HzCtl_Lo6LimTm
+/                         KPLL1 PLLFlag KPPLL2 KIPLL2 HzFltTm PLLFlag2 KPPLL3 KIPLL3
+/                         Reserved Reserved GenTrpFlag PPrioEna
+/                         SMASCSFlag DisChargeTm SOCIni KP_C KI_C CDB CNom FSCScale
+/                         ChargePMax ChargePMin
+/                         MGCFlag QVArscale
+/                         VREps FRT_AmpDLim FRT_AmpQLim Reserved Reserved
+/                         GriMngInvVArMod
+/                         VArCtlVolLoVolRef3 VArCtlVolLoVolRef2 VArCtlVolLoVolRef1HiVolRef1 VArCtlVolHiVolRef2 VArCtlVolHiVolRef3
+/                         VArCtlVolLoGra3 VArCtlVolLoGra2 VArCtlVolLoGra1
+/                         VArCtlVolHiGra1 VArCtlVolHiGra2 VArCtlVolHiGra3
+/                         VArCtlVolVArSptFilTm VolNomSpt
+/                         Frt_AmpQFilTm
+/                         IniSchemeFlag
+/                         VArCtlVolVolNomSptMod VArCtlVolVolFilTm VArCtlVolVolMin VArCtlVolVolMax
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved
+/                         Reserved Reserved Reserved Reserved Reserved Reserved Reserved
