@@ -1,0 +1,21 @@
+# File:"C:\Users\341510davu\OneDrive - OX2\3. Grid - SUMSF\1. Power System Studies\1. Main Test Environment\Git_SF_BESS_Summerville\PSSE_sim\base_model\SMIB\20240109_model_update2.py", generated on TUE, JAN 09 2024  15:33, PSS(R)E release 34.05.01
+psspy.two_winding_chng_6(273501,273531,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,2],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
+psspy.two_winding_chng_6(273501,273531,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f, 3780.0, 0.001,_f,_f,_f,_f,_f,_f,_f],[ 100.8,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,
+_s)
+psspy.two_winding_chng_6(273502,273532,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,2],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
+psspy.two_winding_chng_6(273502,273532,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f, 75.6,_f,_f,_f,_f,_f,_f,_f,_f,_f, 3780.0, 0.001,_f,_f,_f,_f,_f,_f,_f],[ 75.6,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,
+_s)
+psspy.fnsl([1,0,0,1,1,0,99,0])
+psspy.savediagfile(r"""SUMSF_SMIB_V1.sld""")
+psspy.save(r"""C:\Users\341510davu\OneDrive - OX2\3. Grid - SUMSF\1. Power System Studies\1. Main Test Environment\Git_SF_BESS_Summerville\PSSE_sim\base_model\SMIB\SUMSF_SMIB_V1.sav""")
+psspy.two_winding_chng_6(273501,273531,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f, 90720.0,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
+psspy.two_winding_chng_6(273502,273532,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f, 68040.0,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
+psspy.save(r"""C:\Users\341510davu\OneDrive - OX2\3. Grid - SUMSF\1. Power System Studies\1. Main Test Environment\Git_SF_BESS_Summerville\PSSE_sim\base_model\SMIB\SUMSF_SMIB_V1.sav""")
+psspy.fnsl([1,0,0,1,1,0,99,0])
+psspy.fnsl([1,0,0,1,1,0,99,0])
+psspy.save(r"""C:\Users\341510davu\OneDrive - OX2\3. Grid - SUMSF\1. Power System Studies\1. Main Test Environment\Git_SF_BESS_Summerville\PSSE_sim\base_model\SMIB\SUMSF_SMIB_V1.sav""")
+psspy.seq_two_winding_data_3(273502,273532,r"""1""",[_i,_i,_i],[_f,_f, 0.008598, 0.085979,_f,_f,_f,_f,_f,_f])
+psspy.fnsl([1,0,0,1,1,0,99,0])
+psspy.save(r"""C:\Users\341510davu\OneDrive - OX2\3. Grid - SUMSF\1. Power System Studies\1. Main Test Environment\Git_SF_BESS_Summerville\PSSE_sim\base_model\SMIB\SUMSF_SMIB_V1.sav""")
+psspy.savediagfile(r"""SUMSF_SMIB_V1.sld""")
+psspy.closediagfile()
