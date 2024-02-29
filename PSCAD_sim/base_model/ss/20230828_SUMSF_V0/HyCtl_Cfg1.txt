@@ -1,0 +1,288 @@
+#HybridController configuration file, Plant: Default SMA
+Version              HyCtl
+
+GridService.FrqPoiFilterTm          0.05       #Filter time for actual frequency in s
+GridService.PwrAtNomPoi             90000      #Nominal active power at point of interest in kW
+GridService.PwrApPrioMode           2          #Defines the prioritization to limit the apparent power / 1: PWR_AP_PRIO_MODE_ACTIVE / 0: PWR_AP_PRIO_MODE_OFF / 2: PWR_AP_PRIO_MODE_REACTIVE / 3: PWR_AP_PRIO_MODE_REACTIVE_FRQDROOP
+GridService.CosPhiMinPoi            0          #Minimum CosPhi at point of interest, if set to 0 limitation is disabled
+GridService.PoiPwrAtCtrlMode        3          #Defines which device class is controlling the active power of the POI / 3: POI_CTRL_MODE_AUTO / 2: POI_CTRL_MODE_BAT / 4: POI_CTRL_MODE_BAT_AND_PV / 0: POI_CTRL_MODE_NONE / 1: POI_CTRL_MODE_PV
+GridService.PoiAutoModeTransTm      0.11       #Defines the transition time from Battery is controlling the POI to PV is controlling the POI, in s.
+GridService.EnaLoadCovering         0          #Enables covering of loads and shifting system boundaries by adding loads
+GridService.PwrApNomPoi             96767      #Nominal apparent power at POI in kVA
+GridService.PwrAtPoiFilterTm        0          #Filter time for actual active power at POI in s which is used for apparent power limitation
+GridService.PwrRtNomPoi             35550      #Nominal reactive power at POI in kVar
+GridService.PwrRtPoiFilterTm        0          #Filter time for actual reactive power at POI in s which is used for apparent power limitation
+GridService.EnaPrioBatFrqResp       0          #Enables the prioritization of the activated battery P(f) function (FFR, EFR, FCR, FCAS)
+GridService.EnaFrqRespForPv         0          #Enables frequency response (FFR, EFR, PRL, DS3, FCAS) for pv systems. / 0: ENA_NO / 1: ENA_YES $24779$
+
+Meas.FacNom                         50         #Nominal frequency of the system in Hz (50/50Hz)
+Meas.VtgNom                         132000     #Nominal voltage in V
+
+SpntRamp.PwrAtMode                  5          #Defines in which system state the PwrAtRateMax is active / 5: MODE_ALL / 2: MODE_BAT_IOP / 1: MODE_GEN_IOP / 3: MODE_GRID_MOP / 4: MODE_GRID_MOP_GEN_IOP / 0: MODE_NONE
+SpntRamp.PwrRtMode                  5          #Defines in which system state the PwrRtRateMax is active / 5: MODE_ALL / 2: MODE_BAT_IOP / 1: MODE_GEN_IOP / 3: MODE_GRID_MOP / 4: MODE_GRID_MOP_GEN_IOP / 0: MODE_NONE
+SpntRamp.PwrAtRateMax               12000      #maximum rate of active power setpoint for hole system in MW/min
+SpntRamp.PwrRtRateMax               12000      #maximum rate of reactive power setpoint for hole system in MVar/min
+SpntRamp.PwrAtSpntFilterTm          0.1        #Active power setpoint filter time, if greater than 0 ramps are disabled.
+SpntRamp.PwrRtSpntFilterTm          0.1        #Reactive power setpoint filter time, if greater than 0 ramps are disabled.
+SpntRamp.PwrAtResetThrsldPc         5          #Threshold for reseting the active power setpoint to the actual measurement in % of PwrAtNomPoi
+SpntRamp.PvPwrAtFallRateMax         100        #maximum negative rate of active power setpoint for pv system in %/s (of related actual power) $2053$
+SpntRamp.PvPwrAtRiseRateMax         100        #maximum positive rate of active power setpoint for pv system in %/s (of related actual power) $2054$
+SpntRamp.BatPwrAtFallRateMax        100        #maximum negative rate of active power setpoint for battery system in %/s (of related actual power) $2048$
+SpntRamp.BatPwrAtRiseRateMax        100        #maximum positive rate of active power setpoint for battery system in %/s (of related actual power) $2049$
+
+BatPwrAtCtrl.CtrlKi                 2.5       #Control parameter intregral gain for the power PI controller
+BatPwrAtCtrl.CtrlKp                 0          #Control parameter proportional gain  for the power PI controller
+BatPwrAtCtrl.FeedForwardOffset      0          #A constant offset which will be added to the setpoint
+BatPwrAtCtrl.PilotControlGain       0          #The gain factor for the pilot control
+BatPwrAtCtrl.SpntDelaySamples       0          #To delay the active power setpoint
+BatPwrAtCtrl.Ena                    1          #Enables the PI controller for active power control
+BatPwrAtCtrl.PiCtrlLimPc            100        #The upper and lower limit of the output of the PI controller for active power control
+BatPwrAtCtrl.SysStateMode           5          #Defines in which system state the controller is active / 5: MODE_ALL / 2: MODE_BAT_IOP / 1: MODE_GEN_IOP / 3: MODE_GRID_MOP / 4: MODE_GRID_MOP_GEN_IOP / 0: MODE_NONE
+BatPwrAtCtrl.MeasFilterTm           0          #Filter time for actual measurement in s
+BatPwrAtCtrl.EnaStepReset           0          #Enables reseting of the integrator if step change is detected
+BatPwrAtCtrl.StepResetThrsldPc      20         #Threshold for detecting a step change, in % of PwrAtNomPoi
+BatPwrAtCtrl.OvershootResetPc       100        #Offset for detecting a overshoot, in % of PwrAtNomPoi
+BatPwrAtCtrl.EnaAdapCtrl            1          #Enables adaptive control (Yes: related to the connected nominal device power / No: related to PwrAt(Rt)NomPoi)
+BatPwrAtCtrl.EnaDynSpntSwitch       0          #Enables dynamic setpoint switching if limits are exceeded
+BatPwrAtCtrl.DynSpntSwitchHysPc     0          #Hysteresis for switching to the limit if measurement exceeds the limit, in % of PwrAtNomPoi
+
+PvPwrAtCtrl.CtrlKi                  1.7        #Control parameter intregral gain for the power PID controller
+PvPwrAtCtrl.CtrlKp                  0          #Control parameter proportional gain  for the power PI controller
+PvPwrAtCtrl.Ena                     1          #Enables the PI controller
+PvPwrAtCtrl.FeedForwardOffset       0          #A constant offset which will be added to the setpoint in kW
+PvPwrAtCtrl.PiCtrlLimPc             100        #The upper and lower limit of the output of the PI controller
+PvPwrAtCtrl.PilotControlGain        0          #The gain factor for the pilot control
+PvPwrAtCtrl.SpntDelaySamples        0          #To delay the active power setpoint
+PvPwrAtCtrl.SysStateMode            3          #Defines in which system state the controller is active / 5: MODE_ALL / 2: MODE_BAT_IOP / 1: MODE_GEN_IOP / 3: MODE_GRID_MOP / 4: MODE_GRID_MOP_GEN_IOP / 0: MODE_NONE
+PvPwrAtCtrl.MeasFilterTm            0          #Filter time for actual measurement in s
+PvPwrAtCtrl.EnaStepReset            0          #Enables resetting of the integrator if step change is detected (PV)
+PvPwrAtCtrl.StepResetThrsldPc       100        #Threshold for detecting a step change, in % of PwrAtNomPoi
+PvPwrAtCtrl.OvershootResetPc        100        #Offset for detecting a overshoot, in % of PwrAtNomPoi
+PvPwrAtCtrl.EnaAdapCtrl             1          #Enables adaptive control (Yes: related to the connected nominal device power / No: related to PwrAt(Rt)NomPoi)
+PvPwrAtCtrl.EnaDynSpntSwitch        0          #Enables dynamic setpoint switching if limits are exceeded
+PvPwrAtCtrl.DynSpntSwitchHysPc      0          #Hysteresis for switching to the limit if measurement exceeds the limit, in % of PwrAtNomPoi
+
+PwrRtCtrl.CtrlKi                    1.0        #Control parameter intregral gain for the power PI controller
+PwrRtCtrl.CtrlKp                    0          #Control parameter proportional gain  for the power PI controller
+PwrRtCtrl.FeedForwardOffset         0          #A constant offset which will be added to the setpoint
+PwrRtCtrl.PilotControlGain          0          #The gain factor for the pilot control
+PwrRtCtrl.SpntDelaySamples          0          #To delay the active power setpoint
+PwrRtCtrl.Ena                       1          #Enables the PI controller for reactive power control
+PwrRtCtrl.PiCtrlLimPc               100        #The upper and lower limit of the output of the PI controller for reactive power control
+PwrRtCtrl.SysStateMode              5          #Defines in which system state the controller is active / 5: MODE_ALL / 2: MODE_BAT_IOP / 1: MODE_GEN_IOP / 3: MODE_GRID_MOP / 4: MODE_GRID_MOP_GEN_IOP / 0: MODE_NONE
+PwrRtCtrl.MeasFilterTm              0          #Filter time for actual measurement in s
+PwrRtCtrl.EnaStepReset              0          #Enables reseting of the integrator if step change is detected
+PwrRtCtrl.StepResetThrsldPc         20         #Threshold for detecting a step change, in % of PwrRtNomPoi
+PwrRtCtrl.OvershootResetPc          100        #Offset for detecting a overshoot, in % of PwrRtNomPoi
+PwrRtCtrl.EnaAdapCtrl               1          #Enables adaptive control (Yes: related to the connected nominal device power / No: related to PwrAt(Rt)NomPoi)
+PwrRtCtrl.EnaDynSpntSwitch          1          #Enables dynamic setpoint switching if limits are exceeded
+PwrRtCtrl.DynSpntSwitchHysPc        0          #Hysteresis for switching to the limit if measurement exceeds the limit, in % of PwrRtNomPoi
+
+PwrRt.PwrRtCtrlMode                 1069       #Defines which reactive power function is used / 1076: PWR_RT_MODE_COSPHI_P / 1081: PWR_RT_MODE_COSPHI_P_VTG_DROOP / 1082: PWR_RT_MODE_COSPHI_P_VTG_LIM / 1074: PWR_RT_MODE_FIX_COSPHI / 1077: PWR_RT_MODE_FIX_COSPHI_VTG_DROPP / 1078: PWR_RT_MODE_FIX_COSPHI_VTG_LIM / 1984: PWR_RT_MODE_GRID_VTG_CTRL / 303: PWR_RT_MODE_OFF / 1073: PWR_RT_MODE_PWR_AT_CURVE / 1079: PWR_RT_MODE_PWR_AT_CURVE_VTG_DROPP / 1080: PWR_RT_MODE_PWR_AT_CURVE_VTG_LIM / 1069: PWR_RT_MODE_VTG_DROOP / 1072: PWR_RT_MODE_VTG_LIM
+PwrRt.MeasSrc                       3          #Defines which measurement of the POI is used / 5: AUTO_SWITCH_MEAS_COS_PHI / 4: AUTO_SWITCH_MEAS_FRQ / 1: AUTO_SWITCH_MEAS_PWR_AT / 2: AUTO_SWITCH_MEAS_PWR_RT / 3: AUTO_SWITCH_MEAS_VTG
+PwrRt.PwrRtAutoSwitchMode           1          #Enables automatic switching of reactive power control modes / 1: PWR_RT_SWITCH_AUTO / 2: PWR_RT_SWITCH_DAY_NIGHT / 5: PWR_RT_SWITCH_DAY_NIGHT_AUTO / 3: PWR_RT_SWITCH_NIGHT / 4: PWR_RT_SWITCH_NIGHT_AUTO / 0: PWR_RT_SWITCH_OFF
+PwrRt.PwrRtCtrlModeAuto1            303        #Defines which reactive power function is used at threshold 1 / 1076: PWR_RT_MODE_COSPHI_P / 1081: PWR_RT_MODE_COSPHI_P_VTG_DROOP / 1082: PWR_RT_MODE_COSPHI_P_VTG_LIM / 1074: PWR_RT_MODE_FIX_COSPHI / 1077: PWR_RT_MODE_FIX_COSPHI_VTG_DROPP / 1078: PWR_RT_MODE_FIX_COSPHI_VTG_LIM / 1984: PWR_RT_MODE_GRID_VTG_CTRL / 303: PWR_RT_MODE_OFF / 1073: PWR_RT_MODE_PWR_AT_CURVE / 1079: PWR_RT_MODE_PWR_AT_CURVE_VTG_DROPP / 1080: PWR_RT_MODE_PWR_AT_CURVE_VTG_LIM / 1069: PWR_RT_MODE_VTG_DROOP / 1072: PWR_RT_MODE_VTG_LIM
+PwrRt.PwrRtCtrlModeAuto2            303        #Defines which reactive power function is used at threshold 2 / 1076: PWR_RT_MODE_COSPHI_P / 1081: PWR_RT_MODE_COSPHI_P_VTG_DROOP / 1082: PWR_RT_MODE_COSPHI_P_VTG_LIM / 1074: PWR_RT_MODE_FIX_COSPHI / 1077: PWR_RT_MODE_FIX_COSPHI_VTG_DROPP / 1078: PWR_RT_MODE_FIX_COSPHI_VTG_LIM / 1984: PWR_RT_MODE_GRID_VTG_CTRL / 303: PWR_RT_MODE_OFF / 1073: PWR_RT_MODE_PWR_AT_CURVE / 1079: PWR_RT_MODE_PWR_AT_CURVE_VTG_DROPP / 1080: PWR_RT_MODE_PWR_AT_CURVE_VTG_LIM / 1069: PWR_RT_MODE_VTG_DROOP / 1072: PWR_RT_MODE_VTG_LIM
+PwrRt.RelatOperator                 4          #Relational operator to compare the measurement to the thresholds / 4: LESS_THAN / 2: LESS_THAN_EQUAL_TO
+PwrRt.Thrsld1                       0          #Threshold 1 to which the measurement is compared
+PwrRt.Thrsld2                       0          #Threshold 2 to which the measurement is compared
+PwrRt.ThrsldHyst                    0          #Hysteresis for switching back the control mode
+PwrRt.FlbSpntMode                   0          #Defines which setpoint is used to detect a fallback. / 3: FLB_MODE_COSPHI_SPNT_EXP / 2: FLB_MODE_COSPHI_SPNT_IMP / 0: FLB_MODE_OFF / 4: FLB_MODE_PWR_RT_SPNT / 1: FLB_MODE_VTG_SPNT
+PwrRt.PwrRtCtrlModeFlb              303        #Defines which reactive power function is used in case of a fallback / 1076: PWR_RT_MODE_COSPHI_P / 1081: PWR_RT_MODE_COSPHI_P_VTG_DROOP / 1082: PWR_RT_MODE_COSPHI_P_VTG_LIM / 1074: PWR_RT_MODE_FIX_COSPHI / 1077: PWR_RT_MODE_FIX_COSPHI_VTG_DROPP / 1078: PWR_RT_MODE_FIX_COSPHI_VTG_LIM / 1984: PWR_RT_MODE_GRID_VTG_CTRL / 303: PWR_RT_MODE_OFF / 1073: PWR_RT_MODE_PWR_AT_CURVE / 1079: PWR_RT_MODE_PWR_AT_CURVE_VTG_DROPP / 1080: PWR_RT_MODE_PWR_AT_CURVE_VTG_LIM / 1069: PWR_RT_MODE_VTG_DROOP / 1072: PWR_RT_MODE_VTG_LIM
+
+FrtDetection.Ena                    1          #Enables function
+FrtDetection.FilterTm               1          #Filter time for upper and lower limits in sec
+FrtDetection.VtgUpLimPc             115        #Upper voltage threshold for FRT detection in percentage of VtgNom
+FrtDetection.VtgLoLimPc             85         #Lower voltage threshold for FRT detection in percentage of VtgNom
+FrtDetection.StopDelay              0.2        #Stop delay for leaving state FRT in sec
+FrtDetection.ThrsldMode             1          #Selects the source for the calculation of upper and lower thresholds / 0: FRTDETECT_MODE_MEAS / 1: FRTDETECT_MODE_NOM
+FrtDetection.PreFrtSamples          5          #Re-initializes pi controllers to the pre frt output $19844$
+FrtDetection.VtgNom                 132000     #Nominal voltage for FRT detection in V $24734$
+FrtDetection.RefMode                0          #Defines the reference point for FRT detection / 1: FRTDETECT_REF_MODE_DEDICATED / 0: FRTDETECT_REF_MODE_POI $24735$
+
+FixCosPhi.CosPhiSpntGen             0.95       #Power factor setpoint for gensets
+FixCosPhi.PwrAtFilterTm             1.0        #First order filter time constant for the active+reactive power of the genset system
+FixCosPhi.CosPhiSpntGridImp         1          #Power factor setpoint for active power import at grid connection
+FixCosPhi.CosPhiLimLo               0.8        #External CosPhi setpoint is limited to this value
+FixCosPhi.CosPhiExtModExp           1041       #Defines the excitation of the external CosPhi septoint for active power export / 1041: FIXCOSPHI_SIGN_MODE_OVER_EX
+FixCosPhi.CosPhiSpntGridExp         1          #Power factor setpoint for active power export at grid connection
+FixCosPhi.CosPhiExtModImp           1041       #Defines the excitation of the external CosPhi septoint for active power import / 1041: FIXCOSPHI_SIGN_MODE_OVER_EX
+FixCosPhi.ExtSpntMode               1          #Defines if the external setpoint CosPhiSpntExp should be used as well for active power import / 1: FIXCOSPHI_SPNT_MODE_IMP_EXP
+
+VtgPwrRtDroop.PwrRtDataPc[1]        200        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPc[2]        200        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPc[3]        200        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPc[4]        200        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPc[5]        100        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPc[6]       -100        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPc[7]       -200        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPc[8]       -200        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPc[9]       -200        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPc[10]      -200        #The reactive power data corresponding to the voltage breakpoints in % relative to PwrRtNomPoi
+VtgPwrRtDroop.VtgBreakpoints[1]     -12        #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.VtgBreakpoints[2]     -11        #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.VtgBreakpoints[3]     -10.5      #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.VtgBreakpoints[4]     -10        #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.VtgBreakpoints[5]     -5         #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.VtgBreakpoints[6]     5          #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.VtgBreakpoints[7]     10         #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.VtgBreakpoints[8]     10.5       #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.VtgBreakpoints[9]     11         #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.VtgBreakpoints[10]    12         #The voltage breakpoints in % relative to the nominal voltage
+VtgPwrRtDroop.PwrRtDataPcDbLo       0          #Lower deadband reactive power limit in % of PwrRtNomPoi
+VtgPwrRtDroop.PwrRtDataPcDbHi       0          #Higher deadband reactive power limit in percentage of PwrRtNomPoi
+VtgPwrRtDroop.VtgFilterTm           0          #Filter time for voltage measurement
+VtgPwrRtDroop.SpntSrc               2          #Selects the setpoint source for the voltage setpoint / 2: VTG_SPNTSRC_MODE_EXTSPNT / 3: VTG_SPNTSRC_MODE_MEAS / 1: VTG_SPNTSRC_MODE_PARAM
+VtgPwrRtDroop.VtgSpntFilterTm       0          #Filter time for the voltage setpoint in s
+
+GridVtgCtrl.Ena                     0          #Enables function
+GridVtgCtrl.IntGain                 5          #Integral gain for voltage control (ki) 
+GridVtgCtrl.IntLimAwu               0.5        #Integral limit for voltage control (anti windup)
+GridVtgCtrl.PropGain                0          #Proportional gain for voltage control (kp)
+GridVtgCtrl.VtgFilterTm             0          #Filter time of actual voltage in s
+GridVtgCtrl.VtgMaxWar               450        #Warning threshold for overvoltage in V
+GridVtgCtrl.VtgMinWar               330        #Warning threshold for undervoltage in V
+GridVtgCtrl.VtgNom                  132000     #Nominal voltage of system in V
+GridVtgCtrl.VtgOfsGenSync           -2         #Voltage offset in GEN_START_PREP and GEN_START in V
+GridVtgCtrl.VtgSpnt                 132000     #Voltage setpoint in BAT_IOP in V
+
+PwrRtVtgLim.VtgFilterTm             0          #Filter time for voltage measurement
+PwrRtVtgLim.PwrRtDataPcLoLim[1]     0          #The reactive power data for the lower limit corresponding to the voltage offsets in % relative to PwrRtNomPoi
+PwrRtVtgLim.PwrRtDataPcLoLim[2]     33         #The reactive power data for the lower limit corresponding to the voltage offsets in % relative to PwrRtNomPoi
+PwrRtVtgLim.PwrRtDataPcUpLim[1]     -33        #The reactive power data for the upper limit corresponding to the voltage offsets in % relative to PwrRtNomPoi
+PwrRtVtgLim.PwrRtDataPcUpLim[2]     0          #The reactive power data for the upper limit corresponding to the voltage offsets in % relative to PwrRtNomPoi
+PwrRtVtgLim.VtgOffsetsLoLim[1]      4          #The voltage offsets for the lower limit in % relative to VtgNom
+PwrRtVtgLim.VtgOffsetsLoLim[2]      6          #The voltage offsets for the lower limit in % relative to VtgNom
+PwrRtVtgLim.VtgOffsetsUpLim[1]      -6         #The voltage offsets for the upper limit in % relative to VtgNom
+PwrRtVtgLim.VtgOffsetsUpLim[2]      -4         #The voltage offsets for the upper limit in % relative to VtgNom
+
+FrqDroop.Ena                        1          #Enables function
+FrqDroop.ActDelay                   0          #Activation delay for P(f)-characteristic					
+FrqDroop.DroopMode                  3          #Defines the characteristic of the droop curve / 2: FRQDROOP_MODE_HOLD / 3: FRQDROOP_MODE_HOLDNOM / 1: FRQDROOP_MODE_NOM
+FrqDroop.FrqOffsets[1]              -2.015     #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.FrqOffsets[2]              -0.015     #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.FrqOffsets[3]              0	       #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.FrqOffsets[4]              0.015      #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.FrqOffsets[5]              2.015      #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.FrqOffsets[6]              2.1        #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.FrqOffsets[7]              2.2        #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.FrqOffsets[8]              2.3        #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.FrqOffsets[9]              2.4        #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.FrqOffsets[10]             2.5        #Frequency Offsets to define the droop curve in Hz (need to be increasing)
+FrqDroop.PwrAtDataPc[1]             200        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.PwrAtDataPc[2]             100        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.PwrAtDataPc[3]             100        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.PwrAtDataPc[4]             100        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.PwrAtDataPc[5]             0          #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.PwrAtDataPc[6]             0          #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.PwrAtDataPc[7]             0          #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.PwrAtDataPc[8]             0          #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.PwrAtDataPc[9]             0          #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.PwrAtDataPc[10]            0          #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FrqDroop.ResetFrqOffset[1]          -0.2       #Reset frequency offsets
+FrqDroop.ResetFrqOffset[2]          0.2        #Reset frequency offsets
+FrqDroop.ResetMode                  1          #Defines where to use the reset mode / 4: FRQDROOP_RESET_BOTH / 1: FRQDROOP_RESET_OFF / 2: FRQDROOP_RESET_OVERFRQ / 5: FRQDROOP_RESET_RAMP / 3: FRQDROOP_RESET_UNDERFRQ
+FrqDroop.ResetTm                    0          #Switch off delay for reset frequency
+FrqDroop.UseBatPwr                  1          #Uses the battery power to fulfill the frequency droop
+FrqDroop.MaxPwrDecrease             100        #Maximum absolute power decrease at over frequency events in %PwrAtNomPoi
+FrqDroop.MaxRelPwrIncrease          100        #Maximum relative power increase in % of difference between PwrAtNomPoi and pre-fault power
+FrqDroop.MinPwrSpnt                 -55.56     #Absolute minimum power setpoint generated by P(f)-characteristic in %PwrAtNomPoi
+FrqDroop.OverFrqMode                2          #Mode of power decrease during over frequency event / 2: FRQDROOP_LIMIT_EXTERNAL_LIMIT / 1: FRQDROOP_LIMIT_LIMITED / 0: FRQDROOP_LIMIT_UNLIMITED
+FrqDroop.UnderFrqMode               2          #Mode of power increase during under frequency event / 2: FRQDROOP_LIMIT_EXTERNAL_LIMIT / 1: FRQDROOP_LIMIT_LIMITED / 0: FRQDROOP_LIMIT_UNLIMITED
+FrqDroop.EnaRamp                    0          #Enables ramp after frequency event. The ramp refers to PwrAtRateMax (PwrAtMode) / 0: ENA_NO / 1: ENA_YES
+FrqDroop.PwrAtRateMax               10         #Maximum rate of active power setpoint after a frequency disturbance in MW/min. Is active for the time ResetTm if ResetMode is Ramp
+FrqDroop.EnaActFrt					0		   #Activate frequency droop during FRT. SMA advised setting this to zero to avoid Pdrop after fault
+
+EgyShift.Ena                        0          #Enables function
+EgyShift.ChrFromPvSpntLimPc         30         #Charging from PV is limited to this value. (in % based on the maximum charge power of the battery system)
+EgyShift.DisBatSpntLimPc            30         #The battery provides this amount of power if the EnergyShifting function wants to discharge the battery system (in % based on the maximum discharge power of the battery system)
+EgyShift.MinDisTm                   1800       #Minimum time for the battery to provide power (in seconds)
+EgyShift.TolerancePc                0.0        #Tolerance of using reduced MPP power as maximum charge power in % of MPP power
+EgyShift.RampRate                   50         #Ramp rate for the Energy-Shift setpoint  (in %/s, related to total nominal battery power)
+EgyShift.UseFullPvPwr               0          #Enables battery charging from PV even if it is not limited
+EgyShift.EnaDisWithPv               1          #Enalbes discharging of battery while PV power is not 0
+EgyShift.EnaPrioRrc                 0          #Enables the prioritization of rampe rate control
+
+SocCtrl.Ena                         0          #Enables function
+SocCtrl.UsePvPwr                    1          #Enables charging from limited PV power
+SocCtrl.HysPc                       5          #hysteresis of SOC range in percent
+SocCtrl.SocLimHiPc                  80         #upper limit of SOC range in percent 
+SocCtrl.SocLimLoPc                  20         #lower limit of SOC range in percent 
+SocCtrl.ChrFromGenTm                21500      #Time until battery is charged with gensets in s
+SocCtrl.PwrAtChrMaxPc               10         #Percentage of maximum available charge power to limit the calculated setpoint
+SocCtrl.PwrAtDisMaxPc               10         #Percentage of maximum available discharge power to limit the calculated setpoint
+SocCtrl.EnaTargetDisEgy             0          #Enables function temporal target discharge energy
+SocCtrl.TargetDisEgyTm              0          #Time at which the target discharge energy should be reached
+SocCtrl.TargetDisEgy                0          #Discharge energy which should be reached at a specific time (TargetDisEgyTm), in kWh
+SocCtrl.TargetDisEgyTmBuff          50         #Buffer time for TargetDisEgyTm in s
+SocCtrl.UseFullPvPwr                0          #Enables battery charging from PV even if it is not limited
+
+Dispatch.PwrRtDispatchMode          0          #Defines the reactive power dispatching to PV and Battery inverters / 1: PWR_RT_DISPATCH_MODE_NOM / 0: PWR_RT_DISPATCH_MODE_SPLIT
+Dispatch.PvBatSpntSplitPc           50         #To split the reactive power setpoint between the PV and battery system. (80% -> PV = 80%, Battery =  20%)
+Dispatch.EnaPrioBatPwrAt            1          #If set to 1 then the PV will control the POC and if the response is not sufficient the BESS will "add the rest". If this is set to 0, the BESS will control the POC.
+Dispatch.PvRampTm                   1          #Time to ramp the setpoints in case of starting up or shutting down PV inverters in s
+Dispatch.BatRampTm                  1          #Time to ramp the setpoints in case of starting battery inverters in s
+Dispatch.PvMeasDispatchThrsldPc     15         #Threshold for detection active power curtailment of PV devices in % of nominal device power
+
+# FCAS Parameter
+FCASCont.Ena                        0          #Enables function
+FCASCont.DelayedActTm               50         #Activation time for the Delayed Raise (Lower) Service after a Frequency Disturbance in s
+FCASCont.DelayedDelTm               500        #Maximum time to deliver the Delayed Raise (Lower) Service after a Frequency Disturbance in s
+FCASCont.EnaDelayedLower            1          #Enables the Delayed Lower Service
+FCASCont.EnaDelayedRaise            1          #Enables the Delayed Raise Service
+FCASCont.EnaFastLower               1          #Enables the Fast Lower Service
+FCASCont.EnaFastRaise               1          #Enables the Fast Raise Service
+FCASCont.EnaSlowLower               1          #Enables the Slow Lower Service
+FCASCont.EnaSlowRaise               1          #Enables the Slow Raise Service
+FCASCont.FastDelTm                  50         #Maximum time to deliver the Fast Raise (Lower) Service after a Frequency Disturbance in s
+FCASCont.FrqOffsets[1]              -1         #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqOffsets[2]              -0.015     #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqOffsets[3]              0.015      #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqOffsets[4]              1          #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqOffsets[5]              1.1        #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqOffsets[6]              1.2        #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqOffsets[7]              1.3        #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqOffsets[8]              1.4        #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqOffsets[9]              1.5        #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqOffsets[10]             1.6        #Frequency Offsets to the nominal frequency to define the droop curve in Hz (need to be increasing)
+FCASCont.FrqRecoverOffsets[1]       -0.1       #Frequency Offsets to the nominal frequency to define the recovery thresholds
+FCASCont.FrqRecoverOffsets[2]       0.1        #Frequency Offsets to the nominal frequency to define the recovery thresholds
+FCASCont.PwrAtDataPc[1]             40         #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.PwrAtDataPc[2]             0          #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.PwrAtDataPc[3]             0          #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.PwrAtDataPc[4]             -40        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.PwrAtDataPc[5]             -40        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.PwrAtDataPc[6]             -40        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.PwrAtDataPc[7]             -40        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.PwrAtDataPc[8]             -40        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.PwrAtDataPc[9]             -40        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.PwrAtDataPc[10]            -40        #The active power data corresponding to the frequency offsets in % relative to PwrAtNomPoi
+FCASCont.SlowActTm                  6          #Activation time for the Slow Raise (Lower) Service after a Frequency Disturbance in s
+FCASCont.SlowDelTm                  300        #Maximum time to deliver the Slow Raise (Lower) Service after a Frequency Disturbance in s
+
+# Voltage control in island mode (BAT_IOP)
+VtgCtrl.Ena                         0          #Enables function
+VtgCtrl.IntGain                     5          #Integral gain for voltage control (ki)
+VtgCtrl.IntLimAwu                   0.5        #Integral limit for voltage control (anti windup)
+VtgCtrl.PropGain                    1          #Proportional gain for voltage control (kp)
+VtgCtrl.VtgFilterTm                 3.0        #Filter time of actual voltage in s
+VtgCtrl.VtgMaxWar                   450        #Warning threshold for overvoltage in V
+VtgCtrl.VtgMinWar                   330        #Warning threshold for undervoltage in V
+VtgCtrl.VtgNom                      132000     #Nominal voltage of hybrid system in V
+VtgCtrl.VtgOfsGenSync               -2.0       #Voltage offset in GEN_START_PREP and GEN_START in V
+VtgCtrl.VtgSpnt                     132000     #Voltage setpoint in BAT_IOP in V
+
+# Frequency control in island mode (BAT_IOP)
+FrqCtrl.Ena                         0          #Enables function
+FrqCtrl.FrqFilterTm                 3.0        #Filter time of actual frequency in s
+FrqCtrl.FrqMaxWar                   52         #Warning threshold for overfrequency in Hz
+FrqCtrl.FrqMinWar                   48         #Warning threshold for underfrequency in Hz
+FrqCtrl.FrqOfsGenSync               -0.05      #Frequency offset in GEN_START_PREP and GEN_START in Hz
+FrqCtrl.FrqOfsGridSync              0.02       #Frequency offset in SYNC_START_PREP and SYNC_CONNECT in Hz
+FrqCtrl.FrqSpnt                     50         #Frequency setpoint in BAT_IOP in Hz
+FrqCtrl.IntGain                     1          #Integral gain for frequency control (ki)
+FrqCtrl.IntLimAwu                   0.2        #Integral limit for frequency control (anti windup)
+FrqCtrl.PropGain                    1          #Proportional gain for frequency control (kp)
+
+
+#End of HybridController configuration file

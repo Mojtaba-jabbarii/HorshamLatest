@@ -1,0 +1,236 @@
+#Sunny Central PSCAD configuration file, Plant: Example SMA
+Version              SCxxxx
+
+#General
+# All Rtg parameters - if commmented out with a # the rating of device selected via inverter mask will be applied
+#VARtg			1550
+#WRtg			1550
+#VArRtg			1550
+#AmpRtg			1300
+
+# Frequency Rating
+HzRtg 			50.0
+
+# Power Priority (Recommendation: VADRTPRIMOD_VAR)
+# VADRTPRIMOD_W		: active power
+# VADRTPRIMOD_VAR	: reactive power
+VADrtPriMod	VADRTPRIMOD_VAR
+
+# External reactive power setpoint handling
+# VAR_MOD_NONE  	: no external reactive power setpoint
+# VAR_MOD_CNST		: external reactive power setpoint
+# VAR_MOD_PF_CNST   	: external powerfactor setpoint
+VArOpMod			VAR_MOD_CNST
+
+# Inverter control mode
+# INVCTLMOD_GRIFEED_MPP		:	Grid tie MPP Tracking mode
+# INVCTLMOD_GRIFEED_DCLVOLCNST	:	Grid tie constant DC Link voltage
+# INVCTLMOD_BAT			:       Battery inverter
+InvCtlMod			INVCTLMOD_BAT
+
+# Grid Forming Mode (For Battery Inverter only)
+# SWITCH_STT_DISABLE	: GriForm off
+# SWITCH_STT_ENABLE	: GriForm on
+GriForm_Mod		SWITCH_STT_ENABLE
+
+# Activate external commands (For Battery Inverter only)
+UseSCSOpCmd 		1
+
+
+# Power Set Point Gradients (Range VArGra: [0.01 ...1]; Range WGra: [0.01 ...2])
+# SWITCH_STT_DISABLE	
+# SWITCH_STT_ENABLE	
+WGraMod							SWITCH_STT_ENABLE	
+VArGraMod						SWITCH_STT_ENABLE	
+WGra							1.0
+VArGra							1.0
+
+# Power Set Point PT1 filters in sec (Range WFilTm: [0.01 ...2]; Range VArFilTm: [0.01 ...2])
+WFilMod							SWITCH_STT_DISABLE
+VArFilMod						SWITCH_STT_DISABLE
+WFilTm							0.04
+VArFilTm						0.04
+
+
+# CorrTm: correction of the internal delay of the measurement Algorithms
+# All VCtl_ and HzCtl_ times are corrected by the given time. 
+# Set to 0 if you want the inverter to stay connected and trip after the selected disconnection time (e.g. BDEW).
+# Set to negative values if you want the the inverter to trip before the given time (e.g. UL1741).
+#IEEE1547
+#VCtl_CorrTm		-33
+#HzCtl_CorrTm		-55
+
+#NER, AR-41XX
+VCtl_CorrTm			0
+HzCtl_CorrTm		0
+
+
+# Upper and lower voltage and frequency limit for connection
+VCtl_OpMaxNom		1.10
+VCtl_OpMinNom		0.90
+VCtl_OpMaxNomRecon	1.10
+VCtl_OpMinNomRecon	0.90
+
+HzCtl_OpMaxNom		50.5
+HzCtl_OpMinNom		49.3
+HzCtl_OpMaxNomRecon	50.5
+HzCtl_OpMinNomRecon	49.3
+
+######### check technical information regarding voltage limits of specific inverter models #############
+# Over voltage trip limits  VCtl_Hi[1..5]Lim in p.u. (Range: [1.0 ...2.0]). 2 decimal places only.
+
+VCtl_Hi5Lim		1.3
+VCtl_Hi4Lim		1.3
+VCtl_Hi3Lim		1.3
+VCtl_Hi2Lim		1.25
+VCtl_Hi1Lim		1.2
+
+# Over voltage trip limit times VCtl_Hi[1..5]LimTm in ms (Range: [100 ...1000000]). 
+VCtl_Hi5LimTm		300
+VCtl_Hi4LimTm		300
+VCtl_Hi3LimTm		300
+VCtl_Hi2LimTm		1000
+VCtl_Hi1LimTm		25000
+
+# Under voltage trip limits  VCtl_Lo[1..5]Lim in p.u. (Range: [0.0 ...1.0]). 2 decimal places only.
+VCtl_Lo1Lim		0.8
+VCtl_Lo2Lim		0.5
+VCtl_Lo3Lim		0.4
+VCtl_Lo4Lim		0.4
+VCtl_Lo5Lim		0.4
+
+# Under voltage trip limit times VCtl_Lo[1..5]LimTm in ms (Range: [100 ...1000000]). 
+VCtl_Lo1LimTm		5000
+VCtl_Lo2LimTm		2000
+VCtl_Lo3LimTm		2000
+VCtl_Lo4LimTm		2000
+VCtl_Lo5LimTm		2000
+
+# Over frequency trip limits  HzCtl_Hi[1..6]Lim in Hz. 2 decimal places only.
+HzCtl_Hi6Lim		55.0
+HzCtl_Hi5Lim		52.1
+HzCtl_Hi4Lim		52.1
+HzCtl_Hi3Lim		52.1
+HzCtl_Hi2Lim		52.1
+HzCtl_Hi1Lim		52.1
+
+# over frequency trip limit times HzCtl_Hi[1..5]LimTm in ms (Range: [100 ...1000000])
+HzCtl_Hi6LimTm		100
+HzCtl_Hi5LimTm		60000
+HzCtl_Hi4LimTm		60000
+HzCtl_Hi3LimTm		60000
+HzCtl_Hi2LimTm		60000
+HzCtl_Hi1LimTm		60000
+
+# Under frequency trip limits  HzCtl_Lo[1..6]Lim in Hz. 2 decimal places only.
+HzCtl_Lo1Lim		47.0
+HzCtl_Lo2Lim		47.0
+HzCtl_Lo3Lim		47.0
+HzCtl_Lo4Lim		47.0
+HzCtl_Lo5Lim		47.0
+HzCtl_Lo6Lim		45.0
+
+# Under frequency trip limit times HzCtl_Lo[1..5]LimTm in ms (Range: [100 ...1000000])
+HzCtl_Lo1LimTm		60000
+HzCtl_Lo2LimTm		60000
+HzCtl_Lo3LimTm		60000
+HzCtl_Lo4LimTm		60000
+HzCtl_Lo5LimTm		60000
+HzCtl_Lo6LimTm		100
+
+
+# Instantaneous voltage protection in p.u. - in real firmware this can be set to maximum 1.5pu. 
+VCtl_PkLim			1.5
+
+# instantaneous voltage protection time in 6kHz steps: e.g. 6 = 1ms
+VCtl_PkLimTm		18
+
+# Over current trip limits  ACtl_Hi[1..3]Lim in p.u. (Range: [1.0 ...2.0]). 2 decimal places only.
+ACtl_Hi3Lim						1.8
+ACtl_Hi2Lim						1.4
+ACtl_Hi1Lim						1.3
+
+# Over current trip limit times ACtl_Hi[1..3]LimTm in ms (Range: [0 ...1000000]). 
+ACtl_Hi3LimTm					100
+ACtl_Hi2LimTm					1000
+ACtl_Hi1LimTm					21000
+
+
+############################################
+# GridForming
+
+# For start from DC side (blackstart) set to 1
+Bsc_InvStrMod					1
+
+###############
+#combine the inertial settings from SMA into group (having common DrpHz and DrpVol)
+
+GriForm_AcCtl_DrpHz				-4.0 		#	DrpHz acts as a damping parameter in case inertia is enabled
+GriForm_AcCtl_DrpVol			0.30
+GriForm_AcCtl_WSptScal			1.15
+GriForm_AcCtl_VArSptScal		2.25
+GriForm_AcCtl_InertiaThetaMod 	1 			#	Enable angle inertia mode (0=disabled; 1=enabled,2=plant level inertia) 
+GriForm_AcCtl_DrpThetaH 		1.5			#	Constant proportional to the angle inertia constant H (attention: AmpRtg dependend)
+GriForm_AcCtl_InertiaVolMod		1
+GriForm_AcCtl_DrpVolH			0.1
+
+# Droop settings and scaling factors
+#GriForm_AcCtl_DrpHz			-4.0
+#GriForm_AcCtl_DrpVol			0.30
+#GriForm_AcCtl_WSptScal			1.15
+#GriForm_AcCtl_VArSptScal		2.25
+
+# Angle Inertia
+#GriForm_AcCtl_InertiaThetaMod 		1 		#	Enable voltage angle inertia mode 
+#GriForm_AcCtl_DrpHz				-4		#	DrpHz acts as a damping parameter in case inertia is enabled
+#GriForm_AcCtl_DrpThetaH 			1.5		#	Constant proportional to the angle inertia constant H (attention: AmpRtg dependend)
+
+# Voltage Inertia
+#GriForm_AcCtl_InertiaVolMod		1
+#GriForm_AcCtl_DrpVol				0.3
+#GriForm_AcCtl_DrpVolH				0.1
+
+###############
+
+# Phase jump - phase following
+						
+GriForm_Frt_VolPsQCtlKp				0
+GriForm_Frt_VolPsQCtlDZnKp			-10
+GriForm_Frt_VolPsQCtlDZn			0.25
+GriForm_Frt_VolPsQCtlHzOfsMax		2
+
+#Transition AcRmpUp -> GriFeed.Bat.GriForm during Blackstart (ms)
+GriForm_GriOkTm 					500
+
+# Reduce gain to help with capacitive loading
+GriForm_AcCtl_VolABKi				60
+
+# ab control for DC/AC component damping
+AcCtl_AmpAB0FilTm					0
+AcCtl_AmpAB0kp						0.01
+
+
+# Enable AB filter to help with capacitive loading
+GriForm_Frt_VolABVirtImpKeEna	SWITCH_STT_ENABLE
+
+# Virtual Impedance duration and locking for repetitive FRTs / Reclosure events
+GriForm_Frt_VirtImpLimTm			20000   	# Current Limitation FRT
+GriForm_Frt_VirtImpLockTm			50
+GriForm_Frt_VirtImpWaitTm			50
+GriForm_Frt_VirtImpDlTm				5
+
+# Virtual impedance settings for dynamics
+GriForm_Frt_AMaxNom					0.735
+GriForm_Frt_AMaxNomInit				1.0 
+GriForm_Frt_VirtImpReact			-0.05
+GriForm_Frt_VirtImpReactMin			-0.05
+GriForm_Frt_AmpCtlFilTm				0.001
+GriForm_Frt_CtlDevLimMax			0.25
+GriForm_Frt_VirtImpKeSec2Lim		0.2
+GriForm_Frt_VirtImpKeFilTm			0.006
+
+# SW FRT VI Threshold / software threshold in pu of AmpRtg
+GriForm_Frt_VirtImpSwDetLim 	1.13
+
+
+#End of Sunny Central PSCAD configuration file

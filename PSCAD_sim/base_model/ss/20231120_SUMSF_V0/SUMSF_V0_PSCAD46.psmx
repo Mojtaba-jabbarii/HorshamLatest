@@ -1,0 +1,409 @@
+<Meta name="SUMSF_V0_PSCAD46">
+  <messagelist>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="SUMSF_V0_PSCAD46" status="normal" link="164078167" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\Station.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="Main" status="normal" link="1089318121" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\Main.f'.]]></message>
+    <message status="warning" label="build" groupid="307507">
+      <User scope="SUMSF_V0_PSCAD46" name="xfmr_2w_scaled" status="warning" link="160824263" /><![CDATA[Shorted ports 'X1' are directly overtop one another.]]></message>
+    <message status="warning" label="build" groupid="307507">
+      <User scope="SUMSF_V0_PSCAD46" name="xfmr_2w_scaled" status="warning" link="160824263" /><![CDATA[Shorted ports 'X2' are directly overtop one another.]]></message>
+    <message status="warning" label="build" groupid="307507">
+      <User scope="SUMSF_V0_PSCAD46" name="xfmr_2w_scaled" status="warning" link="944246549" /><![CDATA[Shorted ports 'X1' are directly overtop one another.]]></message>
+    <message status="warning" label="build" groupid="307507">
+      <User scope="SUMSF_V0_PSCAD46" name="xfmr_2w_scaled" status="warning" link="944246549" /><![CDATA[Shorted ports 'X2' are directly overtop one another.]]></message>
+    <message status="warning" label="build" groupid="202002">
+      <Wire scope="SUMSF_V0_PSCAD46" name="WireOrthogonal" status="warning" link="2109705152" /><![CDATA[Ideal wire has an implied connection to bus 'PCU1_MV_AGR'. A splice has been added at its crossing point.]]></message>
+    <message status="warning" label="build" groupid="205001">
+      <User scope="SUMSF_V0_PSCAD46" name="SCAvg_Lib:SCxxxx" status="warning" link="260202379" /><![CDATA[Suspicious floating terminal at node 'NT_3'.]]></message>
+    <message status="warning" label="build" groupid="205001">
+      <User scope="SUMSF_V0_PSCAD46" name="SCAvg_Lib:SCxxxx" status="warning" link="260202379" /><![CDATA[Suspicious floating terminal at node 'NT_4'.]]></message>
+    <message status="warning" label="build" groupid="205001">
+      <User scope="SUMSF_V0_PSCAD46" name="SCAvg_Lib:SCxxxx" status="warning" link="1146997769" /><![CDATA[Suspicious floating terminal at node 'NT_7'.]]></message>
+    <message status="warning" label="build" groupid="205001">
+      <User scope="SUMSF_V0_PSCAD46" name="SCAvg_Lib:SCxxxx" status="warning" link="1146997769" /><![CDATA[Suspicious floating terminal at node 'NT_8'.]]></message>
+    <message status="warning" label="build" groupid="205001">
+      <User scope="SUMSF_V0_PSCAD46" name="xfmr_2w_scaled" status="warning" link="160824263" /><![CDATA[Suspicious floating terminal at node 'NT_28'.]]></message>
+    <message status="warning" label="build" groupid="205001">
+      <User scope="SUMSF_V0_PSCAD46" name="xfmr_2w_scaled" status="warning" link="944246549" /><![CDATA[Suspicious floating terminal at node 'NT_31'.]]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="SUMSF_V0_PSCAD46" name="master:unity" status="warning" link="1644541565" /><![CDATA[Signal 'IT_2' type conversion may lose accuracy at connection 'A:Dim']]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="HyCtl_PSCAD_Lib:InvFbDummy" status="normal" link="1231646374" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\InvFbDummy.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="SC_Lib:DPS_Dummy" status="normal" link="743168893" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\DPS_Dummy.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="GridSource" status="normal" link="1927070795" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\GridSource.f'.]]></message>
+    <message status="warning" label="build" groupid="201500">
+      <User scope="SUMSF_V0_PSCAD46" name="master:import" status="warning" link="2060245527" /><![CDATA[A previous declaration of 'Fdist' exists.]]></message>
+    <message status="warning" label="build" groupid="206501">
+      <User scope="SUMSF_V0_PSCAD46" name="master:import" status="warning" link="2060245527" /><![CDATA[Signal 'Fdist' has multiple imports]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="XY_profile" status="normal" link="1547757956" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\XY_profile.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="SignalTruncator" status="normal" link="2000644853" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\SignalTruncator.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="FaultBlock" status="normal" link="1591544161" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\FaultBlock.f'.]]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="SUMSF_V0_PSCAD46" name="master:logic_mult" status="warning" link="2091484290" /><![CDATA[Signal 'RT_150' type conversion may lose accuracy at connection 'IN1']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="SUMSF_V0_PSCAD46" name="master:logic_mult" status="warning" link="2091484290" /><![CDATA[Signal 'RT_147' type conversion may lose accuracy at connection 'IN2']]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="SymmetricalComponentsCalc_1_1" status="normal" link="1657109207" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\SymmetricalComponentsCalc_1_1.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="SymmetricalComponentsCalc" status="normal" link="797565769" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\SymmetricalComponentsCalc.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="setpointProfiles" status="normal" link="163769877" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\setpointProfiles.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="XY_profile_2" status="normal" link="192815012" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\XY_profile_2.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="SignalTruncator_2_3" status="normal" link="1436830642" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\SignalTruncator_2_3.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="TapCtrl_1" status="normal" link="534238275" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\TapCtrl_1.f'.]]></message>
+    <message status="warning" label="build" groupid="201500">
+      <User scope="SUMSF_V0_PSCAD46" name="master:import" status="warning" link="1557977863" /><![CDATA[A previous declaration of 'Tdelay_first_tap' exists.]]></message>
+    <message status="warning" label="build" groupid="201500">
+      <User scope="SUMSF_V0_PSCAD46" name="master:import" status="warning" link="225486338" /><![CDATA[A previous declaration of 'Tdelay_subsequent' exists.]]></message>
+    <message status="warning" label="build" groupid="206501">
+      <User scope="SUMSF_V0_PSCAD46" name="master:import" status="warning" link="1557977863" /><![CDATA[Signal 'Tdelay_first_tap' has multiple imports]]></message>
+    <message status="warning" label="build" groupid="206501">
+      <User scope="SUMSF_V0_PSCAD46" name="master:import" status="warning" link="225486338" /><![CDATA[Signal 'Tdelay_subsequent' has multiple imports]]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="SUMSF_V0_PSCAD46" name="master:counter" status="warning" link="465301460" /><![CDATA[Signal 'RT_8' type conversion may lose accuracy at connection 'In:Dim']]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="SCAvg_Lib:SCxxxx" status="normal" link="1146997769" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\SCxxxx.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SCAvg_Lib" name="SCAvg_Lib:AvgBridge" status="normal" link="1833952494" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\AvgBridge.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" status="normal" link="1574783272" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\Aggr_Fb_Scaled.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="HyCtl_PSCAD_Lib:DDSRF_PLL_1" status="normal" link="584058456" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\DDSRF_PLL_1.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="HyCtl_PSCAD_Lib" name="HyCtl_PSCAD_Lib:DDSRF_PLL_2" status="normal" link="17010558" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\DDSRF_PLL_2.f'.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="HyCtl_PSCAD_Lib:HyCtl" status="normal" link="1899582292" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\HyCtl.f'.]]></message>
+    <message status="warning" label="build" groupid="206500">
+      <User scope="HyCtl_PSCAD_Lib" name="master:pgb" status="warning" link="1767683380" /><![CDATA[Signal 'xin' dimension exceeds curve trace maximum of 32, performance warning.]]></message>
+    <message status="warning" label="build" groupid="206500">
+      <User scope="HyCtl_PSCAD_Lib" name="master:pgb" status="warning" link="201354738" /><![CDATA[Signal 'xout' dimension exceeds curve trace maximum of 32, performance warning.]]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="1603406007" /><![CDATA[Signal 'Activate' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="1761692728" /><![CDATA[Signal 'RT_89' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="449865793" /><![CDATA[Signal 'Activate' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="1113712799" /><![CDATA[Signal 'RT_87' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="692194632" /><![CDATA[Signal 'Activate' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="1371062053" /><![CDATA[Signal 'RT_85' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="2043173312" /><![CDATA[Signal 'Activate' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="1143556991" /><![CDATA[Signal 'Activate' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="1230772384" /><![CDATA[Signal 'Activate' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="627636149" /><![CDATA[Signal 'Activate' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="2041204519" /><![CDATA[Signal 'RT_92' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:select" status="warning" link="786668638" /><![CDATA[Signal 'WRtg_SCDC' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="HyCtl_PSCAD_Lib" name="HyCtl_PSCAD_Lib:PQ_Select" status="normal" link="1725717277" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\PQ_Select.f'.]]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:logic_mult" status="warning" link="2019595040" /><![CDATA[Signal 'RT_4' type conversion may lose accuracy at connection 'IN1']]></message>
+    <message status="warning" label="build" groupid="206502">
+      <User scope="HyCtl_PSCAD_Lib" name="master:logic_mult" status="warning" link="2019595040" /><![CDATA[Signal 'RT_6' type conversion may lose accuracy at connection 'IN2']]></message>
+    <message status="warning" label="build" groupid="201501">
+      <User scope="SUMSF_V0_PSCAD46" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" status="warning" link="2045663608" /><![CDATA[Automatic execution sequencing is currently disabled. Block ordering must be set manually.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" status="normal" link="2045663608" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\DEBUG_HyCon_Scope.f'.]]></message>
+    <message status="warning" label="build" groupid="201501">
+      <User scope="SUMSF_V0_PSCAD46" name="SC_Lib:SC_Scope" status="warning" link="1844742351" /><![CDATA[Automatic execution sequencing is currently disabled. Block ordering must be set manually.]]></message>
+    <message status="normal" label="build" groupid="100006">
+      <User scope="SUMSF_V0_PSCAD46" name="SC_Lib:SC_Scope" status="normal" link="1844742351" /><![CDATA[Generating network and source code 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\SC_Scope.f'.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100006"><![CDATA[Generating 'C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\SUMSF_V0_PSCAD46.map'.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100014"><![CDATA[The total number of live nodes: 184]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="400000"><![CDATA[Time for Compile: 986ms  Make: 62ms]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100015"><![CDATA[Will execute (1): call C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100015"><![CDATA[Will execute (1): call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat"]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100015"><![CDATA[Will execute (2): make -f SUMSF_V0_PSCAD46.mak]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100015"><![CDATA[Will execute (2): "C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46\SUMSF_V0_PSCAD46_mak.bat"]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100005"><![CDATA[Creating EMTDC executable...]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="0"><![CDATA[C:\work\3. Grid - SUMSF_G189\1. Power System Studies\1. Main Test Environment\20230912_SUM_G189_Hyn18\PSCAD_sim\base_model\20230828_SUMSF_V0\SUMSF_V0_PSCAD46.gf46>call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat" ]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'Station.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'Main.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'InvFbDummy.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'DPS_Dummy.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'GridSource.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'XY_profile.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'SignalTruncator.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'FaultBlock.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'SymmetricalComponentsCalc_1_1.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'SymmetricalComponentsCalc.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'setpointProfiles.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'XY_profile_2.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'SignalTruncator_2_3.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'TapCtrl_1.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'SCxxxx.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'AvgBridge.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'Aggr_Fb_Scaled.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'DDSRF_PLL_1.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'DDSRF_PLL_2.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'HyCtl.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'PQ_Select.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'DEBUG_HyCon_Scope.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100004"><![CDATA[Compiling 'SC_Scope.f' into object code.]]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="100012"><![CDATA[Linking objects and libraries into binary 'SUMSF_V0_PSCAD46.exe']]></message>
+    <message status="normal" label="build" scope="SUMSF_V0_PSCAD46" groupid="400000"><![CDATA[Solve Time = 31ms]]></message>
+    <message status="warning" label="runtime" groupid="200009">
+      <User scope="SUMSF_V0_PSCAD46" name="master:newpi" status="warning" link="56359452" /><![CDATA[Resistance[0] less than Resistance[+]]]></message>
+    <message status="warning" label="runtime" groupid="200009">
+      <User scope="SUMSF_V0_PSCAD46" name="master:xy_transfer_function" status="warning" link="935825497" /><![CDATA[SIGNAL GENERATOR - Frequency is too small, 1.0E-6 is assumed.]]></message>
+    <message status="error" label="runtime" scope="SUMSF_V0_PSCAD46" groupid="300008"><![CDATA[Process has been terminated by user.]]></message>
+    <message status="warning" label="runtime" scope="SUMSF_V0_PSCAD46" groupid="200009"><![CDATA[Simulation ending on user request.]]></message>
+  </messagelist>
+  <Catalog count="0" />
+  <ViewContext>
+    <Window defn="SUMSF_V0_PSCAD46:Main" call="0" />
+  </ViewContext>
+  <Output device="EMTDC" version="2010" date="2023/11/06" time="10:44:34.000000">
+    <Domain name="Time" unit="s" mult="0.0" skew="0.0">
+      <Sample rate="5999.99999999" end="60000" />
+    </Domain>
+    <List classid="Analog">
+      <Analog name="Main(0):maintap" index="0" id="234771314:0" label="" dim="1" unit="MVAr" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ic_PoC" index="1" id="1340994827:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ib_PoC" index="2" id="303081001:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Itot_PoC" index="3" id="818901818:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ia_PoC" index="4" id="1937731292:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ineg_PoC" index="5" id="1526379897:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ipos_PoC" index="6" id="1761542537:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Iq_PoC" index="7" id="2057990663:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Izero_PoC" index="8" id="424721341:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Vneg_PoC" index="9" id="751113735:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Id_PoC" index="10" id="272528699:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Vpos_PoC" index="11" id="1061496843:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Qout_INV_BESS" index="12" id="1544924367:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):BESSspt_MW" index="13" id="448778405:0" label="" dim="1" unit="MW" min="-0.1" max="22" />
+      <Analog name="Main(0):PCU2_Phs" index="14" id="684539198:0" label="" dim="1" unit="A" min="0.9" max="1.1" />
+      <Analog name="Main(0):Vzero_PoC" index="15" id="2037999191:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):PCU1_Phs" index="16" id="1395805829:0" label="" dim="1" unit="A" min="0.9" max="1.1" />
+      <Analog name="Main(0):Pout_INV_BESS" index="17" id="150012431:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):Qspt_MVAr" index="18" id="809589327:0" label="" dim="1" unit="MW" min="-0.1" max="22" />
+      <Analog name="Main(0):PCU2_Arms_LV" index="19" id="224869809:0" label="" dim="1" unit="A" min="0.9" max="1.1" />
+      <Analog name="Main(0):PCU1_Arms_LV" index="20" id="1143081174:0" label="" dim="1" unit="A" min="0.9" max="1.1" />
+      <Analog name="Main(0):Qout_INV_PV" index="21" id="99931441:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):Pspt_MW" index="22" id="1450197031:0" label="" dim="1" unit="MW" min="-0.1" max="22" />
+      <Analog name="Main(0):PCU2_Q_MV" index="23" id="1440932216:0" label="" dim="1" unit="MVAR" min="-0.1" max="0.7" />
+      <Analog name="Main(0):Pout_INV_PV" index="24" id="1057224702:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):PoiPfSpt" index="25" id="636344:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):PCU1_Q_MV" index="26" id="1622626048:0" label="" dim="1" unit="MVAR" min="-0.1" max="0.7" />
+      <Analog name="Main(0):Iqneg_PoC" index="27" id="1350230624:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):PCU2_P_MV" index="28" id="1275825479:0" label="" dim="1" unit="MW" min="-0.1" max="0.8" />
+      <Analog name="Main(0):PoiVolSpt_pu" index="29" id="324557867:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):PCU1_P_MV" index="30" id="513960862:0" label="" dim="1" unit="MW" min="-0.1" max="0.8" />
+      <Analog name="Main(0):Qcmd_PPC_to_INV_BESS" index="31" id="760618102:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):Iqpos_PoC" index="32" id="709309017:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Iq_neg_pos_ratio" index="33" id="98708744:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):PCU2_A_MV" index="34" id="1075486167:0" label="" dim="3" unit="A" min="-0.1" max="0.1" />
+      <Analog name="Main(0):Hz_POI" index="37" id="59851039:0" label="" dim="1" unit="Hz" min="45" max="66" />
+      <Analog name="Main(0):PCU1_A_MV" index="38" id="1984775085:0" label="" dim="3" unit="A" min="-0.1" max="0.1" />
+      <Analog name="Main(0):Pcmd_PPC_to_INV_BESS" index="41" id="2065048840:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):Iqzero_PoC" index="42" id="680078081:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):PCU2_V_MV_pu" index="43" id="1603104334:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+      <Analog name="Main(0):PLANT_Phs" index="44" id="289292808:0" label="" dim="1" unit="MVAR" min="-15" max="15" />
+      <Analog name="Main(0):PCU1_V_MV_pu" index="45" id="1656298603:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+      <Analog name="Main(0):Qcmd_PPC_to_INV_PV" index="46" id="461444729:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):PCU2_Q_LV" index="47" id="384549660:0" label="" dim="1" unit="MVAR" min="-0.1" max="0.7" />
+      <Analog name="Main(0):PLANT_Q_HV" index="48" id="2104001909:0" label="" dim="1" unit="MVAR" min="-15" max="15" />
+      <Analog name="Main(0):Pcmd_PPC_to_INV_PV" index="49" id="1621440925:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):PCU1_Q_LV" index="50" id="1067241997:0" label="" dim="1" unit="MVAR" min="-0.1" max="0.7" />
+      <Analog name="Main(0):PCU2_P_LV" index="51" id="1629716426:0" label="" dim="1" unit="MW" min="-0.1" max="0.8" />
+      <Analog name="Main(0):PLANT_P_HV" index="52" id="721831570:0" label="" dim="1" unit="MW" min="-0.1" max="22" />
+      <Analog name="Main(0):PCU1_P_LV" index="53" id="1796068307:0" label="" dim="1" unit="MW" min="-0.1" max="0.8" />
+      <Analog name="Main(0):PCU2_A_LV" index="54" id="337211598:0" label="" dim="3" unit="A" min="0.9" max="1.1" />
+      <Analog name="Main(0):PLANT_V_HV_pu" index="57" id="1825491331:0" label="" dim="1" unit="MW" min="0" max="2" />
+      <Analog name="Main(0):PCU1_A_LV" index="58" id="418842972:0" label="" dim="3" unit="A" min="0.9" max="1.1" />
+      <Analog name="Main(0):PCU2_V_LV_pu" index="61" id="1344122389:0" label="" dim="1" unit="kV" min="0.9" max="1.1" />
+      <Analog name="Main(0):PCU1_V_LV_pu" index="62" id="1470801425:0" label="" dim="1" unit="kV" min="0.9" max="1.1" />
+      <Analog name="Main(0)\GridSource(GridSource_1):phAngSource" index="63" id="491404616:0" label="" dim="1" unit="angel (rad)" min="-15" max="15" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):RT_1" index="64" id="607565371:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):RT_2" index="65" id="2127546341:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):RT_3" index="66" id="1108903377:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_i_c" index="67" id="961259267:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_i_c" index="68" id="1676510660:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_i_b" index="69" id="1748774494:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_i_b" index="70" id="1936530438:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_i_a" index="71" id="28957653:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_i_a" index="72" id="1304536685:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_v_c" index="73" id="1134641177:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_v_c" index="74" id="168128780:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_v_b" index="75" id="942383234:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_v_b" index="76" id="2137522184:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_v_a" index="77" id="755627222:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_v_a" index="78" id="1474997995:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):RT_10" index="79" id="837686843:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseC" index="80" id="602925230:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):RT_11" index="81" id="1318715691:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magC" index="82" id="2022698425:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseB" index="83" id="1748429395:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magB" index="84" id="1917777764:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseA" index="85" id="767997215:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magA" index="86" id="2096708399:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):RT_12" index="87" id="1872485204:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):RT_10" index="88" id="837686843:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseC" index="89" id="602925230:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):RT_11" index="90" id="1318715691:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magC" index="91" id="2022698425:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseB" index="92" id="1748429395:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magB" index="93" id="1917777764:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseA" index="94" id="767997215:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magA" index="95" id="2096708399:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):RT_12" index="96" id="1872485204:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\TapCtrl_1(0):Vrms2_pu" index="97" id="1732648960:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\TapCtrl_1(0):Ttap_current" index="98" id="2142876951:0" label="" dim="1" unit="" min="-1.2" max="1.2" />
+      <Analog name="Main(0)\TapCtrl_1(0):Freeze" index="99" id="1339986676:0" label="" dim="1" unit="" min="-1.2" max="1.2" />
+      <Analog name="Main(0)\TapCtrl_1(0):Neg pos" index="100" id="576221441:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\TapCtrl_1(0):edge" index="101" id="16976506:0" label="" dim="1" unit="" min="-1.2" max="1.2" />
+      <Analog name="Main(0)\TapCtrl_1(0):Int pos" index="102" id="631524183:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\TapCtrl_1(0):tap_ratio" index="103" id="1880865237:0" label="" dim="1" unit="" min="-1.2" max="1.2" />
+      <Analog name="Main(0)\HyCtl(HyCon1):xin" index="104" id="1767683380:0" label="" dim="100" unit="" min="-2200" max="2200" />
+      <Analog name="Main(0)\HyCtl(HyCon1):VArSpt_pu_SC" index="204" id="2004946668:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\HyCtl(HyCon1):WSpt_pu_SC" index="205" id="1683700597:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\HyCtl(HyCon1):VArSpt_pu_SCS" index="206" id="1934324965:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\HyCtl(HyCon1):WSpt_pu_SCS" index="207" id="95012551:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\HyCtl(HyCon1):xout" index="208" id="201354738:0" label="" dim="50" unit="" min="-2200" max="2200" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PwrAtLimHi" index="258" id="297235743:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PwrAtLimLo" index="259" id="1332044422:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PwrApLim" index="260" id="1577093429:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PvBatMax" index="261" id="745846558:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PvBatMin" index="262" id="732425195:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PvPwrAtLimTot" index="263" id="1154078024:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):BatPwrAtSpntTot" index="264" id="1579660917:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):BatPwrAtSpnt_Cmd" index="265" id="1736148000:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PvPwrAtLim_Cmd" index="266" id="859176203:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PwrAtPoi" index="267" id="596791169:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):FrqDroopActive" index="268" id="1861715607:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):AutoMode" index="269" id="1392009427:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):FrqPoiFiltered" index="270" id="526462199:0" label="" dim="1" unit="Hz" min="45" max="65" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PwrRtSpnt" index="271" id="876070839:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PwrRtSpntTot" index="272" id="823296884:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):BatPwrRtSpnt_Cmd" index="273" id="296092462:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PvPwrRtSpnt_Cmd" index="274" id="1537841831:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PwrRtCtrlMode" index="275" id="1422177967:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):PwrRtPoi" index="276" id="1863618788:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):FrtActive" index="277" id="575862085:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):VtgLoLim" index="278" id="66617008:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):VtgUpLim" index="279" id="436030537:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):MinVtg_FRT" index="280" id="1904230673:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):MaxVtg_FRT" index="281" id="867105766:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):VtgSpnt" index="282" id="816853671:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):BatGfPwrAtSpntOfs" index="283" id="1021970023:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):BatGfPwrRtSpntOfs" index="284" id="1668314450:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\DEBUG_HyCon_Scope(HyCon1):VtgNomSpnt" index="285" id="1261401264:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):SimDeltT" index="286" id="1889995260:0" label="" dim="1" unit="s" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):ExtVtg" index="287" id="12479783:0" label="" dim="3" unit="kV" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):CnvCurABC" index="290" id="30808308:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):CnvVtg" index="293" id="1618195329:0" label="" dim="3" unit="kV" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):StackCur" index="296" id="1541919602:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):CnvPAC" index="299" id="574885295:0" label="" dim="1" unit="MW" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):CnvQAC" index="300" id="43069853:0" label="" dim="1" unit="MVAr" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):DCLinkVtg" index="301" id="684096962:0" label="" dim="1" unit="kV" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):PVVtg" index="302" id="838463017:0" label="" dim="1" unit="kV" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):Ipv" index="303" id="1874463702:0" label="" dim="1" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):Cpu2SubStt" index="304" id="2119705851:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):ErrBits" index="305" id="2066224276:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):GriErr1" index="306" id="848709039:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):GriErr2" index="307" id="1099446627:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):DrtStt" index="308" id="69292716:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MppStt" index="309" id="923860379:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):InvMs_TotW" index="310" id="22180534:0" label="" dim="1" unit="kW" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):WSpt_Ext" index="311" id="1379911415:0" label="" dim="1" unit="kW" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):InvMs_TotVAr" index="312" id="696464722:0" label="" dim="1" unit="kVAr" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):VArSpt_Ext" index="313" id="614891085:0" label="" dim="1" unit="kVAr" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):AmpPsDSpt" index="314" id="1877629520:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):AmpPsD" index="315" id="1612652243:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):AmpPsQSpt" index="316" id="135571459:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):AmpPsQ" index="317" id="2016401327:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):AmpNsDSpt" index="318" id="1043797951:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):AmpNsD" index="319" id="157806333:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):AmpNsQSpt" index="320" id="289465006:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):AmpNsQ" index="321" id="1734860473:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):CtlSignals_VolPsD" index="322" id="409377240:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):CtlSignals_VolPsQ" index="323" id="712239182:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllCnv_VolPsD" index="324" id="302879969:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllCnv_VolPsQ" index="325" id="1506659463:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllCnv_VolPsQNotFil" index="326" id="933140458:0" label="" dim="1" unit="V" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllCnv_VolNsD" index="327" id="1440225212:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllCnv_VolNsQ" index="328" id="1426020466:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllCnv_Hz" index="329" id="50773511:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllCnv_VolPsQNomSum10ms" index="330" id="721663336:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllMM_VolPsD" index="331" id="93150152:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllMM_VolPsQ" index="332" id="1055690140:0" label="" dim="1" unit="Hz" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllMM_VolPsDNotFil" index="333" id="577794977:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllMM_VolPsQNotFil" index="334" id="1436780584:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllMM_Hz" index="335" id="1444931745:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsPllMM_PllOpStt" index="336" id="2047033540:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):Mpp_PvVolSpt" index="337" id="910738014:0" label="" dim="1" unit="V" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):Aid_HzHPFilOut" index="338" id="520518461:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):PLDOut" index="339" id="1566419096:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):DcCtl_VecLen" index="340" id="657641098:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(0):MsMM_AccVolMonCheb" index="341" id="1844421464:0" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):SimDeltT" index="342" id="1889995260:1" label="" dim="1" unit="s" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):ExtVtg" index="343" id="12479783:1" label="" dim="3" unit="kV" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):CnvCurABC" index="346" id="30808308:1" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):CnvVtg" index="349" id="1618195329:1" label="" dim="3" unit="kV" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):StackCur" index="352" id="1541919602:1" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):CnvPAC" index="355" id="574885295:1" label="" dim="1" unit="MW" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):CnvQAC" index="356" id="43069853:1" label="" dim="1" unit="MVAr" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):DCLinkVtg" index="357" id="684096962:1" label="" dim="1" unit="kV" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):PVVtg" index="358" id="838463017:1" label="" dim="1" unit="kV" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):Ipv" index="359" id="1874463702:1" label="" dim="1" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):Cpu2SubStt" index="360" id="2119705851:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):ErrBits" index="361" id="2066224276:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):GriErr1" index="362" id="848709039:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):GriErr2" index="363" id="1099446627:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):DrtStt" index="364" id="69292716:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MppStt" index="365" id="923860379:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):InvMs_TotW" index="366" id="22180534:1" label="" dim="1" unit="kW" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):WSpt_Ext" index="367" id="1379911415:1" label="" dim="1" unit="kW" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):InvMs_TotVAr" index="368" id="696464722:1" label="" dim="1" unit="kVAr" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):VArSpt_Ext" index="369" id="614891085:1" label="" dim="1" unit="kVAr" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):AmpPsDSpt" index="370" id="1877629520:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):AmpPsD" index="371" id="1612652243:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):AmpPsQSpt" index="372" id="135571459:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):AmpPsQ" index="373" id="2016401327:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):AmpNsDSpt" index="374" id="1043797951:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):AmpNsD" index="375" id="157806333:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):AmpNsQSpt" index="376" id="289465006:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):AmpNsQ" index="377" id="1734860473:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):CtlSignals_VolPsD" index="378" id="409377240:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):CtlSignals_VolPsQ" index="379" id="712239182:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllCnv_VolPsD" index="380" id="302879969:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllCnv_VolPsQ" index="381" id="1506659463:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllCnv_VolPsQNotFil" index="382" id="933140458:1" label="" dim="1" unit="V" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllCnv_VolNsD" index="383" id="1440225212:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllCnv_VolNsQ" index="384" id="1426020466:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllCnv_Hz" index="385" id="50773511:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllCnv_VolPsQNomSum10ms" index="386" id="721663336:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllMM_VolPsD" index="387" id="93150152:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllMM_VolPsQ" index="388" id="1055690140:1" label="" dim="1" unit="Hz" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllMM_VolPsDNotFil" index="389" id="577794977:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllMM_VolPsQNotFil" index="390" id="1436780584:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllMM_Hz" index="391" id="1444931745:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsPllMM_PllOpStt" index="392" id="2047033540:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):Mpp_PvVolSpt" index="393" id="910738014:1" label="" dim="1" unit="V" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):Aid_HzHPFilOut" index="394" id="520518461:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):PLDOut" index="395" id="1566419096:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):DcCtl_VecLen" index="396" id="657641098:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\SC_Scope(1):MsMM_AccVolMonCheb" index="397" id="1844421464:1" label="" dim="1" unit="pu" min="-2.0" max="2.0" />
+    </List>
+    <List classid="Digital" />
+  </Output>
+  <List classid="View">
+    <View name="Main" zoomlevel="6" scrollx="1491" scrolly="768" />
+  </List>
+</Meta>
