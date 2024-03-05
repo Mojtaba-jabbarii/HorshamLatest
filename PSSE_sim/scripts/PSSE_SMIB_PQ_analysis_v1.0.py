@@ -32,9 +32,9 @@ timestr = time.strftime("%Y%m%d-%H%M%S")
 #USER INPUTS
 ###############################################################################
 
-TestDefinitionSheet = r'20230828_SUM_TESTINFO_V1.xlsx'
+TestDefinitionSheet = r'20230828_SUM_TESTINFO_V2.xlsx'
 
-case_name = 'SUMSF_SMIB_V1.sav' #to match with the model name provided in \PSSE_sim\base_model\SMIB
+case_name = 'HSFBESS_SMIB_V1.sav' #to match with the model name provided in \PSSE_sim\base_model\SMIB
 source_type = "BESS_PV" #"BESS" # "PV" #"BESS_PV"
 temp_cases = ["35degC","50degC"] #"35degC" # "50degC" #"40degC"
 Vinfinite = [0.90, 1.0, 1.10] #0.90, 1.0, 1.10
@@ -46,57 +46,56 @@ try: testRun = timestr + '_' + simulation_batches[0] #define a test name for the
 except: testRun = timestr
 
 # Generator (OEM) inputs
-PV_INV_num = 24.0 # PV INV quantity aggregated
+PV_INV_num = 0.0 # PV INV quantity aggregated
 PV_INV_rate = 4.2 # MVA INV individual rating
-BESS_INV_num = 18.0 # BESS INV quantity aggregated
+BESS_INV_num = 37.0 # BESS INV quantity aggregated
 BESS_INV_rate = 3.6 # MVA INV individual rating
     
 # SMIB model inputs
 tapstep = 1 
 bus_inf = 10000 # INF bus to control the voltage for over and under excitation mode
-bus_inf_scr = 273540  # To update the SCR to very big during analysis
-bus_POC_fr = 273540 # POC bus from: connect the branch for measuring power flow
-bus_POC_to = 273541 # POC bus to: connect the branch for measuring power flow
+bus_inf_scr = 334081  # To update the SCR to very big during analysis
+bus_POC_fr = 334081 # POC bus from: connect the branch for measuring power flow
+bus_POC_to = 334090 # POC bus to: connect the branch for measuring power flow
 pq_drt = -1 # direction of the power measured =-1 if measuring bus_POC_to to bus_POC_fr
 
 # Branch 1 - PV leg
-busgen1 = 273501 # Generator bus
-busTx1 = 273531
+busgen1 = 334094 # Generator bus
+busTx1 = 334092
 # Branch 2 - BESS leg
-busgen2 = 273502
-busTx2 = 273532
+busgen2 = 334095
+busTx2 = 334093
 
 Sbase_analysis_PV = PV_INV_num * PV_INV_rate
 Sbase_analysis_BESS = BESS_INV_num * BESS_INV_rate
 
 busgen_V_PV = busgen1
 busgen_V_BESS = busgen2
+Prated = 119.0
+Pmax_POC = 100 
+Pmin_POC = -100
+q_poc_ner = 0.395*Prated # Q required at POC as NER = 0.395*Prated
     
-if source_type == "BESS":
-    bus_dis_list = [busgen1, busTx1] # all the buses in the PV leg to be disconnected
-    bus_gen_list = [busgen2] # generator bus to be mornitored voltage and power flow
-    Pmax_POC = 50   
-    Pmin_POC = -50
-
-elif source_type == "PV":
-    bus_dis_list = [busgen2, busTx2] # all the buses in the BESS leg to be disconnected
-    bus_gen_list = [busgen1]
-    Pmax_POC = 90 
-    Pmin_POC = 0
-    
-else: # "BESS_PV": PV and BESS
-    bus_dis_list = []
-    bus_gen_list = [busgen1, busgen2]  # generator buses to be mornitored voltage and power flow
-    Pmax_POC = 90 
-    Pmin_POC = -50
-
-q_poc_ner = 35.55 # Q required at POC as NER = 0.395*90
 
 Pmax_loop = Pmax_POC + 1.9 # account for the losses from POC to INV terminal
 Pmin_loop = Pmin_POC # account for the losses from POC to INV terminal
 # Define the range for looping P
-#Ploop_range =  [Pmin_loop] + range(int(math.ceil(Pmin_loop)), int(math.floor(Pmax_loop)), 2) + [Pmax_loop]  
-Ploop_range =  [Pmin_loop] # for debuging only
+Ploop_range =  [Pmin_loop] + range(int(math.ceil(Pmin_loop)), int(math.floor(Pmax_loop)), 2) + [Pmax_loop]  
+#Ploop_range =  [Pmin_loop] # for debuging only
+
+# Capbanks to be turnoff
+capbanks = []
+capbanks = [
+        {"bus": 334091, "id": "4"},
+        {"bus": 334091, "id": "3"}
+        ]
+
+# Buses to be deactivated
+bus_dis_list = []
+#bus_dis_list = [busgen1, busTx1] #[busgen1, busTx1] [busgen1, busgen2] all the buses in the PV/BESS leg to be disconnected
+
+# Gen bus list
+bus_gen_list = [busgen1, busgen2]  #bus_gen_list = [busgen1] [busgen2] generator buses to be mornitored voltage and power flow
 
 ###############################################################################
 # Supporting functions
@@ -226,6 +225,10 @@ def apply_derating(P_individual_PV, Vinv_PV, case_text):
     
     return Slim_PV_ind
 
+def turn_off_capbank(capbanks):
+    if capbanks != []:
+        for capbank in capbanks:
+            psspy.shunt_chng(capbank["bus"],capbank["id"],0,[_f,_f])
 
                     
 ###############################################################################
@@ -319,6 +322,10 @@ for bus_dis_i in bus_dis_list:#if source_type in ["BESS", "PV"] deactivate the i
 psspy.fnsl([1,0,0,1,1,0,99,0])
 psspy.fnsl([1,0,0,1,1,0,99,0])
 psspy.fnsl([1,0,0,1,1,0,99,0])
+
+# turn off the capbank if needed:
+turn_off_capbank(capbanks)
+
 
 # Force the voltage at POC by changing grid impedance to zero, solve with tap enable 
 psspy.branch_chng_3(bus_inf,bus_inf_scr,r"""1""",[_i,_i,_i,_i,_i,_i],[0.0,0.00001,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)
@@ -453,8 +460,10 @@ for temperature in temp_cases: # loop through different temperature cases
                 Sinv_PV = math.sqrt(P_PV**2 + Qinv_PV**2)  
 
                 # calculate individual power from INV
-                P_individual_PV = Pinv_PV/PV_INV_num  #MW
-                P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
+                if PV_INV_num == 0: P_individual_PV = 0
+                else: P_individual_PV = Pinv_PV/PV_INV_num  #MW
+                if BESS_INV_num == 0: P_individual_BESS = 0
+                else: P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
 
                 # Iterpolate for new base base on the active power level and voltage level at inv
                 if P_individual_BESS >=0: srce_text = 'Dis'#when discharging
@@ -504,8 +513,10 @@ for temperature in temp_cases: # loop through different temperature cases
                         Sinv_PV = math.sqrt(P_PV**2 + Qinv_PV**2)  
     
                         # calculate individual power from INV
-                        P_individual_PV = Pinv_PV/PV_INV_num  #MW
-                        P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
+                        if PV_INV_num == 0: P_individual_PV = 0
+                        else: P_individual_PV = Pinv_PV/PV_INV_num  #MW
+                        if BESS_INV_num == 0: P_individual_BESS = 0
+                        else: P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
         
                         # Iterpolate for new base base on the active power level and voltage level at inv
                         if P_individual_BESS >=0: srce_text = 'Dis'#when discharging
@@ -573,8 +584,10 @@ for temperature in temp_cases: # loop through different temperature cases
                     Sinv_PV = math.sqrt(P_PV**2 + Qinv_PV**2)  
 
                     # calculate individual power from INV
-                    P_individual_PV = Pinv_PV/PV_INV_num  #MW
-                    P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
+                    if PV_INV_num == 0: P_individual_PV = 0
+                    else: P_individual_PV = Pinv_PV/PV_INV_num  #MW
+                    if BESS_INV_num == 0: P_individual_BESS = 0
+                    else: P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
     
                     # Iterpolate for new base base on the active power level and voltage level at inv
                     if P_individual_BESS >=0: srce_text = 'Dis'#when discharging

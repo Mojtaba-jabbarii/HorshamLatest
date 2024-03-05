@@ -23,8 +23,8 @@ from io import BytesIO
 ###############################################################################
 #USER INPUTS
 ###############################################################################
-TestDefinitionSheet=r'20230828_SUM_TESTINFO_V1.xlsx'
-raw_SS_result_folder = '20240202-223353_S5251'
+TestDefinitionSheet=r'20230828_SUM_TESTINFO_V2.xlsx'
+raw_SS_result_folder = '20240305-142530_S5251'
 simulation_batches=['S5251_PQcurve']
 simulation_batch_label = simulation_batches[0]
 
@@ -92,7 +92,7 @@ else: # if the main folder is not in Onedrive, then store the results in the sam
     main_folder_out = main_folder_path
     
 dir_path =  main_folder_out +"\\Plots\\PQ_curve"
-make_dir(dir_path)
+createPath(dir_path)
 
 # Create shortcut linking to result folder if it is not stored in the main folder path
 if main_folder_out != main_folder_path:
