@@ -1,0 +1,107 @@
+<Output device="EMTDC" version="2010" date="2024/03/01" time="16:33:53.000000">
+  <Domain name="Time" unit="s" mult="0.0" skew="0.0">
+    <Sample rate="5999.99999999" end="60000" />
+  </Domain>
+  <List classid="Analog">
+    <Analog name="Main(0):maintap" index="1" gindex="100663297" id="234771314:0" label="" dim="1" unit="MVAr" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Ic_PoC" index="2" gindex="100663298" id="1340994827:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Ib_PoC" index="3" gindex="100663299" id="303081001:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Itot_PoC" index="4" gindex="100663300" id="818901818:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Ia_PoC" index="5" gindex="100663301" id="1937731292:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Ineg_PoC" index="6" gindex="100663302" id="1526379897:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Ipos_PoC" index="7" gindex="100663303" id="1761542537:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Iq_PoC" index="8" gindex="100663304" id="2057990663:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Izero_PoC" index="9" gindex="100663305" id="424721341:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):FRT_flag_POC" index="10" gindex="100663306" id="1622624242:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+    <Analog name="Main(0):FRT_flag_BESS" index="11" gindex="100663307" id="1797797615:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+    <Analog name="Main(0):FRT_flag_PV" index="12" gindex="100663308" id="1970086749:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+    <Analog name="Main(0):Vneg_PoC" index="13" gindex="100663309" id="751113735:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Id_PoC" index="14" gindex="100663310" id="272528699:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Vpos_PoC" index="15" gindex="100663311" id="1061496843:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Qout_INV_BESS" index="16" gindex="100663312" id="1544924367:0" label="" dim="1" unit="MVAr" min="0" max="2" />
+    <Analog name="Main(0):BESSspt_MW" index="17" gindex="100663313" id="448778405:0" label="" dim="1" unit="MW" min="-0.1" max="22" />
+    <Analog name="Main(0):PCU2_Phs" index="18" gindex="100663314" id="684539198:0" label="" dim="1" unit="deg" min="0.9" max="1.1" />
+    <Analog name="Main(0):Vzero_PoC" index="19" gindex="100663315" id="2037999191:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):PCU1_Phs" index="20" gindex="100663316" id="1395805829:0" label="" dim="1" unit="deg" min="0.9" max="1.1" />
+    <Analog name="Main(0):Pout_INV_BESS" index="21" gindex="100663317" id="150012431:0" label="" dim="1" unit="MW" min="0" max="2" />
+    <Analog name="Main(0):Qspt_MVAr" index="22" gindex="100663318" id="809589327:0" label="" dim="1" unit="MVAr" min="-0.1" max="22" />
+    <Analog name="Main(0):PCU2_Arms_LV" index="23" gindex="100663319" id="224869809:0" label="" dim="1" unit="A" min="0.9" max="1.1" />
+    <Analog name="Main(0):PCU1_Arms_LV" index="24" gindex="100663320" id="1143081174:0" label="" dim="1" unit="A" min="0.9" max="1.1" />
+    <Analog name="Main(0):Qout_INV_PV" index="25" gindex="100663321" id="99931441:0" label="" dim="1" unit="MVAr" min="0" max="2" />
+    <Analog name="Main(0):Pspt_MW" index="26" gindex="100663322" id="1450197031:0" label="" dim="1" unit="MW" min="-0.1" max="22" />
+    <Analog name="Main(0):PCU2_Q_MV" index="27" gindex="100663323" id="1440932216:0" label="" dim="1" unit="MVAR" min="-0.1" max="0.7" />
+    <Analog name="Main(0):Pout_INV_PV" index="28" gindex="100663324" id="1057224702:0" label="" dim="1" unit="MW" min="0" max="2" />
+    <Analog name="Main(0):PoiPfSpt" index="29" gindex="100663325" id="636344:0" label="" dim="1" unit="MW" min="0" max="2" />
+    <Analog name="Main(0):PCU1_Q_MV" index="30" gindex="100663326" id="1622626048:0" label="" dim="1" unit="MVAR" min="-0.1" max="0.7" />
+    <Analog name="Main(0):Iqneg_PoC" index="31" gindex="100663327" id="1350230624:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):PCU2_P_MV" index="32" gindex="100663328" id="1275825479:0" label="" dim="1" unit="MW" min="-0.1" max="0.8" />
+    <Analog name="Main(0):PoiVolSpt_pu" index="33" gindex="100663329" id="324557867:0" label="" dim="1" unit="pu" min="0" max="2" />
+    <Analog name="Main(0):PCU1_P_MV" index="34" gindex="100663330" id="513960862:0" label="" dim="1" unit="MW" min="-0.1" max="0.8" />
+    <Analog name="Main(0):Qcmd_PPC_to_INV_BESS" index="35" gindex="100663331" id="760618102:0" label="" dim="1" unit="MVAr" min="0" max="2" />
+    <Analog name="Main(0):Iqpos_PoC" index="36" gindex="100663332" id="709309017:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):Iq_neg_pos_ratio" index="37" gindex="100663333" id="98708744:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):PCU2_A_MV" index="38" gindex="100663334" id="1075486167:0" label="" dim="3" unit="A" min="-0.1" max="0.1" />
+    <Analog name="Main(0):Hz_POI" index="41" gindex="100663337" id="59851039:0" label="" dim="1" unit="Hz" min="45" max="66" />
+    <Analog name="Main(0):PCU1_A_MV" index="42" gindex="100663338" id="1984775085:0" label="" dim="3" unit="A" min="-0.1" max="0.1" />
+    <Analog name="Main(0):Pcmd_PPC_to_INV_BESS" index="45" gindex="100663341" id="2065048840:0" label="" dim="1" unit="MW" min="0" max="2" />
+    <Analog name="Main(0):Iqzero_PoC" index="46" gindex="100663342" id="680078081:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0):PCU2_V_MV_pu" index="47" gindex="100663343" id="1603104334:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+    <Analog name="Main(0):PCU1_V_MV_pu" index="48" gindex="100663344" id="1656298603:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+    <Analog name="Main(0):PLANT_Phs" index="49" gindex="100663345" id="289292808:0" label="" dim="1" unit="deg" min="-15" max="15" />
+    <Analog name="Main(0):Qcmd_PPC_to_INV_PV" index="50" gindex="100663346" id="461444729:0" label="" dim="1" unit="MVAr" min="0" max="2" />
+    <Analog name="Main(0):PCU2_Q_LV" index="51" gindex="100663347" id="384549660:0" label="" dim="1" unit="MVAR" min="-0.1" max="0.7" />
+    <Analog name="Main(0):PLANT_Q_HV" index="52" gindex="100663348" id="2104001909:0" label="" dim="1" unit="MVAR" min="-15" max="15" />
+    <Analog name="Main(0):Pcmd_PPC_to_INV_PV" index="53" gindex="100663349" id="1621440925:0" label="" dim="1" unit="MW" min="0" max="2" />
+    <Analog name="Main(0):PCU1_Q_LV" index="54" gindex="100663350" id="1067241997:0" label="" dim="1" unit="MVAR" min="-0.1" max="0.7" />
+    <Analog name="Main(0):PCU2_P_LV" index="55" gindex="100663351" id="1629716426:0" label="" dim="1" unit="MW" min="-0.1" max="0.8" />
+    <Analog name="Main(0):PLANT_P_HV" index="56" gindex="100663352" id="721831570:0" label="" dim="1" unit="MW" min="-0.1" max="22" />
+    <Analog name="Main(0):PCU1_P_LV" index="57" gindex="100663353" id="1796068307:0" label="" dim="1" unit="MW" min="-0.1" max="0.8" />
+    <Analog name="Main(0):PCU2_A_LV" index="58" gindex="100663354" id="337211598:0" label="" dim="3" unit="A" min="0.9" max="1.1" />
+    <Analog name="Main(0):PLANT_V_HV_pu" index="61" gindex="100663357" id="1825491331:0" label="" dim="1" unit="pu" min="0" max="2" />
+    <Analog name="Main(0):PCU1_A_LV" index="62" gindex="100663358" id="418842972:0" label="" dim="3" unit="A" min="0.9" max="1.1" />
+    <Analog name="Main(0):PCU2_V_LV_pu" index="65" gindex="100663361" id="1344122389:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+    <Analog name="Main(0):PCU1_V_LV_pu" index="66" gindex="100663362" id="1470801425:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+    <Analog name="Main(0)\GridSource(GridSource_1):phAngSource" index="67" gindex="100663363" id="491404616:0" label="" dim="1" unit="angel (rad)" min="-15" max="15" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):neg" index="68" gindex="100663364" id="607565371:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):pos" index="69" gindex="100663365" id="2127546341:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):zero" index="70" gindex="100663366" id="1108903377:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_i_c" index="71" gindex="100663367" id="961259267:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_i_c" index="72" gindex="100663368" id="1676510660:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_i_b" index="73" gindex="100663369" id="1748774494:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_i_b" index="74" gindex="100663370" id="1936530438:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_i_a" index="75" gindex="100663371" id="28957653:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_i_a" index="76" gindex="100663372" id="1304536685:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_v_c" index="77" gindex="100663373" id="1134641177:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_v_c" index="78" gindex="100663374" id="168128780:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_v_b" index="79" gindex="100663375" id="942383234:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_v_b" index="80" gindex="100663376" id="2137522184:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):phase_v_a" index="81" gindex="100663377" id="755627222:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc_1_1(SymmetricalComponentsCalc_1_1):mag_v_a" index="82" gindex="100663378" id="1474997995:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):neg" index="83" gindex="100663379" id="837686843:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseC" index="84" gindex="100663380" id="602925230:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):pos" index="85" gindex="100663381" id="1318715691:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magC" index="86" gindex="100663382" id="2022698425:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseB" index="87" gindex="100663383" id="1748429395:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magB" index="88" gindex="100663384" id="1917777764:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseA" index="89" gindex="100663385" id="767997215:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magA" index="90" gindex="100663386" id="2096708399:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):zero" index="91" gindex="100663387" id="1872485204:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):neg" index="92" gindex="100663388" id="837686843:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseC" index="93" gindex="100663389" id="602925230:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):pos" index="94" gindex="100663390" id="1318715691:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magC" index="95" gindex="100663391" id="2022698425:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseB" index="96" gindex="100663392" id="1748429395:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magB" index="97" gindex="100663393" id="1917777764:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):phaseA" index="98" gindex="100663394" id="767997215:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):magA" index="99" gindex="100663395" id="2096708399:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\SymmetricalComponentsCalc(SymmetricalComponentsCalc_1):zero" index="100" gindex="100663396" id="1872485204:1" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\TapCtrl_1(0):Vrms2_pu" index="101" gindex="100663397" id="1732648960:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\TapCtrl_1(0):Ttap_current" index="102" gindex="100663398" id="2142876951:0" label="" dim="1" unit="" min="-1.2" max="1.2" />
+    <Analog name="Main(0)\TapCtrl_1(0):Freeze" index="103" gindex="100663399" id="1339986676:0" label="" dim="1" unit="" min="-1.2" max="1.2" />
+    <Analog name="Main(0)\TapCtrl_1(0):Neg pos" index="104" gindex="100663400" id="576221441:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\TapCtrl_1(0):edge" index="105" gindex="100663401" id="16976506:0" label="" dim="1" unit="" min="-1.2" max="1.2" />
+    <Analog name="Main(0)\TapCtrl_1(0):Int pos" index="106" gindex="100663402" id="631524183:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    <Analog name="Main(0)\TapCtrl_1(0):tap_ratio" index="107" gindex="100663403" id="1880865237:0" label="" dim="1" unit="" min="-1.2" max="1.2" />
+  </List>
+  <List classid="Digital" />
+</Output>

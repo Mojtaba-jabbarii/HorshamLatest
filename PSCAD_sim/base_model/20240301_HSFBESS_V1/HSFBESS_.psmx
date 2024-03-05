@@ -1,0 +1,6 @@
+<Meta name="SUMSF_V1">
+  <messagelist />
+  <ViewContext>
+    <Window defn="SUMSF_V1:Main" call="0" />
+  </ViewContext>
+</Meta>
