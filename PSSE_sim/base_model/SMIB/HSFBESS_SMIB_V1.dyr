@@ -1,7 +1,7 @@
 10000 'GENCLS' 1 0 0/
 
 / Transformer OLTC Model
-334090,'OLTC1T',334091,1,60,0.5,5 /
+334081,'OLTC1T',334091,1,60,0.5,5 /
 
 / SMAHYCF-G20
 @!/BUSNO                                   MODEL                                   ModelName                               IC                                      IT                                      
