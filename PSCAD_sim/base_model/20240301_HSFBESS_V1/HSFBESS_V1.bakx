@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1709269705" />
+    <param name="revisor" value="SIMULATION, 1712114712" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="38663603" instances="1" key="" view="false" date="1709268089" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="47888472" instances="1" key="" view="false" date="1712114588" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -1507,7 +1507,7 @@ OX2 Australia - Jan 2024
             <param name="AL2" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:HyCtl" id="1899582292" x="1818" y="396" w="170" h="219" z="960" orient="0" defn="HyCtl_PSCAD_Lib:HyCtl" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:HyCtl" id="1899582292" x="1818" y="396" w="170" h="219" z="950" orient="0" defn="HyCtl_PSCAD_Lib:HyCtl" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="99349891">
             <param name="Name" value="HyCon1" />
             <param name="FileNum" value="1" />
@@ -1564,7 +1564,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="McbStt" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datamerge" defn="master:datamerge" id="1554549023" x="1728" y="162" w="27" h="224" z="860" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datamerge" defn="master:datamerge" id="1554549023" x="1728" y="162" w="27" h="224" z="850" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="43697768">
             <param name="N" value="11" />
             <param name="Type" value="2" />
@@ -1811,7 +1811,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" id="1574783272" x="828" y="468" w="124" h="111" z="870" orient="0" defn="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" id="1574783272" x="828" y="468" w="124" h="111" z="860" orient="0" defn="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="83256274">
             <param name="Name" value="" />
           </paramlist>
@@ -2216,7 +2216,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="Hz_POI" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="43010552" x="1170" y="180" w="28" h="26" z="910" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="43010552" x="1170" y="180" w="28" h="26" z="900" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="2" />
             <param name="Dim" value="1" />
@@ -2230,7 +2230,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="0" y="72" />
         </Wire>
-        <User classid="UserCmp" name="master:datatap" id="498235538" x="1170" y="144" w="28" h="26" z="920" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="498235538" x="1170" y="144" w="28" h="26" z="910" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="1" />
             <param name="Dim" value="1" />
@@ -2269,14 +2269,14 @@ OX2 Australia - Jan 2024
         <User classid="UserCmp" name="const" defn="master:const" id="844968393" x="1674" y="162" w="76" h="22" z="130" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
-            <param name="Value" value="46926" />
+            <param name="Value" value="47005" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
         <User classid="UserCmp" name="const" defn="master:const" id="400574328" x="1674" y="180" w="76" h="22" z="150" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
-            <param name="Value" value="-46926" />
+            <param name="Value" value="-47005" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
@@ -2538,7 +2538,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="90" y="0" />
         </Wire>
-        <User classid="UserCmp" name="SCAvg_Lib:SCxxxx" id="260202379" x="378" y="1548" w="134" h="135" z="980" orient="4" defn="SCAvg_Lib:SCxxxx" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="SCAvg_Lib:SCxxxx" id="260202379" x="378" y="1548" w="134" h="135" z="970" orient="4" defn="SCAvg_Lib:SCxxxx" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="126711551">
             <param name="FileNum" value="51" />
             <param name="PCU_Name" value="PCU1" />
@@ -2554,7 +2554,7 @@ OX2 Australia - Jan 2024
             <param name="GriCod_" value="9" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="SCAvg_Lib:SCxxxx" id="1146997769" x="342" y="1872" w="134" h="135" z="1010" orient="4" defn="SCAvg_Lib:SCxxxx" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="SCAvg_Lib:SCxxxx" id="1146997769" x="342" y="1872" w="134" h="135" z="1000" orient="4" defn="SCAvg_Lib:SCxxxx" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="126711551">
             <param name="FileNum" value="57" />
             <param name="PCU_Name" value="PCU2" />
@@ -2572,7 +2572,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="-36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:datatap" id="293705908" x="1170" y="216" w="40" h="26" z="900" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="293705908" x="1170" y="216" w="40" h="26" z="890" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="6" />
             <param name="Dim" value="3" />
@@ -2649,7 +2649,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="54" y="0" />
         </Wire>
-        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" id="810025572" x="540" y="468" w="124" h="111" z="990" orient="0" defn="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" id="810025572" x="540" y="468" w="124" h="111" z="980" orient="0" defn="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="83256274">
             <param name="Name" value="" />
           </paramlist>
@@ -2832,7 +2832,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="DEBUG_HyCon1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" id="2045663608" x="2232" y="450" w="100" h="58" z="1620" orient="0" defn="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" id="2045663608" x="2232" y="450" w="100" h="58" z="1630" orient="0" defn="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="83256274">
             <param name="Name" value="HyCon1" />
           </paramlist>
@@ -3096,7 +3096,7 @@ OX2 Australia - Jan 2024
           <vertex x="-108" y="0" />
         </Wire>
         <grouping />
-        <User classid="UserCmp" name="DDSRF_PLL_Lib:DDSRF_PLL_1" id="839518336" x="1782" y="1764" w="145" h="84" z="890" orient="0" defn="DDSRF_PLL_Lib:DDSRF_PLL_1" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="DDSRF_PLL_Lib:DDSRF_PLL_1" id="839518336" x="1782" y="1764" w="145" h="84" z="880" orient="0" defn="DDSRF_PLL_Lib:DDSRF_PLL_1" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="50202068">
             <param name="Name" value="" />
             <param name="Vsys" value="220" />
@@ -3258,7 +3258,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="54" y="0" />
         </Wire>
-        <User classid="UserCmp" name="HSFBESS_V1:TapCtrl_1" id="534238275" x="1494" y="1494" w="116" h="62" z="840" orient="0" defn="HSFBESS_V1:TapCtrl_1" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HSFBESS_V1:TapCtrl_1" id="534238275" x="1494" y="1494" w="116" h="62" z="830" orient="0" defn="HSFBESS_V1:TapCtrl_1" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="35147217">
             <param name="Name" value="" />
             <param name="TpWdg" value="1" />
@@ -3429,7 +3429,7 @@ OX2 Australia - Jan 2024
         <User classid="UserCmp" name="master:consti" id="1248158520" x="522" y="1836" w="76" h="22" z="510" orient="6" defn="master:consti" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74846674">
             <param name="Name" value="" />
-            <param name="Value" value="36" />
+            <param name="Value" value="40" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
@@ -3801,7 +3801,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="PCU1_BRK" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:logic_mult" id="557021275" x="1854" y="846" w="80" h="56" z="810" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:logic_mult" id="557021275" x="1854" y="846" w="80" h="56" z="800" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="112549534">
             <param name="Type" value="0" />
             <param name="Num_in" value="2" />
@@ -3837,7 +3837,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" defn="master:select" id="1398950190" x="2196" y="378" w="82" h="91" z="880" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:select" id="1398950190" x="2196" y="378" w="82" h="91" z="870" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="108938206">
             <param name="A" value="1" />
             <param name="DPath" value="1" />
@@ -3971,7 +3971,7 @@ OX2 Australia - Jan 2024
           <Control classid="Slider" id="460330094" name="PFstp_manual" link="1318337119" />
           <Control classid="Slider" id="2042622281" name="Irradiance" link="1636021188" />
         </Frame>
-        <User classid="UserCmp" name="HSFBESS_V1:setpointProfiles" id="163769877" x="360" y="954" w="184" h="295" z="780" orient="0" defn="HSFBESS_V1:setpointProfiles" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HSFBESS_V1:setpointProfiles" id="163769877" x="360" y="954" w="184" h="295" z="770" orient="0" defn="HSFBESS_V1:setpointProfiles" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="19327166">
             <param name="Name" value="setpointProfiles_1" />
             <param name="Vstp_X1" value="0" />
@@ -4265,7 +4265,7 @@ OX2 Australia - Jan 2024
             <param name="Collect" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:gain" id="1604872731" x="576" y="972" w="80" h="36" z="800" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:gain" id="1604872731" x="576" y="972" w="80" h="36" z="790" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="34173863">
             <param name="G" value="119000" />
             <param name="COM" value="Gain" />
@@ -4282,7 +4282,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" defn="master:gain" id="26489965" x="576" y="936" w="80" h="36" z="790" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:gain" id="26489965" x="576" y="936" w="80" h="36" z="780" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="34173863">
             <param name="G" value="119000" />
             <param name="COM" value="Gain" />
@@ -4317,7 +4317,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="PoiVolSpt" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:gain" id="185445798" x="576" y="900" w="80" h="36" z="850" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:gain" id="185445798" x="576" y="900" w="80" h="36" z="840" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="34173863">
             <param name="G" value="220000" />
             <param name="COM" value="Gain" />
@@ -4339,9 +4339,9 @@ OX2 Australia - Jan 2024
             <param name="Name" value="BessWSpt" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:gain" id="1090125219" x="576" y="1080" w="80" h="36" z="820" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:gain" id="1090125219" x="576" y="1080" w="80" h="36" z="810" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="34173863">
-            <param name="G" value="90000" />
+            <param name="G" value="119000" />
             <param name="COM" value="Gain" />
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -4593,7 +4593,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="0" y="18" />
         </Wire>
-        <User classid="UserCmp" name="master:datamerge" defn="master:datamerge" id="628990117" x="1188" y="378" w="98" h="27" z="940" orient="7" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datamerge" defn="master:datamerge" id="628990117" x="1188" y="378" w="98" h="27" z="930" orient="7" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="43697768">
             <param name="N" value="4" />
             <param name="Type" value="2" />
@@ -4634,7 +4634,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="Hz_POI" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datamerge" defn="master:datamerge" id="869070627" x="1386" y="378" w="98" h="27" z="930" orient="7" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datamerge" defn="master:datamerge" id="869070627" x="1386" y="378" w="98" h="27" z="920" orient="7" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="43697768">
             <param name="N" value="4" />
             <param name="Type" value="2" />
@@ -4782,7 +4782,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="PoiWLimSales_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:gain" id="578405861" x="2988" y="396" w="80" h="36" z="1190" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:gain" id="578405861" x="2988" y="396" w="80" h="36" z="1180" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="34173863">
             <param name="G" value="90" />
             <param name="COM" value="Gain" />
@@ -4822,7 +4822,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="PoiWLimSales_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:gain" id="626956339" x="2988" y="360" w="80" h="36" z="1200" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:gain" id="626956339" x="2988" y="360" w="80" h="36" z="1190" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="34173863">
             <param name="G" value="90" />
             <param name="COM" value="Gain" />
@@ -5092,7 +5092,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="inf_BRK" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:compar" id="1798975056" x="1746" y="1062" w="85" h="64" z="830" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:compar" id="1798975056" x="1746" y="1062" w="85" h="64" z="820" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="48149703">
             <param name="Pulse" value="0" />
             <param name="INTR" value="0" />
@@ -5323,7 +5323,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="Qout_INV_PV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="1398013014" x="3240" y="702" w="28" h="26" z="1120" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="1398013014" x="3240" y="702" w="28" h="26" z="1110" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="6" />
             <param name="Dim" value="1" />
@@ -5333,7 +5333,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="2121163275" x="3240" y="630" w="28" h="26" z="1140" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="2121163275" x="3240" y="630" w="28" h="26" z="1130" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="5" />
             <param name="Dim" value="1" />
@@ -5366,7 +5366,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="Qout_INV_BESS" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="331526541" x="3492" y="702" w="28" h="26" z="1100" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="331526541" x="3492" y="702" w="28" h="26" z="1090" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="6" />
             <param name="Dim" value="1" />
@@ -5376,7 +5376,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="615472526" x="3492" y="630" w="28" h="26" z="1130" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="615472526" x="3492" y="630" w="28" h="26" z="1120" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="5" />
             <param name="Dim" value="1" />
@@ -5417,7 +5417,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="99931441" x="3492" y="324" w="94" h="40" z="1630" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="99931441" x="3492" y="324" w="94" h="40" z="1620" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Qout_INV_PV" />
             <param name="Group" value="" />
@@ -5818,7 +5818,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="Vol_POI" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="1924479707" x="2952" y="630" w="80" h="59" z="1020" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="1924479707" x="2952" y="630" w="80" h="59" z="1010" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -5871,7 +5871,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="BessWSpt_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:gain" id="1316644912" x="2988" y="432" w="80" h="36" z="1180" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:gain" id="1316644912" x="2988" y="432" w="80" h="36" z="1170" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="34173863">
             <param name="G" value="90" />
             <param name="COM" value="Gain" />
@@ -6361,13 +6361,13 @@ OX2 Australia - Jan 2024
             <param name="Frequency" value="50" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="HSFBESS_V1:SymmetricalComponentsCalc" id="797565769" x="3852" y="360" w="132" h="84" z="740" orient="0" defn="HSFBESS_V1:SymmetricalComponentsCalc" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HSFBESS_V1:SymmetricalComponentsCalc" id="797565769" x="3852" y="360" w="132" h="84" z="730" orient="0" defn="HSFBESS_V1:SymmetricalComponentsCalc" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="121216989">
             <param name="Name" value="SymmetricalComponentsCalc_1" />
             <param name="Frequency" value="50" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="HSFBESS_V1:SymmetricalComponentsCalc" id="1345416761" x="3852" y="540" w="132" h="84" z="770" orient="0" defn="HSFBESS_V1:SymmetricalComponentsCalc" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HSFBESS_V1:SymmetricalComponentsCalc" id="1345416761" x="3852" y="540" w="132" h="84" z="760" orient="0" defn="HSFBESS_V1:SymmetricalComponentsCalc" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="121216989">
             <param name="Name" value="SymmetricalComponentsCalc_1" />
             <param name="Frequency" value="50" />
@@ -6383,7 +6383,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="Iqpos_PoC" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:div" id="399860630" x="4212" y="144" w="80" h="59" z="730" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:div" id="399860630" x="4212" y="144" w="80" h="59" z="1200" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -6444,7 +6444,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="Itot_PoC" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:sumjct" id="825624784" x="4302" y="612" w="80" h="63" z="1090" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:sumjct" id="825624784" x="4302" y="612" w="80" h="63" z="1080" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="16672553">
             <param name="DPath" value="1" />
             <param name="A" value="0" />
@@ -6476,21 +6476,21 @@ OX2 Australia - Jan 2024
             <param name="Name" value="Iq_PoC" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:square" id="849935888" x="4230" y="648" w="80" h="36" z="1080" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:square" id="849935888" x="4230" y="648" w="80" h="36" z="1070" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="123652463">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
             <param name="DPath" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:square" id="774198801" x="4230" y="612" w="80" h="36" z="1050" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:square" id="774198801" x="4230" y="612" w="80" h="36" z="1040" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="123652463">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
             <param name="DPath" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:sqrt" id="726772474" x="4374" y="612" w="80" h="36" z="1110" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:sqrt" id="726772474" x="4374" y="612" w="80" h="36" z="1100" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="110615855">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -6546,7 +6546,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="PLANT_Q_HV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="330328121" x="4230" y="468" w="80" h="59" z="760" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="330328121" x="4230" y="468" w="80" h="59" z="750" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -6560,7 +6560,7 @@ OX2 Australia - Jan 2024
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="36103472" x="4302" y="468" w="80" h="59" z="1070" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="36103472" x="4302" y="468" w="80" h="59" z="1060" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -6582,7 +6582,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="PLANT_V_HV_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="165476906" x="4302" y="324" w="80" h="59" z="1040" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="165476906" x="4302" y="324" w="80" h="59" z="1030" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -6596,7 +6596,7 @@ OX2 Australia - Jan 2024
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="1602636370" x="4230" y="324" w="80" h="59" z="750" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="1602636370" x="4230" y="324" w="80" h="59" z="740" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -6873,7 +6873,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" defn="master:hardlimit" id="2095370447" x="4266" y="396" w="80" h="59" z="1030" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:hardlimit" id="2095370447" x="4266" y="396" w="80" h="59" z="1020" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="16843219">
             <param name="UL" value="2" />
             <param name="LL" value="0.001" />
@@ -6896,7 +6896,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="PLANT_V_HV_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:hardlimit" id="389639178" x="4266" y="540" w="80" h="59" z="1060" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:hardlimit" id="389639178" x="4266" y="540" w="80" h="59" z="1050" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="16843219">
             <param name="UL" value="2" />
             <param name="LL" value="0.001" />
@@ -6924,7 +6924,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="PCU2_Spt" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="1121602268" x="1944" y="306" w="46" h="26" z="970" orient="6" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="1121602268" x="1944" y="306" w="46" h="26" z="960" orient="6" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="1" />
             <param name="Dim" value="10" />
@@ -6934,7 +6934,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="1692755548" x="1944" y="360" w="46" h="26" z="1000" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="1692755548" x="1944" y="360" w="46" h="26" z="990" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="1" />
             <param name="Dim" value="10" />
@@ -6978,7 +6978,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="0" y="-126" />
         </Wire>
-        <User classid="UserCmp" name="master:datamerge" defn="master:datamerge" id="1651030353" x="1350" y="270" w="170" h="27" z="950" orient="3" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datamerge" defn="master:datamerge" id="1651030353" x="1350" y="270" w="170" h="27" z="940" orient="3" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="43697768">
             <param name="N" value="8" />
             <param name="Type" value="2" />
@@ -7151,7 +7151,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="DEBUG_PCU1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="746120755" x="2430" y="558" w="28" h="26" z="1170" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="746120755" x="2430" y="558" w="28" h="26" z="1160" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="1" />
             <param name="Dim" value="1" />
@@ -7201,7 +7201,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="DEBUG_PCU2" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="1228839747" x="2700" y="558" w="28" h="26" z="1160" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="1228839747" x="2700" y="558" w="28" h="26" z="1150" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="1" />
             <param name="Dim" value="1" />
@@ -7251,7 +7251,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="DEBUG_HyCon1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="325362530" x="2970" y="558" w="28" h="26" z="1150" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="325362530" x="2970" y="558" w="28" h="26" z="1140" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="1" />
             <param name="Dim" value="1" />
@@ -7330,6 +7330,56 @@ OX2 Australia - Jan 2024
         <User classid="UserCmp" name="master:ground" id="952214647" x="1188" y="2106" w="26" h="34" z="0" orient="1" defn="master:ground" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="28206164" />
         </User>
+        <Wire classid="WireOrthogonal" id="1270326910" name="" x="1386" y="1998" w="10" h="64" orient="0" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="0" y="-54" />
+        </Wire>
+        <Wire classid="WireOrthogonal" id="2020887516" name="" x="1458" y="1998" w="10" h="82" orient="0" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="0" y="-72" />
+        </Wire>
+        <User classid="UserCmp" defn="master:filter" id="1252342035" x="1458" y="2034" w="45" h="142" z="1" orient="1" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="53927706">
+            <param name="Cnfg" value="0" />
+            <param name="Q" value="100.0" />
+            <param name="Fo" value="60.0 [Hz]" />
+            <param name="F" value="300.0 [Hz]" />
+            <param name="MVAR" value="100.0 [MVAR]" />
+            <param name="Volt" value="132.79 [kV]" />
+            <param name="R" value="17.86 [ohm]" />
+            <param name="L" value="0.00134 [H]" />
+            <param name="C" value="26.22 [uF]" />
+            <param name="Name" value="" />
+          </paramlist>
+        </User>
+        <User classid="UserCmp" defn="master:filter" id="1189133514" x="1386" y="2034" w="45" h="142" z="1" orient="1" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="53927706">
+            <param name="Cnfg" value="0" />
+            <param name="Q" value="100.0" />
+            <param name="Fo" value="60.0 [Hz]" />
+            <param name="F" value="300.0 [Hz]" />
+            <param name="MVAR" value="100.0 [MVAR]" />
+            <param name="Volt" value="132.79 [kV]" />
+            <param name="R" value="100.89 [ohm]" />
+            <param name="L" value="0.00217 [H]" />
+            <param name="C" value="2.92 [uF]" />
+            <param name="Name" value="" />
+          </paramlist>
+        </User>
+        <User classid="UserCmp" name="master:ground" id="864945784" x="1386" y="2106" w="26" h="34" z="0" orient="1" defn="master:ground" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="28206164" />
+        </User>
+        <User classid="UserCmp" name="master:ground" id="312102924" x="1458" y="2106" w="26" h="34" z="0" orient="1" defn="master:ground" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="28206164" />
+        </User>
+        <Wire classid="WireOrthogonal" id="1706961946" name="" x="1314" y="1926" w="154" h="10" orient="0" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="144" y="0" />
+        </Wire>
+        <Wire classid="WireOrthogonal" id="1307820404" name="" x="1314" y="1944" w="82" h="10" orient="0" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="72" y="0" />
+        </Wire>
       </schematic>
       <references>
         <using namespace="master" />
@@ -66807,8 +66857,8 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <ref link="1089318121" />
       </path>
       <paramlist>
-        <param name="xmin" value="2.98461538462" />
-        <param name="xmax" value="7.98461538462" />
+        <param name="xmin" value="0.0" />
+        <param name="xmax" value="4.5" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1531568730" link="1830306561">
@@ -66816,8 +66866,8 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <ref link="1089318121" />
       </path>
       <paramlist>
-        <param name="ymin" value="-20.0" />
-        <param name="ymax" value="60.0" />
+        <param name="ymin" value="-40.0" />
+        <param name="ymax" value="100.0" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1216349088" link="900142225">
@@ -66826,7 +66876,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
       </path>
       <paramlist>
         <param name="ymin" value="-20.0" />
-        <param name="ymax" value="120.0" />
+        <param name="ymax" value="140.0" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1257780583" link="845955295">
@@ -74648,7 +74698,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
     </paramlist>
   </GlobalSubstitutions>
   <hierarchy>
-    <call link="547913066" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
+    <call link="157357884" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
       <call link="1089318121" name="HSFBESS_V1:Main" z="-1" view="true" instance="0">
         <call link="1231646374" name="HyCtl_PSCAD_Lib:InvFbDummy" z="180" view="false" instance="0" />
         <call link="743168893" name="SC_Lib:DPS_Dummy" z="450" view="false" instance="0" />
@@ -74666,9 +74716,9 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <call link="783647226" name="SC_Lib:DPS_Dummy" z="610" view="false" instance="1" />
         <call link="1591544161" name="HSFBESS_V1:FaultBlock" z="630" view="false" instance="0" />
         <call link="1657109207" name="HSFBESS_V1:SymmetricalComponentsCalc_1_1" z="720" view="false" instance="0" />
-        <call link="797565769" name="HSFBESS_V1:SymmetricalComponentsCalc" z="740" view="false" instance="0" />
-        <call link="1345416761" name="HSFBESS_V1:SymmetricalComponentsCalc" z="770" view="false" instance="1" />
-        <call link="163769877" name="HSFBESS_V1:setpointProfiles" z="780" view="false" instance="0">
+        <call link="797565769" name="HSFBESS_V1:SymmetricalComponentsCalc" z="730" view="false" instance="0" />
+        <call link="1345416761" name="HSFBESS_V1:SymmetricalComponentsCalc" z="760" view="false" instance="1" />
+        <call link="163769877" name="HSFBESS_V1:setpointProfiles" z="770" view="false" instance="0">
           <call link="192815012" name="HSFBESS_V1:XY_profile_2" z="700" view="false" instance="0">
             <call link="1436830642" name="HSFBESS_V1:SignalTruncator_2_3" z="240" view="false" instance="0" />
           </call>
@@ -74694,24 +74744,24 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
             <call link="1436830642" name="HSFBESS_V1:SignalTruncator_2_3" z="240" view="false" instance="7" />
           </call>
         </call>
-        <call link="534238275" name="HSFBESS_V1:TapCtrl_1" z="840" view="false" instance="0" />
-        <call link="1574783272" name="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" z="870" view="false" instance="0" />
-        <call link="839518336" name="DDSRF_PLL_Lib:DDSRF_PLL_1" z="890" view="false" instance="0">
+        <call link="534238275" name="HSFBESS_V1:TapCtrl_1" z="830" view="false" instance="0" />
+        <call link="1574783272" name="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" z="860" view="false" instance="0" />
+        <call link="839518336" name="DDSRF_PLL_Lib:DDSRF_PLL_1" z="880" view="false" instance="0">
           <call link="855181454" name="DDSRF_PLL_Lib:DDSRF_PLL_2" z="280" view="false" instance="0" />
           <call link="1205552122" name="DDSRF_PLL_Lib:DDSRF_PLL_2" z="300" view="false" instance="1" />
         </call>
-        <call link="1899582292" name="HyCtl_PSCAD_Lib:HyCtl" z="960" view="false" instance="0">
+        <call link="1899582292" name="HyCtl_PSCAD_Lib:HyCtl" z="950" view="false" instance="0">
           <call link="1725717277" name="HyCtl_PSCAD_Lib:PQ_Select" z="1530" view="false" instance="0" />
           <call link="735071606" name="HyCtl_PSCAD_Lib:PQ_Select" z="1660" view="false" instance="1" />
         </call>
-        <call link="260202379" name="SCAvg_Lib:SCxxxx" z="980" view="false" instance="0">
+        <call link="260202379" name="SCAvg_Lib:SCxxxx" z="970" view="false" instance="0">
           <call link="1833952494" name="SCAvg_Lib:AvgBridge" z="1130" view="false" instance="0" />
         </call>
-        <call link="810025572" name="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" z="990" view="false" instance="1" />
-        <call link="1146997769" name="SCAvg_Lib:SCxxxx" z="1010" view="false" instance="1">
+        <call link="810025572" name="HyCtl_PSCAD_Lib:Aggr_Fb_Scaled" z="980" view="false" instance="1" />
+        <call link="1146997769" name="SCAvg_Lib:SCxxxx" z="1000" view="false" instance="1">
           <call link="1833952494" name="SCAvg_Lib:AvgBridge" z="1130" view="false" instance="1" />
         </call>
-        <call link="2045663608" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" z="1620" view="false" instance="0" />
+        <call link="2045663608" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" z="1630" view="false" instance="0" />
         <call link="1844742351" name="SC_Lib:SC_Scope" z="1850" view="false" instance="0" />
         <call link="156840818" name="SC_Lib:SC_Scope" z="1970" view="false" instance="1" />
       </call>

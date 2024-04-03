@@ -37,14 +37,14 @@ Frt_Mod				SPT_FRT_MOD_FULL
 FrtStep_Ena 		SWITCH_STT_DISABLE
 
 # FRT Off time delay - 0.02 is minimum, 2 decimal places only
-Frt_WaitTmHi		0.02
+Frt_WaitTmHi		0.1
 Frt_WaitTmLo		0.02
 
 # FRT deadband
 # Only 2 decimal places supported
 Frt_HystEna		SWITCH_STT_DISABLE 
-Frt_HiDb		1.15
-Frt_HiDbHyst	1.13
+Frt_HiDb		1.24
+Frt_HiDbHyst	1.22
 Frt_LoDbHyst	0.87
 Frt_LoDb		0.85
 
@@ -61,17 +61,17 @@ Frt_LoGra3		6.0
 
 # FRT curve reference voltages - only 2 decimal places supported
 Frt_HiVolRef3		2.0	
-Frt_HiVolRef2		1.15
+Frt_HiVolRef2		1.22
 Frt_HiVolRef1		1.0
 Frt_LoVolRef1		1.0
-Frt_LoVolRef2		0.85
+Frt_LoVolRef2		0.87
 Frt_LoVolRef3		0.0
 
 # Active current gradient after voltage recovery  (Range: [0.1 ...15])
 Frt_AmpDGra			10.0
 
 # Maximum reactive current increase after FRT
-Frt_AmpQGra			1.00
+Frt_AmpQGra			1.4142
 
 # Filter time constant for reactive current and reference voltage averaging
 # Pls set to 1 sec for simulation of FRT
@@ -101,18 +101,18 @@ Pld_Mod		SWITCH_STT_DISABLE
 WGraMod							SWITCH_STT_ENABLE
 VArGraMod						SWITCH_STT_ENABLE
 WGra							1.0
-VArGra							1.0
+VArGra							2.0
 
 # Power Set Point PT1 filters in sec (Range WFilTm: [0.01 ...2]; Range VArFilTm: [0.01 ...2])
 WFilMod							SWITCH_STT_DISABLE
 VArFilMod						SWITCH_STT_DISABLE
-WFilTm							0.04
-VArFilTm						0.04
+WFilTm							0.01
+VArFilTm						0.01
 
 # Reactive power as a function of voltage
 # GRIMNG_INVVARMOD_OFF
 # GRIMNG_INVVARMOD_VARCTLVOL
-GriMng_InvVArMod	GRIMNG_INVVARMOD_OFF
+GriMng_InvVArMod	VARCTLVOL
 
 VArCtlVol_VArSptFilTm			0.01
 
@@ -121,15 +121,15 @@ VArCtlVol_VArSptFilTm			0.01
 VArCtlVol_HiGra3			10
 VArCtlVol_HiGra2			5
 VArCtlVol_HiGra1			2
-VArCtlVol_LoGra1			2
-VArCtlVol_LoGra2			2
+VArCtlVol_LoGra1			0
+VArCtlVol_LoGra2			0.5
 VArCtlVol_LoGra3			2
 
 # 3 decimal places possible for reference values
-VArCtlVol_HiVolRef3			2
-VArCtlVol_HiVolRef2			1.05
+VArCtlVol_HiVolRef3			1.15
+VArCtlVol_HiVolRef2			1.1
 VArCtlVol_LoVolRef1HiVolRef1		1.0
-VArCtlVol_LoVolRef2			0.95
+VArCtlVol_LoVolRef2			0.9
 VArCtlVol_LoVolRef3			0
 
 # Selector for the voltage setpoint:
@@ -178,7 +178,7 @@ VCtl_Hi1Lim		1.2
 VCtl_Hi5LimTm		300
 VCtl_Hi4LimTm		300
 VCtl_Hi3LimTm		300
-VCtl_Hi2LimTm		1000
+VCtl_Hi2LimTm		2500
 VCtl_Hi1LimTm		25000
 
 # Under voltage trip limits  VCtl_Lo[1..5]Lim in p.u. (Range: [0.0 ...1.0]). 2 decimal places only.
@@ -190,7 +190,7 @@ VCtl_Lo5Lim		0.4
 
 # Under voltage trip limit times VCtl_Lo[1..5]LimTm in ms (Range: [100 ...1000000]). 
 VCtl_Lo1LimTm		11000
-VCtl_Lo2LimTm		2500
+VCtl_Lo2LimTm		5000
 VCtl_Lo3LimTm		2000
 VCtl_Lo4LimTm		2000
 VCtl_Lo5LimTm		2000
@@ -338,12 +338,12 @@ Pll_Inv_HzGraLim		300
 Pll_GriMon_HzGraLim		300	
 Pll_Inv_DmpRto			2
 Pll_GriMon_DmpRto		2
-Pll_Inv_SetTm			0.05
+Pll_Inv_SetTm			0.045
 Pll_GriMon_SetTm		0.045
 
-Pll_Inv_HzFilOff2On_Vol			0.3
-Pll_Inv_HzFilWt2On_Vol			0.65
-Pll_Inv_HzFilOn2Wt_Vol			0.75
+Pll_Inv_HzFilOff2On_Vol			0.2
+Pll_Inv_HzFilWt2On_Vol			0.25
+Pll_Inv_HzFilOn2Wt_Vol			0.7
 Pll_GriMon_HzFilOff2On_Vol		0.3
 Pll_GriMon_HzFilWt2On_Vol		0.6
 Pll_GriMon_HzFilOn2Wt_Vol		0.7

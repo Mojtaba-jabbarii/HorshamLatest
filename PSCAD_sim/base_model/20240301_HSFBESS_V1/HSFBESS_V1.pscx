@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1709514940" />
+    <param name="revisor" value="SIMULATION, 1712114943" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="80395841" instances="1" key="" view="false" date="1709271201" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="47888472" instances="1" key="" view="false" date="1712114588" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -2269,14 +2269,14 @@ OX2 Australia - Jan 2024
         <User classid="UserCmp" name="const" defn="master:const" id="844968393" x="1674" y="162" w="76" h="22" z="130" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
-            <param name="Value" value="46926" />
+            <param name="Value" value="47005" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
         <User classid="UserCmp" name="const" defn="master:const" id="400574328" x="1674" y="180" w="76" h="22" z="150" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
-            <param name="Value" value="-46926" />
+            <param name="Value" value="-47005" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
@@ -2832,7 +2832,7 @@ OX2 Australia - Jan 2024
             <param name="Name" value="DEBUG_HyCon1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" id="2045663608" x="2232" y="450" w="100" h="58" z="1620" orient="0" defn="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" id="2045663608" x="2232" y="450" w="100" h="58" z="1630" orient="0" defn="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="83256274">
             <param name="Name" value="HyCon1" />
           </paramlist>
@@ -3429,7 +3429,7 @@ OX2 Australia - Jan 2024
         <User classid="UserCmp" name="master:consti" id="1248158520" x="522" y="1836" w="76" h="22" z="510" orient="6" defn="master:consti" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74846674">
             <param name="Name" value="" />
-            <param name="Value" value="36" />
+            <param name="Value" value="40" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
@@ -4341,7 +4341,7 @@ OX2 Australia - Jan 2024
         </User>
         <User classid="UserCmp" defn="master:gain" id="1090125219" x="576" y="1080" w="80" h="36" z="810" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="34173863">
-            <param name="G" value="90000" />
+            <param name="G" value="119000" />
             <param name="COM" value="Gain" />
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -5417,7 +5417,7 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="99931441" x="3492" y="324" w="94" h="40" z="1630" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="99931441" x="3492" y="324" w="94" h="40" z="1620" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Qout_INV_PV" />
             <param name="Group" value="" />
@@ -66858,7 +66858,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
       </path>
       <paramlist>
         <param name="xmin" value="0.0" />
-        <param name="xmax" value="4.5" />
+        <param name="xmax" value="3.5" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1531568730" link="1830306561">
@@ -66866,8 +66866,8 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <ref link="1089318121" />
       </path>
       <paramlist>
-        <param name="ymin" value="-20.0" />
-        <param name="ymax" value="60.0" />
+        <param name="ymin" value="-40.0" />
+        <param name="ymax" value="100.0" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1216349088" link="900142225">
@@ -66875,8 +66875,8 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <ref link="1089318121" />
       </path>
       <paramlist>
-        <param name="ymin" value="-20.0" />
-        <param name="ymax" value="140.0" />
+        <param name="ymin" value="-40.0" />
+        <param name="ymax" value="160.0" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1257780583" link="845955295">
@@ -74698,7 +74698,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
     </paramlist>
   </GlobalSubstitutions>
   <hierarchy>
-    <call link="547913066" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
+    <call link="157357884" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
       <call link="1089318121" name="HSFBESS_V1:Main" z="-1" view="true" instance="0">
         <call link="1231646374" name="HyCtl_PSCAD_Lib:InvFbDummy" z="180" view="false" instance="0" />
         <call link="743168893" name="SC_Lib:DPS_Dummy" z="450" view="false" instance="0" />
@@ -74761,7 +74761,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <call link="1146997769" name="SCAvg_Lib:SCxxxx" z="1000" view="false" instance="1">
           <call link="1833952494" name="SCAvg_Lib:AvgBridge" z="1130" view="false" instance="1" />
         </call>
-        <call link="2045663608" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" z="1620" view="false" instance="0" />
+        <call link="2045663608" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" z="1630" view="false" instance="0" />
         <call link="1844742351" name="SC_Lib:SC_Scope" z="1850" view="false" instance="0" />
         <call link="156840818" name="SC_Lib:SC_Scope" z="1970" view="false" instance="1" />
       </call>

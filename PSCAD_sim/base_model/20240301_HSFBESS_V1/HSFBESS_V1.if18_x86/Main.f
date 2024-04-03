@@ -204,7 +204,7 @@
 ! Initialize Branch Mapping.
 
       IBRCH(1)     = NBRCH(SS(1))
-      NBRCH(SS(1)) = NBRCH(SS(1)) + 107
+      NBRCH(SS(1)) = NBRCH(SS(1)) + 113
 
 
       IBRCH(2)     = NBRCH(SS(2))
@@ -524,14 +524,14 @@
       RT_21 = -100000.0
 
 ! 130:[const] Real Constant 
-      RT_22 = 46926.0
+      RT_22 = 47005.0
 
 ! 140:[unity] Type/Shape conversion block 
 ! integer -> logical
       LT_1 = E_ItoB(POI_BRK)
 
 ! 150:[const] Real Constant 
-      RT_23 = -46926.0
+      RT_23 = -47005.0
 
 ! 160:[const] Real Constant 'Gcb'
       GcbStt = 0.0
@@ -713,16 +713,16 @@
       IVD1_4 = NSTORI
       NSTORI = NSTORI + 3
 ! Three Phase Breaker
-      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+50),0.0001,100000000.0,RTCF(N&
-     &RTCF),0,NINT(1.0-REAL(MVBRK)))
-      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+51),0.0001,100000000.0,RTCF(N&
-     &RTCF),0,NINT(1.0-REAL(MVBRK)))
       CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+52),0.0001,100000000.0,RTCF(N&
      &RTCF),0,NINT(1.0-REAL(MVBRK)))
+      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+53),0.0001,100000000.0,RTCF(N&
+     &RTCF),0,NINT(1.0-REAL(MVBRK)))
+      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+54),0.0001,100000000.0,RTCF(N&
+     &RTCF),0,NINT(1.0-REAL(MVBRK)))
 !
-      IVD1_1 = 2*E_BtoI(OPENBR( (IBRCH(1)+50),SS(1)))
-      IVD1_2 = 2*E_BtoI(OPENBR( (IBRCH(1)+51),SS(1)))
-      IVD1_3 = 2*E_BtoI(OPENBR( (IBRCH(1)+52),SS(1)))
+      IVD1_1 = 2*E_BtoI(OPENBR( (IBRCH(1)+52),SS(1)))
+      IVD1_2 = 2*E_BtoI(OPENBR( (IBRCH(1)+53),SS(1)))
+      IVD1_3 = 2*E_BtoI(OPENBR( (IBRCH(1)+54),SS(1)))
       NRTCF = NRTCF + 1
       IF (FIRSTSTEP .OR. (STORI(IVD1_4+0) .NE. IVD1_1)) THEN
          CALL PSCAD_AGI2(ICALL_NO,943764813,IVD1_1,"BOpen1")
@@ -733,9 +733,9 @@
       IF (FIRSTSTEP .OR. (STORI(IVD1_4+2) .NE. IVD1_3)) THEN
          CALL PSCAD_AGI2(ICALL_NO,943764813,IVD1_3,"BOpen3")
       ENDIF
-      STORI(IVD1_4+0) = 2*E_BtoI(OPENBR( (IBRCH(1)+50),SS(1)))
-      STORI(IVD1_4+1) = 2*E_BtoI(OPENBR( (IBRCH(1)+51),SS(1)))
-      STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+52),SS(1)))
+      STORI(IVD1_4+0) = 2*E_BtoI(OPENBR( (IBRCH(1)+52),SS(1)))
+      STORI(IVD1_4+1) = 2*E_BtoI(OPENBR( (IBRCH(1)+53),SS(1)))
+      STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+54),SS(1)))
 
 ! 490:[breaker3] 3 Phase Breaker 'POI_BRK'
       IVD1_4 = NSTORI
@@ -766,7 +766,7 @@
       STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+27),SS(1)))
 
 ! 510:[consti] Integer Constant 
-      No_PCU2 = 36
+      No_PCU2 = 40
 
 ! 540:[GridSource]  'GridSource_1'
       CALL GridSourceDyn(0, 0.0, 0.0, 220.0, 0.0, 0.0, 0.999776463133, 5&
@@ -1260,16 +1260,16 @@
       IVD1_4 = NSTORI
       NSTORI = NSTORI + 3
 ! Three Phase Breaker
-      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+34),0.0001,100000000.0,RTCF(N&
-     &RTCF),0,NINT(1.0-inf_BRK))
-      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+35),0.0001,100000000.0,RTCF(N&
-     &RTCF),0,NINT(1.0-inf_BRK))
-      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+36),0.0001,100000000.0,RTCF(N&
-     &RTCF),0,NINT(1.0-inf_BRK))
+      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+109),0.0001,100000000.0,RTCF(&
+     &NRTCF),0,NINT(1.0-inf_BRK))
+      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+110),0.0001,100000000.0,RTCF(&
+     &NRTCF),0,NINT(1.0-inf_BRK))
+      CALL EMTDC_BREAKER1(SS(1), (IBRCH(1)+111),0.0001,100000000.0,RTCF(&
+     &NRTCF),0,NINT(1.0-inf_BRK))
 !
-      IVD1_1 = 2*E_BtoI(OPENBR( (IBRCH(1)+34),SS(1)))
-      IVD1_2 = 2*E_BtoI(OPENBR( (IBRCH(1)+35),SS(1)))
-      IVD1_3 = 2*E_BtoI(OPENBR( (IBRCH(1)+36),SS(1)))
+      IVD1_1 = 2*E_BtoI(OPENBR( (IBRCH(1)+109),SS(1)))
+      IVD1_2 = 2*E_BtoI(OPENBR( (IBRCH(1)+110),SS(1)))
+      IVD1_3 = 2*E_BtoI(OPENBR( (IBRCH(1)+111),SS(1)))
       NRTCF = NRTCF + 1
       IF (FIRSTSTEP .OR. (STORI(IVD1_4+0) .NE. IVD1_1)) THEN
          CALL PSCAD_AGI2(ICALL_NO,371043801,IVD1_1,"BOpen1")
@@ -1280,14 +1280,14 @@
       IF (FIRSTSTEP .OR. (STORI(IVD1_4+2) .NE. IVD1_3)) THEN
          CALL PSCAD_AGI2(ICALL_NO,371043801,IVD1_3,"BOpen3")
       ENDIF
-      STORI(IVD1_4+0) = 2*E_BtoI(OPENBR( (IBRCH(1)+34),SS(1)))
-      STORI(IVD1_4+1) = 2*E_BtoI(OPENBR( (IBRCH(1)+35),SS(1)))
-      STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+36),SS(1)))
+      STORI(IVD1_4+0) = 2*E_BtoI(OPENBR( (IBRCH(1)+109),SS(1)))
+      STORI(IVD1_4+1) = 2*E_BtoI(OPENBR( (IBRCH(1)+110),SS(1)))
+      STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+111),SS(1)))
 
 ! 1270:[xfmr-3p2w] 3 Phase 2 Winding Transformer 'T2'
 !  TRANSFORMER SATURATION SUBROUTINE
       IVD1_1 = NEXC
-      CALL TSAT1_EXE( (IBRCH(1)+44), (IBRCH(1)+45), (IBRCH(1)+46),SS(1),&
+      CALL TSAT1_EXE( (IBRCH(1)+46), (IBRCH(1)+47), (IBRCH(1)+48),SS(1),&
      &maintap,0)
       CALL TRTAP5((IXFMR + 7), 1, SS(1), maintap)
       CALL TRTAP5((IXFMR + 8), 1, SS(1), maintap)
@@ -1482,13 +1482,13 @@
 
       PGB(IPGB+22) = Qspt_MVAr
 
-! 1620:[DEBUG_HyCon_Scope]  'HyCon1'
-      CALL DEBUG_HyCon_ScopeDyn(DEBUG_HyCon1)
-
-
-! 1630:[pgb] Output Channel 'Qout_INV_PV'
+! 1620:[pgb] Output Channel 'Qout_INV_PV'
 
       PGB(IPGB+25) = Qout_INV_PV
+
+! 1630:[DEBUG_HyCon_Scope]  'HyCon1'
+      CALL DEBUG_HyCon_ScopeDyn(DEBUG_HyCon1)
+
 
 ! 1640:[pgb] Output Channel 'Pspt_MW'
 
@@ -1956,7 +1956,7 @@
 ! Initialize Branch Mapping.
 
       IBRCH(1)     = NBRCH(SS(1))
-      NBRCH(SS(1)) = NBRCH(SS(1)) + 107
+      NBRCH(SS(1)) = NBRCH(SS(1)) + 113
 
 
       IBRCH(2)     = NBRCH(SS(2))
@@ -2155,11 +2155,11 @@
 
 ! 130:[const] Real Constant 
 
-      RT_22 = 46926.0
+      RT_22 = 47005.0
 
 ! 150:[const] Real Constant 
 
-      RT_23 = -46926.0
+      RT_23 = -47005.0
 
 ! 160:[const] Real Constant 'Gcb'
 
@@ -2250,12 +2250,12 @@
 ! 420:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
-      RVD1_1 = RTCF(IVD1_1) * P3PH3(SS(1), (IBRCH(1)+89), (IBRCH(1)+90),&
-     & (IBRCH(1)+91),RTCF(IVD1_1+2),0)
+      RVD1_1 = RTCF(IVD1_1) * P3PH3(SS(1), (IBRCH(1)+91), (IBRCH(1)+92),&
+     & (IBRCH(1)+93),RTCF(IVD1_1+2),0)
       IF (UPDATE_AG) CALL PSCAD_AGR2(ICALL_NO,1251734031,RVD1_1,"Pd")
       PCU1_P_MV_AGGR = RVD1_1
-      RVD1_1 = RTCF(IVD1_1) * Q3PH3(SS(1), (IBRCH(1)+89), (IBRCH(1)+90),&
-     & (IBRCH(1)+91),RTCF(IVD1_1+2),0)
+      RVD1_1 = RTCF(IVD1_1) * Q3PH3(SS(1), (IBRCH(1)+91), (IBRCH(1)+92),&
+     & (IBRCH(1)+93),RTCF(IVD1_1+2),0)
       IF (UPDATE_AG) CALL PSCAD_AGR2(ICALL_NO,1251734031,RVD1_1,"Qd")
       PCU1_Q_MV_AGGR = RVD1_1
       CALL DGTL_RMS3(256,SS(1),PCU1_MVBUS(1),PCU1_MVBUS(2),PCU1_MVBUS(3)&
@@ -2301,21 +2301,21 @@
 
 ! 460:[breaker3] 3 Phase Breaker 'MVBRK'
 ! Three Phase Breaker Currents
-      CALL BRK_POWER(SS(1), (IBRCH(1)+50), (IBRCH(1)+51), (IBRCH(1)+52),&
+      CALL BRK_POWER(SS(1), (IBRCH(1)+52), (IBRCH(1)+53), (IBRCH(1)+54),&
      &0,0,0,IVD1_1,0.02,RVD1_1,RVD1_2)
 
 ! 470:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
-      Amp_MV(1) = ( CBR((IBRCH(1)+47), SS(1)))
-      Amp_MV(2) = ( CBR((IBRCH(1)+48), SS(1)))
-      Amp_MV(3) = ( CBR((IBRCH(1)+49), SS(1)))
-      RVD1_1 = RTCF(IVD1_1) * P3PH3(SS(1), (IBRCH(1)+47), (IBRCH(1)+48),&
-     & (IBRCH(1)+49),RTCF(IVD1_1+2),0)
+      Amp_MV(1) = ( CBR((IBRCH(1)+49), SS(1)))
+      Amp_MV(2) = ( CBR((IBRCH(1)+50), SS(1)))
+      Amp_MV(3) = ( CBR((IBRCH(1)+51), SS(1)))
+      RVD1_1 = RTCF(IVD1_1) * P3PH3(SS(1), (IBRCH(1)+49), (IBRCH(1)+50),&
+     & (IBRCH(1)+51),RTCF(IVD1_1+2),0)
       IF (UPDATE_AG) CALL PSCAD_AGR2(ICALL_NO,122835826,RVD1_1,"Pd")
       PLANT_P_MV = RVD1_1
-      RVD1_1 = RTCF(IVD1_1) * Q3PH3(SS(1), (IBRCH(1)+47), (IBRCH(1)+48),&
-     & (IBRCH(1)+49),RTCF(IVD1_1+2),0)
+      RVD1_1 = RTCF(IVD1_1) * Q3PH3(SS(1), (IBRCH(1)+49), (IBRCH(1)+50),&
+     & (IBRCH(1)+51),RTCF(IVD1_1+2),0)
       IF (UPDATE_AG) CALL PSCAD_AGR2(ICALL_NO,122835826,RVD1_1,"Qd")
       PLANT_Q_MV = RVD1_1
       CALL DGTL_RMS3(256,SS(1),NT_21(1),NT_21(2),NT_21(3),RTCF(IVD1_1+3)&
@@ -2323,8 +2323,8 @@
       RVD1_1 = RTCF(IVD1_1+1)*RVD1_1
       IF (UPDATE_AG) CALL PSCAD_AGR2(ICALL_NO,122835826,RVD1_1,"Vd")
       PLANT_V_MV = RVD1_1
-      CALL DGTL_RMS3A(256,( CBR((IBRCH(1)+47), SS(1))),( CBR((IBRCH(1)+4&
-     &8), SS(1))),( CBR((IBRCH(1)+49), SS(1))),RTCF(IVD1_1+3),RTCF(IVD1_&
+      CALL DGTL_RMS3A(256,( CBR((IBRCH(1)+49), SS(1))),( CBR((IBRCH(1)+5&
+     &0), SS(1))),( CBR((IBRCH(1)+51), SS(1))),RTCF(IVD1_1+3),RTCF(IVD1_&
      &1+4),0.0,RVD1_1)
       PLANT_I_MV = RVD1_1
       IF (FIRSTSTEP) THEN
@@ -2333,7 +2333,7 @@
       ENDIF
 
 ! 480:[ammeter] Current Meter 'Ia_Poc'
-      Ia_PoC = ( CBR((IBRCH(1)+33), SS(1)))
+      Ia_PoC = ( CBR((IBRCH(1)+39), SS(1)))
 
 ! 490:[breaker3] 3 Phase Breaker 'POI_BRK'
 ! Three Phase Breaker Currents
@@ -2375,10 +2375,10 @@
 
 ! 510:[consti] Integer Constant 
 
-      No_PCU2 = 36
+      No_PCU2 = 40
 
 ! 520:[ammeter] Current Meter 'Ib_PoC'
-      Ib_PoC = ( CBR((IBRCH(1)+32), SS(1)))
+      Ib_PoC = ( CBR((IBRCH(1)+38), SS(1)))
 
 ! 530:[multimeter] Multimeter 
       IVD1_1 = NRTCF
@@ -2419,17 +2419,17 @@
 
 
 ! 560:[ammeter] Current Meter 'Ic_PoC'
-      Ic_PoC = ( CBR((IBRCH(1)+31), SS(1)))
+      Ic_PoC = ( CBR((IBRCH(1)+37), SS(1)))
 
 ! 570:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
-      RVD1_1 = RTCF(IVD1_1) * P3PH3(SS(1), (IBRCH(1)+92), (IBRCH(1)+93),&
-     & (IBRCH(1)+94),RTCF(IVD1_1+2),0)
+      RVD1_1 = RTCF(IVD1_1) * P3PH3(SS(1), (IBRCH(1)+94), (IBRCH(1)+95),&
+     & (IBRCH(1)+96),RTCF(IVD1_1+2),0)
       IF (UPDATE_AG) CALL PSCAD_AGR2(ICALL_NO,306794587,RVD1_1,"Pd")
       PCU2_P_MV_AGGR = RVD1_1
-      RVD1_1 = RTCF(IVD1_1) * Q3PH3(SS(1), (IBRCH(1)+92), (IBRCH(1)+93),&
-     & (IBRCH(1)+94),RTCF(IVD1_1+2),0)
+      RVD1_1 = RTCF(IVD1_1) * Q3PH3(SS(1), (IBRCH(1)+94), (IBRCH(1)+95),&
+     & (IBRCH(1)+96),RTCF(IVD1_1+2),0)
       IF (UPDATE_AG) CALL PSCAD_AGR2(ICALL_NO,306794587,RVD1_1,"Qd")
       PCU2_Q_MV_AGGR = RVD1_1
       CALL DGTL_RMS3(256,SS(1),PCU2_MVBUS(1),PCU2_MVBUS(2),PCU2_MVBUS(3)&
@@ -2551,8 +2551,8 @@
 
 ! 1260:[breaker3] 3 Phase Breaker 'inf_BRK'
 ! Three Phase Breaker Currents
-      CALL BRK_POWER(SS(1), (IBRCH(1)+34), (IBRCH(1)+35), (IBRCH(1)+36),&
-     &0,0,0,IVD1_1,0.02,RVD1_1,RVD1_2)
+      CALL BRK_POWER(SS(1), (IBRCH(1)+109), (IBRCH(1)+110), (IBRCH(1)+11&
+     &1),0,0,0,IVD1_1,0.02,RVD1_1,RVD1_2)
 
 ! 1280:[breaker3] 3 Phase Breaker 'PCU1_BRK'
 ! Three Phase Breaker Currents
@@ -2590,7 +2590,7 @@
 
       PGB(IPGB+24) = PCU1_Arms_LV
 
-! 1620:[DEBUG_HyCon_Scope]  'HyCon1'
+! 1630:[DEBUG_HyCon_Scope]  'HyCon1'
       CALL DEBUG_HyCon_ScopeOut()
 
 
@@ -2864,7 +2864,7 @@
 ! Initialize Branch Mapping.
 
       IBRCH(1)     = NBRCH(SS(1))
-      NBRCH(SS(1)) = NBRCH(SS(1)) + 107
+      NBRCH(SS(1)) = NBRCH(SS(1)) + 113
 
 
       IBRCH(2)     = NBRCH(SS(2))
@@ -2941,12 +2941,12 @@
       RT_21 = -100000.0
 
 ! 130:[const] Real Constant 
-      RT_22 = 46926.0
+      RT_22 = 47005.0
 
 ! 140:[unity] Type/Shape conversion block 
 
 ! 150:[const] Real Constant 
-      RT_23 = -46926.0
+      RT_23 = -47005.0
 
 ! 160:[const] Real Constant 'Gcb'
       GcbStt = 0.0
@@ -3030,7 +3030,7 @@
       NRTCF = NRTCF + 1
 
 ! 510:[consti] Integer Constant 
-      No_PCU2 = 36
+      No_PCU2 = 40
 
 ! 540:[GridSource]  'GridSource_1'
       CALL GridSourceDyn_Begin(0, 0.0, 0.0, 0.0, 0.0, 0.999776463133, 0,&
@@ -3239,13 +3239,13 @@
         RVD1_6 = RVD1_4*RVD1_3*RVD1_3
         IVD1_1 = 1
       ENDIF
-      CALL E_BRANCH_CFG( (IBRCH(1)+38),SS(1),IVD1_1,0,0,RVD1_5,0.0,0.0)
-      CALL E_BRANCH_CFG( (IBRCH(1)+39),SS(1),IVD1_1,0,0,RVD1_5,0.0,0.0)
       CALL E_BRANCH_CFG( (IBRCH(1)+40),SS(1),IVD1_1,0,0,RVD1_5,0.0,0.0)
-      CALL E_BRANCH_CFG( (IBRCH(1)+41),SS(1),IVD1_1,0,0,RVD1_6,0.0,0.0)
-      CALL E_BRANCH_CFG( (IBRCH(1)+42),SS(1),IVD1_1,0,0,RVD1_6,0.0,0.0)
+      CALL E_BRANCH_CFG( (IBRCH(1)+41),SS(1),IVD1_1,0,0,RVD1_5,0.0,0.0)
+      CALL E_BRANCH_CFG( (IBRCH(1)+42),SS(1),IVD1_1,0,0,RVD1_5,0.0,0.0)
       CALL E_BRANCH_CFG( (IBRCH(1)+43),SS(1),IVD1_1,0,0,RVD1_6,0.0,0.0)
-      CALL TSAT1_CFG( (IBRCH(1)+44), (IBRCH(1)+45), (IBRCH(1)+46),SS(1),&
+      CALL E_BRANCH_CFG( (IBRCH(1)+44),SS(1),IVD1_1,0,0,RVD1_6,0.0,0.0)
+      CALL E_BRANCH_CFG( (IBRCH(1)+45),SS(1),IVD1_1,0,0,RVD1_6,0.0,0.0)
+      CALL TSAT1_CFG( (IBRCH(1)+46), (IBRCH(1)+47), (IBRCH(1)+48),SS(1),&
      &RVD1_1,RVD1_2,0.2,1.25,50.0,1.0,1.0,0.1)
 
 ! 1280:[breaker3] 3 Phase Breaker 'PCU1_BRK'
@@ -3308,11 +3308,11 @@
 
 ! 1590:[pgb] Output Channel 'Qspt_MVAr'
 
-! 1620:[DEBUG_HyCon_Scope]  'HyCon1'
+! 1620:[pgb] Output Channel 'Qout_INV_PV'
+
+! 1630:[DEBUG_HyCon_Scope]  'HyCon1'
       CALL DEBUG_HyCon_ScopeDyn_Begin()
 
-
-! 1630:[pgb] Output Channel 'Qout_INV_PV'
 
 ! 1640:[pgb] Output Channel 'Pspt_MW'
 
@@ -3365,18 +3365,18 @@
       CALL PI3_SECTION_CFG(3,1,0, 33.0,100.0,50.0,1.0,0.001732,0.002928,&
      &0.012514,0.007515,0.001222,0.012514,RVD1_1,RVD1_2,RVD1_3,RVD1_4,RV&
      &D1_5,RVD1_6,IVD1_1,IVD1_2,IVD1_3,IVD1_4)
-      CALL E_BRANCH_CFG( (IBRCH(1)+65),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
-      CALL E_BRANCH_CFG( (IBRCH(1)+66),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+67),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+68),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+69),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+70),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
-      CALL E_BRANCH_CFG( (IBRCH(1)+71),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
-      CALL E_BRANCH_CFG( (IBRCH(1)+72),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+71),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
+      CALL E_BRANCH_CFG( (IBRCH(1)+72),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+73),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL E_BRANCH_CFG( (IBRCH(1)+74),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL E_BRANCH_CFG( (IBRCH(1)+75),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL E_BRANCH_CFG( (IBRCH(1)+76),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+77),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+78),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL COUPLED_PI3_TF_CFG((IXFMR + 10),2,RVD1_1,RVD1_2,RVD1_4,RVD1_5&
      &)
 
@@ -3385,18 +3385,18 @@
       CALL PI3_SECTION_CFG(3,1,0, 132.0,100.0,50.0,1.0,0.000156,0.000524&
      &,0.006823,0.000113,0.000524,0.006823,RVD1_1,RVD1_2,RVD1_3,RVD1_4,R&
      &VD1_5,RVD1_6,IVD1_1,IVD1_2,IVD1_3,IVD1_4)
-      CALL E_BRANCH_CFG( (IBRCH(1)+95),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
-      CALL E_BRANCH_CFG( (IBRCH(1)+96),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+97),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+98),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+99),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+100),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
-      CALL E_BRANCH_CFG( (IBRCH(1)+101),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
-      CALL E_BRANCH_CFG( (IBRCH(1)+102),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+101),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
+      CALL E_BRANCH_CFG( (IBRCH(1)+102),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+103),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL E_BRANCH_CFG( (IBRCH(1)+104),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL E_BRANCH_CFG( (IBRCH(1)+105),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
-      CALL E_BRANCH_CFG( (IBRCH(1)+37),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+106),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+107),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+108),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL COUPLED_PI3_TF_CFG((IXFMR + 11),2,RVD1_1,RVD1_2,RVD1_4,RVD1_5&
      &)
 
@@ -3411,18 +3411,18 @@
       CALL PI3_SECTION_CFG(3,1,0, 33.0,100.0,50.0,1.0,0.000176,0.00012,0&
      &.000127,0.000377,5.7e-05,0.000127,RVD1_1,RVD1_2,RVD1_3,RVD1_4,RVD1&
      &_5,RVD1_6,IVD1_1,IVD1_2,IVD1_3,IVD1_4)
-      CALL E_BRANCH_CFG( (IBRCH(1)+77),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
-      CALL E_BRANCH_CFG( (IBRCH(1)+78),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+79),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+80),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+81),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+82),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
-      CALL E_BRANCH_CFG( (IBRCH(1)+83),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
-      CALL E_BRANCH_CFG( (IBRCH(1)+84),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+83),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
+      CALL E_BRANCH_CFG( (IBRCH(1)+84),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
       CALL E_BRANCH_CFG( (IBRCH(1)+85),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL E_BRANCH_CFG( (IBRCH(1)+86),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL E_BRANCH_CFG( (IBRCH(1)+87),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL E_BRANCH_CFG( (IBRCH(1)+88),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+89),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+90),SS(1),0,0,IVD1_4,0.0,0.0,RVD1_3)
       CALL COUPLED_PI3_TF_CFG((IXFMR + 12),2,RVD1_1,RVD1_2,RVD1_4,RVD1_5&
      &)
 
@@ -3433,11 +3433,25 @@
       RVD1_1 = 17.86
       RVD1_2 = 0.00134
       RVD1_3 = 26.22
-      CALL E_BRANCH_CFG( (IBRCH(1)+28),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
+      CALL E_BRANCH_CFG( (IBRCH(1)+34),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
      &,RVD1_2,RVD1_3)
-      CALL E_BRANCH_CFG( (IBRCH(1)+29),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
+      CALL E_BRANCH_CFG( (IBRCH(1)+35),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
      &,RVD1_2,RVD1_3)
-      CALL E_BRANCH_CFG( (IBRCH(1)+30),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
+      CALL E_BRANCH_CFG( (IBRCH(1)+36),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
+     &,RVD1_2,RVD1_3)
+
+! 1:[filter] Tuned Filter  
+      CALL CHECK_INEQUILITY(3,100.89,0.0,IVD1_1)
+      CALL CHECK_INEQUILITY(3,0.00217,0.0,IVD1_2)
+      CALL CHECK_INEQUILITY(3,2.92,0.0,IVD1_3)
+      RVD1_1 = 100.89
+      RVD1_2 = 0.00217
+      RVD1_3 = 2.92
+      CALL E_BRANCH_CFG( (IBRCH(1)+31),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
+     &,RVD1_2,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+32),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
+     &,RVD1_2,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+33),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
      &,RVD1_2,RVD1_3)
 
 ! 1:[filter] Tuned Filter  
@@ -3452,6 +3466,20 @@
       CALL E_BRANCH_CFG( (IBRCH(1)+20),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
      &,RVD1_2,RVD1_3)
       CALL E_BRANCH_CFG( (IBRCH(1)+21),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
+     &,RVD1_2,RVD1_3)
+
+! 1:[filter] Tuned Filter  
+      CALL CHECK_INEQUILITY(3,17.86,0.0,IVD1_1)
+      CALL CHECK_INEQUILITY(3,0.00134,0.0,IVD1_2)
+      CALL CHECK_INEQUILITY(3,26.22,0.0,IVD1_3)
+      RVD1_1 = 17.86
+      RVD1_2 = 0.00134
+      RVD1_3 = 26.22
+      CALL E_BRANCH_CFG( (IBRCH(1)+28),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
+     &,RVD1_2,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+29),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
+     &,RVD1_2,RVD1_3)
+      CALL E_BRANCH_CFG( (IBRCH(1)+30),SS(1),IVD1_1,IVD1_2,IVD1_3,RVD1_1&
      &,RVD1_2,RVD1_3)
 
       RETURN
@@ -3558,7 +3586,7 @@
 ! Initialize Branch Mapping.
 
       IBRCH(1)     = NBRCH(SS(1))
-      NBRCH(SS(1)) = NBRCH(SS(1)) + 107
+      NBRCH(SS(1)) = NBRCH(SS(1)) + 113
 
 
       IBRCH(2)     = NBRCH(SS(2))
@@ -3645,10 +3673,10 @@
       RT_21 = -100000.0
 
 ! 130:[const] Real Constant 
-      RT_22 = 46926.0
+      RT_22 = 47005.0
 
 ! 150:[const] Real Constant 
-      RT_23 = -46926.0
+      RT_23 = -47005.0
 
 ! 160:[const] Real Constant 'Gcb'
       GcbStt = 0.0
@@ -3793,7 +3821,7 @@
       ENDIF
 
 ! 510:[consti] Integer Constant 
-      No_PCU2 = 36
+      No_PCU2 = 40
 
 ! 530:[multimeter] Multimeter 
       IVD1_1 = NRTCF
@@ -3962,7 +3990,7 @@
 
 ! 1610:[pgb] Output Channel 'PCU1_Arms_LV'
 
-! 1620:[DEBUG_HyCon_Scope]  'HyCon1'
+! 1630:[DEBUG_HyCon_Scope]  'HyCon1'
       CALL DEBUG_HyCon_ScopeOut_Begin()
 
 

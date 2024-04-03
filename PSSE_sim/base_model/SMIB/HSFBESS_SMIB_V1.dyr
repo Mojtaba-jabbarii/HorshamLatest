@@ -199,7 +199,7 @@
 @!/Frt_HiVolRef1                           Frt_HiVolRef2                           Frt_HiVolRef3                           WFilMod                                 VarFilMod                               
    1                                       1.22                                    2                                       0                                       0                                       
 @!/WFilTm                                  VarFilTm                                AmpScl                                  DCDCBatSize                             Reserved                                
-   0.00                                    0.00                                    1                                       0                                       0                                       
+   0.01                                    0.01                                    1                                       0                                       0                                       
 @!/WSptMin                                 BatWSptMax                              BatWSptMin                              Frt_AmpQFilTmInitMode                   Frt_AmpQFilTmInit                       
    0                                       0.3                                     -0.3                                    0                                       0                                       
 @!/SpikeVoltChgCyc                         SpikeCurrMode                           VArCtlVol_VolNomSptInit                 IdMinPV                                 Reserved                                

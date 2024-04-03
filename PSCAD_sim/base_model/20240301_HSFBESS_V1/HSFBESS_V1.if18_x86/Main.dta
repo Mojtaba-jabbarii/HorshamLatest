@@ -40,13 +40,15 @@ BRANCHES:
    4    0    RLC         1.0        0.1        1.0      // 1 PLANT_HVBUS(1)      GND
    5    0    RLC         1.0        0.1        1.0      // 1 PLANT_HVBUS(2)      GND
    6    0    RLC         1.0        0.1        1.0      // 1 PLANT_HVBUS(3)      GND
+   4    0    RLC         1.0        0.1        1.0      // 1 PLANT_HVBUS(1)      GND
+   5    0    RLC         1.0        0.1        1.0      // 1 PLANT_HVBUS(2)      GND
+   6    0    RLC         1.0        0.1        1.0      // 1 PLANT_HVBUS(3)      GND
+   4    0    RLC         1.0        0.1        1.0      // 1 PLANT_HVBUS(1)      GND
+   5    0    RLC         1.0        0.1        1.0      // 1 PLANT_HVBUS(2)      GND
+   6    0    RLC         1.0        0.1        1.0      // 1 PLANT_HVBUS(3)      GND
   32   41      A                                        // 1    NT_42    NT_41
   31   40      A                                        // 1    NT_40    NT_39
   30   39      A                                        // 1    NT_38    NT_37
-  39   36     RS   1000000.0                            // 1 NT_12(1) NT_11(1)
-  40   37     RS   1000000.0                            // 1 NT_12(2) NT_11(2)
-  41   38     RS   1000000.0                            // 1 NT_12(3) NT_11(3)
-  35   33    RLC         1.0        0.1        1.0      // 1 NT_10(3) NT_10(1)
   50    0    RLC         1.0        0.1        1.0      // 1 NT_19(1)      GND
   51    0    RLC         1.0        0.1        1.0      // 1 NT_19(2)      GND
   52    0    RLC         1.0        0.1        1.0      // 1 NT_19(3)      GND
@@ -115,6 +117,10 @@ BRANCHES:
   52   50    RLC         1.0        0.1        1.0      // 1 NT_19(3) NT_19(1)
   33   34    RLC         1.0        0.1        1.0      // 1 NT_10(1) NT_10(2)
   34   35    RLC         1.0        0.1        1.0      // 1 NT_10(2) NT_10(3)
+  35   33    RLC         1.0        0.1        1.0      // 1 NT_10(3) NT_10(1)
+  39   36     RS   1000000.0                            // 1 NT_12(1) NT_11(1)
+  40   37     RS   1000000.0                            // 1 NT_12(2) NT_11(2)
+  41   38     RS   1000000.0                            // 1 NT_12(3) NT_11(3)
   46    0      R   1000000.0                            // 1    NT_15      GND
   42    0      R     1.0e-06                            // 1    NT_13      GND
   49    0     RS         1.0                            // 2    NT_18      GND
