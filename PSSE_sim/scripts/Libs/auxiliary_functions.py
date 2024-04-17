@@ -143,7 +143,7 @@ def get_bus_info(bus_list,param_list):
                 else:
                     ierr, param_val=psspy.abusreal(0,2,param_list)
                 if (ierr == 0) and (param_val!=[[]]):
-                    print('bus number is'+str(bus_list))
+#                    print('bus number is'+str(bus_list))
                     bus_info[bus_list][param_list]=param_val[0][0]
     return bus_info
 

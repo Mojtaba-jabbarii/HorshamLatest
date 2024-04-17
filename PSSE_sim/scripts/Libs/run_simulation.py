@@ -447,7 +447,7 @@ def tune_parameters(PSSEmodelDict):
 #    psspy.change_wnmod_con(busgen2,r"""1""",invmodel,81, 0.80)
     pass
     
-def set_channels(PSSEmodelDict):
+def set_channels(PSSEmodelDict, OutChansDict):
     global standalone_script
     standalone_script+="#Add output channels\n"
     # in input excel sheet, bus numbers for HV, MV and LV shoudl be defined, --> the powers will be measured at the fromBus
@@ -482,137 +482,111 @@ def set_channels(PSSEmodelDict):
     
     #----------------------------USER INPUT REQUIRED---------------------------
 
-    ierr, L_PPC = psspy.cctmind_buso(9920,'SMAHYCF14','VAR')
-    ierr, K_PPC = psspy.cctmind_buso(9920,'SMAHYCF14','STATE')
-    ierr, L_INV = psspy.mdlind(9942,'1','GEN','VAR')
-    ierr, L_INV2 = psspy.mdlind(9944,'1','GEN','VAR')
+    ierr, L_PPC = psspy.cctmind_buso(int(PSSEmodelDict['POC']),str(PSSEmodelDict['PPC_model']),'VAR')
+    ierr, K_PPC = psspy.cctmind_buso(int(PSSEmodelDict['POC']),str(PSSEmodelDict['PPC_model']),'STATE')
+    ierr, L_INV = psspy.mdlind(int(PSSEmodelDict['Generator1']),'1','GEN','VAR')
+    ierr, L_INV2 = psspy.mdlind(int(PSSEmodelDict['Generator2']),'1','GEN','VAR')
 
+
+    for inst in OutChansDict.keys():
+        if OutChansDict[inst]['Type'] == "VAR":
+            if OutChansDict[inst]['Model'] == 'MachineArray':
+                ierr = psspy.machine_array_channel([-1, OutChansDict[inst]['Position'], OutChansDict[inst]['BusNum']], str(OutChansDict[inst]['ID']), OutChansDict[inst]['Name'])
+            else:
+                if OutChansDict[inst]['Model'] == PSSEmodelDict['PPC_model']:
+                    L = L_PPC
+                elif OutChansDict[inst]['Model'] == PSSEmodelDict['INV1_model']:
+                    L = L_INV
+                elif OutChansDict[inst]['Model'] == PSSEmodelDict['INV2_model']:
+                    L = L_INV2
+            psspy.var_channel([-1,L+OutChansDict[inst]['Position']],OutChansDict[inst]['Name'] )
+            
+        elif OutChansDict[inst]['Type'] == "STATE":
+            pass
+
+
+
+#    for inst in OutChansDict.keys():
+#        if OutChansDict[inst]['Model'] == PSSEmodelDict['PPC_model']:
+#            if OutChansDict[inst]['Type'] == "VAR":
+#                psspy.var_channel([-1,L_PPC+OutChansDict[inst]['Position']],OutChansDict[inst]['Name'] ) # PPC variables
+#        elif OutChansDict[inst]['Model'] == PSSEmodelDict['INV1_model']:
+#            if OutChansDict[inst]['Type'] == "VAR":
+#                psspy.var_channel([-1,L_INV+OutChansDict[inst]['Position']],OutChansDict[inst]['Name'] ) # INV1 variables
+#        elif OutChansDict[inst]['Model'] == PSSEmodelDict['INV2_model']:
+#            if OutChansDict[inst]['Type'] == "VAR":
+#                psspy.var_channel([-1,L_INV2+OutChansDict[inst]['Position']],OutChansDict[inst]['Name'] ) # INV2 variables
+#        elif OutChansDict[inst]['Model'] == 'MachineArray':
+#            if OutChansDict[inst]['Type'] == "VAR":
+#                ierr = psspy.machine_array_channel([-1, OutChansDict[inst]['Position'], OutChansDict[inst]['BusNum']], str(OutChansDict[inst]['ID']), OutChansDict[inst]['Name'])
+            
+
+            
+            
+#    psspy.var_channel([-1,L_INV+102],'INV1_FRT_FLAG' ) # FRT detection flag
+#    psspy.var_channel([-1,L_INV+163],'INV1_FRT_STATE' ) # Internal signal FRT detection: Frt_State
+#    psspy.var_channel([-1,L_INV+186],'INV1_LVRT' )
+#    psspy.var_channel([-1,L_INV+187],'INV1_HVRT' )
+#    psspy.var_channel([-1,L_INV+9],'INV1_IQ_COMMAND' ) #Iq command before dynamic limitation block
+##    psspy.var_channel([-1,L_INV+7],'INV1_IP_COMMAND' ) #Id command in non-FRT situations
+#    psspy.var_channel([-1,L_INV+40],'INV1_IP_COMMAND' )
+#    psspy.var_channel([-1,L_INV+174],'INV1_P_COMMAND' )
+#    psspy.var_channel([-1,L_INV+175],'INV1_Q_COMMAND' )
+#    
+##    psspy.var_channel([-1,L_INV+102],'INV FRT flag' ) # FRT detection flag
+##    psspy.var_channel([-1,L_INV+186],'INV LVRT' )
+##    psspy.var_channel([-1,L_INV+187],'INV HVRT' )
+##    psspy.var_channel([-1,L_INV+9],'Iq Command' )
+##    psspy.var_channel([-1,L_INV+40],'Ip Command' )
+##
+# 
+#    
+##    psspy.var_channel([-1,L_INV2+10],'INV2_Vd' )
+##    psspy.var_channel([-1,L_INV2+11],'INV2_Vq' )
+##    psspy.var_channel([-1,L_INV2+12],'INV2_Id' )
+##    psspy.var_channel([-1,L_INV2+13],'INV2_Iq' )
 #
-    #psspy.machine_array_channel([chn_idx,5,100001],'1','Q_CMD_TO_INV')
-    #plot_channels['Q_CMD_TO_INV']=chn_idx
-    #chn_idx+=1
-    #psspy.machine_array_channel([chn_idx,8,100001],'1','P_CMD_TO_INV')
-    #plot_channels['P_CMD_TO_INV']=chn_idx
-    #chn_idx+=1    
-    #psspy.machine_array_channel([chn_idx,10,100001],'1','F_CMD_TO_INV')
-    #plot_channels['F_CMD_TO_INV']=chn_idx
-    #chn_idx+=1
-    
-    psspy.var_channel([-1,L_INV+102],'INV1_FRT_FLAG' ) # FRT detection flag
-    psspy.var_channel([-1,L_INV+163],'INV1_FRT_STATE' ) # Internal signal FRT detection: Frt_State
-    psspy.var_channel([-1,L_INV+186],'INV1_LVRT' )
-    psspy.var_channel([-1,L_INV+187],'INV1_HVRT' )
-    psspy.var_channel([-1,L_INV+9],'INV1_IQ_COMMAND' ) #Iq command before dynamic limitation block
-#    psspy.var_channel([-1,L_INV+7],'INV1_IP_COMMAND' ) #Id command in non-FRT situations
-    psspy.var_channel([-1,L_INV+40],'INV1_IP_COMMAND' )
-    psspy.var_channel([-1,L_INV+174],'INV1_P_COMMAND' )
-    psspy.var_channel([-1,L_INV+175],'INV1_Q_COMMAND' )
-    
-#    psspy.var_channel([-1,L_INV+102],'INV FRT flag' ) # FRT detection flag
-#    psspy.var_channel([-1,L_INV+186],'INV LVRT' )
-#    psspy.var_channel([-1,L_INV+187],'INV HVRT' )
-#    psspy.var_channel([-1,L_INV+9],'Iq Command' )
-#    psspy.var_channel([-1,L_INV+40],'Ip Command' )
+#    psspy.var_channel([-1,L_INV2+200],'INV2_Frequency' )
+##    psspy.var_channel([-1,L_INV2+83],'INV2_Vq' )    
+#    psspy.var_channel([-1,L_INV2+82],'INV2_Vd' )
+#    psspy.var_channel([-1,L_INV2+83],'INV2_Vq' )
+#    psspy.var_channel([-1,L_INV2+86],'INV2_Id' )
+#    psspy.var_channel([-1,L_INV2+87],'INV2_Iq' )
+#    psspy.var_channel([-1,L_INV2+16],'INV2_FRT_FLAG' ) # FRTDetect – Flag to Check whether FRT is enabled or not
+#    psspy.var_channel([-1,L_INV2+79],'INV2_ANGLE' ) # Inverter_Voltage_Angle
 #
- 
-    
-#    psspy.var_channel([-1,L_INV2+10],'INV2_Vd' )
-#    psspy.var_channel([-1,L_INV2+11],'INV2_Vq' )
-#    psspy.var_channel([-1,L_INV2+12],'INV2_Id' )
-#    psspy.var_channel([-1,L_INV2+13],'INV2_Iq' )
-
-    psspy.var_channel([-1,L_INV2+200],'INV2_Frequency' )
-#    psspy.var_channel([-1,L_INV2+83],'INV2_Vq' )    
-    psspy.var_channel([-1,L_INV2+82],'INV2_Vd' )
-    psspy.var_channel([-1,L_INV2+83],'INV2_Vq' )
-    psspy.var_channel([-1,L_INV2+86],'INV2_Id' )
-    psspy.var_channel([-1,L_INV2+87],'INV2_Iq' )
-    psspy.var_channel([-1,L_INV2+16],'INV2_FRT_FLAG' ) # FRTDetect – Flag to Check whether FRT is enabled or not
-    psspy.var_channel([-1,L_INV2+79],'INV2_ANGLE' ) # Inverter_Voltage_Angle
-
-    psspy.var_channel([-1,L_INV2+17],'VI_X' ) # Reactive part (Virtual Impedance when FRT)
-    psspy.var_channel([-1,L_INV2+18],'VI_R' ) # Real part (Virtual Impedance when FRT)
-    
-#    psspy.var_channel([-1,L_INV2+186],'INV2_LVRT' )
-#    psspy.var_channel([-1,L_INV2+187],'INV2_HVRT' )
-#    ierr = chsb(sid, all, status)
-#    ierr = machine_array_channel(status, id, ident)
-#    ierr = psspy.chsb(9944, 0, [-1, -1, -1, 1, 2, 1]) #STATUS(5)=2 PELEC
-#    ierr = psspy.machine_array_channel(2, '1', "PELEC") #STATUS(2)=2 PELEC, machine electrical power (pu on SBASE)
-
-    psspy.var_channel([-1,L_PPC+14],'QREF_POC' ) # POI_Var_Spt
-    psspy.var_channel([-1,L_PPC+15],'PFREF' ) # POI_Var_Spt
-    psspy.var_channel([-1,L_PPC+16],'VREF_POC' ) # POI_Vol_Spt
-    psspy.var_channel([-1,L_PPC+17],'HZREF_POC' ) # POI_Hz_Spt
-    psspy.var_channel([-1,L_PPC+18],'PREF_POC' ) # PwrAtLimSales
-    psspy.var_channel([-1,L_PPC+1],'VOLT_RB' )
-    psspy.var_channel([-1,L_PPC+2],'P_PCC' )
-    psspy.var_channel([-1,L_PPC+3],'Q_PCC' )
-    psspy.var_channel([-1,L_PPC+4],'S_PCC' )
-    psspy.var_channel([-1,L_PPC+56],'P_CMD_PV' )
-    psspy.var_channel([-1,L_PPC+57],'Q_CMD_PV' )
-    psspy.var_channel([-1,L_PPC+58],'P_CMD_BESS' )
-    psspy.var_channel([-1,L_PPC+59],'Q_CMD_BESS' )
-    psspy.var_channel([-1,L_PPC+75],'FrtActive' )
-    psspy.var_channel([-1,L_PPC+76],'FRT_ExitTm' )
-    
-#    psspy.var_channel([-1,L_PPC+14],'POC Qref Stp' ) # POI_Var_Spt
-#    psspy.var_channel([-1,L_PPC+16],'POC Vol Stp' ) # POI_Vol_Spt
-#    psspy.var_channel([-1,L_PPC+17],'POC Hz Stp' ) # POI_Hz_Spt
-#    psspy.var_channel([-1,L_PPC+18],'POC Pref Stp' ) # PwrAtLimSales
-#    psspy.var_channel([-1,L_PPC+1],'Volt_RB' )
-#    psspy.var_channel([-1,L_PPC+2],'P_pcc' )
-#    psspy.var_channel([-1,L_PPC+3],'Q_pcc' )
-#    psspy.var_channel([-1,L_PPC+4],'S_pcc' )
-#    psspy.var_channel([-1,L_PPC+56],'Ppv_cmd_inv' )
-#    psspy.var_channel([-1,L_PPC+57],'Qpv_cmd_inv' )
+#    psspy.var_channel([-1,L_INV2+17],'VI_X' ) # Reactive part (Virtual Impedance when FRT)
+#    psspy.var_channel([-1,L_INV2+18],'VI_R' ) # Real part (Virtual Impedance when FRT)
+#
+##    ierr = psspy.chsb(273502, 0, [-1, -1, -1, 1, 9, 1]) #STATUS(5)=9 ECOMP
+##    ierr = psspy.chsb(273502, 0, [-1, -1, -1, 1, 23, 1]) #STATUS(5)=23 VUEL
+#    ierr = psspy.machine_array_channel([-1, 9, 273502], '1', "ECOMP") #STATUS(2)=9 ECOMP, Real component of current in p.u.
+#    ierr = psspy.machine_array_channel([-1, 12, 273502], '1', "VUEL") #STATUS(2)=12 ECOMP, Imaginary component of current in p.u.
+#    
+##    psspy.var_channel([-1,L_INV2+186],'INV2_LVRT' )
+##    psspy.var_channel([-1,L_INV2+187],'INV2_HVRT' )
+##    ierr = chsb(sid, all, status)
+##    ierr = machine_array_channel(status, id, ident)
+##    ierr = psspy.chsb(9944, 0, [-1, -1, -1, 1, 2, 1]) #STATUS(5)=2 PELEC
+##    ierr = psspy.machine_array_channel(2, '1', "PELEC") #STATUS(2)=2 PELEC, machine electrical power (pu on SBASE)
+#
+#    psspy.var_channel([-1,L_PPC+13],'PREF_BESS' ) # BESS_W_Spt
+#    psspy.var_channel([-1,L_PPC+14],'QREF_POC' ) # POI_Var_Spt
+#    psspy.var_channel([-1,L_PPC+15],'PFREF' ) # POI_PF_Spt
+#    psspy.var_channel([-1,L_PPC+16],'VREF_POC' ) # POI_Vol_Spt
+#    psspy.var_channel([-1,L_PPC+17],'HZREF_POC' ) # POI_Hz_Spt
+#    psspy.var_channel([-1,L_PPC+18],'PREF_POC' ) # PwrAtLimSales
+#    psspy.var_channel([-1,L_PPC+1],'VOLT_RB' )
+#    psspy.var_channel([-1,L_PPC+2],'P_PCC' )
+#    psspy.var_channel([-1,L_PPC+3],'Q_PCC' )
+#    psspy.var_channel([-1,L_PPC+4],'S_PCC' )
+#    psspy.var_channel([-1,L_PPC+56],'P_CMD_PV' )
+#    psspy.var_channel([-1,L_PPC+57],'Q_CMD_PV' )
+#    psspy.var_channel([-1,L_PPC+58],'P_CMD_BESS' )
+#    psspy.var_channel([-1,L_PPC+59],'Q_CMD_BESS' )
 #    psspy.var_channel([-1,L_PPC+75],'FrtActive' )
 #    psspy.var_channel([-1,L_PPC+76],'FRT_ExitTm' )
-#    psspy.var_channel([-1,L_PPC+1],'Volt_RB' )
-#    psspy.var_channel([-1,L_PPC+2],'P_pcc' )
-#    psspy.var_channel([-1,L_PPC+3],'Q_pcc' )
-#    psspy.var_channel([-1,L_PPC+3],'S_pcc' )
-    
-    
-#    psspy.machine_iterm_channel([-1,-1,-1,367176],r"""1""",r"""INV_Itot""")
-#    psspy.branch_mva_channel([-1,-1,-1,367176, 367175],r"""1""",r"""INV_MVA""")
-#    psspy.machine_iterm_channel([-1,-1,-1,367179],r"""1""",r"""INV2_Itot""")
-#    psspy.branch_mva_channel([-1,-1,-1,367179, 367178],r"""1""",r"""INV2_MVA""")
-#
-#    ierr, L_INV = psspy.windmind(367176,'1','WGEN','VAR')
-#    ierr, L_INV2= psspy.windmind(367179,'1','WGEN','VAR')
-#    ierr, K_INV = psspy.windmind(367176,'1','WGEN','STATE')
-#    ierr, K_INV2 = psspy.windmind(367179,'1','WGEN','STATE')
-#    psspy.state_channel([-1, K_INV], r"""P_Gen1_machine_array""") # (STATE K) Measured active power (Pgrid)    
-##    standalone_script+="psspy.state_channel([-1, "+str(K_INV)+"], 'P_Gen1_machine_array')\n" #Exporting measurement cmd for AEMO reference
-#    psspy.state_channel([-1, K_INV + 4], r"""INV1_Id""") # (STATE K+4) Id output of inverter (p.u. of inverter base)
-#    psspy.state_channel([-1, K_INV + 5], r"""INV1_Iq""") #Iq (STATE K+5) output of inverter (p.u. of inverter base)
-#    psspy.state_channel([-1, K_INV2 + 4], r"""INV2_Id""") # (STATE K+4) Id output of inverter (p.u. of inverter base)
-#    psspy.state_channel([-1, K_INV2 + 5], r"""INV2_Iq""") #Iq (STATE K+5) output of inverter (p.u. of inverter base)
-#    psspy.var_channel([-1, L_INV + 6], "INV1_Irradiance") # Voltage Disturbance Detection
-#    psspy.var_channel([-1, L_INV + 7], "P_cmd") # P command
-##    standalone_script+="psspy.var_channel([-1, "+str(L_INV + 7)+"], 'P_cmd')\n" #Exporting ref cmd for AEMO reference
-#    psspy.var_channel([-1, L_INV2 + 6], "INV2_Irradiance") # Voltage Disturbance Detection
-#    psspy.var_channel([-1, L_INV + 15], "INV1_VdFlag") # Voltage Disturbance Detection
-#    psspy.var_channel([-1, L_INV2 + 15], "INV2_VdFlag") # Voltage Disturbance Detection
-#    
-#    ierr, L_PPC = psspy.windmind(367176,'1','WAUX','VAR')
-#    ierr, K_PPC = psspy.windmind(367176,'1','WAUX','STATE')
-#    psspy.var_channel([-1, L_PPC + 6], "Vref_POC") # 
-#    psspy.var_channel([-1, L_PPC + 5], "PFref") # 
-#    psspy.var_channel([-1, L_PPC + 4], "Qref_POC") # 
-#    psspy.var_channel([-1, L_PPC + 1], "Pref_POC") # 
-#    psspy.var_channel([-1, L_PPC + 20], "Var20") # 
-#    psspy.var_channel([-1, L_PPC + 21], "Var21") # 
-#    psspy.state_channel([-1, K_PPC + 2], "State2") # 
-#    psspy.state_channel([-1, K_PPC + 5], "State5") # 
-#    psspy.state_channel([-1, K_PPC + 6], "State6") # 
-#    
-#    # Get tap position of the main transformer:
-#    ierr, rval = psspy.xfrdat(367171, 367174, '1', 'RATIO')
-##    ierr, rval = psspy.xfrdat(367171, 367174, '1', 'RATIO2')
-#    # XFRINT
-#    # ATRNINT
+ 
 
 
     # Include all vars and states
@@ -739,39 +713,144 @@ def set_channels(PSSEmodelDict):
 #    Vth=GRID_Z_*I_POC*math.sqrt(3)+V_POC
 #    return Vth
 
-def implement_droop_LF(droop_value, droop_base, vol_deadband, V_POC, Q_POC):
-#    droop_value = 3.325
-#    droop_base = 31.6
-#    V_POC = setpoint['V_POC']
-#    Q_actual = setpoint['Q']
-#    vol_deadband = 0
+#def cal_Vdroop_spnt(droop_value, droop_base, vol_deadband, V_POC, Q_POC):
+#    
+#    deltaV_comp = (Q_POC/droop_base)*(droop_value/100)
+#    if Q_POC<0:
+#        deltaV =  deltaV_comp + vol_deadband
+#    else: 
+#        deltaV =  deltaV_comp - vol_deadband
+#    Vspnt = deltaV + V_POC
+#    return Vspnt
+
+#def implement_droop_LF(gen_bus=[273501, 273502],gen_id=['1','1'],poc_bus=273540,ibus=273541,poc_v_spt=1.03,poc_v_dbn=0.0,poc_q_max=35.55,poc_drp_pct=5.0165,gen_q_max=[60.48,45.36],gen_q_pct=[0.5,0.5]):
+#    import misc_functions as mf
+#
+#    gens_with_vdc = {
+#                'gens':[ # One generator controlling POC voltage
+#
+#                        ],
+#    
+#                'gens2':[ # Two generators controlling voltage at same POC point
+#                            {'gen_bus':gen_bus,'gen_id':gen_id,'poc_bus':poc_bus,'ibus':ibus,'poc_v_spt':poc_v_spt,'poc_v_dbn':poc_v_dbn,'poc_q_max':poc_q_max,'poc_drp_pct':poc_drp_pct,'gen_q_max':gen_q_max,'gen_q_pct':gen_q_pct},
+#                            
+#                        ]
+#                    }
+#    
+#    err_code, auto_script = mf.init_gens_vdc(gens_with_vdc,err_code = 0,auto_script = '')
+#    return err_code
+
+def share_Q(gens_with_vdc, err_code = 0, auto_script = ''): 
+    if len(gens_with_vdc['gens']) != 0 or len(gens_with_vdc['gens2']) != 0:
+        tol_q = 0.0001 #MVAr
+        k_factor = 0.20 # regression factor
+        iter_num = 20
+        delta_q_loop = 2.0
+#        for i in range(0,15): #If multiple generator participate in the QV droop, then repeat the process to make sure the actual voltage settle well
+        while abs(delta_q_loop) > tol_q and iter_num > 0:
+            delta_q_loop = 0
+
+            if len(gens_with_vdc['gens2']) != 0:
+                for gen in gens_with_vdc['gens2']: # Two generators controlling voltage at same POC point
+                    ierr,ival = psspy.macint(gen['gen_bus'][0],gen['gen_id'][0],'STATUS')
+                    ierr,ival2 = psspy.busint(gen['gen_bus'][0],'TYPE')
+                    if ival == 0 or ival2 == 4:
+                        print('GEN '+gen['gen_id'][0]+' at bus '+str(gen['gen_bus'][0])+' is OFF')
+                    else:
+                        q_poc_req = gen['q_poc_req']
+#                        if q_poc_req > gen['poc_q_max']: # Limit the compensation to Qcorner at POC
+#                            q_poc_req = gen['poc_q_max']
+#                        if q_poc_req < -gen['poc_q_max']: 
+#                            q_poc_req = -gen['poc_q_max']
+                        s_poc = psspy.brnflo(gen['poc_bus'],gen['ibus'],'1')[1]
+                        q_poc = -s_poc.imag # poc q MVAr
+                        delta_q = q_poc_req - q_poc
+                        if delta_q_loop < abs(delta_q): delta_q_loop = abs(delta_q)
+                         
+                    
+                        ierr,q_gen1 = psspy.macdat(gen['gen_bus'][0],gen['gen_id'][0],'Q') # gen q MVAr
+                        ierr,q_gen2 = psspy.macdat(gen['gen_bus'][1],gen['gen_id'][1],'Q') # gen q MVAr
     
-    deltaV_comp = (Q_POC/droop_base)*(droop_value/100)
-    if Q_POC<0:
-        deltaV =  deltaV_comp + vol_deadband
-    else: 
-        deltaV =  deltaV_comp - vol_deadband
-    Vspnt = deltaV + V_POC
-    return Vspnt
+                        q_gen1_new = ((q_gen1+q_gen2) + delta_q*k_factor)*gen['gen_q_pct'][0]
+                        q_gen2_new = ((q_gen1+q_gen2) + delta_q*k_factor)*gen['gen_q_pct'][1]
+                        
+#                        if q_gen1_new > gen['gen_q_max'][0]: q_gen1_new = gen['gen_q_max'][0]
+#                        if q_gen2_new < -gen['gen_q_max'][1]: q_gen2_new = -gen['gen_q_max'][1]
+                        psspy.machine_chng_2(gen['gen_bus'][0],r"""1""",[_i,_i,_i,_i,_i,_i],[_f,_f, q_gen1_new,q_gen1_new,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+                        psspy.machine_chng_2(gen['gen_bus'][1],r"""1""",[_i,_i,_i,_i,_i,_i],[_f,_f, q_gen2_new,q_gen2_new,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+                        psspy.fnsl([1,0,0,1,1,0,0,0])
+                        psspy.fnsl([1,0,0,1,1,0,0,0])
+                        mismatch=psspy.sysmsm()
+                        if(mismatch>1): err_code = 1
+                    
+            iter_num -=1
+
+def share_P(gens_with_vdc, err_code = 0, auto_script = ''): 
+    if len(gens_with_vdc['gens']) != 0 or len(gens_with_vdc['gens2']) != 0:
+        tol_p = 0.0001 #MVAr
+        k_factor = 0.50 # regression factor
+        iter_num = 20
+        delta_p_loop = 2.0
+#        for i in range(0,15): #If multiple generator participate in the QV droop, then repeat the process to make sure the actual voltage settle well
+        while abs(delta_p_loop) > tol_p and iter_num > 0:
+            delta_p_loop = 0
+
+            if len(gens_with_vdc['gens2']) != 0:
+                for gen in gens_with_vdc['gens2']: # Two generators controlling voltage at same POC point
+                    ierr,ival = psspy.macint(gen['gen_bus'][0],gen['gen_id'][0],'STATUS')
+                    ierr,ival2 = psspy.busint(gen['gen_bus'][0],'TYPE')
+                    if ival == 0 or ival2 == 4:
+                        print('GEN '+gen['gen_id'][0]+' at bus '+str(gen['gen_bus'][0])+' is OFF')
+                    else:
+                        p_poc_req = gen['p_poc_req']
+                        s_poc = psspy.brnflo(gen['poc_bus'],gen['ibus'],'1')[1]
+                        p_poc = -s_poc.real # poc q MVAr
+                        delta_p = p_poc_req - p_poc
+                        if delta_p_loop < abs(delta_p): delta_p_loop = abs(delta_p)
+                         
+                    
+                        ierr,p_gen1 = psspy.macdat(gen['gen_bus'][0],gen['gen_id'][0],'P') # gen q MVAr
+                        ierr,p_gen2 = psspy.macdat(gen['gen_bus'][1],gen['gen_id'][1],'P') # gen q MVAr
     
+                        p_gen1_new = p_gen1 + delta_p*k_factor*0.5
+                        p_gen2_new = p_gen2 + delta_p*k_factor*0.5
+                        PMAX=psspy.macdat(gen['gen_bus'][0], '1', 'PMAX')[1]
+                        PMIN=psspy.macdat(gen['gen_bus'][0], '1', 'PMIN')[1]
+                        if p_gen1_new > PMAX: p_gen1_new = PMAX
+                        if p_gen1_new < PMIN: p_gen1_new = PMIN
+                        PMAX=psspy.macdat(gen['gen_bus'][1], '1', 'PMAX')[1]
+                        PMIN=psspy.macdat(gen['gen_bus'][1], '1', 'PMIN')[1]
+                        if p_gen2_new > PMAX: p_gen2_new = PMAX
+                        if p_gen2_new < PMIN: p_gen2_new = PMIN
+                        psspy.machine_chng_2(gen['gen_bus'][0],r"""1""",[_i,_i,_i,_i,_i,_i],[p_gen1_new,_f, _f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+                        psspy.machine_chng_2(gen['gen_bus'][1],r"""1""",[_i,_i,_i,_i,_i,_i],[p_gen2_new,_f, _f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+                        psspy.fnsl([1,0,0,1,1,0,0,0])
+                        psspy.fnsl([1,0,0,1,1,0,0,0])
+                        mismatch=psspy.sysmsm()
+                        if(mismatch>1): err_code = 1
+                    
+            iter_num -=1
+            
 def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, setpoint, Vbase_POC, Vth, ANG_POC, ang, GRID_MVA, InfiniteBus, FaultBus, DummyTxBus, POC, F_dist ):
     global standalone_script
     test_convergence()
     #add Zingen machine, unless machine at bus 1 is alreay present. --> already present for most of the tests
     # add entry for Zingen machine to dyr file
-    #add ideal transformer between grid and fault bus. 
-#    ierr, base = psspy.busdat(1,'BASE')      
-#    psspy.bus_data_4(DummyTxBus,0,[1,1,1,1],[base, 1.0,0.0, 1.1, 0.9, 1.1, 0.9],r"""DUM_TR_POC""")
-#    psspy.movebrn(FaultBus,POC,r"""1""",DummyTxBus,r"""1""") #adds new bus for dummy transformer to connect to. This is the Dummy transformer that will be used for voltage angle change test etc.     
-#    psspy.two_winding_data_5(DummyTxBus,POC,r"""1""",[1,DummyTxBus,1,0,0,0,33,0,DummyTxBus,0,1,0,1,1,1],[0.0, 0.000001, 100.0, 1.0,0.0,0.0, 1.0,0.0, 1.0, 1.0, 1.0, 1.0,0.0,0.0, 1.0, 1.0, 1.1, 0.9,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"","")
-#    #psspy.two_winding_chng_5(10,2,r"""1""",[_i,_i,_i,_i,_i,_i,3,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f, 1.0, 1.0,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
-
-    ierr, base = psspy.busdat(InfiniteBus,'BASE')
-    psspy.bus_data_4(DummyTxBus,0,[1,1,1,1],[base, 1.0,0.0, 1.1, 0.9, 1.1, 0.9],r"""DUM_TR_INF""") # add dummy Tx next to the Tx instead of POC
-    psspy.movebrn(FaultBus,InfiniteBus,r"""1""",DummyTxBus,r"""1""") #adds new bus for dummy transformer to connect to. This is the Dummy transformer that will be used for voltage angle change test etc.     
-    psspy.two_winding_data_5(InfiniteBus,DummyTxBus,r"""1""",[1,InfiniteBus,1,0,0,0,33,0,InfiniteBus,0,1,0,1,1,1],[0.0, 0.000001, 100.0, 1.0,0.0,0.0, 1.0,0.0, 1.0, 1.0, 1.0, 1.0,0.0,0.0, 1.0, 1.0, 1.1, 0.9,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"","")
-    #psspy.two_winding_chng_5(10,2,r"""1""",[_i,_i,_i,_i,_i,_i,3,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f, 1.0, 1.0,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
-
+    #add ideal transformer between grid and fault bus. -> may need to revise: insert the dummy Tx only in case conducting the angle test!
+    ierr, base = psspy.busdat(InfiniteBus,'BASE')    
+    psspy.bsys(sid=0,numbus=1, buses=POC)
+    POC_info=psspy.abusreal(0,1,['PU', 'ANGLED'])[1]
+    V_POC_pu=POC_info[0][0]
+    V_POC_ang=POC_info[1][0]
+    
+    psspy.bus_data_4(DummyTxBus,0,[1,1,1,1],[base, 1.0,0.0, 1.1, 0.9, 1.1, 0.9],r"""DUM_TR_POC""")
+    if FaultBus != POC: #when fault bus is different from POC, then insert the dummy Tx in between them
+        psspy.movebrn(FaultBus,POC,r"""1""",DummyTxBus,r"""1""") #adds new bus for dummy transformer to connect to. This is the Dummy transformer that will be used for voltage angle change test etc.     
+        psspy.branch_chng_3(FaultBus,DummyTxBus,r"""1""",[_i,_i,_i,_i,_i,_i],[ 0, 0.0001,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s) #impedance between fautl bus and dummy bus for dummy transformer that has been automatically added.
+    else: # If fault bus is POC bus, add the dummybus between slackbus and poc, and then dummy Tx between the new bus and POC
+        psspy.movebrn(InfiniteBus,POC,r"""1""",DummyTxBus,r"""1""") #adds new bus for dummy transformer to connect to. This is the Dummy transformer that will be used for voltage angle change test etc.     
+    psspy.two_winding_data_5(DummyTxBus,POC,r"""1""",[1,DummyTxBus,1,0,0,0,33,0,DummyTxBus,0,1,0,1,1,1],[0.0, 0.000001, 100.0, 1.0,0.0,0.0, 1.0,0.0, 1.0, 1.0, 1.0, 1.0,0.0,0.0, 1.0, 1.0, 1.1, 0.9,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"","")
+    psspy.bus_chng_4(DummyTxBus,0,[_i,_i,_i,_i],[_f, V_POC_pu, V_POC_ang,_f,_f,_f,_f],_s)
 
     test_convergence()
     GRID_Z=100.0/GRID_MVA #per unitisation of grid impedance on 100 MVA basis.
@@ -783,13 +862,10 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
     GRID_R2=(F_dist)*GRID_R
     GRID_X2=(F_dist)*GRID_X
     #make grid infinite for initialisation and set to correct POC voltage
-    psspy.plant_data_3(InfiniteBus,0,_i,[setpoint['V_POC'],_f])
-    psspy.branch_chng_3(DummyTxBus,FaultBus,r"""1""",[_i,_i,_i,_i,_i,_i],[ 0, 0.001,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)
-    #impedance between fautl bus and dummy bus for dummy transformer that has been automatically added.
-    psspy.branch_chng_3(FaultBus,POC,r"""1""",[_i,_i,_i,_i,_i,_i],[ 0, 0.0001,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)  
+#    psspy.plant_data_3(InfiniteBus,0,_i,[setpoint['V_POC'],_f])
+    psspy.plant_data_4(InfiniteBus,0,[_i,_i],[ 1.0,_f])  # set the inf bus voltage spt to 1.0pu so the case is more stable at initialisation with low SCR conditions
     test_convergence()
 
-    
     #iteratively initialise loadflow
     # it must be specified for each portion of the plant how much active and reactive power it shoudl provide and in which location. 
     gen_list_main=[]
@@ -854,19 +930,10 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
     #iterate over all generators in list, start with 0 output, check different to target, increase output in proportion to the difference (greedy)
 #    QMAX= ProjectDetailsDict['GenMVArMax']
 #    QMIN= ProjectDetailsDict['GenMVArMin']
+    max_err=0.02 #0.05
     for gen in  gen_list.keys():
         if(not (gen_list[gen]['genBus'] in offline_machines)):
             #set output to  and switch gen on
-#            psspy.plant_data_3(gen_list[gen]['genBus'],0,_i,[ setpoint['V_POC'],_f]) #Update the setpoint voltage of the generator - may not needed as the Q value is fixed with the loop below
-            ############################################################    
-#            # 01/9/2022: Initialise droop characteristic - Lancaster only: Update voltage setpoint base on the actual voltage and Q at POC
-#            droop_value = 3.3 #%
-#            droop_base = 31.6
-#            vol_deadband = 0  
-#            Vspnt = implement_droop_LF(droop_value, droop_base, vol_deadband, setpoint['V_POC'], setpoint['Q'])
-#            psspy.plant_data_3(gen_list[gen]['genBus'],0,_i,[ Vspnt,_f]) #Update the setpoint voltage of the generator - for setpoint variable initialisation
-            ############################################################ 
-            
             psspy.machine_chng_2(gen_list[gen]['genBus'],r"""1""",[1,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])        
             test_convergence()
             # QMAX=psspy.macdat(gen_list[gen]['genBus'], '1', 'QMAX')[1]
@@ -885,45 +952,105 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
             powers=psspy.brnflo(gen_list[gen]['fromBus'], gen_list[gen]['toBus'], '1')
             P_meas=powers[1].real
             Q_meas=powers[1].imag
-            max_err=0.02 #0.05
-            P_prev=0 
-            Q_prev=0
-            max_iter=50
+            P_target = gen_list[gen]['P']
+            Q_target = gen_list[gen]['Q']/2
+            P_err=P_target-P_meas
+            Q_err=Q_target-Q_meas
+            P_set = 0
+            Q_set = 0
+            conv_coeff=0.15     # Update 14/2/2024: update the coefficient to reduce non-convergence
             iter_cnt=0
-            conv_coeff=0.95
-            while ( ( (abs(P_meas-gen_list[gen]['P']) > max_err) or (abs(Q_meas-gen_list[gen]['Q']) > max_err) ) and (iter_cnt<max_iter) ) :
-                P_err=gen_list[gen]['P']-P_meas
-                Q_err=gen_list[gen]['Q']-Q_meas
-                P_set=P_prev+conv_coeff*(P_err)
-                Q_set=Q_prev+conv_coeff*(Q_err)
-                P_prev=P_set
-                Q_prev=Q_set
+            while ( ( (abs(P_err) > max_err) or (abs(Q_err) > max_err) ) and (iter_cnt<50) ) :
+                P_set=P_set+conv_coeff*(P_err)
+                Q_set=Q_set+conv_coeff*(Q_err)
                 
-                if(P_set>PMAX):
-                    P_set=PMAX
-                elif(P_set<PMIN):
-                    P_set=PMIN                
-                if(Q_set>QMAX):
-                    Q_set=QMAX
-                elif(Q_set<QMIN):
-                    Q_set=QMIN            
+                if(P_set>PMAX): P_set=PMAX
+                elif(P_set<PMIN):P_set=PMIN                
+                if(Q_set>QMAX): Q_set=QMAX
+                elif(Q_set<QMIN):Q_set=QMIN          
                 
                 psspy.machine_chng_2(gen_list[gen]['genBus'],r"""1""",[_i,_i,_i,_i,_i,_i],[ P_set,_f, Q_set,Q_set,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
-                
                 test_convergence()
- #               test_convergence()
-#                test_convergence()
-
                 powers=psspy.brnflo(gen_list[gen]['fromBus'], gen_list[gen]['toBus'], '1')
                 P_meas=powers[1].real
                 Q_meas=powers[1].imag
-                
+                P_err=P_target-P_meas
+                Q_err=Q_target-Q_meas
                 iter_cnt+=1
+
+    Vinf_target = Vth #1+ (Vth-1)/2
+    psspy.plant_data_3(InfiniteBus,0,_i,[ Vinf_target,_f]) #gradually increase the inf voltage setpoint -> avoid non-convergence in low SCR condition
+    for gen in  gen_list.keys():
+        if(not (gen_list[gen]['genBus'] in offline_machines)):
+            conv_coeff=0.15     # Update 14/2/2024: update the coefficient to reduce non-convergence
+            iter_cnt=0
+            powers=psspy.brnflo(gen_list[gen]['fromBus'], gen_list[gen]['toBus'], '1')
+#            P_meas=powers[1].real
+            Q_meas=powers[1].imag
+#            P_target = gen_list[gen]['P']
+            Q_target = gen_list[gen]['Q']
+#            P_err=P_target-P_meas
+            Q_err=Q_target-Q_meas
+#            PMAX=psspy.macdat(gen_list[gen]['genBus'], '1', 'PMAX')[1]
+#            PMIN=psspy.macdat(gen_list[gen]['genBus'], '1', 'PMIN')[1]
                 
+            while ( ( (abs(P_err) > max_err) or (abs(Q_err) > max_err) ) and (iter_cnt<50) ) :
+#                P_set=P_set+conv_coeff*(P_err)
+                Q_set=Q_set+conv_coeff*(Q_err)
+
+#                if(P_set>PMAX): P_set=PMAX
+#                elif(P_set<PMIN):P_set=PMIN                
+                if(Q_set>QMAX): Q_set=QMAX
+                elif(Q_set<QMIN):Q_set=QMIN            
+                
+                psspy.machine_chng_2(gen_list[gen]['genBus'],r"""1""",[_i,_i,_i,_i,_i,_i],[ _f,_f, Q_set,Q_set,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+                test_convergence()
+                powers=psspy.brnflo(gen_list[gen]['fromBus'], gen_list[gen]['toBus'], '1')
+#                P_meas=powers[1].real
+                Q_meas=powers[1].imag
+#                P_err=P_target-P_meas
+                Q_err=Q_target-Q_meas
+                iter_cnt+=1                
                 #run load flow
                 #measure power flow 
                 #adjust gen_ouput (P and Q simultaneously but independently)
 
+    # ajust the P to match P required at POC
+    gen_buses = [PSSEmodelDict['Generator1'], PSSEmodelDict['Generator2']]
+    gens_with_vdc = {
+                    'gens':[ # One generator controlling POC voltage
+   
+                            ],
+        
+                    'gens2':[ # Two generators controlling voltage at same POC point
+#                                {'gen_bus':[[gen_list[gen_list.keys()[0]]['genBus'], gen_list[gen_list.keys()[1]]['genBus']],'gen_id':['1','1'],'poc_bus':POC,'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'poc_q_max':35.55,'gen_q_max':[60.48,45.36],'gen_q_pct':[0.5,0.5]},
+                                {'gen_bus':gen_buses,'gen_id':['1','1'],'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'p_poc_req':setpoint['P']},
+                                
+                            ]
+                    }
+    
+    share_P(gens_with_vdc, err_code = 0, auto_script = '')
+        
+    # In case generator sharing the Q at terminal
+    if setpoint['Q1ini'] != "":
+        gen1_q_pct = setpoint['Q1ini'] #setpoint['Q1ini']/setpoint['Qini']
+        gen_buses = [PSSEmodelDict['Generator1'], PSSEmodelDict['Generator2']]
+        gens_with_vdc = {
+                        'gens':[ # One generator controlling POC voltage
+       
+                                ],
+            
+                        'gens2':[ # Two generators controlling voltage at same POC point
+    #                                {'gen_bus':[[gen_list[gen_list.keys()[0]]['genBus'], gen_list[gen_list.keys()[1]]['genBus']],'gen_id':['1','1'],'poc_bus':POC,'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'poc_q_max':35.55,'gen_q_max':[60.48,45.36],'gen_q_pct':[0.5,0.5]},
+                                    {'gen_bus':gen_buses,'gen_id':['1','1'],'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'gen_q_pct':[1-gen1_q_pct,gen1_q_pct]},
+                                    
+                                ]
+                        }
+        
+        share_Q(gens_with_vdc, err_code = 0, auto_script = '')
+
+
+#    implement_droop_LF(gen_bus=[gen_list[gen_list.keys()[0]]['genBus'], gen_list[gen_list.keys()[1]]['genBus']],gen_id=['1','1'],poc_bus=POC,ibus=PSSEmodelDict['POC_to'],poc_v_spt=1.03,poc_v_dbn=0.0,poc_q_max=35.55,poc_drp_pct=5.0165,gen_q_max=[60.48,45.36],gen_q_pct=[0.5,0.5])
 #########################                      
                 
                 
@@ -934,10 +1061,11 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
 #    psspy.plant_data_3(InfiniteBus,0,_i,[ Vth,_f])
     
     #after load flows are adjusted, add grid impedance and adjust voltage of infinite source
-    # Note that transformer is inserted between infbus and faultbus -> grid impedance will be from DummyTxBus to FaultBus
-    psspy.branch_chng_3(DummyTxBus,FaultBus,r"""1""",[_i,_i,_i,_i,_i,_i],[ GRID_R1, GRID_X1,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)
-    #impedance between fautl bus and dummy bus for dummy transformer that has been automatically added.
-    psspy.branch_chng_3(FaultBus,POC,r"""1""",[_i,_i,_i,_i,_i,_i],[ GRID_R2, GRID_X2,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)  
+    if FaultBus != POC: #when fault bus is different from POC
+        psspy.branch_chng_3(InfiniteBus,FaultBus,r"""1""",[_i,_i,_i,_i,_i,_i],[ GRID_R1, GRID_X1,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)
+    else: # Note that transformer is inserted between infbus and faultbus -> grid impedance will be from InfiniteBus to DummyTxBus
+        psspy.branch_chng_3(InfiniteBus,DummyTxBus,r"""1""",[_i,_i,_i,_i,_i,_i],[ GRID_R1, GRID_X1,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)
+        psspy.two_winding_chng_6(DummyTxBus,POC,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[ GRID_R2, GRID_X2,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
     psspy.plant_data_3(InfiniteBus,0,_i,[ Vth,_f])
     psspy.bus_chng_4(InfiniteBus,0,[_i,_i,_i,_i],[_f,_f,ang+ANG_POC,_f,_f,_f,_f],_s)
     
@@ -1200,7 +1328,7 @@ def save_test_description(testInfoDir, scenario, scenario_params, setpoint_param
     testInfo.close() 
     pass
 
-def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict):
+def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict):
     global standalone_script
     standalone_script="# This script has been auto-generated by the PSSE SMIB test tool v2.0 to allow for debugging of individual test cases.\n# Please leave folder configuration unchanged and run simulation by loading this script in the PSSE GUI to re-run the given test.\n# Depending on your PSS/E version you may need to link to different .dll files.\n"                                                                                                                                                                                                                                                                          
     os.environ['PATH'] += ';' + workspace_folder # THIS IS THE MOST IMPORTANT LINE IN THE WHOLE DAMN SCRIPT!!!!!
@@ -1220,6 +1348,7 @@ def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, Projec
     setpoint_params=SetpointsDict[scenario_params['setpoint ID']]
     start_offset=PSSEmodelDict['start_offset'] # added start_offset to delay the start of dynamic simulation 20/1/2022                   
     
+#    Test_Type=scenario_params['Test Type']
     if('F_dist' in scenario_params.keys()):
         F_dist=scenario_params['F_dist']
     else:
@@ -1232,7 +1361,7 @@ def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, Projec
 #    psspy.set_netfrq(1) # Activate the frequency dependence
     #retrieve base voltage of Infinite bus
     psspy.bsys(sid=0,numbus=1, buses=InfiniteBus)
-    POC_info=psspy.abusreal(0,1,['BASE', 'ANGLE'])[1]
+    POC_info=psspy.abusreal(0,1,['BASE', 'ANGLED'])[1]
     Vbase_POC=POC_info[0][0]
     ANG_POC=POC_info[1][0]
     
@@ -1268,7 +1397,7 @@ def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, Projec
 
 #    ############################################################    
     # 07/09/2022: Implement Pavai to initialise model at correct irradiance level
-#    implement_Pavai(Pavai, PSSEmodelDict, ProfilesDict, scenario_params, event_queue)
+    implement_Pavai(Pavai, PSSEmodelDict, ProfilesDict, scenario_params, event_queue)
 #    ############################################################  
     
     #add event to limit availabel power if explicitly specified in setpoint
@@ -1737,7 +1866,7 @@ def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, Projec
     psspy.set_relang(1,InfiniteBus,r"""1""")
     standalone_script+="psspy.set_relang(1,"+str(InfiniteBus)+",'1')\n"
     
-    set_channels(PSSEmodelDict)  
+    set_channels(PSSEmodelDict,OutChansDict)  
     
     psspy.set_chnfil_type(0)
     standalone_script+="psspy.set_chnfil_type(0)"

@@ -23,8 +23,7 @@ ATTENTION:
 NOTES:
         + 30/3/2022: Update the path to store results and model copies
         + 31/3/2022: Update base_model to base_model_workspace for copying only model in the work space  
-        + 13/4/2022: Put the path creation part into a function      
-        + 19/4/2022: Use the 1PPC topology
+        + 06/12/2023: copy the plot folder to local drive so the plot activities can be done locally
         
 @author: Mervin Kall
  """
@@ -43,6 +42,27 @@ import time
 #timestr = time.strftime("%Y%m%d")
 timestr = str(datetime.datetime.now().strftime("%Y%m%d-%H%M"))
 
+#-----------------------------------------------------------------------------
+# USER CONFIGURABLE PARAMETERS
+#-----------------------------------------------------------------------------
+TestDefinitionSheet = r'20230828_SUM_TESTINFO_V2.xlsx'
+#simulation_batches=['DMAT', 'Prof_chng', 'AEMO_fdb', 'missing', 'legend', 'SCR_chng', 'timing'] #specify batch from spreadsheet that shall be run. If empty, run all batches
+#simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl']
+simulation_batches=['S5253','S5254','S52511','S52513','S52514','S5255Iq1','S5255Iq2','S5255Iq3']
+#simulation_batches=['gps_dbg']
+#simulation_batches=['S5254','S5255','S5257','S52511','S52513','S52514','S52515','S52516']
+#The below can alternatively be defined in the Excel sheet
+
+overwrite = False # 
+max_processes = 8 #set to the number of cores on my machine. Needs to be >= scenarioPerGroup --> increase for PSCAD machine
+# testRun = '20211223_testing' #define a test name for the batch or configuration that is being tested
+# testRun = str(datetime.datetime.now().strftime("%Y%m%d-%H%M"))
+
+try:
+    testRun = timestr + '_' + simulation_batches[0] #define a test name for the batch or configuration that is being tested -> link to time stamp for auto update
+except:
+    testRun = timestr
+    
 #-----------------------------------------------------------------------------
 # Auxiliary Functions
 #-----------------------------------------------------------------------------
@@ -117,56 +137,30 @@ def createShortcut(target, path):
     shortcut.Targetpath = target
     shortcut.save()
 
-def createPath(main_path_out):
-    path = os.path.normpath(main_path_out)
+def createPath(main_folder_out):
+    path = os.path.normpath(main_folder_out)
     path_splits = path.split(os.sep) # Get the components of the path
-    child_folder = r"C:" # Build up the output path from C: directory
+    child_folder = r""+ path_splits[0] # Build up the output path from base drive
     for i in range(len(path_splits)-1):
         child_folder = child_folder + "\\" + path_splits[i+1]
         make_dir(child_folder)
     return child_folder
 
-#-----------------------------------------------------------------------------
-# USER CONFIGURABLE PARAMETERS
-#-----------------------------------------------------------------------------
-# TestDefinitionSheet = r'20220330_LSF_TESTINFO_V2.xlsx'
-TestDefinitionSheet = r'20230828_SUM_TESTINFO_V1.xlsx'
-#simulation_batches=['DMAT', 'Prof_chng', 'AEMO_fdb', 'missing', 'legend', 'SCR_chng', 'timing'] #specify batch from spreadsheet that shall be run. If empty, run all batches
-#simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl']
-#simulation_batches=['S5253','S5254','S5255','S5257','S52511','S52513','S52514','S52516']
-simulation_batches=['S52516']
-#simulation_batches=['S5254','S5255','S5257','S52511','S52513','S52514','S52515','S52516']
-#simulation_batches=['S5.2.5.4']
-#simulation_batches=['S5.2.5.11']
-#simulation_batches=['S5.2.5.13']
-#simulation_batches=['BMKing']
-#The below can alternatively be defined in the Excel sheet
 
-overwrite = False # 
-max_processes = 8 #set to the number of cores on my machine. Needs to be >= scenarioPerGroup --> increase for PSCAD machine
-# testRun = '20211223_testing' #define a test name for the batch or configuration that is being tested
-# testRun = str(datetime.datetime.now().strftime("%Y%m%d-%H%M"))
-
-try:
-    testRun = timestr + '_' + simulation_batches[0] #define a test name for the batch or configuration that is being tested -> link to time stamp for auto update
-except:
-    testRun = timestr
 
 #-----------------------------------------------------------------------------
 # Define Project Paths
 #-----------------------------------------------------------------------------
-# current_dir = os.path.dirname(__file__) #directory of the script
-#current_dir=r"C:\Users\Dao Vu\ESCO Pacific\ESCO - Projects\19. LAN\3. Grid\1. Power System Studies\1. Main Test Environment\20220427_LSF_OnePPC_newdroop\PSSE_sim\scripts"
-#main_folder = os.path.dirname(current_dir) # Identify main_folder: to be compatible with previous version. / main folder is one level above
 script_dir=os.getcwd()
 main_folder=os.path.abspath(os.path.join(script_dir, os.pardir))
+
 # Create directory for storing the results
-if "ESCO Pacific\ESCO - Projects" in main_folder: # if the current folder is online (under ESCO - Projects), create a new directory to store the result
-    main_path_out = main_folder.replace("ESCO Pacific\ESCO - Projects","Documents\Projects") # Change the path from Onedrive to Local in Documents
+if "OneDrive - OX2" in main_folder: # if the current folder is online (under OneDrive - OX2), create a new directory to store the result
+    user = os.path.expanduser('~')
+    main_path_out = main_folder.replace(user + "\OneDrive - OX2","C:\work") # Change the path from Onedrive to Local in c drive
     main_folder_out = createPath(main_path_out)
 else: # if the main folder is not in Onedrive, then store the results in the same location with the model
     main_folder_out = main_folder
-# main_folder_out = r"C:\1. Power System Studies\20220318_LSF\PSSE_sim\scripts" # Option to define the absolute path of the result location
 ModelCopyDir = main_folder_out+"\\model_copies" #location of the model copies used to run the simulations
 OutputDir= main_folder_out+"\\result_data" #location of the simulation results
 make_dir(OutputDir)
@@ -198,13 +192,14 @@ import readtestinfo as readtestinfo
 import run_simulation
 
 # return_dict =  readtestinfo.readTestdef(testDefinitionDir+"\\"+TestDefinitionSheet, ['ProjectDetails', 'SimulationSettings', 'ModelDetailsPSSE', 'SetpointsDict', 'ScenariosSMIB', 'Profiles'])
-return_dict =  readtestinfo.readTestdef(testDefinitionDir+"\\"+TestDefinitionSheet, ['ProjectDetails', 'ModelDetailsPSSE', 'Setpoints', 'ScenariosSMIB', 'Profiles'])
+return_dict =  readtestinfo.readTestdef(testDefinitionDir+"\\"+TestDefinitionSheet, ['ProjectDetails', 'ModelDetailsPSSE', 'Setpoints', 'ScenariosSMIB', 'Profiles', 'OutputChannels'])
 ProjectDetailsDict = return_dict['ProjectDetails']
 # SimulationSettingsDict = return_dict['SimulationSettings']
 PSSEmodelDict = return_dict['ModelDetailsPSSE']
 SetpointsDict = return_dict['Setpoints']
 ScenariosDict = return_dict['ScenariosSMIB']
 ProfilesDict = return_dict['Profiles']
+OutChansDict = return_dict['OutputChannels']
 
 #-----------------------------------------------------------------------------
 # Main
@@ -232,7 +227,7 @@ def main():
         #     workspace_folder=workspace_folder+"\\"+os.path.basename(os.path.normpath(base_model_workspace))
         scenario_params = ScenariosDict[scenario]
         # run_simulation.run(main_folder, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict)
-        run_simulation.run(ResultsDir, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict)
+        run_simulation.run(ResultsDir, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict)
     
     pass
     

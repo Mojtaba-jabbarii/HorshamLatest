@@ -11,7 +11,8 @@ Patrick Rossiter 2017
 """
 import sys, os
 import numpy as np
-import StringIO
+import io
+from io import StringIO
 
 class ESCOPlot(object):
     def __init__(self):
@@ -56,7 +57,7 @@ class ESCOPlot(object):
         print ("Files in memory are:")
         print ("Entry  Channels   Filename")
         for index, entry in enumerate(self.filenames):
-            print "{:^5} {:^10}  {:<260}".format(index, (len(self.dataarrays[index])), entry)
+            print ("{:^5} {:^10}  {:<260}".format(index, (len(self.dataarrays[index])), entry))
     
     def read_data(self, filename, pscad_files = 999, timeID='time'):
         '''
@@ -88,12 +89,12 @@ class ESCOPlot(object):
             data = np.zeros((len(chandata) - 1, len(time)))
             
             chan_ids = []
-            print filename
+            print (filename)
             for key in chandata.keys()[:-1]:
-                print key, chanid[key]
+                print (key, chanid[key])
                 data[key - 1] = chandata[key]
                 chan_ids.append(chanid[key])
-            print '\n'
+            print ('\n')
             
             self.timearrays.append(time)
             self.dataarrays.append(data)
@@ -129,10 +130,10 @@ class ESCOPlot(object):
             #csv_data_indices = d_in.columns 
             #csv_data_indices = []
 
-            print filename
+            print (filename)
             for idx, chanid in enumerate(csv_data_indices):
-                print idx+1, chanid
-            print '\n'
+                print (idx+1, chanid)
+            print ('\n')
             
             # Add data to arrays in class
             self.timearrays.append(csv_time.values)
@@ -182,8 +183,8 @@ class ESCOPlot(object):
             #
             # print filename
             for idx, chanid in enumerate(PSCAD_data_indices):
-                print idx+1, chanid
-            print '\n'
+                print (idx+1, chanid)
+            print ('\n')
             
             '''
             Old news!! Pandas now working.
@@ -484,7 +485,72 @@ class ESCOPlot(object):
                 
         return outcome
             
-                
+    def calPFs(self, entry, P=-1, Q=-1, nameLabel='default', scaling=1):
+        import pandas as pd
+        """routine can be used to calculate reactive current and active current from either
+        """
+        #retreive channel ids in case they are specified as strings
+        if type(P) is str:
+            chars = len(P)
+            for idx, name in enumerate(self.channel_names[entry]):
+                if name == P:
+                    P = idx + 1  # Channel numbers start at 1
+                    break
+        if type(Q) is str:
+            chars = len(Q)
+            for idx, name in enumerate(self.channel_names[entry]):
+                if name == Q:
+                    Q = idx + 1  # Channel numbers start at 1
+                    break
+ 
+
+        outcome={'PF':[]}
+        if(Q!=-1 and P!=-1):
+            #calculate Iq
+            Q_vec=self.dataarrays[entry][Q-1]
+            P_vec=self.dataarrays[entry][P-1]
+#            PF = (abs(P_vec)/np.power( (np.power(P_vec, 2)+np.power(Q_vec,2)),0.5 ))
+#            S_vec=np.power( (np.power(P_vec, 2)+np.power(Q_vec,2)),0.5 )
+#            PF = (abs(P_vec)/S_vec)
+#            for v in range(len(PF)):
+#                if Q_vec[v] >0: # note that Q at POC is measured flowing back to the power plant
+#                    PF[v] = 2.0-PF[v]
+            
+##            Q_vec_sign = [1.0 if v >= 0 else -1.0 for v in Q_vec]
+#            Q_vec_sign = 2.0*(Q_vec >= 0) - 1.0
+#            PF=np.cos(np.arctan(scaling*Q_vec/P_vec))*Q_vec_sign
+#            for v in range(len(PF)):
+#                if Q_vec[v] >0: # note that Q at POC is measured flowing back to the power plant
+#                    PF[v] = 2.0+PF[v] # for ploting purpose: if pf is negative, then convert it to positive above 1.0
+                    
+            PF=np.cos(np.arctan(scaling*Q_vec/P_vec))
+            for v in range(len(PF)):
+                if Q_vec[v] <0: # note that Q at POC is measured flowing back to the power plant
+                    PF[v] = 2.0-PF[v] # for ploting purpose: if pf is negative, then convert it to positive above 1.0
+                    
+            new_column=pd.Index(['PF_'+nameLabel])
+            self.channel_names[entry]=self.channel_names[entry].append(new_column) 
+            self.dataarrays[entry]=np.append(self.dataarrays[entry], np.array([PF]), axis=0) #add the PF column
+            self.scales[entry]=np.append(self.scales[entry], [1.0]) #include 1 as scaling factor. This will later be specified when defining a plot for the vector with the "subplot_spec" routine
+            self.GSMG_arrays[entry]=np.append(self.GSMG_arrays[entry], [0.0])
+            #self.settle_arrays[entry]=np.append(self.settle_arrays[entry], [])
+            self.settle_arrays[entry].append( [] )  
+            #self.settleTimeArrays=np.append(self.settleTimeArrays[entry], [])
+            self.settleTimeArrays[entry].append([])
+            #self.riseTimeArrays=np.append(self.riseTimeArrays[entry], [])
+            self.riseTimeArrays[entry].append([])
+            #self.recTimeArrays=np.append(self.recTimeArrays[entry], [])
+            self.recTimeArrays[entry].append([])
+            self.dVdIq[entry].append({})
+            self.callout[entry].append({})
+            self.offsets[entry]=np.append(self.offsets[entry], [0.0])
+            self.tolerance_band_offset[entry]=np.append(self.tolerance_band_offset[entry], [0.0])
+            self.tolerance_band_base[entry]=np.append(self.tolerance_band_base[entry], [0.0])
+            #add entry to return dict
+            chan_id=len(self.channel_names[entry])
+            outcome['PF']=['PF_'+nameLabel, chan_id] #channel is not actual array ID but, first channel at position 0 is actually called '1'
+           
+        return outcome                
     
     def clear_subplot_spec(self):    
         self.plotspec = [[] for _ in range(12)]
@@ -692,12 +758,20 @@ class ESCOPlot(object):
         #Pinit = power[0]# this only works for PSS/E cases where the system is perfectly initialised already
         Pinit = power[max(distStartIndex-10, 0)]
 #        print Pinit
-        for n in range(len(power_ext) - 1):
-#            if (power[n] < Pinit*0.95) and (power[n+1] > Pinit*0.95) and (time[n+1] < 2.0):
-            if (power_ext[n] < Pinit*0.95) and (power_ext[n+1] > Pinit*0.95):
-#                p_recovery = time[n+1]
-                p_recovery = time_ext[n+1] 
-                break
+        if Pinit >=0: # find the recovery time if initialised active power being positive
+            for n in range(len(power_ext) - 1):
+    #            if (power[n] < Pinit*0.95) and (power[n+1] > Pinit*0.95) and (time[n+1] < 2.0):
+                if (power_ext[n] < Pinit*0.95) and (power_ext[n+1] > Pinit*0.95):
+    #                p_recovery = time[n+1]
+                    p_recovery = time_ext[n+1] 
+                    break
+        else: # cover for the BESS case when power is negative - or the power is measured in opposite direction.
+            for n in range(len(power_ext) - 1):
+    #            if (power[n] < Pinit*0.95) and (power[n+1] > Pinit*0.95) and (time[n+1] < 2.0):
+                if (power_ext[n] > Pinit*0.95) and (power_ext[n+1] < Pinit*0.95):
+    #                p_recovery = time[n+1]
+                    p_recovery = time_ext[n+1] 
+                    break
         if( (vchan!=-1) and (distEndTime==-1)):  
             if(distStartIndex>10):                 
                 voltage=self.dataarrays[entry][vchan-1]
@@ -707,9 +781,13 @@ class ESCOPlot(object):
                     if( ((voltage[n]<0.9) and (voltage[n+1]>=0.9)) or ( (voltage[n]>1.1) and (voltage[n+1]<=1.1) ) ):
 #                        distEndTime = time[n+1]
                         distEndTime = time[n] # Considered to be recovered when moving into the recovery zone
-        if( (Pinit>0.05*pmax) and (min(power[distStartIndex:-1])<0.95*Pinit) and (distEndTime < p_recovery) and (distEndTime!=-1) ): #only add recovery time to results if there is actually a drop of the power to below 0.95 p.u. AND distEndTime is not -1
-            self.recTimeArrays[entry][pchan-1].append([distEndTime, p_recovery]) #--> in plot routine, in case distEndTime==-1--> ignore because it likely means it was not specified
-        
+        if Pinit >=0:
+            if( (min(power[distStartIndex:-1])<0.95*Pinit) and (distEndTime < p_recovery) and (distEndTime!=-1) ): #only add recovery time to results if there is actually a drop of the power to below 0.95 p.u. AND distEndTime is not -1
+                self.recTimeArrays[entry][pchan-1].append([distEndTime, p_recovery]) #--> in plot routine, in case distEndTime==-1--> ignore because it likely means it was not specified
+        else:
+            if( (max(power[distStartIndex:-1])>0.95*Pinit) and (distEndTime < p_recovery) and (distEndTime!=-1) ): #only add recovery time to results if there is actually a drop of the power to below 0.95 p.u. AND distEndTime is not -1
+                self.recTimeArrays[entry][pchan-1].append([distEndTime, p_recovery]) #--> in plot routine, in case distEndTime==-1--> ignore because it likely means it was not specified
+
         return round(p_recovery, 3) #this only returns time at which power recovers, from start of dataset +offset --> if offset is t=1s and fault applied at t=2s for 120 ms and recovery time is 50 ms, then Prise will be 2s+0.12s+0.05s-1s - 1.17s
 
 
@@ -1060,6 +1138,23 @@ class ESCOPlot(object):
 #        return round(tempsettime, 2)
         return round(tempsettime, 3) # take into account the ms for Iq plot
 
+    def calloutd(self, entry, channel, callout_times = [0.0]):
+        if type(channel) is str:
+            chars = len(channel)
+            for idx, name in enumerate(self.channel_names[entry]):
+                if name == channel:
+                    channel = idx + 1  # Channel numbers start at 1
+                    break
+        time = self.timearrays[entry] + self.timeoffset[entry]
+        data = self.dataarrays[entry][channel-1]
+#        y_interp = np.interp(callout_time,time,data)
+        dstamp = []
+        for tstamp in callout_times:
+            y_interp = np.interp(tstamp,time,data)
+            dstamp.append(y_interp)
+            
+        return dstamp
+
     
     def comparison_bands(self, entry, channel, band):
         self.GSMG_arrays[entry][channel] = band
@@ -1249,7 +1344,7 @@ class ESCOPlot(object):
             self.tolerance_band_offset[plot_arrays[0]][plot_channel]=tolerance_band_offset
             self.tolerance_band_base[plot_arrays[0]][plot_channel]=tolerance_band_base
         else:
-            print 'Specified file number {:d} is not in memory'.format(plot_arrays[0])
+            print ('Specified file number {:d} is not in memory'.format(plot_arrays[0]))
             
         dataset_length=self.timearrays[plot_arrays[0]][-1] + self.timeoffset[plot_arrays[0]]
         return dataset_length 
@@ -1282,7 +1377,8 @@ class ESCOPlot(object):
             plt.subplots_adjust(bottom = 0.08, top = 0.95, right = 0.97, left = 0.12, hspace = 0.28)
         if subplots == 3:
             subplot_index = [311, 312, 313]
-            plt.figure(figsize = (15 / 2.54, 20.6 / 2.54))
+#            plt.figure(figsize = (15 / 2.54, 20.6 / 2.54))
+            plt.figure(figsize = (26.0/2.54, 29.7/ 2.54))
             plt.subplots_adjust(bottom = 0.05, top = 0.97, right = 0.97, left = 0.10, hspace = 0.32)
         if subplots == 4:
             subplot_index = [221, 222, 223, 224]
@@ -1322,8 +1418,10 @@ class ESCOPlot(object):
             plt.subplots_adjust(bottom = 0.05, top = 0.97, right = 0.99, left = 0.05, hspace = 0.27, wspace = 0.1)
         if subplots == 10:
             subplot_index = [[(5,2),(0,0)],[(5,2),(0,1)],[(5,2),(1,0)],[(5,2),(1,1)],[(5,2),(2,0)],[(5,2),(2,1)],[(5,2),(3,0)],[(5,2),(3,1)],[(5,2),(4,0)],[(5,2),(4,1)]]
-            plt.figure(figsize = (36.0/2.54, 22.5/ 2.54))
-            plt.subplots_adjust(bottom = 0.05, top = 0.97, right = 0.99, left = 0.05, hspace = 0.27, wspace = 0.1)
+#            plt.figure(figsize = (36.0/2.54, 22.5/ 2.54))
+#            plt.subplots_adjust(bottom = 0.05, top = 0.97, right = 0.99, left = 0.05, hspace = 0.27, wspace = 0.1)
+            plt.figure(figsize = (26.0/2.54, 29.7/ 2.54))
+            plt.subplots_adjust(bottom = 0.05, top = 0.55, right = 0.55, left = 0.05, hspace = 0.20, wspace = 0.08)
         #
         plt.rc('xtick', labelsize = 10)
         plt.rc('ytick', labelsize = 10)
@@ -1712,8 +1810,11 @@ class ESCOPlot(object):
             plt.savefig(figname + '.png', format = 'png', dpi=300)
             #plt.savefig(figname + '.emf', format = 'emf')
             plt.savefig(figname + '.svg', format = 'svg')
-            imgdata=StringIO.StringIO()
-            plt.savefig(imgdata, dpi =200)
+            # imgdata=StringIO()
+            # plt.savefig(imgdata, dpi =200)
+            # plt.savefig(imgdata)
+            imgdata=io.BytesIO()
+            plt.savefig(imgdata)
 
         if show: 
             plt.show()

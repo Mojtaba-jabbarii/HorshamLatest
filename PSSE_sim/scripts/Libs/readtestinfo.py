@@ -14,6 +14,8 @@ Created on Mon Jun 29 09:44:38 2020
 
 21/6/2023: Update Network contingency list into network Scenarios list
 
+28/2/2024: Update OutputChannels tab
+
 """
 #making some mods
 
@@ -109,7 +111,7 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
             
         SetpointsSheet_compInfo=pd.read_excel(testdefSheetPath, sheet_name="Setpoints", usecols="B,C,D,E,F", keep_default_na=False, skiprows=skip_rows)  
         #print(SetpointsSheet_compInfo)
-        SetpointsSheet_stp_info=pd.read_excel(testdefSheetPath, sheet_name="Setpoints", usecols="F:MZ", keep_default_na=False, skiprows=2)  
+        SetpointsSheet_stp_info=pd.read_excel(testdefSheetPath, sheet_name="Setpoints", usecols="F:VZ", keep_default_na=False, skiprows=2)  
         #print(SetpointsSheet_stp_info)
         
         SetpointsDict={}
@@ -214,7 +216,7 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
                 
         TovSheet=pd.read_excel(testdefSheetPath, sheet_name="TOV", usecols=None, keep_default_na=False, skiprows=5)
         for row_cnt in range(0, len(TovSheet)):
-            scenario_name='tov'+str(OrtSheet['CaseNr'].iloc[row_cnt])
+            scenario_name='tov'+str(TovSheet['CaseNr'].iloc[row_cnt])
             ScenariosDict[scenario_name]={}
             for column_name in TovSheet.columns:
                 if(column_name != 'CaseNr'):
@@ -271,7 +273,8 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
             Test_Type=str(ConDistSheet['Test Type'].iloc[row_cnt])
             if CaseNr != '':
                 scheme = 0
-                scenario_name='con'+str(CaseNr)
+                if float(CaseNr) < 10.0: scenario_name='con0'+str(CaseNr) # add zero in if case number is only one digit
+                else: scenario_name='con'+str(CaseNr)
                 NetworkScenDict[scenario_name]=[{}]
                 for column_name in ConDistSheet.columns:
                     if(column_name != 'CaseNr'):
@@ -301,7 +304,8 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
         for row_cnt in range(0, len(SteadyStateSheet)):
             CaseNr=str(SteadyStateSheet['CaseNr'].iloc[row_cnt])
             if CaseNr != '':
-                scenario_name='con'+str(CaseNr)
+                if float(CaseNr) < 10.0: scenario_name='con0'+str(CaseNr) # add zero in if case number is only one digit
+                else: scenario_name='con'+str(CaseNr)
                 SteadyStateDict[scenario_name]=[{}]
                 for column_name in SteadyStateSheet.columns:
                     if(column_name != 'CaseNr'):
@@ -319,29 +323,51 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
         
     #-------------------------------------------------------------------------
     if('MonitorBuses' in relevant_tabs or relevant_tabs=='all'):
-        #MonitorBuses
+#        #MonitorBuses
+#        BusLibSheet=pd.read_excel(testdefSheetPath, sheet_name="MonitorBuses", usecols="A,B,C", keep_default_na=False)
+#        #print(FileSettingsSheet)
+#        BusLibDict=zip(BusLibSheet.bus_number, BusLibSheet.bus_name, BusLibSheet.bus_code )
+##        BusLibDict=zip(BusLibSheet.bus_number, BusLibSheet.bus_name)
+##        if('' in BusLibDict.keys()):
+##            del BusLibDict['']
+#        #print(FileSettingsDict)
+#        print("Read MonitorBuses")
+#        return_dict['MonitorBuses']=BusLibDict
+
         BusLibSheet=pd.read_excel(testdefSheetPath, sheet_name="MonitorBuses", usecols="A,B,C", keep_default_na=False)
-        #print(FileSettingsSheet)
-#        BusLibDict=dict(zip(BusLibSheet.bus_number, BusLibSheet.bus_name, BusLibSheet.bus_code ))
-        BusLibDict=dict(zip(BusLibSheet.bus_number, BusLibSheet.bus_name))
-        if('' in BusLibDict.keys()):
-            del BusLibDict['']
-        #print(FileSettingsDict)
-        print("Read Branch Lib")
+        bus_numbers = BusLibSheet.bus_number.to_list()
+        bus_numbers = [int(x) for x in bus_numbers]
+        bus_names =BusLibSheet.bus_name.to_list()
+#        print(bus_numbers)
+        BusLibDict = [bus_numbers, bus_names]
+        print("Read MonitorBuses")
         return_dict['MonitorBuses']=BusLibDict
-    
+
     #-------------------------------------------------------------------------
     if('MonitorBranches' in relevant_tabs or relevant_tabs=='all'):
-        #MonitorBuses
+#        #MonitorBranches
+#        BranchLibSheet=pd.read_excel(testdefSheetPath, sheet_name="MonitorBranches", usecols="A,B,C,D,E", keep_default_na=False)
+#        #print(FileSettingsSheet)
+#        BranchLibDict=zip(BranchLibSheet.brch_from, BranchLibSheet.brch_to, BranchLibSheet.brch_id, BranchLibSheet.brch_name, BranchLibSheet.brch_code)
+##        BranchLibDict=zip(BranchLibSheet.brch_from, BranchLibSheet.brch_to, BranchLibSheet.brch_id, BranchLibSheet.brch_name)
+##        if('' in BranchLibDict.keys()):
+##            del BranchLibDict['']
+#        #print(FileSettingsDict)
+#        print("Read MonitorBranches")
+#        return_dict['MonitorBranches']=BranchLibDict
+
+
         BranchLibSheet=pd.read_excel(testdefSheetPath, sheet_name="MonitorBranches", usecols="A,B,C,D,E", keep_default_na=False)
-        #print(FileSettingsSheet)
-#        BranchLibDict=dict(zip(BranchLibSheet.brch_from, BranchLibSheet.brch_to, BranchLibSheet.brch_id, BranchLibSheet.brch_name, BranchLibSheet.brch_code))
-        BranchLibDict=dict(zip(BranchLibSheet.brch_from, BranchLibSheet.brch_to, BranchLibSheet.brch_id, BranchLibSheet.brch_name))
-        if('' in BranchLibDict.keys()):
-            del BranchLibDict['']
-        #print(FileSettingsDict)
-        print("Read Branch Lib")
-        return_dict['MonitorBuses']=BranchLibDict
+        from_buses = BranchLibSheet.brch_from.to_list()
+        from_buses = [int(x) for x in from_buses]
+        to_buses = BranchLibSheet.brch_to.to_list()
+        to_buses = [int(x) for x in to_buses]
+        brch_ids = BranchLibSheet.brch_id.to_list()
+        brch_ids = [int(x) for x in brch_ids]
+        brch_names = BranchLibSheet.brch_name.to_list()
+        BranchLibDict = [from_buses, to_buses, brch_ids, brch_names]
+        print("Read MonitorBranches")
+        return_dict['MonitorBranches']=BranchLibDict
 
     #-------------------------------------------------------------------------
     if('PowerCapability' in relevant_tabs or relevant_tabs=='all'):
@@ -377,10 +403,35 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
         #print(ProfilesDict)
         print("Read Test PowerCapability")
         return_dict['PowerCapability']=ProfilesDict
-        
+
+    if('OutputChannels' in relevant_tabs or relevant_tabs=='all'):
+        OutChansDict={}
+        OutputChannelsSheet=pd.read_excel(testdefSheetPath, sheet_name="OutputChannels", usecols="A:I", keep_default_na=False, skiprows=1)
+        for row_cnt in range(0, len(OutputChannelsSheet)):
+            CaseNr=str(OutputChannelsSheet['ChanNum'].iloc[row_cnt])
+            if float(CaseNr) < 10.0: scenario_name='ChanNum0'+str(CaseNr) # add zero in if case number is only one digit
+            else: scenario_name='ChanNum'+str(CaseNr)
+            
+            OutChansDict[scenario_name]={}
+            for column_name in OutputChannelsSheet.columns:
+                if(column_name != 'ChanNum'):
+                    OutChansDict[scenario_name][column_name]=OutputChannelsSheet[column_name].iloc[row_cnt] 
+                    
+
+#        CaseNr=str(OutputChannelsSheet['Instance'].iloc[row_cnt])
+#        Location = OutputChannelsSheet.Location.to_list()
+#        Type = OutputChannelsSheet.Type.to_list()
+#        Position = OutputChannelsSheet.Position.to_list()
+#        Position = [str(x) for x in Position]
+#        Name = OutputChannelsSheet.Name.to_list()
+#        Legend = OutputChannelsSheet.Legend.to_list()
+#        OutChansDict = [Location, Type, Position, Name, Legend]
+#        OutChansDict[scenario_name].append(tempDict)
+        print("Read OutputChannels")
+        return_dict['OutputChannels']=OutChansDict
     #-------------------------------------------------------------------------
     # RETURN ALL DICTS
-    print("Done")
+    print("Done dicts readin")
     
     return return_dict
     
