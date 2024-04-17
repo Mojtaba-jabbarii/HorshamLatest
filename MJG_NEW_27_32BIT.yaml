@@ -1,0 +1,36 @@
+name: NEW_27_32BIT
+channels:
+  - defaults
+dependencies:
+  - ca-certificates=2023.12.12=haa95532_0
+  - certifi=2020.6.20=pyhd3eb1b0_3
+  - pip=19.3.1=py27_0
+  - python=2.7.18=hfb89ab9_0
+  - pywin32=227=py27h0c8e037_1
+  - setuptools=44.0.0=py27_0
+  - sqlite=3.30.1=h0c8e037_0
+  - vc=9=h2eaa2aa_6
+  - vs2008_runtime=9.00.30729.1=haa95532_6
+  - wheel=0.37.1=pyhd3eb1b0_0
+  - wincertstore=0.2=py27h87a2792_0
+  - pip:
+    - backports-functools-lru-cache==1.6.6
+    - cycler==0.10.0
+    - et-xmlfile==1.0.1
+    - jdcal==1.4.1
+    - kiwisolver==1.1.0
+    - lxml==4.9.3
+    - matplotlib==2.2.5
+    - numpy==1.16.6
+    - openpyxl==2.6.4
+    - pandas==0.24.2
+    - pyparsing==2.4.7
+    - pypsse==0.1.9
+    - python-dateutil==2.8.2
+    - python-docx==0.8.11
+    - pytz==2023.3.post1
+    - rope==0.23.0
+    - six==1.16.0
+    - xlrd==1.2.0
+prefix: C:\Users\SIMULATION\.conda\envs\NEW_27_32BIT
+
