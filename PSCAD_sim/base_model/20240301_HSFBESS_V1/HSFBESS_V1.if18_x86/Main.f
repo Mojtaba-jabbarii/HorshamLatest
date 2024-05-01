@@ -488,7 +488,7 @@
 
 
 ! 10:[const] Real Constant 'HV Vol base'
-      HV_Vol_base = 20.0
+      HV_Vol_base = 220.0
 
 ! 20:[const] Real Constant 'MV Vol base'
       MV_Vol_base = 33.0
@@ -1008,7 +1008,7 @@
 
 ! 810:[gain] Gain Block 
 !  Gain
-      BessWSpt = 90000.0 * BessWSpt_pu
+      BessWSpt = 119000.0 * BessWSpt_pu
 
 ! 820:[compar] Two Input Comparator 
 !
@@ -2107,7 +2107,7 @@
 
 ! 10:[const] Real Constant 'HV Vol base'
 
-      HV_Vol_base = 20.0
+      HV_Vol_base = 220.0
 
 ! 20:[const] Real Constant 'MV Vol base'
 
@@ -2905,7 +2905,7 @@
 
 
 ! 10:[const] Real Constant 'HV Vol base'
-      HV_Vol_base = 20.0
+      HV_Vol_base = 220.0
 
 ! 20:[const] Real Constant 'MV Vol base'
       MV_Vol_base = 33.0
@@ -3637,7 +3637,7 @@
 
 
 ! 10:[const] Real Constant 'HV Vol base'
-      HV_Vol_base = 20.0
+      HV_Vol_base = 220.0
 
 ! 20:[const] Real Constant 'MV Vol base'
       MV_Vol_base = 33.0

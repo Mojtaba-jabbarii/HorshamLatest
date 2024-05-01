@@ -34,8 +34,8 @@ from io import BytesIO
 ###############################################################################
 #USER INPUTS
 ###############################################################################
-TestDefinitionSheet=r'20230828_SUM_TESTINFO_V1.xlsx'
-raw_SS_result_folder = '20240208-135931_S52512_SS'
+TestDefinitionSheet=r'20230828_SUM_TESTINFO_V2.xlsx'
+raw_SS_result_folder = '20240424-104251_S52512'
 simulation_batches=['S52512_SS']
 simulation_batch_label = simulation_batches[0]
 
@@ -67,6 +67,13 @@ for case in summary_dfs.keys():
 
 genoff = '_off' 
 genon = '_on'
+
+# For assessment
+vol_nom_high = 1.1
+vol_nom_low = 0.9
+vol_fluc_gen_HV = 0.03
+vol_fluc_gen_LV = 0.04
+vol_fluc_lol = 0.05
 ###############################################################################
 # Supporting functions
 ###############################################################################
@@ -145,7 +152,7 @@ def generate_plot(x_axis, y_axes, legends, label_x, label_y, title):
     plt.ylabel(label_y, fontsize = 10)
     plt.xlabel(label_x, fontsize = 10)
     plt.legend()
-    plt.xticks(rotation = 45)
+    plt.xticks(rotation = 90)
     plt.margins( tight = True)
     plt.grid()
     plt.minorticks_off()
@@ -201,7 +208,7 @@ def vf_gc_check(row):
                 
 # function to check pass fail criterion
 def vl_lol_check(row):
-    if (abs(row['Volt Fluc(%) GenOFF']) > 3.00) and (abs(row['Volt Fluc(%) GenOFF']) > abs(row['Volt Fluc(%) GenON'])):
+    if (abs(row['Volt Fluc(%) GenOFF']) > 5.00) and (abs(row['Volt Fluc(%) GenOFF']) > abs(row['Volt Fluc(%) GenON'])):
         val = 'yes'
     else:
         val = 'no'
@@ -227,7 +234,7 @@ def sumarise_results(result_dfs, summary_dfs):
                 summary_dfs[case][df_to_sheet['volt_levels']['df']]['summary'].append(df_vlt_lvl)
                 
                 # Voltage levels plot
-                imgdata = generate_plot(df_vlt_lvl['Bus Name'], [df_vlt_lvl['Voltage Level(pu) GenON'], df_vlt_lvl['Voltage Level(pu) GenOFF']], ['VL(pu) GenON', 'VL(pu) GenOFF'], 'Bus Names', 'Voltage(pu)', 'Voltage Levels')
+                imgdata = generate_plot(df_vlt_lvl['Bus Name'], [df_vlt_lvl['Voltage Level(pu) GenON'], df_vlt_lvl['Voltage Level(pu) GenOFF']], ['VL(pu) GenON', 'VL(pu) GenOFF'], 'Bus Name', 'Voltage(pu)', 'Voltage Levels')
                 summary_dfs[case][df_to_sheet['volt_levels']['df']]['plot'] = []
                 summary_dfs[case][df_to_sheet['volt_levels']['df']]['plot'].append(imgdata)
                 
@@ -252,7 +259,7 @@ def sumarise_results(result_dfs, summary_dfs):
                 summary_dfs[case][df_to_sheet['line_loadings']['df']]['appendix'] = []
                 summary_dfs[case][df_to_sheet['line_loadings']['df']]['appendix'].append(pvt_df_high)
                 
-                # line loading plot
+                # line loading plotvltg_fluc_gen_chng.pop
                 l_profile_plot = df_high.loc[(df_high['Case Number'] == 'case0 (base)')]
                 imgdata = generate_plot(l_profile_plot['Branch Name'], [l_profile_plot['Loading(%) GenON'], l_profile_plot['Loading(%) GenOFF']], ['Loading(%) GenON', 'Loading(%) GenOFF'], 'Branch Name', 'Loading(%)', 'Line Loadings(%)')
                 summary_dfs[case][df_to_sheet['line_loadings']['df']]['plot'] = []
@@ -270,7 +277,8 @@ def sumarise_results(result_dfs, summary_dfs):
                 df_high['Loading(%) GenON'] = pd.to_numeric(df_high['Loading(%) GenON'])
                 line_ldng_max = df_high.loc[df_high.groupby('Case Reference')['Loading(%) GenON'].idxmax()]
                 line_ldng_min = df_high.loc[df_high.groupby('Case Reference')['Loading(%) GenON'].idxmin()]
-                line_ldng_smry = pd.merge(line_ldng_max,line_ldng_min, how = 'outer', on = ['Case Reference'])
+                #line_ldng_smry = pd.merge(line_ldng_max,line_ldng_min, how = 'outer', on = ['Case Reference'])
+                line_ldng_smry = line_ldng_max  #ignoring minimum loadings
                 #vltg_fluc_gen_chng_smry = vltg_fluc_gen_chng_smry.T.drop_duplicates().T
                 summary_dfs[case][df_to_sheet['line_loadings']['df']]['summary'] = []
                 summary_dfs[case][df_to_sheet['line_loadings']['df']]['summary'].append(line_ldng_smry)
@@ -279,7 +287,7 @@ def sumarise_results(result_dfs, summary_dfs):
             elif df_to_sheet['volt_fluc_gen_chng']['df']+'_'+case+'_on' in key: # summary tables for voltage fluctuation due to change in generation
                 df_name = df_to_sheet['volt_fluc_gen_chng']['df']+'_'+case
                 vltg_fluc_gen_chng = result_dfs[df_name+'_on']
-                
+                vltg_fluc_gen_chng.iloc[:,5] = vltg_fluc_gen_chng.iloc[:,5].abs() #get absolute value of all fluctuations
                 # adppendix of voltage flcutuation due to gen chnage
                 vltg_fluc_gen_chng.pop('Case Number')
                 vltg_fluc_gen_chng_pivot = pd.pivot_table(data = vltg_fluc_gen_chng, index = ['Case Reference','Bus Name'], aggfunc = ['max'])
@@ -288,7 +296,7 @@ def sumarise_results(result_dfs, summary_dfs):
                 summary_dfs[case][df_to_sheet['volt_fluc_gen_chng']['df']]['appendix'].append(vltg_fluc_gen_chng_pivot)
                 
                 # Plot for voltage flcutuation due to gen change
-                imgdata = generate_plot(vltg_fluc_gen_chng['Bus Name'], [vltg_fluc_gen_chng['Voltage Level(pu) Prior'], vltg_fluc_gen_chng['Voltage Level(pu) After']], ['Voltage Level(pu) Prior', 'Voltage Level(pu) After'], 'Bus Names', 'Voltage(pu)', 'Voltage Levels Gen Change')
+                imgdata = generate_plot(vltg_fluc_gen_chng['Bus Name'], [vltg_fluc_gen_chng['Voltage Level(pu) Prior'], vltg_fluc_gen_chng['Voltage Level(pu) After']], ['Voltage Level(pu) Prior', 'Voltage Level(pu) After'], 'Bus Name', 'Voltage(pu)', 'Voltage Levels Gen Change')
                 summary_dfs[case][df_to_sheet['volt_fluc_gen_chng']['df']]['plot'] = []
                 summary_dfs[case][df_to_sheet['volt_fluc_gen_chng']['df']]['plot'].append(imgdata)
                 
@@ -302,9 +310,10 @@ def sumarise_results(result_dfs, summary_dfs):
                 vltg_fluc_gen_chng.pop('Voltage Level(pu) Prior')
                 vltg_fluc_gen_chng.pop('Voltage Level(pu) After')
                 vltg_fluc_gen_chng_max = vltg_fluc_gen_chng.loc[vltg_fluc_gen_chng.groupby('Case Reference')['Volt Fluc(%)'].idxmax()]
-                vltg_fluc_gen_chng_min = vltg_fluc_gen_chng.loc[vltg_fluc_gen_chng.groupby('Case Reference')['Volt Fluc(%)'].idxmin()]
-                vltg_fluc_gen_chng_smry = pd.merge(vltg_fluc_gen_chng_max,vltg_fluc_gen_chng_min, how = 'outer', on = ['Case Reference'])
+                #vltg_fluc_gen_chng_min = vltg_fluc_gen_chng.loc[vltg_fluc_gen_chng.groupby('Case Reference')['Volt Fluc(%)'].idxmin()]
+                #vltg_fluc_gen_chng_smry = pd.merge(vltg_fluc_gen_chng_max,vltg_fluc_gen_chng_min, how = 'outer', on = ['Case Reference'])
                 #vltg_fluc_gen_chng_smry = vltg_fluc_gen_chng_smry.T.drop_duplicates().T
+                vltg_fluc_gen_chng_smry = vltg_fluc_gen_chng_max.T.drop_duplicates().T
                 summary_dfs[case][df_to_sheet['volt_fluc_gen_chng']['df']]['summary'] = []
                 summary_dfs[case][df_to_sheet['volt_fluc_gen_chng']['df']]['summary'].append(vltg_fluc_gen_chng_smry)
                 
@@ -313,22 +322,22 @@ def sumarise_results(result_dfs, summary_dfs):
                 vltfluc_lol = pd.concat([result_dfs[df_name+'_on'],result_dfs[df_name+'_off']],axis = 1)
                 #vltfluc_lol = vltfluc_lol.T.drop_duplicates().T not sure why not working took lot of my time
                 vltfluc_lol = vltfluc_lol.loc[:,~vltfluc_lol.columns.duplicated()]
-                
+                vltfluc_lol.iloc[:,[4,6]] = vltfluc_lol.iloc[:,[4,6]].abs()
                 # adppendix of voltage flcutuation due to loss of line
-                vltfluc_lol.pop('Case Number')
+                vltfluc_lol.pop('Case Number')# adppendix of voltage fluctuation due to loss of line'], aggfunc = ['max'])
                 vltfluc_lol_pivot = pd.pivot_table(data =  vltfluc_lol, index = ['Case Reference','Bus Name'], aggfunc = ['max'])
                 vltfluc_lol_pivot.style.applymap( hl_vltg_fluc_violation,subset = [('max','Volt Fluc(%) GenON'),('max','Volt Fluc(%) GenOFF')]).format({'Volt Fluc(%) GenOFF':'{0:,.3f}','Volt Fluc(%) GenON':'{0:,.3f}'})
                 summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]['appendix'] = []
                 summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]['appendix'].append(vltfluc_lol_pivot)
                 
                 # Plot for voltage flcutuation due to lol
-                imgdata = generate_plot(vltfluc_lol['Bus Name'], [vltfluc_lol['Volt Fluc(%) GenON'], vltfluc_lol['Volt Fluc(%) GenOFF']], ['Volt Fluc(%) GenON', 'Volt Fluc(%) GenOFF'], 'Bus Names', 'Volt Fluc(%)', 'Voltage Fluctuation Loss of Line')
+                imgdata = generate_plot(vltfluc_lol['Bus Name'], [vltfluc_lol['Volt Fluc(%) GenON'], vltfluc_lol['Volt Fluc(%) GenOFF']], ['Volt Fluc(%) GenON', 'Volt Fluc(%) GenOFF'], 'Bus Name', 'Volt Fluc(%)', 'Voltage Fluctuation Contingencies')
                 summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]['plot'] = []
                 summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]['plot'].append(imgdata)
                 
                 
                 #Violation results
-                vltfluc_lol_violation = vltfluc_lol.loc[abs(vltfluc_lol['Volt Fluc(%) GenON'])>3.00]
+                vltfluc_lol_violation = vltfluc_lol.loc[abs(vltfluc_lol['Volt Fluc(%) GenON'])>5.00]
                 if not vltfluc_lol_violation.empty: vltfluc_lol_violation['Pass'] = vltfluc_lol_violation.apply(vl_lol_check, axis = 1)
                 summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]['violations'] = []
                 summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]['violations'].append(vltfluc_lol_violation)
@@ -336,9 +345,10 @@ def sumarise_results(result_dfs, summary_dfs):
                 #Summary results for voltage fluctuation due to gen change
                 vltfluc_lol.pop('Voltage Level(pu) GenOFF')
                 vltfluc_lol.pop('Voltage Level(pu) GenON')
-                vltfluc_lol_max = vltfluc_lol.loc[vltfluc_lol.groupby('Case Reference')['Volt Fluc(%) GenON'].idxmax()]
-                vltfluc_lol_min = vltfluc_lol.loc[vltfluc_lol.groupby('Case Reference')['Volt Fluc(%) GenON'].idxmin()]
-                vltfluc_lol_smry = pd.merge( vltfluc_lol_max,vltfluc_lol_min, how = 'outer', on = ['Case Reference'])
+                vltfluc_lol_smry = vltfluc_lol.loc[vltfluc_lol.groupby('Case Reference')['Volt Fluc(%) GenON'].idxmax()]
+                #vltfluc_lol_max = vltfluc_lol.loc[vltfluc_lol.groupby('Case Reference')['Volt Fluc(%) GenON'].idxmax()]
+                #vltfluc_lol_min = vltfluc_lol.loc[vltfluc_lol.groupby('Case Reference')['Volt Fluc(%) GenON'].idxmin()]
+                #vltfluc_lol_smry = pd.merge( vltfluc_lol_max,vltfluc_lol_min, how = 'outer', on = ['Case Reference'])
                 #vltfluc_lol_smry = vltfluc_lol_smry.T.drop_duplicates().T
                 summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]['summary'] = []
                 summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]['summary'].append(vltfluc_lol_smry)
@@ -372,10 +382,9 @@ def initialise_report():
 def replace_placeholders(report):
     replace_dict = {'[Project Name]':str(ProjectDetailsDict['Name']), '[Project Name Short]':str(ProjectDetailsDict['NameShrt']), '[Total Plant MW at POC]': str(ProjectDetailsDict['PlantMW']), 
                     '[Developer]': str(ProjectDetailsDict['Dev']), '[Network Service Provider]':str(ProjectDetailsDict['NSP']), '[Town]': str(ProjectDetailsDict['Town']), 
-                    '[State]': str(ProjectDetailsDict['State']), '[Connection type]': str(ProjectDetailsDict['contyp']), '[POC Feeder]': str(ProjectDetailsDict['poc_fdr']),
-                    '[Nominal POC voltage (kV)]': str(ProjectDetailsDict['VPOCkv']), '[PSSEversion]': str(PSSEmodelDict['PSSEversion']), '[Lot/DP]': str(ProjectDetailsDict['lot_dp']),
-                    '[Address]': str(ProjectDetailsDict['addrs']), '[LGA]': str(ProjectDetailsDict['lga']), '[POC Substation]': str(ProjectDetailsDict['Sub']),
-                    '[Plant Model]': str(ProjectDetailsDict['plnt_mdl'])
+                    '[State]': str(ProjectDetailsDict['State']), '[Connection type]': str(ProjectDetailsDict['contyp']),'[POC Feeder]': str(ProjectDetailsDict['poc_fdr']),
+                    '[Nominal POC voltage (kV)]': str(ProjectDetailsDict['VPOCkv']), '[PSSEversion]': str(PSSEmodelDict['PSSEversion']),'[Lot/DP]': str(ProjectDetailsDict['lot_dp']),
+                    '[Address]': str(ProjectDetailsDict['addrs']), '[LGA]': str(ProjectDetailsDict['lga']), '[POC Substation]': str(ProjectDetailsDict['Sub']), '[Plant Model]': str(ProjectDetailsDict['plnt_mdl'])
                     }
     for key,value in replace_dict.items():
         for p in report.paragraphs:
@@ -455,7 +464,7 @@ def volt_lvl_report(report, summary_dfs, probs):
     report.add_paragraph('')
     #Add Summary tables
     report.add_heading("Summary of findings", level=3 )
-    temp_text="The results for each bus before and after addition of  "+str(ProjectDetailsDict['Name'])+" are listed in the tables below."
+    temp_text="The results for each bus before and after addition of "+str(ProjectDetailsDict['Name'])+" are listed in the tables below."
     report.add_paragraph(temp_text)
     for case in summary_dfs.keys():
         if(summary_dfs[case][df_to_sheet['volt_levels']['df']]!={}):
@@ -521,13 +530,14 @@ def line_loadings_report(report, summary_dfs, probs):
     report.add_paragraph('')
     #Add Summary tables
     report.add_heading("Summary of findings", level=3 )
-    temp_text="The results for each bus before and after addition of  "+str(ProjectDetailsDict['Name'])+" are listed in the tables below."
+    temp_text="The results for each bus before and after addition of "+str(ProjectDetailsDict['Name'])+" are listed in the tables below."
     report.add_paragraph(temp_text)
     for case in summary_dfs.keys():
         if(summary_dfs[case][df_to_sheet['line_loadings']['df']]!={}):
             report.add_heading(ident_case_name(case), level=4)#maybe make this a label of the table instead of making it a  heading.
             for frame_id in range(0, len(summary_dfs[case][df_to_sheet['line_loadings']['df']]['summary'])):#add summary tables of results to word doc.
-                data_frame_to_docx_table(summary_dfs[case][df_to_sheet['line_loadings']['df']]['summary'][frame_id], report)
+                #data_frame_to_docx_table(summary_dfs[case][df_to_sheet['line_loadings']['df']]['summary'][frame_id], report)
+                data_frame_to_docx_table(summary_dfs[case][df_to_sheet['line_loadings']['df']]['summary'][frame_id].iloc[:,[0,1,2,3]], report)
                 report.add_paragraph('')
     #Add plots
     plots_present=False
@@ -588,7 +598,8 @@ def bus_volt_fluct_gen_chng_report(report, summary_dfs, probs):
     report.add_paragraph('')
     #Add Summary tables
     report.add_heading("Summary of findings", level=3 )
-    temp_text="The maximum and minimum voltage fluctuation for each bus under the given scenarios are listed in the tables below. "
+    #temp_text="The maximum and minimum voltage fluctuation for each bus under the given scenarios are listed in the tables below. "
+    temp_text="The maximum voltage fluctuation for each bus under the given scenarios are listed in the tables below. "
     report.add_paragraph(temp_text)
     for case in summary_dfs.keys():
         if(summary_dfs[case][df_to_sheet['volt_fluc_gen_chng']['df']]!={}):
@@ -645,14 +656,14 @@ def bus_volt_fluct_cont_report(report, summary_dfs, probs):
     p=report.add_paragraph('')
     run=p.add_run()
     run.add_break(WD_BREAK.PAGE)
-    report.add_heading("Voltage fluctuations due to loss of line contingencies", level=2 )
-    temp_text="This section explores voltage fluctuations at the buses of interest due to loss of line contingencies."
+    report.add_heading("Voltage fluctuations due to contingencies", level=2 )
+    temp_text="This section explores voltage fluctuations at the buses of interest due to loss of line, transformer, and generator contingencies."
     temp_text+=" These voltage fluctions are than compared with the existing voltage fluctuations i.e. prior connecting the proposed plant. The voltage fluctuations should not be worse than the existing voltage fluctuations. "
     report.add_paragraph(temp_text)
     report.add_paragraph('')
     #Add Summary tables
     report.add_heading("Summary of findings", level=3 )
-    temp_text="The maximum and minimum voltage fluctuation for each bus under the given scenarios are listed in the tables below. "
+    temp_text="The maximum voltage fluctuation for each bus under the given scenarios are listed in the tables below. "
     report.add_paragraph(temp_text)
     for case in summary_dfs.keys():
         if(summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]!={}):
@@ -668,7 +679,7 @@ def bus_volt_fluct_cont_report(report, summary_dfs, probs):
                 plots_present=True
     if(plots_present):
         report.add_heading("Plots", level=3 )
-        temp_text="The scatter plots shows the voltage fluctuations due to loss of line contingencies. "
+        temp_text="The scatter plots shows the voltage fluctuations due to contingencies. "
         report.add_paragraph(temp_text)
         for case in summary_dfs.keys():
             if(summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]!={}):
@@ -810,7 +821,7 @@ def add_appendices(report,summary_dfs):
                 
     #Line Loadings
     report.add_heading("Appendix4", level=3 )
-    temp_text="The voltage fluctuations due to loss of line contingencies on all the monitored buses as per section[]"
+    temp_text="The voltage fluctuations due to contingencies on all the monitored buses as per section[]"
     report.add_paragraph(temp_text)
     for case in summary_dfs.keys():
         if(summary_dfs[case][df_to_sheet['volt_fluc_lol']['df']]!={}):

@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1712114712" />
+    <param name="revisor" value="SIMULATION, 1714540814" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -291,7 +291,7 @@
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="StationDefn" name="Station" group="" url="" version="" build="" crc="88289015" instances="1" key="" view="false" id="1892424611" date="1709268088">
+    <Definition classid="StationDefn" name="Station" group="" url="" version="" build="" crc="88289015" instances="1" key="" view="false" id="1892424611" date="1714108892">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="47888472" instances="1" key="" view="false" date="1712114588" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="117920931" instances="1" key="" view="false" date="1714113230" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -3048,7 +3048,7 @@ OX2 Australia - Jan 2024
         <User classid="UserCmp" name="const" defn="master:const" id="72549883" x="504" y="90" w="76" h="35" z="10" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="HV Vol base" />
-            <param name="Value" value="20" />
+            <param name="Value" value="220" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
@@ -7380,6 +7380,87 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="72" y="0" />
         </Wire>
+        <Wire classid="WireOrthogonal" name="" x="3330" y="522" w="100" h="10" orient="0" id="1614855791" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="90" y="0" />
+        </Wire>
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="681669795" x="3420" y="522" w="93" h="40" z="1870" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="65740200">
+            <param name="Name" value="PLANT_Q_HV" />
+            <param name="Group" value="" />
+            <param name="Display" value="1" />
+            <param name="Scale" value="1.0" />
+            <param name="Units" value="MVAR" />
+            <param name="mrun" value="0" />
+            <param name="Pol" value="0" />
+            <param name="Min" value="-15" />
+            <param name="Max" value="15" />
+            <param name="UseSignalName" value="1" />
+            <param name="enab" value="1" />
+          </paramlist>
+          <paramlist name="global_address">
+            <param name="gaddress" value="100663348" />
+          </paramlist>
+        </User>
+        <User classid="UserCmp" name="master:datalabel" defn="master:datalabel" id="798488375" x="3330" y="522" w="82" h="23" z="1" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="127230955">
+            <param name="Name" value="PLANT_Q_MV" />
+          </paramlist>
+        </User>
+        <Wire classid="WireOrthogonal" name="" x="3330" y="486" w="100" h="10" orient="0" id="1745176268" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="90" y="0" />
+        </Wire>
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1228441349" x="3420" y="486" w="91" h="40" z="1910" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="65740200">
+            <param name="Name" value="PLANT_P_HV" />
+            <param name="Group" value="" />
+            <param name="Display" value="1" />
+            <param name="Scale" value="1.0" />
+            <param name="Units" value="MW" />
+            <param name="mrun" value="0" />
+            <param name="Pol" value="0" />
+            <param name="Min" value="-0.1" />
+            <param name="Max" value="22" />
+            <param name="UseSignalName" value="1" />
+            <param name="enab" value="1" />
+          </paramlist>
+          <paramlist name="global_address">
+            <param name="gaddress" value="100663352" />
+          </paramlist>
+        </User>
+        <User classid="UserCmp" name="master:datalabel" defn="master:datalabel" id="1653080098" x="3330" y="486" w="80" h="23" z="1" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="127230955">
+            <param name="Name" value="PLANT_P_MV" />
+          </paramlist>
+        </User>
+        <Wire classid="WireOrthogonal" name="" x="3330" y="450" w="100" h="10" orient="0" id="1945535100" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="90" y="0" />
+        </Wire>
+        <User classid="UserCmp" name="master:datalabel" defn="master:datalabel" id="419083786" x="3330" y="450" w="82" h="23" z="1" orient="4" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="127230955">
+            <param name="Name" value="PLANT_V_MV" />
+          </paramlist>
+        </User>
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1600459293" x="3420" y="450" w="113" h="40" z="1950" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="65740200">
+            <param name="Name" value="PLANT_V_HV_pu" />
+            <param name="Group" value="" />
+            <param name="Display" value="1" />
+            <param name="Scale" value="1.0" />
+            <param name="Units" value="pu" />
+            <param name="mrun" value="0" />
+            <param name="Pol" value="0" />
+            <param name="Min" value="0" />
+            <param name="Max" value="2" />
+            <param name="UseSignalName" value="1" />
+            <param name="enab" value="1" />
+          </paramlist>
+          <paramlist name="global_address">
+            <param name="gaddress" value="100663357" />
+          </paramlist>
+        </User>
       </schematic>
       <references>
         <using namespace="master" />
@@ -7487,7 +7568,7 @@ OX2 Australia - Jan 2024
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="TapCtrl_1" group="" url="" version="" build="" crc="45129392" instances="0" key="" view="false" date="1709268091" id="1458678648">
+    <Definition classid="UserCmpDefn" name="TapCtrl_1" group="" url="" version="" build="" crc="45129392" instances="0" key="" view="false" date="1714108892" id="1458678648">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -11988,7 +12069,7 @@ Winding 2 terminals
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="SignalTruncator" group="" url="" version="" build="" crc="86898809" instances="0" key="" view="false" date="1709268090" id="1045815344">
+    <Definition classid="UserCmpDefn" name="SignalTruncator" group="" url="" version="" build="" crc="86898809" instances="0" key="" view="false" date="1714108892" id="1045815344">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -15839,7 +15920,7 @@ Winding 2 terminals
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="XY_profile" group="" url="" version="" build="" crc="11292503" instances="0" key="" view="false" date="1709268089" id="363993461">
+    <Definition classid="UserCmpDefn" name="XY_profile" group="" url="" version="" build="" crc="11292503" instances="0" key="" view="false" date="1714108892" id="363993461">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -18335,7 +18416,7 @@ Winding 2 terminals
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="GridSource" group="" url="" version="" build="" crc="95065656" instances="0" key="" view="false" date="1709268089" id="1187396917">
+    <Definition classid="UserCmpDefn" name="GridSource" group="" url="" version="" build="" crc="95065656" instances="0" key="" view="false" date="1714108891" id="1187396917">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -21972,7 +22053,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="FaultBlock" group="" url="" version="" build="" crc="17675155" instances="0" key="" view="false" date="1709268090" id="1199669380">
+    <Definition classid="UserCmpDefn" name="FaultBlock" group="" url="" version="" build="" crc="17675155" instances="0" key="" view="false" date="1714108891" id="1199669380">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -44570,7 +44651,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="SignalTruncator_2_3" group="" url="" version="" build="" crc="64779444" instances="0" key="" view="false" date="1709268091" id="1275551689">
+    <Definition classid="UserCmpDefn" name="SignalTruncator_2_3" group="" url="" version="" build="" crc="64779444" instances="0" key="" view="false" date="1714108892" id="1275551689">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -48421,7 +48502,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="XY_profile_2" group="" url="" version="" build="" crc="118678976" instances="0" key="" view="false" date="1709268091" id="1622315816">
+    <Definition classid="UserCmpDefn" name="XY_profile_2" group="" url="" version="" build="" crc="118678976" instances="0" key="" view="false" date="1714108892" id="1622315816">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -50915,7 +50996,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="setpointProfiles" group="" url="" version="" build="" crc="4218595" instances="0" key="" view="false" date="1709268090" id="866531298">
+    <Definition classid="UserCmpDefn" name="setpointProfiles" group="" url="" version="" build="" crc="4218595" instances="0" key="" view="false" date="1714108892" id="866531298">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -61660,7 +61741,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="SymmetricalComponentsCalc_1_1" group="" url="" version="" build="" crc="39625428" instances="0" key="" view="false" date="1709268090" id="1091983025">
+    <Definition classid="UserCmpDefn" name="SymmetricalComponentsCalc_1_1" group="" url="" version="" build="" crc="39625428" instances="0" key="" view="false" date="1714108892" id="1091983025">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -64453,7 +64534,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="SymmetricalComponentsCalc" group="" url="" version="" build="" crc="60730064" instances="0" key="" view="false" date="1709268090" id="2110966472">
+    <Definition classid="UserCmpDefn" name="SymmetricalComponentsCalc" group="" url="" version="" build="" crc="60730064" instances="0" key="" view="false" date="1714108892" id="2110966472">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -66858,7 +66939,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
       </path>
       <paramlist>
         <param name="xmin" value="0.0" />
-        <param name="xmax" value="4.5" />
+        <param name="xmax" value="8.0" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1531568730" link="1830306561">
@@ -66867,7 +66948,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
       </path>
       <paramlist>
         <param name="ymin" value="-40.0" />
-        <param name="ymax" value="100.0" />
+        <param name="ymax" value="140.0" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1216349088" link="900142225">
@@ -66875,8 +66956,8 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <ref link="1089318121" />
       </path>
       <paramlist>
-        <param name="ymin" value="-20.0" />
-        <param name="ymax" value="140.0" />
+        <param name="ymin" value="-40.0" />
+        <param name="ymax" value="160.0" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1257780583" link="845955295">
@@ -73478,7 +73559,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <param name="bold_1" value="false" />
         <param name="style_1" value="false" />
         <param name="count" value="1" />
-        <param name="name" value="PCU2_V_LV" />
+        <param name="name" value="PCU2_V_LV_pu" />
       </paramlist>
     </Settings>
     <Settings classid="TraceSettings" id="1888054193" link="800241465">
@@ -73491,7 +73572,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <param name="bold_1" value="false" />
         <param name="style_1" value="false" />
         <param name="count" value="1" />
-        <param name="name" value="PCU1_V_LV" />
+        <param name="name" value="PCU1_V_LV_pu" />
       </paramlist>
     </Settings>
     <Settings classid="TraceSettings" id="1663988467" link="1659354543">
@@ -74698,7 +74779,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
     </paramlist>
   </GlobalSubstitutions>
   <hierarchy>
-    <call link="157357884" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
+    <call link="1191921983" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
       <call link="1089318121" name="HSFBESS_V1:Main" z="-1" view="true" instance="0">
         <call link="1231646374" name="HyCtl_PSCAD_Lib:InvFbDummy" z="180" view="false" instance="0" />
         <call link="743168893" name="SC_Lib:DPS_Dummy" z="450" view="false" instance="0" />

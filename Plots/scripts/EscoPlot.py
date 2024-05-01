@@ -11,7 +11,8 @@ Patrick Rossiter 2017
 """
 import sys, os
 import numpy as np
-import StringIO
+import io
+from io import StringIO
 
 class ESCOPlot(object):
     def __init__(self):
@@ -56,7 +57,7 @@ class ESCOPlot(object):
         print ("Files in memory are:")
         print ("Entry  Channels   Filename")
         for index, entry in enumerate(self.filenames):
-            print "{:^5} {:^10}  {:<260}".format(index, (len(self.dataarrays[index])), entry)
+            print ("{:^5} {:^10}  {:<260}".format(index, (len(self.dataarrays[index])), entry))
     
     def read_data(self, filename, pscad_files = 999, timeID='time'):
         '''
@@ -88,12 +89,12 @@ class ESCOPlot(object):
             data = np.zeros((len(chandata) - 1, len(time)))
             
             chan_ids = []
-            print filename
+            print (filename)
             for key in chandata.keys()[:-1]:
-                print key, chanid[key]
+                print (key, chanid[key])
                 data[key - 1] = chandata[key]
                 chan_ids.append(chanid[key])
-            print '\n'
+            print ('\n')
             
             self.timearrays.append(time)
             self.dataarrays.append(data)
@@ -129,10 +130,10 @@ class ESCOPlot(object):
             #csv_data_indices = d_in.columns 
             #csv_data_indices = []
 
-            print filename
+            print (filename)
             for idx, chanid in enumerate(csv_data_indices):
-                print idx+1, chanid
-            print '\n'
+                print (idx+1, chanid)
+            print ('\n')
             
             # Add data to arrays in class
             self.timearrays.append(csv_time.values)
@@ -182,8 +183,8 @@ class ESCOPlot(object):
             #
             # print filename
             for idx, chanid in enumerate(PSCAD_data_indices):
-                print idx+1, chanid
-            print '\n'
+                print (idx+1, chanid)
+            print ('\n')
             
             '''
             Old news!! Pandas now working.
@@ -522,10 +523,17 @@ class ESCOPlot(object):
 #                if Q_vec[v] >0: # note that Q at POC is measured flowing back to the power plant
 #                    PF[v] = 2.0+PF[v] # for ploting purpose: if pf is negative, then convert it to positive above 1.0
                     
-            PF=np.cos(np.arctan(scaling*Q_vec/P_vec))
+#            PF=np.cos(np.arctan(scaling*Q_vec/P_vec))
+#            for v in range(len(PF)):
+#                if Q_vec[v] <0: # note that Q at POC is measured flowing back to the power plant
+#                    PF[v] = 2.0-PF[v] # for ploting purpose: if pf is negative, then convert it to positive above 1.0
+
+            PF=np.cos(np.arctan(abs(Q_vec/P_vec))) #absolute power factor value
             for v in range(len(PF)):
-                if Q_vec[v] <0: # note that Q at POC is measured flowing back to the power plant
-                    PF[v] = 2.0-PF[v] # for ploting purpose: if pf is negative, then convert it to positive above 1.0
+                if Q_vec[v] <-0.5: # PF to be with the same sign of Q. e.g.if Q is negative, then PF is negative. Factor 0.1 represent the deadband
+                    PF[v] = -scaling*PF[v] # take into acount the direction of Q measurement using scaling factor
+                else:
+                    PF[v] = scaling*PF[v]
                     
             new_column=pd.Index(['PF_'+nameLabel])
             self.channel_names[entry]=self.channel_names[entry].append(new_column) 
@@ -1091,7 +1099,7 @@ class ESCOPlot(object):
         time = self.timearrays[entry] + self.timeoffset[entry]
         data = self.dataarrays[entry][channel-1]
         timestep = time[1] - time[0]
-        timefreq = int(1. / timestep)
+#        timefreq = int(1. / timestep)
         #
         # Determine location in array of starttime, as it's easier to use array location than actual time in seconds.
         measstart = np.argmin(abs(starttime - time))
@@ -1104,7 +1112,8 @@ class ESCOPlot(object):
         # print measend, startWindow, timefreq
         if(measstart!=measstartandwindow):
             startVal = sum( data[measstartandwindow : measstart] ) / len(data[measstartandwindow : measstart])
-            endVal = sum( data[measend : measendandwindow] ) / len(data[measend : measendandwindow])
+            try: endVal = sum( data[measend : measendandwindow] ) / len(data[measend : measendandwindow])
+            except: endVal = data[measend]
             maxdev = max( ( max(data[measstart:measend]) - data[measstart] ), ( data[measstart] - min(data[measstart:measend]) ) )
             stepsize = round( (startVal - endVal) * 100 / 0.25, 0) * 0.25
 #            rangeVal =  abs(endVal - startVal) * 0.1
@@ -1343,7 +1352,7 @@ class ESCOPlot(object):
             self.tolerance_band_offset[plot_arrays[0]][plot_channel]=tolerance_band_offset
             self.tolerance_band_base[plot_arrays[0]][plot_channel]=tolerance_band_base
         else:
-            print 'Specified file number {:d} is not in memory'.format(plot_arrays[0])
+            print ('Specified file number {:d} is not in memory'.format(plot_arrays[0]))
             
         dataset_length=self.timearrays[plot_arrays[0]][-1] + self.timeoffset[plot_arrays[0]]
         return dataset_length 
@@ -1376,7 +1385,8 @@ class ESCOPlot(object):
             plt.subplots_adjust(bottom = 0.08, top = 0.95, right = 0.97, left = 0.12, hspace = 0.28)
         if subplots == 3:
             subplot_index = [311, 312, 313]
-            plt.figure(figsize = (15 / 2.54, 20.6 / 2.54))
+#            plt.figure(figsize = (15 / 2.54, 20.6 / 2.54))
+            plt.figure(figsize = (26.0/2.54, 29.7/ 2.54))
             plt.subplots_adjust(bottom = 0.05, top = 0.97, right = 0.97, left = 0.10, hspace = 0.32)
         if subplots == 4:
             subplot_index = [221, 222, 223, 224]
@@ -1420,6 +1430,12 @@ class ESCOPlot(object):
 #            plt.subplots_adjust(bottom = 0.05, top = 0.97, right = 0.99, left = 0.05, hspace = 0.27, wspace = 0.1)
             plt.figure(figsize = (26.0/2.54, 29.7/ 2.54))
             plt.subplots_adjust(bottom = 0.05, top = 0.55, right = 0.55, left = 0.05, hspace = 0.20, wspace = 0.08)
+        if subplots == 12: #Plot PQV in 3 columns network case
+            subplot_index = [[(4,3),(0,0)],[(4,3),(0,1)],[(4,3),(0,2)],[(4,3),(1,0)],[(4,3),(1,1)],[(4,3),(1,2)],[(4,3),(2,0)],[(4,3),(2,1)],[(4,3),(2,2)],[(4,3),(3,0)],[(4,3),(3,1)],[(4,3),(3,2)]]
+#            plt.figure(figsize = (36.0/2.54, 22.5/ 2.54))
+#            plt.subplots_adjust(bottom = 0.05, top = 0.97, right = 0.99, left = 0.05, hspace = 0.27, wspace = 0.1)
+            plt.figure(figsize = (26.0/2.54, 29.7/ 2.54))
+            plt.subplots_adjust(bottom = 0.05, top = 0.55, right = 0.55, left = 0.05, hspace = 0.20, wspace = 0.08)
         #
         plt.rc('xtick', labelsize = 10)
         plt.rc('ytick', labelsize = 10)
@@ -1452,6 +1468,8 @@ class ESCOPlot(object):
                 plt.subplot(subplot_index[idx])
             else:
                 plt.subplot2grid(subplot_index[idx][0],subplot_index[idx][1])
+#            else:
+#                plt.subplot2grid(subplot_index[idx][0],subplot_index[idx][1],subplot_index[idx][2])
             ax1 = plt.gca()
             # ax1.yaxis.set_major_formatter(FormatStrFormatter('%1.{:d}f'.format(2)))            
             ax1.ticklabel_format(useOffset = False)
@@ -1808,8 +1826,11 @@ class ESCOPlot(object):
             plt.savefig(figname + '.png', format = 'png', dpi=300)
             #plt.savefig(figname + '.emf', format = 'emf')
             plt.savefig(figname + '.svg', format = 'svg')
-            imgdata=StringIO.StringIO()
-            plt.savefig(imgdata, dpi =200)
+            # imgdata=StringIO()
+            # plt.savefig(imgdata, dpi =200)
+            # plt.savefig(imgdata)
+            imgdata=io.BytesIO()
+            plt.savefig(imgdata)
 
         if show: 
             plt.show()

@@ -24,7 +24,7 @@ from io import BytesIO
 #USER INPUTS
 ###############################################################################
 TestDefinitionSheet=r'20230828_SUM_TESTINFO_V2.xlsx'
-raw_SS_result_folder = '20240305-142530_S5251'
+raw_PQ_result_folder = '20240319-104054_S5251'
 simulation_batches=['S5251_PQcurve']
 simulation_batch_label = simulation_batches[0]
 
@@ -92,7 +92,7 @@ else: # if the main folder is not in Onedrive, then store the results in the sam
     main_folder_out = main_folder_path
     
 dir_path =  main_folder_out +"\\Plots\\PQ_curve"
-createPath(dir_path)
+make_dir(dir_path)
 
 # Create shortcut linking to result folder if it is not stored in the main folder path
 if main_folder_out != main_folder_path:
@@ -101,7 +101,7 @@ else: # if the output location is same as input location, then delete the links
     try:os.remove(main_folder_path + "\\Plots\\PQ_curve.lnk")
     except: pass
 
-result_sheet_path = main_folder_out +"\\PSSE_sim\\result_data\\PQ_curve\\" + raw_SS_result_folder + "\\S5251_PQ curve results.xlsx"
+result_sheet_path = main_folder_out +"\\PSSE_sim\\result_data\\PQ_curve\\" + raw_PQ_result_folder + "\\S5251_PQ curve results.xlsx"
 
 ###############################################################################
 # Import additional functions

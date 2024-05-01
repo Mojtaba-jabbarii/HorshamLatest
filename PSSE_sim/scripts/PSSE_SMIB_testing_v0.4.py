@@ -45,7 +45,7 @@ timestr = str(datetime.datetime.now().strftime("%Y%m%d-%H%M"))
 #-----------------------------------------------------------------------------
 # USER CONFIGURABLE PARAMETERS
 #-----------------------------------------------------------------------------
-TestDefinitionSheet = r'20230828_SUM_TESTINFO_V2.xlsx'
+TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 #simulation_batches=['DMAT', 'Prof_chng', 'AEMO_fdb', 'missing', 'legend', 'SCR_chng', 'timing'] #specify batch from spreadsheet that shall be run. If empty, run all batches
 #simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl']
 #simulation_batches=['S5253','S5254','S52511','S52513','S52514']

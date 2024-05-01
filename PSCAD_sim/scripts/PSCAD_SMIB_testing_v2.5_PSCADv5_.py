@@ -177,25 +177,25 @@ def createPath(main_path_out):
 ##############################################################################
 # USER CONFIGURABLE PARAMETERS
 ##############################################################################
-TestDefinitionSheet = r'20230828_SUM_TESTINFO_V2.xlsx'
+TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 #simulation_batches=['DMAT', 'Prof_chng', 'AEMO_fdb', 'missing', 'legend', 'SCR_chng', 'timing'] #specify batch from spreadsheet that shall be run. If empty, run all batches
-# simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl']
+simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl']
 # simulation_batches=['S52511','S52513','S52514','S5255Iq1','S5255Iq2','S5255Iq3']
-simulation_batches=['S5255_TG']
+#simulation_batches=['S5253_T']
 #The below can alternatively be defined in the Excel sheet
 
 overwrite = False # 
-max_processes = 8 #set to the number of cores on my machine. Needs to be >= scenarioPerGroup --> increase for PSCAD machine
+max_processes = 28 #set to the number of cores on my machine. Needs to be >= scenarioPerGroup --> increase for PSCAD machine
 # testRun = '20220406_v0' #define a test name for the batch or configuration that is being tested
 try:
     testRun = timestr + '_' + simulation_batches[0] #define a test name for the batch or configuration that is being tested -> link to time stamp for auto update
 except:
     testRun = timestr
 
+compiler_acronym = '.if18_x86' #This is the ending applied to the result folder, depenging on the compiler that is used
+#compiler_acronym = '.gf81_x86' #This is the ending applied to the result folder, depenging on the compiler that is used
 # compiler_acronym = '.if18_x86' #This is the ending applied to the result folder, depenging on the compiler that is used
-compiler_acronym = '.gf81_x86' #This is the ending applied to the result folder, depenging on the compiler that is used
-# compiler_acronym = '.if18_x86' #This is the ending applied to the result folder, depenging on the compiler that is used
-scenariosPerGroup=8
+scenariosPerGroup=28
 # scenariosPerGroup=8
  #set number of scenarios to be included per simulation set.
 
@@ -234,7 +234,7 @@ else: # if the output location is same as input location, then delete the links
 # Locating the existing folders
 testDefinitionDir= os.path.abspath(os.path.join(main_folder, os.pardir))+"\\test_scenario_definitions"
 base_model = main_folder+"\\base_model" #parent directory of the workspace folder
-base_model_workspace = main_folder+"\\base_model\\20240117_SUMSF_V1" #path of the workspace folder, formerly "workspace_folder" --> in case the workspace is located in a subdirectory of the model folder (as is the case with MUL model for example)
+base_model_workspace = main_folder+"\\base_model\\20240301_HSFBESS_V1" #path of the workspace folder, formerly "workspace_folder" --> in case the workspace is located in a subdirectory of the model folder (as is the case with MUL model for example)
 libpath = os.path.abspath(main_folder) + "\\scripts\\Libs"
 sys.path.append(libpath)
 # print ("libpath = " + libpath)
@@ -362,8 +362,8 @@ def runTest(scenario_group, current_workspace_folder, testRun): #scenario_group 
     print("Automation Library:", mhi.pscad.VERSION)
     fortrans=mhi.pscad.fortran_versions()
     print(fortrans)
-    # settings = {'fortran_version': 'Intel 19.2.3787'}
-    settings = {'fortran_version': 'GFortran 8.1'}
+    settings = {'fortran_version': 'Intel 19.2.3787'}
+    #settings = {'fortran_version': 'GFortran 8.1'}
     # settings = {'fortran_version': 'Intel® Fortran Compiler Classic 2021.7.0'}
     #fortran_ext = 
     
