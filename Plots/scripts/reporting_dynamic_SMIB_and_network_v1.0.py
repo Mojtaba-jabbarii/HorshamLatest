@@ -47,15 +47,15 @@ TestDefinitionSheet=r'20240403_HSFBESS_TESTINFO_V1.xlsx'
     """
 
 # different datasets for SMIB and Network tests
-datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240424-2211_DMATsl7", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,
+datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240504-1338_DMATsl1_db", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,
                   'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.010334129, }, # #negative due to the reversed Q measurement
                                   {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.0099206, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
                                   {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.010334129, },],  
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":-1.0, } ], } #calculate power factor from P and Q results scaling -1 due to reversed power measure
-datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20240426-1652_DMATsl1", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0, 
+datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20240504-1335_DMATsl1_db", 'ID': 4, 'timeID':'time(s)', 'timeoffset':0.0,#-3.0, 
                   'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.010334129, }, 
-                                  {"P":"PCU1_P_LV", "Q":"PCU1_Q_LV", "V":"PCU1_V_LV_pu", "nameLabel":"PV", "scaling":24.0, },
-                                   {"P":"PCU2_P_LV", "Q":"PCU2_Q_LV", "V":"PCU2_V_LV_pu", "nameLabel":"BESS", "scaling":18.0, }],
+                                  {"P":"PCU1_P_LV", "Q":"PCU1_Q_LV", "V":"PCU1_V_LV_pu", "nameLabel":"PV", "scaling":36.0, },
+                                   {"P":"PCU2_P_LV", "Q":"PCU2_Q_LV", "V":"PCU2_V_LV_pu", "nameLabel":"BESS", "scaling":40.0, }],
                   'calPFs':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "nameLabel":"PLANT", "scaling":1.0, } ],} #inverter apaprent power rating
 datasets_nw_genon = {'label':'PSSE_genon', 'path':r"PSSE_sim\result_data\dynamic_network\Final Results GPS NEM genon", 'ID': 2, 'timeID':'Time(s)', 'timeoffset':-2.0, #20240305-101744_S5255_NW\HighLoad_genon
                   'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.010334129, }, # #negative due to the reversed Q measurement
@@ -69,7 +69,7 @@ data_PSCAD_Flatrun2 = {'label':'PSCAD_Data2', 'path':r"PSCAD_sim\result_data\dyn
 data_PSCAD_Flatrun3 = {'label':'PSCAD_Data3', 'path':r"PSCAD_sim\result_data\dynamic_smib\Final Results DMAT SMIB\01_FlatRun3", 'ID': 7, 'timeID':'time(s)', 'timeoffset':-3.0, }
 
 # selected datasets for the corresponding report
-datasets = [datasets_PSCAD] # [datasets_PSSE, datasets_PSCAD,datasets_nw_genon,datasets_nw_genoff]
+datasets = [datasets_PSCAD, datasets_PSSE] # [datasets_PSSE, datasets_PSCAD,datasets_nw_genon,datasets_nw_genoff]
 report_types = ["DMAT"] #["GPS", "BENCH", "DMAT", 'NetworkEvent']
 chapter_types = ["general"] #GPS["general","S5253","S5254","S5255","S5255_HighLoad","S5255_LowLoad","S52512_HighLoad","S52512_LowLoad","S52513_HighLoad","S52513_LowLoad",] if chapter_types == [], then include all chapters into the report
                             #DMAT["general","01_FlatRun","02_UFault","03_MFRT","04_TOV","05_SptChange","06_FreqChange","07_VolChange","08_ORT","09_AngChange","10_SCR1","11_FRT","12_IrrChange"] following Table 22, Appendix A2 DMAT guideline 2021
@@ -100,10 +100,14 @@ channels_lib = { #to be used in the ploting each graph below
                              'FRT_INV2':{'dataset':4, 'name':"FRT_flag_BESS", 'leg':'BESS FRT', 'offset':0.0, 'scale':1.0},
 #                             'FRT_INV1':{'dataset':4, 'name':"FRT_flag_PV", 'leg':'PV FRT', 'offset':-97.0, 'scale':1.0},
 #                             'FRT_INV2':{'dataset':4, 'name':"FRT_flag_BESS", 'leg':'BESS FRT', 'offset':0.0, 'scale':0.01},
-                             'Pcmd_PPC_INV1':{'dataset':4, 'name':"Pcmd_PPC_to_INV_PV", 'leg':'P_cmd to PV', 'offset':0.0, 'scale':100.8}, #S_PV
-                             'Pcmd_PPC_INV2':{'dataset':4, 'name':"Pcmd_PPC_to_INV_BESS", 'leg':'P_cmd to BESS', 'offset':0.0, 'scale':75.6}, #S_BESS
-                             'Qcmd_PPC_INV1':{'dataset':4, 'name':"Qcmd_PPC_to_INV_PV", 'leg':'Q_cmd to PV', 'offset':0.0, 'scale':60.48}, #S_PV*0.6
-                             'Qcmd_PPC_INV2':{'dataset':4, 'name':"Qcmd_PPC_to_INV_BESS", 'leg':'Q_cmd to BESS', 'offset':0.0, 'scale':45.36}, #S_BESS*0.6                             
+                             'Pcmd_PPC_INV1':{'dataset':4, 'name':"Pcmd_PPC_to_INV_PV", 'leg':'P_cmd to PV', 'offset':0.0, 'scale':151.2}, #S_PV
+                             'Pcmd_PPC_INV2':{'dataset':4, 'name':"Pcmd_PPC_to_INV_BESS", 'leg':'P_cmd to BESS', 'offset':0.0, 'scale':168}, #S_BESS
+                             'Qcmd_PPC_INV1':{'dataset':4, 'name':"Qcmd_PPC_to_INV_PV", 'leg':'Q_cmd to PV', 'offset':0.0, 'scale':90.72}, #S_PV*0.6
+                             'Qcmd_PPC_INV2':{'dataset':4, 'name':"Qcmd_PPC_to_INV_BESS", 'leg':'Q_cmd to BESS', 'offset':0.0, 'scale':100.8}, #S_BESS*0.6 
+                             'V_MV':{'dataset':4, 'name':"PLANT_V_MV", 'leg':'Voltage MV', 'offset':0.0, 'scale':1.0},
+                             'tap position':{'dataset':4, 'name':"Tap_position", 'leg':'Tap position', 'offset':0.0, 'scale':1.0},
+                             'tap ratio':{'dataset':4, 'name':"maintap", 'leg':'tap ratio', 'offset':0.0, 'scale':1.0},
+                             
                              },
                 'PSSE':     {'V_POC':{'dataset':0, 'name':"U_POC1", 'leg':'Voltage HV', 'offset':0.0, 'scale':1.0},
                              'P_POC':{'dataset':0, 'name':"P_POC1", 'leg':'PLANT_P_HV', 'offset':0.0, 'scale':-1.0},
@@ -125,10 +129,10 @@ channels_lib = { #to be used in the ploting each graph below
                              'Q_INV2':{'dataset':0, 'name':"Q_LV2", 'leg':'Q_BESS', 'offset':0.0, 'scale':1.0},
                              'FRT_INV1':{'dataset':0, 'name':"INV1_FRT_STATE", 'leg':'PV FRT', 'offset':0.0, 'scale':1.0},
                              'FRT_INV2':{'dataset':0, 'name':"INV2_FRT_FLAG", 'leg':'BESS FRT', 'offset':0.0, 'scale':1.0},
-                             'Pcmd_PPC_INV1':{'dataset':0, 'name':"P_CMD_PV", 'leg':'P_cmd to PV', 'offset':0.0, 'scale':100.8}, #S_PV
-                             'Pcmd_PPC_INV2':{'dataset':0, 'name':"P_CMD_BESS", 'leg':'P_cmd to BESS', 'offset':0.0, 'scale':75.6}, #S_BESS
-                             'Qcmd_PPC_INV1':{'dataset':0, 'name':"Q_CMD_PV", 'leg':'Q_cmd to PV', 'offset':0.0, 'scale':60.48}, #S_PV*0.6
-                             'Qcmd_PPC_INV2':{'dataset':0, 'name':"Q_CMD_BESS", 'leg':'Q_cmd to BESS', 'offset':0.0, 'scale':45.36}, #S_BESS*0.6
+                             'Pcmd_PPC_INV1':{'dataset':0, 'name':"P_CMD_PV", 'leg':'P_cmd to PV', 'offset':0.0, 'scale':151.2}, #S_PV
+                             'Pcmd_PPC_INV2':{'dataset':0, 'name':"P_CMD_BESS", 'leg':'P_cmd to BESS', 'offset':0.0, 'scale':168}, #S_BESS
+                             'Qcmd_PPC_INV1':{'dataset':0, 'name':"Q_CMD_PV", 'leg':'Q_cmd to PV', 'offset':0.0, 'scale':90.72}, #S_PV*0.6
+                             'Qcmd_PPC_INV2':{'dataset':0, 'name':"Q_CMD_BESS", 'leg':'Q_cmd to BESS', 'offset':0.0, 'scale':100.8}, #S_BESS*0.6
                              },
                 'NW_post':   {'V_POC':{'dataset':2, 'name':"U_POC1", 'leg':'after-SUMSF', 'offset':0.0, 'scale':1.0},
                              'P_POC':{'dataset':2, 'name':"P_POC1", 'leg':'PLANT_P_HV', 'offset':0.0, 'scale':-1.0},
@@ -150,10 +154,10 @@ channels_lib = { #to be used in the ploting each graph below
                              'Q_INV2':{'dataset':2, 'name':"Q_LV2", 'leg':'Q_BESS', 'offset':0.0, 'scale':1.0},
                              'FRT_INV1':{'dataset':2, 'name':"INV1_FRT_STATE", 'leg':'PV FRT', 'offset':0.0, 'scale':1.0},
                              'FRT_INV2':{'dataset':2, 'name':"INV2_FRT_FLAG", 'leg':'BESS FRT', 'offset':0.0, 'scale':1.0},
-                             'Pcmd_PPC_INV1':{'dataset':2, 'name':"P_CMD_PV", 'leg':'P_cmd to PV', 'offset':0.0, 'scale':100.8}, #S_PV
-                             'Pcmd_PPC_INV2':{'dataset':2, 'name':"P_CMD_BESS", 'leg':'P_cmd to BESS', 'offset':0.0, 'scale':75.6}, #S_BESS
-                             'Qcmd_PPC_INV1':{'dataset':2, 'name':"Q_CMD_PV", 'leg':'Q_cmd to PV', 'offset':0.0, 'scale':60.48}, #S_PV*0.6
-                             'Qcmd_PPC_INV2':{'dataset':2, 'name':"Q_CMD_BESS", 'leg':'Q_cmd to BESS', 'offset':0.0, 'scale':45.36}, #S_BESS*0.6
+                             'Pcmd_PPC_INV1':{'dataset':2, 'name':"P_CMD_PV", 'leg':'P_cmd to PV', 'offset':0.0, 'scale':151.2}, #S_PV
+                             'Pcmd_PPC_INV2':{'dataset':2, 'name':"P_CMD_BESS", 'leg':'P_cmd to BESS', 'offset':0.0, 'scale':168}, #S_BESS
+                             'Qcmd_PPC_INV1':{'dataset':2, 'name':"Q_CMD_PV", 'leg':'Q_cmd to PV', 'offset':0.0, 'scale':90.72}, #S_PV*0.6
+                             'Qcmd_PPC_INV2':{'dataset':2, 'name':"Q_CMD_BESS", 'leg':'Q_cmd to BESS', 'offset':0.0, 'scale':100.8}, #S_BESS*0.6
                              'V_Lismore330':{'dataset':2, 'name':"V_LSM_330", 'leg':'after-SUMSF', 'offset':0.0, 'scale':1.0},
                              'V_Coffs_Harbour330':{'dataset':2, 'name':"V_COFF_330", 'leg':'after-SUMSF', 'offset':0.0, 'scale':1.0},
                              'V_Lismore132':{'dataset':2, 'name':"V_LSM_132", 'leg':'after-SUMSF', 'offset':0.0, 'scale':1.0},
@@ -216,7 +220,7 @@ channels_lib = { #to be used in the ploting each graph below
 # Start report format
 #####################################################
 
-reports = {                                                                             
+reports = {   "Angus special test"                                                                          
 
             'BENCH':{
                     'batchname': 'Benchmarking', #'GPS S5255_AEMO_PSSE', #'GPS S5254_AEMO_PSSE', #'GPS S52514_AEMO_PSSE', #'DMATsl_PSCAD_PSSSE_Final2', #'S5254a', #'Benchmarking', #'DMAT', #in DMAT
@@ -368,7 +372,8 @@ reports = {
     
                                                                                                                                             
                                                                                         'Voltage INV':                      {'channels':[dict(channels_lib['PSCAD']['V_INV1'], **{}),
-                                                                                                                                         dict(channels_lib['PSCAD']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.01},                                                                                                                                                
+                                                                                                                                         dict(channels_lib['PSCAD']['V_INV2'], **{}),
+                                                                                                                                         dict(channels_lib['PSCAD']['V_MV'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.01},                                                                                                                                                
                                                                                         'Active Power INV':                 {'channels':[dict(channels_lib['PSCAD']['P_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['P_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['Pcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),

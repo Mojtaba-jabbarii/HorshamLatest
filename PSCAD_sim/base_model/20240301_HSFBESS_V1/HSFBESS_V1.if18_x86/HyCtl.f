@@ -2555,8 +2555,7 @@
 !=======================================================================
 
       SUBROUTINE HyCtlDyn_Begin(FileNum, Log2File, Fsys, GridOpCmdSCS,  &
-     &   Tcyc, Tactivate, BatPwrAtInit, BatPwrRtInit, PvPwrAtInit,      &
-     &   PvPwrRtInit)
+     &   Tcyc, Tactivate)
 
 !---------------------------------------
 ! Standard includes 
@@ -2588,10 +2587,6 @@
       INTEGER, INTENT(IN)  :: GridOpCmdSCS
       REAL,    INTENT(IN)  :: Fsys, Tcyc
       REAL,    INTENT(IN)  :: Tactivate
-      REAL,    INTENT(IN)  :: BatPwrAtInit
-      REAL,    INTENT(IN)  :: BatPwrRtInit
-      REAL,    INTENT(IN)  :: PvPwrAtInit
-      REAL,    INTENT(IN)  :: PvPwrRtInit
 
 ! Electrical Node Indices
 
@@ -3209,8 +3204,7 @@
 !=======================================================================
 
       SUBROUTINE HyCtlOut_Begin(FileNum, Log2File, Fsys, GridOpCmdSCS,  &
-     &   Tcyc, Tactivate, BatPwrAtInit, BatPwrRtInit, PvPwrAtInit,      &
-     &   PvPwrRtInit)
+     &   Tcyc, Tactivate)
 
 !---------------------------------------
 ! Standard includes 
@@ -3242,10 +3236,6 @@
       INTEGER, INTENT(IN)  :: GridOpCmdSCS
       REAL,    INTENT(IN)  :: Fsys, Tcyc
       REAL,    INTENT(IN)  :: Tactivate
-      REAL,    INTENT(IN)  :: BatPwrAtInit
-      REAL,    INTENT(IN)  :: BatPwrRtInit
-      REAL,    INTENT(IN)  :: PvPwrAtInit
-      REAL,    INTENT(IN)  :: PvPwrRtInit
 
 ! Electrical Node Indices
 

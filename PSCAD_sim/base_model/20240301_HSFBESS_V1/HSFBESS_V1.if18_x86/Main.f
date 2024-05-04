@@ -34,12 +34,12 @@
 ! Function/Subroutine Declarations 
 !---------------------------------------
 
+!     SUBR    EMTDC_XTTRANS  ! 'Timed Transition'
 !     SUBR    InvFbDummyDyn  ! 
 !     SUBR    TSAT21        ! Transformer Saturation Subroutine
 !     SUBR    DPS_DummyDyn  ! 
 !     SUBR    GridSourceDyn  ! 
 !     SUBR    FaultBlockDyn  ! 
-!     SUBR    EMTDC_XTTRANS  ! 'Timed Transition'
 !     SUBR    SymmetricalComponentsCalc_1_1Dyn  ! 
 !     SUBR    SymmetricalComponentsCalcDyn  ! 
 !     SUBR    setpointProfilesDyn  ! 
@@ -76,30 +76,30 @@
       REAL     Poi_Ms(12), Pv_Ms(4), RT_2(20)
       REAL     RT_3(20), PCU2_Fb_SI(10)
       REAL     Bess_Ms(4), DPS2_Fb(10)
-      REAL     DPS1_Fb(10), maintap, PLANT_V_MV
-      REAL     RT_4, PoiVArSpt_pu, RT_5, RT_6
-      REAL     RT_7, RT_8, RT_9, PCU1_Irr, RT_10
-      REAL     RT_11, RT_12, RT_13, RT_14
-      REAL     MEAS_PCU1(17), MEAS_PCU2(17)
-      REAL     Iqzero_PoC, RT_15, RT_16, RT_17
-      REAL     Vneg_PoC, Vpos_PoC, Vzero_PoC
-      REAL     Vab_PPC, Vbc_PPC, Vca_PPC
-      REAL     Ineg_PoC, Ipos_PoC, Izero_PoC
-      REAL     PCU1_P_LV, PCU1_Q_LV, PCU1_A_LV(3)
-      REAL     PCU1_V_LV_pu, PCU1_Q_MV, PCU1_P_MV
-      REAL     PCU1_A_MV(3), RT_18, RT_19, RT_20
-      REAL     RT_21, RT_22, RT_23, PCU2_A_MV(3)
-      REAL     PCU2_P_MV, PCU2_Q_MV, PCU2_Q_LV
-      REAL     PCU2_P_LV, PCU1_Arms_LV
-      REAL     PCU2_Arms_LV, PCU2_Phs, PCU1_Phs
-      REAL     PLANT_Phs, RT_24, MV_Bus_Vol
-      REAL     RT_25, Fsys, PCU1_Fb_SI(10)
-      REAL     dummy_fb(10), SC_Fb(10), PoiVArSpt
-      REAL     PoiVolSpt, PCU1_P_MV_AGGR
-      REAL     PCU1_Q_MV_AGGR, PCU2_P_MV_AGGR
-      REAL     PCU2_Q_MV_AGGR, Qspt_MVAr
-      REAL     PoiPfSpt, Pspt_MW, PoiWLimSales_pu
-      REAL     PCU1_V_LV, PCU1_V_MV_pu, PCU1_V_MV
+      REAL     DPS1_Fb(10), maintap, RT_4
+      REAL     PoiVArSpt_pu, RT_5, RT_6, RT_7
+      REAL     RT_8, RT_9, PCU1_Irr, RT_10, RT_11
+      REAL     RT_12, RT_13, RT_14, MEAS_PCU1(17)
+      REAL     MEAS_PCU2(17), Iqzero_PoC, RT_15
+      REAL     RT_16, RT_17, Vneg_PoC, Vpos_PoC
+      REAL     Vzero_PoC, Vab_PPC, Vbc_PPC
+      REAL     Vca_PPC, Ineg_PoC, Ipos_PoC
+      REAL     Izero_PoC, PCU1_P_LV, PCU1_Q_LV
+      REAL     PCU1_A_LV(3), PCU1_V_LV_pu
+      REAL     PCU1_Q_MV, PCU1_P_MV, PCU1_A_MV(3)
+      REAL     RT_18, RT_19, RT_20, RT_21, RT_22
+      REAL     RT_23, PCU2_A_MV(3), PCU2_P_MV
+      REAL     PCU2_Q_MV, PCU2_Q_LV, PCU2_P_LV
+      REAL     PCU1_Arms_LV, PCU2_Arms_LV
+      REAL     PCU2_Phs, PCU1_Phs, PLANT_Phs
+      REAL     RT_24, MV_Bus_Vol, RT_25, Fsys
+      REAL     PCU1_Fb_SI(10), dummy_fb(10)
+      REAL     SC_Fb(10), PoiVolSpt
+      REAL     PCU1_P_MV_AGGR, PCU1_Q_MV_AGGR
+      REAL     PCU2_P_MV_AGGR, PCU2_Q_MV_AGGR
+      REAL     Qspt_MVAr, PoiPfSpt, Pspt_MW
+      REAL     PoiWLimSales_pu, PCU1_V_LV
+      REAL     PCU1_V_MV_pu, PCU1_V_MV
       REAL     PCU2_V_MV_pu, PCU2_V_MV
       REAL     MV_Vol_base, RT_26, RT_27, inf_BRK
       REAL     Pcmd_PPC_to_INV_PV
@@ -124,18 +124,21 @@
       REAL     McbStt, GcbStt, Vrms_abc_POI(3)
       REAL     PoiWLimSales, BessWSpt, PVini
       REAL     FRT_flag_PV, FRT_flag_BESS
-      REAL     FRT_flag_POC, Meas_Plant(10)
+      REAL     FRT_flag_POC, PLANT_Q_MV
+      REAL     PLANT_P_MV, PLANT_V_MV, RT_41
+      REAL     PoiVArSpt, RT_42, Meas_Plant(10)
       REAL     PCU1_Fb(10), PCU2_Fb(10), V_ph(3)
       REAL     PCU1_Spt(10), PCU2_Spt(10)
       REAL     DEBUG_PCU1(100), DEBUG_PCU2(100)
       REAL     DEBUG_HyCon1(40), PLANT_V_HV
-      REAL     Amp_MV(3), PLANT_P_MV, PLANT_Q_MV
-      REAL     PLANT_I_MV
+      REAL     Amp_MV(3), PLANT_I_MV
+      REAL     QiniBESS       ! Aliases: QiniPV
 
 ! Internal Variables
       LOGICAL  LVD1_1
       INTEGER  IVD1_1, IVD1_2, IVD1_3, IVD1_4
-      REAL     RVD1_1, RVD1_2, RVD1_3, RVD1_4
+      REAL     RVD2_1(2), RVD2_2(2), RVD1_1
+      REAL     RVD1_2, RVD1_3, RVD1_4
       REAL     OLD_CCIN_a1, OLD_CCIN_b1
       REAL     OLD_CCIN_c1, OLD_CCIN_a2
       REAL     OLD_CCIN_b2, OLD_CCIN_c2
@@ -144,8 +147,8 @@
       REAL     NEW_CCIN_b2, NEW_CCIN_c2, IMKa_OLD
       REAL     IMKb_OLD, IMKc_OLD, IKMa_OLD
       REAL     IKMb_OLD, IKMc_OLD, IZom, IZo
-      REAL     Scl1, X_KNEE, TURNS_V, RVD2_1(2)
-      REAL     RVD2_2(2), RVD1_5, RVD1_6, RVD1_7
+      REAL     Scl1, X_KNEE, TURNS_V, RVD1_5
+      REAL     RVD1_6, RVD1_7
 
 ! Indexing variables
       INTEGER ICALL_NO                            ! Module call num
@@ -180,9 +183,9 @@
       ISTOI     = NSTOI
       NSTOI     = NSTOI + 14
       ISTOF     = NSTOF
-      NSTOF     = NSTOF + 625
+      NSTOF     = NSTOF + 628
       IPGB      = NPGB
-      NPGB      = NPGB + 66
+      NPGB      = NPGB + 70
       ICX       = NCX
       NCX       = NCX + 7
       INODE     = NNODE + 2
@@ -241,157 +244,160 @@
       No_PCU1  = STOI(ISTOI + 1)
       Tap_position = STOI(ISTOI + 2)
       maintap  = STOF(ISTOF + 122)
-      PLANT_V_MV = STOF(ISTOF + 123)
-      RT_4     = STOF(ISTOF + 124)
-      PoiVArSpt_pu = STOF(ISTOF + 125)
-      RT_5     = STOF(ISTOF + 126)
-      RT_6     = STOF(ISTOF + 127)
-      RT_7     = STOF(ISTOF + 128)
-      RT_8     = STOF(ISTOF + 129)
-      RT_9     = STOF(ISTOF + 130)
-      PCU1_Irr = STOF(ISTOF + 131)
-      RT_10    = STOF(ISTOF + 132)
-      RT_11    = STOF(ISTOF + 133)
-      RT_12    = STOF(ISTOF + 134)
-      RT_13    = STOF(ISTOF + 135)
-      RT_14    = STOF(ISTOF + 136)
-      Iqzero_PoC = STOF(ISTOF + 171)
-      RT_15    = STOF(ISTOF + 172)
-      RT_16    = STOF(ISTOF + 173)
-      RT_17    = STOF(ISTOF + 174)
-      Vneg_PoC = STOF(ISTOF + 175)
-      Vpos_PoC = STOF(ISTOF + 176)
-      Vzero_PoC = STOF(ISTOF + 177)
-      Vab_PPC  = STOF(ISTOF + 178)
-      Vbc_PPC  = STOF(ISTOF + 179)
-      Vca_PPC  = STOF(ISTOF + 180)
-      Ineg_PoC = STOF(ISTOF + 181)
-      Ipos_PoC = STOF(ISTOF + 182)
-      Izero_PoC = STOF(ISTOF + 183)
-      PCU1_P_LV = STOF(ISTOF + 184)
-      PCU1_Q_LV = STOF(ISTOF + 185)
-      PCU1_V_LV_pu = STOF(ISTOF + 189)
-      PCU1_Q_MV = STOF(ISTOF + 190)
-      PCU1_P_MV = STOF(ISTOF + 191)
-      RT_18    = STOF(ISTOF + 195)
-      RT_19    = STOF(ISTOF + 196)
-      RT_20    = STOF(ISTOF + 197)
-      RT_21    = STOF(ISTOF + 198)
-      RT_22    = STOF(ISTOF + 199)
-      RT_23    = STOF(ISTOF + 200)
-      PCU2_P_MV = STOF(ISTOF + 204)
-      PCU2_Q_MV = STOF(ISTOF + 205)
-      PCU2_Q_LV = STOF(ISTOF + 206)
-      PCU2_P_LV = STOF(ISTOF + 207)
+      RT_4     = STOF(ISTOF + 123)
+      PoiVArSpt_pu = STOF(ISTOF + 124)
+      RT_5     = STOF(ISTOF + 125)
+      RT_6     = STOF(ISTOF + 126)
+      RT_7     = STOF(ISTOF + 127)
+      RT_8     = STOF(ISTOF + 128)
+      RT_9     = STOF(ISTOF + 129)
+      PCU1_Irr = STOF(ISTOF + 130)
+      RT_10    = STOF(ISTOF + 131)
+      RT_11    = STOF(ISTOF + 132)
+      RT_12    = STOF(ISTOF + 133)
+      RT_13    = STOF(ISTOF + 134)
+      RT_14    = STOF(ISTOF + 135)
+      Iqzero_PoC = STOF(ISTOF + 170)
+      RT_15    = STOF(ISTOF + 171)
+      RT_16    = STOF(ISTOF + 172)
+      RT_17    = STOF(ISTOF + 173)
+      Vneg_PoC = STOF(ISTOF + 174)
+      Vpos_PoC = STOF(ISTOF + 175)
+      Vzero_PoC = STOF(ISTOF + 176)
+      Vab_PPC  = STOF(ISTOF + 177)
+      Vbc_PPC  = STOF(ISTOF + 178)
+      Vca_PPC  = STOF(ISTOF + 179)
+      Ineg_PoC = STOF(ISTOF + 180)
+      Ipos_PoC = STOF(ISTOF + 181)
+      Izero_PoC = STOF(ISTOF + 182)
+      PCU1_P_LV = STOF(ISTOF + 183)
+      PCU1_Q_LV = STOF(ISTOF + 184)
+      PCU1_V_LV_pu = STOF(ISTOF + 188)
+      PCU1_Q_MV = STOF(ISTOF + 189)
+      PCU1_P_MV = STOF(ISTOF + 190)
+      RT_18    = STOF(ISTOF + 194)
+      RT_19    = STOF(ISTOF + 195)
+      RT_20    = STOF(ISTOF + 196)
+      RT_21    = STOF(ISTOF + 197)
+      RT_22    = STOF(ISTOF + 198)
+      RT_23    = STOF(ISTOF + 199)
+      PCU2_P_MV = STOF(ISTOF + 203)
+      PCU2_Q_MV = STOF(ISTOF + 204)
+      PCU2_Q_LV = STOF(ISTOF + 205)
+      PCU2_P_LV = STOF(ISTOF + 206)
       PCU2_BRK = STOI(ISTOI + 3)
       LT_1     = STOL(ISTOL + 1)
       POI_BRK  = STOI(ISTOI + 4)
       IT_1     = STOI(ISTOI + 5)
       IT_2     = STOI(ISTOI + 6)
-      PCU1_Arms_LV = STOF(ISTOF + 208)
-      PCU2_Arms_LV = STOF(ISTOF + 209)
-      PCU2_Phs = STOF(ISTOF + 210)
-      PCU1_Phs = STOF(ISTOF + 211)
-      PLANT_Phs = STOF(ISTOF + 212)
+      PCU1_Arms_LV = STOF(ISTOF + 207)
+      PCU2_Arms_LV = STOF(ISTOF + 208)
+      PCU2_Phs = STOF(ISTOF + 209)
+      PCU1_Phs = STOF(ISTOF + 210)
+      PLANT_Phs = STOF(ISTOF + 211)
       MVBRK    = STOI(ISTOI + 7)
-      RT_24    = STOF(ISTOF + 213)
+      RT_24    = STOF(ISTOF + 212)
       IT_3     = STOI(ISTOI + 8)
-      MV_Bus_Vol = STOF(ISTOF + 214)
-      RT_25    = STOF(ISTOF + 215)
-      Fsys     = STOF(ISTOF + 216)
+      MV_Bus_Vol = STOF(ISTOF + 213)
+      RT_25    = STOF(ISTOF + 214)
+      Fsys     = STOF(ISTOF + 215)
       No_PCU2  = STOI(ISTOI + 9)
       IT_4     = STOI(ISTOI + 10)
       PCU1_BRK = STOI(ISTOI + 11)
       IT_5     = STOI(ISTOI + 12)
       IT_6     = STOI(ISTOI + 13)
       PVmode   = STOI(ISTOI + 14)
-      PoiVArSpt = STOF(ISTOF + 247)
-      PoiVolSpt = STOF(ISTOF + 248)
-      PCU1_P_MV_AGGR = STOF(ISTOF + 249)
-      PCU1_Q_MV_AGGR = STOF(ISTOF + 250)
-      PCU2_P_MV_AGGR = STOF(ISTOF + 251)
-      PCU2_Q_MV_AGGR = STOF(ISTOF + 252)
-      Qspt_MVAr = STOF(ISTOF + 253)
-      PoiPfSpt = STOF(ISTOF + 254)
-      Pspt_MW  = STOF(ISTOF + 255)
-      PoiWLimSales_pu = STOF(ISTOF + 256)
-      PCU1_V_LV = STOF(ISTOF + 257)
-      PCU1_V_MV_pu = STOF(ISTOF + 258)
-      PCU1_V_MV = STOF(ISTOF + 259)
-      PCU2_V_MV_pu = STOF(ISTOF + 260)
-      PCU2_V_MV = STOF(ISTOF + 261)
-      MV_Vol_base = STOF(ISTOF + 262)
-      RT_26    = STOF(ISTOF + 263)
-      RT_27    = STOF(ISTOF + 264)
-      inf_BRK  = STOF(ISTOF + 265)
-      Pcmd_PPC_to_INV_PV = STOF(ISTOF + 266)
-      Qcmd_PPC_to_INV_PV = STOF(ISTOF + 267)
-      Pcmd_PPC_to_INV_BESS = STOF(ISTOF + 268)
-      Qcmd_PPC_to_INV_BESS = STOF(ISTOF + 269)
-      Pout_INV_PV = STOF(ISTOF + 270)
-      RT_28    = STOF(ISTOF + 271)
-      P_Base_PV = STOF(ISTOF + 272)
-      Qout_INV_PV = STOF(ISTOF + 273)
-      RT_29    = STOF(ISTOF + 274)
-      Pout_INV_BESS = STOF(ISTOF + 275)
-      RT_30    = STOF(ISTOF + 276)
-      P_Base_BESS = STOF(ISTOF + 277)
-      Qout_INV_BESS = STOF(ISTOF + 278)
-      RT_31    = STOF(ISTOF + 279)
-      PCU2_V_LV_pu = STOF(ISTOF + 280)
-      PCU2_V_LV = STOF(ISTOF + 281)
-      LV_Vol_base = STOF(ISTOF + 282)
-      HV_Vol_base = STOF(ISTOF + 286)
-      BESSspt_MW = STOF(ISTOF + 287)
-      BessWSpt_pu = STOF(ISTOF + 288)
-      PoiVolSpt_pu = STOF(ISTOF + 289)
-      Q_Base_PV = STOF(ISTOF + 290)
-      Q_Base_BESS = STOF(ISTOF + 291)
-      Iq_neg_pos_ratio = STOF(ISTOF + 292)
-      Iqneg_PoC = STOF(ISTOF + 293)
-      Iqpos_PoC = STOF(ISTOF + 294)
-      Itot_PoC = STOF(ISTOF + 295)
-      RT_32    = STOF(ISTOF + 296)
-      RT_33    = STOF(ISTOF + 297)
-      RT_34    = STOF(ISTOF + 298)
-      Iq_PoC   = STOF(ISTOF + 299)
-      Id_PoC   = STOF(ISTOF + 300)
-      RT_35    = STOF(ISTOF + 301)
-      RT_36    = STOF(ISTOF + 302)
-      RT_37    = STOF(ISTOF + 303)
-      RT_38    = STOF(ISTOF + 304)
-      RT_39    = STOF(ISTOF + 305)
-      RT_40    = STOF(ISTOF + 306)
-      Ia_PoC   = STOF(ISTOF + 307)
-      Ib_PoC   = STOF(ISTOF + 308)
-      Ic_PoC   = STOF(ISTOF + 309)
-      PLANT_V_HV_pu = STOF(ISTOF + 310)
-      PLANT_P_HV = STOF(ISTOF + 311)
-      PLANT_Q_HV = STOF(ISTOF + 312)
-      Vol_POI  = STOF(ISTOF + 313)
-      Hz_POI   = STOF(ISTOF + 314)
-      McbStt   = STOF(ISTOF + 315)
-      GcbStt   = STOF(ISTOF + 316)
-      PoiWLimSales = STOF(ISTOF + 320)
-      BessWSpt = STOF(ISTOF + 321)
-      PVini    = STOF(ISTOF + 322)
-      FRT_flag_PV = STOF(ISTOF + 323)
-      FRT_flag_BESS = STOF(ISTOF + 324)
-      FRT_flag_POC = STOF(ISTOF + 325)
-      PLANT_V_HV = STOF(ISTOF + 619)
-      PLANT_P_MV = STOF(ISTOF + 623)
-      PLANT_Q_MV = STOF(ISTOF + 624)
-      PLANT_I_MV = STOF(ISTOF + 625)
+      PoiVolSpt = STOF(ISTOF + 246)
+      PCU1_P_MV_AGGR = STOF(ISTOF + 247)
+      PCU1_Q_MV_AGGR = STOF(ISTOF + 248)
+      PCU2_P_MV_AGGR = STOF(ISTOF + 249)
+      PCU2_Q_MV_AGGR = STOF(ISTOF + 250)
+      Qspt_MVAr = STOF(ISTOF + 251)
+      PoiPfSpt = STOF(ISTOF + 252)
+      Pspt_MW  = STOF(ISTOF + 253)
+      PoiWLimSales_pu = STOF(ISTOF + 254)
+      PCU1_V_LV = STOF(ISTOF + 255)
+      PCU1_V_MV_pu = STOF(ISTOF + 256)
+      PCU1_V_MV = STOF(ISTOF + 257)
+      PCU2_V_MV_pu = STOF(ISTOF + 258)
+      PCU2_V_MV = STOF(ISTOF + 259)
+      MV_Vol_base = STOF(ISTOF + 260)
+      RT_26    = STOF(ISTOF + 261)
+      RT_27    = STOF(ISTOF + 262)
+      inf_BRK  = STOF(ISTOF + 263)
+      Pcmd_PPC_to_INV_PV = STOF(ISTOF + 264)
+      Qcmd_PPC_to_INV_PV = STOF(ISTOF + 265)
+      Pcmd_PPC_to_INV_BESS = STOF(ISTOF + 266)
+      Qcmd_PPC_to_INV_BESS = STOF(ISTOF + 267)
+      Pout_INV_PV = STOF(ISTOF + 268)
+      RT_28    = STOF(ISTOF + 269)
+      P_Base_PV = STOF(ISTOF + 270)
+      Qout_INV_PV = STOF(ISTOF + 271)
+      RT_29    = STOF(ISTOF + 272)
+      Pout_INV_BESS = STOF(ISTOF + 273)
+      RT_30    = STOF(ISTOF + 274)
+      P_Base_BESS = STOF(ISTOF + 275)
+      Qout_INV_BESS = STOF(ISTOF + 276)
+      RT_31    = STOF(ISTOF + 277)
+      PCU2_V_LV_pu = STOF(ISTOF + 278)
+      PCU2_V_LV = STOF(ISTOF + 279)
+      LV_Vol_base = STOF(ISTOF + 280)
+      HV_Vol_base = STOF(ISTOF + 284)
+      BESSspt_MW = STOF(ISTOF + 285)
+      BessWSpt_pu = STOF(ISTOF + 286)
+      PoiVolSpt_pu = STOF(ISTOF + 287)
+      Q_Base_PV = STOF(ISTOF + 288)
+      Q_Base_BESS = STOF(ISTOF + 289)
+      Iq_neg_pos_ratio = STOF(ISTOF + 290)
+      Iqneg_PoC = STOF(ISTOF + 291)
+      Iqpos_PoC = STOF(ISTOF + 292)
+      Itot_PoC = STOF(ISTOF + 293)
+      RT_32    = STOF(ISTOF + 294)
+      RT_33    = STOF(ISTOF + 295)
+      RT_34    = STOF(ISTOF + 296)
+      Iq_PoC   = STOF(ISTOF + 297)
+      Id_PoC   = STOF(ISTOF + 298)
+      RT_35    = STOF(ISTOF + 299)
+      RT_36    = STOF(ISTOF + 300)
+      RT_37    = STOF(ISTOF + 301)
+      RT_38    = STOF(ISTOF + 302)
+      RT_39    = STOF(ISTOF + 303)
+      RT_40    = STOF(ISTOF + 304)
+      Ia_PoC   = STOF(ISTOF + 305)
+      Ib_PoC   = STOF(ISTOF + 306)
+      Ic_PoC   = STOF(ISTOF + 307)
+      PLANT_V_HV_pu = STOF(ISTOF + 308)
+      PLANT_P_HV = STOF(ISTOF + 309)
+      PLANT_Q_HV = STOF(ISTOF + 310)
+      Vol_POI  = STOF(ISTOF + 311)
+      Hz_POI   = STOF(ISTOF + 312)
+      McbStt   = STOF(ISTOF + 313)
+      GcbStt   = STOF(ISTOF + 314)
+      PoiWLimSales = STOF(ISTOF + 318)
+      BessWSpt = STOF(ISTOF + 319)
+      PVini    = STOF(ISTOF + 320)
+      FRT_flag_PV = STOF(ISTOF + 321)
+      FRT_flag_BESS = STOF(ISTOF + 322)
+      FRT_flag_POC = STOF(ISTOF + 323)
+      PLANT_Q_MV = STOF(ISTOF + 324)
+      PLANT_P_MV = STOF(ISTOF + 325)
+      PLANT_V_MV = STOF(ISTOF + 326)
+      QiniBESS = STOF(ISTOF + 327)
+      RT_41    = STOF(ISTOF + 328)
+      PoiVArSpt = STOF(ISTOF + 329)
+      RT_42    = STOF(ISTOF + 330)
+      PLANT_V_HV = STOF(ISTOF + 624)
+      PLANT_I_MV = STOF(ISTOF + 628)
 
 ! Array (1:3) quantities...
       DO IT_0 = 1,3
-         PCU1_A_LV(IT_0) = STOF(ISTOF + 185 + IT_0)
-         PCU1_A_MV(IT_0) = STOF(ISTOF + 191 + IT_0)
-         PCU2_A_MV(IT_0) = STOF(ISTOF + 200 + IT_0)
-         PCU2_A_LV(IT_0) = STOF(ISTOF + 282 + IT_0)
-         Vrms_abc_POI(IT_0) = STOF(ISTOF + 316 + IT_0)
-         V_ph(IT_0) = STOF(ISTOF + 355 + IT_0)
-         Amp_MV(IT_0) = STOF(ISTOF + 619 + IT_0)
+         PCU1_A_LV(IT_0) = STOF(ISTOF + 184 + IT_0)
+         PCU1_A_MV(IT_0) = STOF(ISTOF + 190 + IT_0)
+         PCU2_A_MV(IT_0) = STOF(ISTOF + 199 + IT_0)
+         PCU2_A_LV(IT_0) = STOF(ISTOF + 280 + IT_0)
+         Vrms_abc_POI(IT_0) = STOF(ISTOF + 314 + IT_0)
+         V_ph(IT_0) = STOF(ISTOF + 360 + IT_0)
+         Amp_MV(IT_0) = STOF(ISTOF + 624 + IT_0)
       END DO
 
 ! Array (1:4) quantities...
@@ -412,14 +418,14 @@
          PCU2_Fb_SI(IT_0) = STOF(ISTOF + 87 + IT_0)
          DPS2_Fb(IT_0) = STOF(ISTOF + 101 + IT_0)
          DPS1_Fb(IT_0) = STOF(ISTOF + 111 + IT_0)
-         PCU1_Fb_SI(IT_0) = STOF(ISTOF + 216 + IT_0)
-         dummy_fb(IT_0) = STOF(ISTOF + 226 + IT_0)
-         SC_Fb(IT_0) = STOF(ISTOF + 236 + IT_0)
-         Meas_Plant(IT_0) = STOF(ISTOF + 325 + IT_0)
-         PCU1_Fb(IT_0) = STOF(ISTOF + 335 + IT_0)
-         PCU2_Fb(IT_0) = STOF(ISTOF + 345 + IT_0)
-         PCU1_Spt(IT_0) = STOF(ISTOF + 358 + IT_0)
-         PCU2_Spt(IT_0) = STOF(ISTOF + 368 + IT_0)
+         PCU1_Fb_SI(IT_0) = STOF(ISTOF + 215 + IT_0)
+         dummy_fb(IT_0) = STOF(ISTOF + 225 + IT_0)
+         SC_Fb(IT_0) = STOF(ISTOF + 235 + IT_0)
+         Meas_Plant(IT_0) = STOF(ISTOF + 330 + IT_0)
+         PCU1_Fb(IT_0) = STOF(ISTOF + 340 + IT_0)
+         PCU2_Fb(IT_0) = STOF(ISTOF + 350 + IT_0)
+         PCU1_Spt(IT_0) = STOF(ISTOF + 363 + IT_0)
+         PCU2_Spt(IT_0) = STOF(ISTOF + 373 + IT_0)
       END DO
 
 ! Array (1:11) quantities...
@@ -434,8 +440,8 @@
 
 ! Array (1:17) quantities...
       DO IT_0 = 1,17
-         MEAS_PCU1(IT_0) = STOF(ISTOF + 136 + IT_0)
-         MEAS_PCU2(IT_0) = STOF(ISTOF + 153 + IT_0)
+         MEAS_PCU1(IT_0) = STOF(ISTOF + 135 + IT_0)
+         MEAS_PCU2(IT_0) = STOF(ISTOF + 152 + IT_0)
       END DO
 
 ! Array (1:20) quantities...
@@ -446,13 +452,13 @@
 
 ! Array (1:40) quantities...
       DO IT_0 = 1,40
-         DEBUG_HyCon1(IT_0) = STOF(ISTOF + 578 + IT_0)
+         DEBUG_HyCon1(IT_0) = STOF(ISTOF + 583 + IT_0)
       END DO
 
 ! Array (1:100) quantities...
       DO IT_0 = 1,100
-         DEBUG_PCU1(IT_0) = STOF(ISTOF + 378 + IT_0)
-         DEBUG_PCU2(IT_0) = STOF(ISTOF + 478 + IT_0)
+         DEBUG_PCU1(IT_0) = STOF(ISTOF + 383 + IT_0)
+         DEBUG_PCU2(IT_0) = STOF(ISTOF + 483 + IT_0)
       END DO
 
 
@@ -530,89 +536,109 @@
 ! integer -> logical
       LT_1 = E_ItoB(POI_BRK)
 
-! 150:[const] Real Constant 
+! 150:[inv] Interpolated Logic Inverter 
+      IF (E_BtoI(LT_1) .NE. 0) THEN
+         IT_1 = 0
+      ELSE
+         IT_1 = 1
+      ENDIF
+
+! 160:[bin_delay] Timed ON/OFF Logic Transition 
+!
+      RVD2_1(1) = REAL(IT_1)
+      RVD2_1(2) = 0.0
+!
+      CALL EMTDC_XTTRANS(0,0.05,0.05,RVD2_1,RVD2_2)
+!
+      IT_2 = NINT(RVD2_2(1))
+
+! 170:[unity] Type/Shape conversion block 
+! logical -> real
+      McbStt = E_BtoR(E_ItoB(IT_2))
+
+! 180:[const] Real Constant 
       RT_23 = -47005.0
 
-! 160:[const] Real Constant 'Gcb'
+! 190:[const] Real Constant 'Gcb'
       GcbStt = 0.0
 
-! 170:[const] Real Constant 
+! 200:[const] Real Constant 
       RT_19 = 50.0
 
-! 180:[InvFbDummy]  
+! 210:[InvFbDummy]  
       CALL InvFbDummyDyn(dummy_fb)
 
 
-! 190:[const] Real Constant 
+! 220:[const] Real Constant 
       RT_40 = 96.77
 
-! 200:[var] Variable Input Slider 'Vstp_manual'
+! 230:[var] Variable Input Slider 'Vstp_manual'
       RT_8 = CX(CXMAP(ICX+1))
 
-! 210:[const] Real Constant 
+! 240:[const] Real Constant 
       RT_36 = 96.77
 
-! 220:[var] Variable Input Slider 'Qstp_manual'
+! 250:[var] Variable Input Slider 'Qstp_manual'
       RT_7 = CX(CXMAP(ICX+2))
 
-! 230:[var_switch] Two State Switch 'PV'
+! 260:[var_switch] Two State Switch 'PV'
       RT_25 = CX(CXMAP(ICX+3))
 
-! 240:[unity] Type/Shape conversion block 
+! 270:[unity] Type/Shape conversion block 
 ! real -> nearest integer
       PVmode = NINT(RT_25)
 
-! 250:[var] Variable Input Slider 'Pstp_manual'
+! 280:[var] Variable Input Slider 'Pstp_manual'
       RT_5 = CX(CXMAP(ICX+4))
 
-! 260:[unity] Type/Shape conversion block 
+! 290:[unity] Type/Shape conversion block 
 ! real -> nearest integer
       IT_4 = NINT(RT_25)
 
-! 270:[var] Variable Input Slider 'PFstp_manual'
+! 300:[var] Variable Input Slider 'PFstp_manual'
       RT_6 = CX(CXMAP(ICX+5))
 
-! 280:[consti] Integer Constant 'PCU1_BRK'
+! 310:[consti] Integer Constant 'PCU1_BRK'
       IT_6 = 0
 
-! 290:[inv] Interpolated Logic Inverter 
+! 320:[inv] Interpolated Logic Inverter 
       IF (IT_6 .NE. 0) THEN
          IT_5 = 0
       ELSE
          IT_5 = 1
       ENDIF
 
-! 300:[const] Real Constant 
+! 330:[const] Real Constant 
       RT_12 = 0.0
 
-! 310:[var] Variable Input Slider 'P1stp_manual'
+! 340:[var] Variable Input Slider 'P1stp_manual'
       RT_10 = CX(CXMAP(ICX+6))
 
-! 320:[consti] Integer Constant 'PCU2_BRK'
+! 350:[consti] Integer Constant 'PCU2_BRK'
       PCU2_BRK = 0
 
-! 330:[const] Real Constant 
+! 360:[const] Real Constant 
       RT_14 = 0.0
 
-! 340:[consti] Integer Constant 'MVBRK'
+! 370:[consti] Integer Constant 'MVBRK'
       MVBRK = 0
 
-! 350:[var] Variable Input Slider 'Irradiance'
+! 380:[var] Variable Input Slider 'Irradiance'
       RT_9 = CX(CXMAP(ICX+7))
 
-! 360:[time-sig] Output of Simulation Time 
+! 390:[time-sig] Output of Simulation Time 
       RT_26 = TIME
 
-! 370:[const] Real Constant 'inf_BRK_time'
+! 400:[const] Real Constant 'inf_BRK_time'
       RT_27 = 1000.0
 
-! 380:[consti] Integer Constant 
+! 410:[consti] Integer Constant 
       No_PCU1 = 36
 
-! 390:[const] Real Constant 
+! 420:[const] Real Constant 
       RT_24 = 25.0
 
-! 410:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
+! 440:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
 
 
 
@@ -690,7 +716,7 @@
       STORF(NSTORF+5) = VDC(PCU1_MVBUS(3), SS(1))*IZo + IKMc_OLD
       NSTORF = NSTORF + 6
 
-! 410:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
+! 440:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
 !  TRANSFORMER SATURATION SUBROUTINE
       IF (TIME.GT.0.1) THEN
          X_KNEE = 1.25
@@ -702,14 +728,14 @@
      &),SS(1),1.4,TURNS_V,0.2,X_KNEE,50.0,1.0,0.004, 0.0, 0)
 !
 
-! 440:[const] Real Constant 
+! 470:[const] Real Constant 
       RT_4 = 1.03
 
-! 450:[DPS_Dummy]  
+! 480:[DPS_Dummy]  
       CALL DPS_DummyDyn(DPS1_Fb)
 
 
-! 460:[breaker3] 3 Phase Breaker 'MVBRK'
+! 490:[breaker3] 3 Phase Breaker 'MVBRK'
       IVD1_4 = NSTORI
       NSTORI = NSTORI + 3
 ! Three Phase Breaker
@@ -737,7 +763,7 @@
       STORI(IVD1_4+1) = 2*E_BtoI(OPENBR( (IBRCH(1)+53),SS(1)))
       STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+54),SS(1)))
 
-! 490:[breaker3] 3 Phase Breaker 'POI_BRK'
+! 520:[breaker3] 3 Phase Breaker 'POI_BRK'
       IVD1_4 = NSTORI
       NSTORI = NSTORI + 3
 ! Three Phase Breaker
@@ -765,10 +791,10 @@
       STORI(IVD1_4+1) = 2*E_BtoI(OPENBR( (IBRCH(1)+26),SS(1)))
       STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+27),SS(1)))
 
-! 510:[consti] Integer Constant 
+! 540:[consti] Integer Constant 
       No_PCU2 = 40
 
-! 540:[GridSource]  'GridSource_1'
+! 570:[GridSource]  'GridSource_1'
       CALL GridSourceDyn(0, 0.0, 0.0, 220.0, 0.0, 0.0, 0.999776463133, 5&
      &0.0, 3.0, 251.5, 0, 0.0, 0.0, 50.0, 50.0, 51.0, 51.0, 51.5, 51.5, &
      &50.0, 50.0, 0.0, 5.0, 5.5, 1, 10.0, 10.5, 15.0, 15.5, 25.0, 0.0, 0&
@@ -779,7 +805,7 @@
      &, 0.0, 0.0, 0.0, 6)
 
 
-! 550:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
+! 580:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
 
 
 
@@ -857,7 +883,7 @@
       STORF(NSTORF+5) = VDC(PCU2_MVBUS(3), SS(1))*IZo + IKMc_OLD
       NSTORF = NSTORF + 6
 
-! 550:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
+! 580:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
 !  TRANSFORMER SATURATION SUBROUTINE
       IF (TIME.GT.0.1) THEN
          X_KNEE = 1.25
@@ -869,7 +895,7 @@
      &),SS(1),1.4,TURNS_V,0.2,X_KNEE,50.0,1.0,0.004, 0.0, 0)
 !
 
-! 590:[breaker3] 3 Phase Breaker 'PCU2_BRK'
+! 620:[breaker3] 3 Phase Breaker 'PCU2_BRK'
       IVD1_4 = NSTORI
       NSTORI = NSTORI + 3
 ! Three Phase Breaker
@@ -897,11 +923,11 @@
       STORI(IVD1_4+1) = 2*E_BtoI(OPENBR( (IBRCH(1)+17),SS(1)))
       STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+18),SS(1)))
 
-! 610:[DPS_Dummy]  
+! 640:[DPS_Dummy]  
       CALL DPS_DummyDyn(DPS2_Fb)
 
 
-! 630:[FaultBlock]  'FaultBlock_1'
+! 660:[FaultBlock]  'FaultBlock_1'
       CALL FaultBlockDyn(0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0&
      &, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, &
      &0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0,&
@@ -910,26 +936,6 @@
      &.0, 0.0, 3.0, 1, 1, 5.0, 0.43, 0, 18.0, 3.0, 50.0, 0.0, 0.0, 0.0, &
      &0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
-
-! 660:[inv] Interpolated Logic Inverter 
-      IF (E_BtoI(LT_1) .NE. 0) THEN
-         IT_1 = 0
-      ELSE
-         IT_1 = 1
-      ENDIF
-
-! 670:[bin_delay] Timed ON/OFF Logic Transition 
-!
-      RVD2_1(1) = REAL(IT_1)
-      RVD2_1(2) = 0.0
-!
-      CALL EMTDC_XTTRANS(0,0.05,0.05,RVD2_1,RVD2_2)
-!
-      IT_2 = NINT(RVD2_2(1))
-
-! 680:[unity] Type/Shape conversion block 
-! logical -> real
-      McbStt = E_BtoR(E_ItoB(IT_2))
 
 ! 720:[SymmetricalComponentsCalc_1_1]  'SymmetricalComponentsCalc_1_1'
       CALL SymmetricalComponentsCalc_1_1Dyn(Iqneg_PoC, Iqpos_PoC, Iqzero&
@@ -1017,15 +1023,20 @@
 
 ! 830:[TapCtrl_1]  
       CALL TapCtrl_1Dyn(Tap_position, maintap, PLANT_V_MV, RT_4, 1, 220.&
-     &0, 0.0125, 0.8, 8, 8, 10, 0.01, 30.0, 30.0, 30.0, 1.0, 3.0, 3.0, 1&
-     &)
+     &0, 0.0125, 0.64, 8, 8, 10, 0.01, 1.0, 1.0, 1.0, 1.0, 3.0, 3.0, 1)
 
 
-! 840:[gain] Gain Block 
+! 840:[sumjct] Summing/Differencing Junctions 
+      PVini = + PoiWLimSales - BessWSpt
+
+! 850:[scale_changer] Scale Changer 
+      CALL CONVERT_SCALE1_EXE(1,PoiVArSpt,RT_42)
+
+! 860:[gain] Gain Block 
 !  Gain
       PoiVolSpt = 220000.0 * PoiVolSpt_pu
 
-! 850:[datamerge] Merges data signals into an array 
+! 870:[datamerge] Merges data signals into an array 
       RT_1(1) = RT_18
       RT_1(2) = RT_20
       RT_1(3) = PoiWLimSales
@@ -1038,11 +1049,18 @@
       RT_1(10) = PoiVolSpt
       RT_1(11) = RT_19
 
-! 860:[Aggr_Fb_Scaled]  
+! 880:[sumjct] Summing/Differencing Junctions 
+      RT_41 = + PoiVArSpt + RT_42
+
+! 890:[gain] Gain Block 
+!  Gain
+      QiniBESS = 0.5 * RT_41
+
+! 900:[Aggr_Fb_Scaled]  
       CALL Aggr_Fb_ScaledDyn(PCU2_Fb_SI, No_PCU2, PCU2_Fb)
 
 
-! 870:[select] Two Input Selector 
+! 910:[select] Two Input Selector 
       IF (PVmode .EQ. RTCI(NRTCI)) THEN
          SC_Fb = PCU1_Fb_SI
       ELSE
@@ -1051,32 +1069,32 @@
       NRTCI = NRTCI + 1
 !
 
-! 880:[DDSRF_PLL_1]  
+! 920:[DDSRF_PLL_1]  
       CALL DDSRF_PLL_1Dyn(220.0, 50.0, Meas_Plant, Meas_Grid)
 
 
-! 890:[datatap] Scalar/Array Tap 
+! 930:[datatap] Scalar/Array Tap 
       Vrms_abc_POI = Meas_Plant(6 : 8)
 
-! 900:[datatap] Scalar/Array Tap 
+! 940:[datatap] Scalar/Array Tap 
       Hz_POI = Meas_Plant(2)
 
-! 910:[datatap] Scalar/Array Tap 
+! 950:[datatap] Scalar/Array Tap 
       Vol_POI = Meas_Plant(1)
 
-! 920:[datamerge] Merges data signals into an array 
+! 960:[datamerge] Merges data signals into an array 
       Bess_Ms(1) = PCU2_P_MV_AGGR
       Bess_Ms(2) = PCU2_Q_MV_AGGR
       Bess_Ms(3) = PCU2_V_MV
       Bess_Ms(4) = Hz_POI
 
-! 930:[datamerge] Merges data signals into an array 
+! 970:[datamerge] Merges data signals into an array 
       Pv_Ms(1) = PCU1_P_MV_AGGR
       Pv_Ms(2) = PCU1_Q_MV_AGGR
       Pv_Ms(3) = PCU1_V_MV
       Pv_Ms(4) = Hz_POI
 
-! 940:[datamerge] Merges data signals into an array 
+! 980:[datamerge] Merges data signals into an array 
       Poi_Ms(1) = PLANT_P_HV
       Poi_Ms(2) = PLANT_Q_HV
       Poi_Ms(3) = Vol_POI
@@ -1086,33 +1104,33 @@
       Poi_Ms(7 : 9) = Vrms_abc_POI
       Poi_Ms(10 : 12) = Vrms_abc_POI
 
-! 950:[HyCtl]  'HyCon1'
+! 990:[HyCtl]  'HyCon1'
       CALL HyCtlDyn(RT_1, Poi_Ms, Pv_Ms, RT_2, RT_3, PCU2_Fb_SI, SC_Fb, &
      &Bess_Ms, dummy_fb, DEBUG_HyCon1, dummy_fb, 1, 0, 50.0, 21521, 0.04&
-     &, 1.9, 50000.0, 0.0, 69000.0, 0.0)
+     &, 1.9, BessWSpt, QiniBESS, PVini, QiniBESS)
 
 
-! 960:[datatap] Scalar/Array Tap 
+! 1000:[datatap] Scalar/Array Tap 
       PCU1_Spt = RT_3(1 : 10)
 
-! 970:[SCxxxx] SMA  SC xxxx 
+! 1010:[SCxxxx] SMA  SC xxxx 
       CALL SCxxxxDyn(PCU1_Spt, PCU1_Fb, 51, 16641, 9, 0, 1700, DPS1_Spt,&
      & DPS1_Fb, DEBUG_PCU1, MEAS_PCU1)
 
 
-! 980:[Aggr_Fb_Scaled]  
+! 1020:[Aggr_Fb_Scaled]  
       CALL Aggr_Fb_ScaledDyn(PCU1_Fb_SI, No_PCU1, PCU1_Fb)
 
 
-! 990:[datatap] Scalar/Array Tap 
+! 1030:[datatap] Scalar/Array Tap 
       PCU2_Spt = RT_2(1 : 10)
 
-! 1000:[SCxxxx] SMA  SC xxxx 
+! 1040:[SCxxxx] SMA  SC xxxx 
       CALL SCxxxxDyn(PCU2_Spt, PCU2_Fb, 57, 82177, 9, 0, 1500, DPS2_Spt,&
      & DPS2_Fb, DEBUG_PCU2, MEAS_PCU2)
 
 
-! 1010:[div] Divider 
+! 1050:[div] Divider 
       IF (ABS(HV_Vol_base) .LT. 1.0E-100) THEN
          IF (HV_Vol_base .LT. 0.0)  THEN
             PLANT_V_HV_pu = -1.0E100 * Vol_POI
@@ -1123,7 +1141,7 @@
          PLANT_V_HV_pu = Vol_POI / HV_Vol_base
       ENDIF
 
-! 1020:[hardlimit] Hard Limiter 
+! 1060:[hardlimit] Hard Limiter 
 !  Hard_Limit
       IF (0.001 .LE. 2.0) THEN
         RT_39 = LIMIT(0.001, 2.0, PLANT_V_HV_pu)
@@ -1138,7 +1156,7 @@
       NSTORL = NSTORL + 1
 !
 
-! 1030:[div] Divider 
+! 1070:[div] Divider 
       IF (ABS(RT_39) .LT. 1.0E-100) THEN
          IF (RT_39 .LT. 0.0)  THEN
             Id_PoC = -1.0E100 * RT_38
@@ -1149,10 +1167,10 @@
          Id_PoC = RT_38 / RT_39
       ENDIF
 
-! 1040:[square] Square 
+! 1080:[square] Square 
       RT_32 = Id_PoC * Id_PoC
 
-! 1050:[hardlimit] Hard Limiter 
+! 1090:[hardlimit] Hard Limiter 
 !  Hard_Limit
       IF (0.001 .LE. 2.0) THEN
         RT_37 = LIMIT(0.001, 2.0, PLANT_V_HV_pu)
@@ -1167,7 +1185,7 @@
       NSTORL = NSTORL + 1
 !
 
-! 1060:[div] Divider 
+! 1100:[div] Divider 
       IF (ABS(RT_37) .LT. 1.0E-100) THEN
          IF (RT_37 .LT. 0.0)  THEN
             Iq_PoC = -1.0E100 * RT_35
@@ -1178,16 +1196,16 @@
          Iq_PoC = RT_35 / RT_37
       ENDIF
 
-! 1070:[square] Square 
+! 1110:[square] Square 
       RT_33 = Iq_PoC * Iq_PoC
 
-! 1080:[sumjct] Summing/Differencing Junctions 
+! 1120:[sumjct] Summing/Differencing Junctions 
       RT_34 = + RT_32 + RT_33
 
-! 1090:[datatap] Scalar/Array Tap 
+! 1130:[datatap] Scalar/Array Tap 
       RT_31 = PCU2_Fb(6)
 
-! 1100:[sqrt] Square Root 
+! 1140:[sqrt] Square Root 
       LVD1_1 = STORL(NSTORL)
       IF (RT_34 .LT. 0.0) THEN
         Itot_PoC = 0.0
@@ -1203,37 +1221,37 @@
       ENDIF
       NSTORL = NSTORL + 1
 
-! 1110:[datatap] Scalar/Array Tap 
+! 1150:[datatap] Scalar/Array Tap 
       RT_29 = PCU1_Fb(6)
 
-! 1120:[datatap] Scalar/Array Tap 
+! 1160:[datatap] Scalar/Array Tap 
       RT_30 = PCU2_Fb(5)
 
-! 1130:[datatap] Scalar/Array Tap 
+! 1170:[datatap] Scalar/Array Tap 
       RT_28 = PCU1_Fb(5)
 
-! 1140:[datatap] Scalar/Array Tap 
+! 1180:[datatap] Scalar/Array Tap 
       FRT_flag_POC = DEBUG_HyCon1(1)
 
-! 1150:[datatap] Scalar/Array Tap 
+! 1190:[datatap] Scalar/Array Tap 
       FRT_flag_BESS = DEBUG_PCU2(1)
 
-! 1160:[datatap] Scalar/Array Tap 
+! 1200:[datatap] Scalar/Array Tap 
       FRT_flag_PV = DEBUG_PCU1(1)
 
-! 1170:[gain] Gain Block 
+! 1210:[gain] Gain Block 
 !  Gain
-      BESSspt_MW = 90.0 * BessWSpt_pu
+      BESSspt_MW = 119.0 * BessWSpt_pu
 
-! 1180:[gain] Gain Block 
+! 1220:[gain] Gain Block 
 !  Gain
-      Qspt_MVAr = 90.0 * PoiVArSpt_pu
+      Qspt_MVAr = 119.0 * PoiVArSpt_pu
 
-! 1190:[gain] Gain Block 
+! 1230:[gain] Gain Block 
 !  Gain
-      Pspt_MW = 90.0 * PoiWLimSales_pu
+      Pspt_MW = 119.0 * PoiWLimSales_pu
 
-! 1200:[div] Divider 
+! 1240:[div] Divider 
       IF (ABS(Iqpos_PoC) .LT. 1.0E-100) THEN
          IF (Iqpos_PoC .LT. 0.0)  THEN
             Iq_neg_pos_ratio = -1.0E100 * Iqneg_PoC
@@ -1244,19 +1262,19 @@
          Iq_neg_pos_ratio = Iqneg_PoC / Iqpos_PoC
       ENDIF
 
-! 1210:[datatap] Scalar/Array Tap 
+! 1250:[datatap] Scalar/Array Tap 
       Qcmd_PPC_to_INV_BESS = PCU2_Spt(2)
 
-! 1220:[datatap] Scalar/Array Tap 
+! 1260:[datatap] Scalar/Array Tap 
       Pcmd_PPC_to_INV_BESS = PCU2_Spt(1)
 
-! 1230:[datatap] Scalar/Array Tap 
+! 1270:[datatap] Scalar/Array Tap 
       Qcmd_PPC_to_INV_PV = PCU1_Spt(2)
 
-! 1240:[datatap] Scalar/Array Tap 
+! 1280:[datatap] Scalar/Array Tap 
       Pcmd_PPC_to_INV_PV = PCU1_Spt(1)
 
-! 1260:[breaker3] 3 Phase Breaker 'inf_BRK'
+! 1300:[breaker3] 3 Phase Breaker 'inf_BRK'
       IVD1_4 = NSTORI
       NSTORI = NSTORI + 3
 ! Three Phase Breaker
@@ -1284,7 +1302,7 @@
       STORI(IVD1_4+1) = 2*E_BtoI(OPENBR( (IBRCH(1)+110),SS(1)))
       STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+111),SS(1)))
 
-! 1270:[xfmr-3p2w] 3 Phase 2 Winding Transformer 'T2'
+! 1310:[xfmr-3p2w] 3 Phase 2 Winding Transformer 'T2'
 !  TRANSFORMER SATURATION SUBROUTINE
       IVD1_1 = NEXC
       CALL TSAT1_EXE( (IBRCH(1)+46), (IBRCH(1)+47), (IBRCH(1)+48),SS(1),&
@@ -1293,7 +1311,11 @@
       CALL TRTAP5((IXFMR + 8), 1, SS(1), maintap)
       CALL TRTAP5((IXFMR + 9), 1, SS(1), maintap)
 
-! 1280:[breaker3] 3 Phase Breaker 'PCU1_BRK'
+! 1320:[pgb] Output Channel 'Tap_position'
+
+      PGB(IPGB+1) = REAL(Tap_position)
+
+! 1330:[breaker3] 3 Phase Breaker 'PCU1_BRK'
       IVD1_4 = NSTORI
       NSTORI = NSTORI + 3
 ! Three Phase Breaker
@@ -1321,20 +1343,20 @@
       STORI(IVD1_4+1) = 2*E_BtoI(OPENBR( (IBRCH(1)+8),SS(1)))
       STORI(IVD1_4+2) = 2*E_BtoI(OPENBR( (IBRCH(1)+9),SS(1)))
 
-! 1290:[pgb] Output Channel 'maintap'
+! 1340:[pgb] Output Channel 'maintap'
 
-      PGB(IPGB+1) = maintap
+      PGB(IPGB+2) = maintap
 
-! 1300:[photovoltaic_source] photovoltaic source 'PVarray1'
+! 1350:[photovoltaic_source] photovoltaic source 'PVarray1'
       CALL COMPONENT_ID(ICALL_NO,1473112425)
       CALL PHOTOVOLT1_EXE(SS(2), (IBRCH(2)+1),PCU1_Irr,RT_24,RVD1_1,RVD1&
      &_2,RVD1_3, RVD1_4)
 
-! 1330:[pgb] Output Channel 'Itot_PoC'
+! 1380:[pgb] Output Channel 'Itot_PoC'
 
-      PGB(IPGB+4) = Itot_PoC
+      PGB(IPGB+5) = Itot_PoC
 
-! 1340:[div] Divider 
+! 1390:[div] Divider 
       IF (ABS(Q_Base_BESS) .LT. 1.0E-100) THEN
          IF (Q_Base_BESS .LT. 0.0)  THEN
             Qout_INV_BESS = -1.0E100 * RT_31
@@ -1345,7 +1367,7 @@
          Qout_INV_BESS = RT_31 / Q_Base_BESS
       ENDIF
 
-! 1360:[div] Divider 
+! 1410:[div] Divider 
       IF (ABS(Q_Base_PV) .LT. 1.0E-100) THEN
          IF (Q_Base_PV .LT. 0.0)  THEN
             Qout_INV_PV = -1.0E100 * RT_29
@@ -1356,7 +1378,7 @@
          Qout_INV_PV = RT_29 / Q_Base_PV
       ENDIF
 
-! 1370:[div] Divider 
+! 1420:[div] Divider 
       IF (ABS(P_Base_BESS) .LT. 1.0E-100) THEN
          IF (P_Base_BESS .LT. 0.0)  THEN
             Pout_INV_BESS = -1.0E100 * RT_30
@@ -1367,11 +1389,11 @@
          Pout_INV_BESS = RT_30 / P_Base_BESS
       ENDIF
 
-! 1380:[pgb] Output Channel 'Ineg_PoC'
+! 1430:[pgb] Output Channel 'Ineg_PoC'
 
-      PGB(IPGB+6) = Ineg_PoC
+      PGB(IPGB+7) = Ineg_PoC
 
-! 1390:[div] Divider 
+! 1440:[div] Divider 
       IF (ABS(MV_Vol_base) .LT. 1.0E-100) THEN
          IF (MV_Vol_base .LT. 0.0)  THEN
             PCU2_V_MV_pu = -1.0E100 * PCU2_V_MV
@@ -1382,7 +1404,7 @@
          PCU2_V_MV_pu = PCU2_V_MV / MV_Vol_base
       ENDIF
 
-! 1400:[div] Divider 
+! 1450:[div] Divider 
       IF (ABS(P_Base_PV) .LT. 1.0E-100) THEN
          IF (P_Base_PV .LT. 0.0)  THEN
             Pout_INV_PV = -1.0E100 * RT_28
@@ -1393,7 +1415,7 @@
          Pout_INV_PV = RT_28 / P_Base_PV
       ENDIF
 
-! 1410:[div] Divider 
+! 1460:[div] Divider 
       IF (ABS(MV_Vol_base) .LT. 1.0E-100) THEN
          IF (MV_Vol_base .LT. 0.0)  THEN
             PCU1_V_MV_pu = -1.0E100 * PCU1_V_MV
@@ -1404,19 +1426,19 @@
          PCU1_V_MV_pu = PCU1_V_MV / MV_Vol_base
       ENDIF
 
-! 1420:[pgb] Output Channel 'Ipos_PoC'
+! 1470:[pgb] Output Channel 'Ipos_PoC'
 
-      PGB(IPGB+7) = Ipos_PoC
+      PGB(IPGB+8) = Ipos_PoC
 
-! 1430:[pgb] Output Channel 'Iq_PoC'
+! 1480:[pgb] Output Channel 'Iq_PoC'
 
-      PGB(IPGB+8) = Iq_PoC
+      PGB(IPGB+9) = Iq_PoC
 
-! 1440:[pgb] Output Channel 'Izero_PoC'
+! 1490:[pgb] Output Channel 'Izero_PoC'
 
-      PGB(IPGB+9) = Izero_PoC
+      PGB(IPGB+10) = Izero_PoC
 
-! 1450:[div] Divider 
+! 1500:[div] Divider 
       IF (ABS(LV_Vol_base) .LT. 1.0E-100) THEN
          IF (LV_Vol_base .LT. 0.0)  THEN
             PCU2_V_LV_pu = -1.0E100 * PCU2_V_LV
@@ -1427,7 +1449,7 @@
          PCU2_V_LV_pu = PCU2_V_LV / LV_Vol_base
       ENDIF
 
-! 1460:[div] Divider 
+! 1510:[div] Divider 
       IF (ABS(LV_Vol_base) .LT. 1.0E-100) THEN
          IF (LV_Vol_base .LT. 0.0)  THEN
             PCU1_V_LV_pu = -1.0E100 * PCU1_V_LV
@@ -1438,140 +1460,137 @@
          PCU1_V_LV_pu = PCU1_V_LV / LV_Vol_base
       ENDIF
 
-! 1470:[pgb] Output Channel 'FRT_flag_POC'
+! 1520:[pgb] Output Channel 'FRT_flag_POC'
 
-      PGB(IPGB+10) = FRT_flag_POC
+      PGB(IPGB+11) = FRT_flag_POC
 
-! 1480:[pgb] Output Channel 'FRT_flag_BESS'
+! 1540:[pgb] Output Channel 'FRT_flag_BESS'
 
-      PGB(IPGB+11) = FRT_flag_BESS
+      PGB(IPGB+13) = FRT_flag_BESS
 
-! 1490:[pgb] Output Channel 'FRT_flag_PV'
+! 1560:[pgb] Output Channel 'FRT_flag_PV'
 
-      PGB(IPGB+12) = FRT_flag_PV
+      PGB(IPGB+15) = FRT_flag_PV
 
-! 1500:[pgb] Output Channel 'Vneg_PoC'
+! 1570:[pgb] Output Channel 'Vneg_PoC'
 
-      PGB(IPGB+13) = Vneg_PoC
+      PGB(IPGB+16) = Vneg_PoC
 
-! 1510:[pgb] Output Channel 'Id_PoC'
+! 1590:[pgb] Output Channel 'Id_PoC'
 
-      PGB(IPGB+14) = Id_PoC
+      PGB(IPGB+18) = Id_PoC
 
-! 1520:[pgb] Output Channel 'Vpos_PoC'
+! 1600:[pgb] Output Channel 'Vpos_PoC'
 
-      PGB(IPGB+15) = Vpos_PoC
+      PGB(IPGB+19) = Vpos_PoC
 
-! 1530:[pgb] Output Channel 'Qout_INV_BESS'
+! 1610:[pgb] Output Channel 'Qout_INV_BESS'
 
-      PGB(IPGB+16) = Qout_INV_BESS
+      PGB(IPGB+20) = Qout_INV_BESS
 
-! 1540:[pgb] Output Channel 'BESSspt_MW'
+! 1620:[pgb] Output Channel 'BESSspt_MW'
 
-      PGB(IPGB+17) = BESSspt_MW
+      PGB(IPGB+21) = BESSspt_MW
 
-! 1560:[pgb] Output Channel 'Vzero_PoC'
+! 1640:[pgb] Output Channel 'Vzero_PoC'
 
-      PGB(IPGB+19) = Vzero_PoC
+      PGB(IPGB+23) = Vzero_PoC
 
-! 1580:[pgb] Output Channel 'Pout_INV_BESS'
+! 1660:[pgb] Output Channel 'Pout_INV_BESS'
 
-      PGB(IPGB+21) = Pout_INV_BESS
+      PGB(IPGB+25) = Pout_INV_BESS
 
-! 1590:[pgb] Output Channel 'Qspt_MVAr'
+! 1670:[pgb] Output Channel 'Qspt_MVAr'
 
-      PGB(IPGB+22) = Qspt_MVAr
+      PGB(IPGB+26) = Qspt_MVAr
 
-! 1620:[pgb] Output Channel 'Qout_INV_PV'
+! 1700:[pgb] Output Channel 'Qout_INV_PV'
 
-      PGB(IPGB+25) = Qout_INV_PV
+      PGB(IPGB+29) = Qout_INV_PV
 
-! 1630:[DEBUG_HyCon_Scope]  'HyCon1'
+! 1710:[DEBUG_HyCon_Scope]  'HyCon1'
       CALL DEBUG_HyCon_ScopeDyn(DEBUG_HyCon1)
 
 
-! 1640:[pgb] Output Channel 'Pspt_MW'
+! 1720:[pgb] Output Channel 'Pspt_MW'
 
-      PGB(IPGB+26) = Pspt_MW
+      PGB(IPGB+30) = Pspt_MW
 
-! 1660:[pgb] Output Channel 'Pout_INV_PV'
+! 1740:[pgb] Output Channel 'Pout_INV_PV'
 
-      PGB(IPGB+28) = Pout_INV_PV
+      PGB(IPGB+32) = Pout_INV_PV
 
-! 1670:[pgb] Output Channel 'PoiPfSpt'
+! 1750:[pgb] Output Channel 'PoiPfSpt'
 
-      PGB(IPGB+29) = PoiPfSpt
+      PGB(IPGB+33) = PoiPfSpt
 
-! 1690:[pgb] Output Channel 'Iqneg_PoC'
+! 1770:[pgb] Output Channel 'Iqneg_PoC'
 
-      PGB(IPGB+31) = Iqneg_PoC
+      PGB(IPGB+35) = Iqneg_PoC
 
-! 1710:[pgb] Output Channel 'PoiVolSpt_pu'
+! 1790:[pgb] Output Channel 'PoiVolSpt_pu'
 
-      PGB(IPGB+33) = PoiVolSpt_pu
+      PGB(IPGB+37) = PoiVolSpt_pu
 
-! 1730:[pgb] Output Channel 'Qcmd_PPC_to_INV_BESS'
+! 1810:[pgb] Output Channel 'Qcmd_PPC_to_INV_BESS'
 
-      PGB(IPGB+35) = Qcmd_PPC_to_INV_BESS
+      PGB(IPGB+39) = Qcmd_PPC_to_INV_BESS
 
-! 1740:[pgb] Output Channel 'Iqpos_PoC'
+! 1820:[pgb] Output Channel 'Iqpos_PoC'
 
-      PGB(IPGB+36) = Iqpos_PoC
+      PGB(IPGB+40) = Iqpos_PoC
 
-! 1750:[pgb] Output Channel 'Iq_neg_pos_ratio'
+! 1830:[pgb] Output Channel 'Iq_neg_pos_ratio'
 
-      PGB(IPGB+37) = Iq_neg_pos_ratio
+      PGB(IPGB+41) = Iq_neg_pos_ratio
 
-! 1770:[pgb] Output Channel 'Hz_POI'
+! 1860:[pgb] Output Channel 'Hz_POI'
 
-      PGB(IPGB+41) = Hz_POI
+      PGB(IPGB+48) = Hz_POI
 
-! 1790:[pgb] Output Channel 'Pcmd_PPC_to_INV_BESS'
+! 1870:[pgb] Output Channel 'Pcmd_PPC_to_INV_BESS'
 
-      PGB(IPGB+45) = Pcmd_PPC_to_INV_BESS
+      PGB(IPGB+49) = Pcmd_PPC_to_INV_BESS
 
-! 1800:[pgb] Output Channel 'Iqzero_PoC'
+! 1880:[pgb] Output Channel 'Iqzero_PoC'
 
-      PGB(IPGB+46) = Iqzero_PoC
+      PGB(IPGB+50) = Iqzero_PoC
 
-! 1810:[pgb] Output Channel 'PCU2_V_MV_pu'
+! 1890:[pgb] Output Channel 'PCU2_V_MV_pu'
 
-      PGB(IPGB+47) = PCU2_V_MV_pu
+      PGB(IPGB+51) = PCU2_V_MV_pu
 
-! 1820:[pgb] Output Channel 'PCU1_V_MV_pu'
+! 1910:[pgb] Output Channel 'PCU1_V_MV_pu'
 
-      PGB(IPGB+48) = PCU1_V_MV_pu
+      PGB(IPGB+53) = PCU1_V_MV_pu
 
-! 1840:[pgb] Output Channel 'Qcmd_PPC_to_INV_PV'
+! 1920:[pgb] Output Channel 'Qcmd_PPC_to_INV_PV'
 
-      PGB(IPGB+50) = Qcmd_PPC_to_INV_PV
+      PGB(IPGB+54) = Qcmd_PPC_to_INV_PV
 
-! 1850:[SC_Scope] Scopes for monitoring 
+! 1930:[SC_Scope] Scopes for monitoring 
       CALL SC_ScopeDyn(DEBUG_PCU2, MEAS_PCU2)
 
 
-! 1880:[pgb] Output Channel 'Pcmd_PPC_to_INV_PV'
+! 1960:[pgb] Output Channel 'Pcmd_PPC_to_INV_PV'
 
-      PGB(IPGB+53) = Pcmd_PPC_to_INV_PV
+      PGB(IPGB+57) = Pcmd_PPC_to_INV_PV
 
-! 1930:[sumjct] Summing/Differencing Junctions 
-      PVini = + PoiWLimSales - BessWSpt
+! 2020:[pgb] Output Channel 'PLANT_V_HV_pu'
 
-! 1950:[pgb] Output Channel 'PLANT_V_HV_pu'
+      PGB(IPGB+65) = PLANT_V_HV_pu
 
-      PGB(IPGB+61) = PLANT_V_HV_pu
-
-! 1970:[SC_Scope] Scopes for monitoring 
+! 2040:[SC_Scope] Scopes for monitoring 
       CALL SC_ScopeDyn(DEBUG_PCU1, MEAS_PCU1)
 
 
-! 1980:[pgb] Output Channel 'PCU2_V_LV_pu'
+! 2050:[pgb] Output Channel 'PCU2_V_LV_pu'
 
-      PGB(IPGB+65) = PCU2_V_LV_pu
+      PGB(IPGB+69) = PCU2_V_LV_pu
 
-! 1990:[pgb] Output Channel 'PCU1_V_LV_pu'
+! 2060:[pgb] Output Channel 'PCU1_V_LV_pu'
 
-      PGB(IPGB+66) = PCU1_V_LV_pu
+      PGB(IPGB+70) = PCU1_V_LV_pu
 
 ! 1:[source1] Single Phase Voltage Source Model 1 'Battery'
 !  Single Phase Source: Battery
@@ -1589,157 +1608,160 @@
       STOI(ISTOI + 1) = No_PCU1
       STOI(ISTOI + 2) = Tap_position
       STOF(ISTOF + 122) = maintap
-      STOF(ISTOF + 123) = PLANT_V_MV
-      STOF(ISTOF + 124) = RT_4
-      STOF(ISTOF + 125) = PoiVArSpt_pu
-      STOF(ISTOF + 126) = RT_5
-      STOF(ISTOF + 127) = RT_6
-      STOF(ISTOF + 128) = RT_7
-      STOF(ISTOF + 129) = RT_8
-      STOF(ISTOF + 130) = RT_9
-      STOF(ISTOF + 131) = PCU1_Irr
-      STOF(ISTOF + 132) = RT_10
-      STOF(ISTOF + 133) = RT_11
-      STOF(ISTOF + 134) = RT_12
-      STOF(ISTOF + 135) = RT_13
-      STOF(ISTOF + 136) = RT_14
-      STOF(ISTOF + 171) = Iqzero_PoC
-      STOF(ISTOF + 172) = RT_15
-      STOF(ISTOF + 173) = RT_16
-      STOF(ISTOF + 174) = RT_17
-      STOF(ISTOF + 175) = Vneg_PoC
-      STOF(ISTOF + 176) = Vpos_PoC
-      STOF(ISTOF + 177) = Vzero_PoC
-      STOF(ISTOF + 178) = Vab_PPC
-      STOF(ISTOF + 179) = Vbc_PPC
-      STOF(ISTOF + 180) = Vca_PPC
-      STOF(ISTOF + 181) = Ineg_PoC
-      STOF(ISTOF + 182) = Ipos_PoC
-      STOF(ISTOF + 183) = Izero_PoC
-      STOF(ISTOF + 184) = PCU1_P_LV
-      STOF(ISTOF + 185) = PCU1_Q_LV
-      STOF(ISTOF + 189) = PCU1_V_LV_pu
-      STOF(ISTOF + 190) = PCU1_Q_MV
-      STOF(ISTOF + 191) = PCU1_P_MV
-      STOF(ISTOF + 195) = RT_18
-      STOF(ISTOF + 196) = RT_19
-      STOF(ISTOF + 197) = RT_20
-      STOF(ISTOF + 198) = RT_21
-      STOF(ISTOF + 199) = RT_22
-      STOF(ISTOF + 200) = RT_23
-      STOF(ISTOF + 204) = PCU2_P_MV
-      STOF(ISTOF + 205) = PCU2_Q_MV
-      STOF(ISTOF + 206) = PCU2_Q_LV
-      STOF(ISTOF + 207) = PCU2_P_LV
+      STOF(ISTOF + 123) = RT_4
+      STOF(ISTOF + 124) = PoiVArSpt_pu
+      STOF(ISTOF + 125) = RT_5
+      STOF(ISTOF + 126) = RT_6
+      STOF(ISTOF + 127) = RT_7
+      STOF(ISTOF + 128) = RT_8
+      STOF(ISTOF + 129) = RT_9
+      STOF(ISTOF + 130) = PCU1_Irr
+      STOF(ISTOF + 131) = RT_10
+      STOF(ISTOF + 132) = RT_11
+      STOF(ISTOF + 133) = RT_12
+      STOF(ISTOF + 134) = RT_13
+      STOF(ISTOF + 135) = RT_14
+      STOF(ISTOF + 170) = Iqzero_PoC
+      STOF(ISTOF + 171) = RT_15
+      STOF(ISTOF + 172) = RT_16
+      STOF(ISTOF + 173) = RT_17
+      STOF(ISTOF + 174) = Vneg_PoC
+      STOF(ISTOF + 175) = Vpos_PoC
+      STOF(ISTOF + 176) = Vzero_PoC
+      STOF(ISTOF + 177) = Vab_PPC
+      STOF(ISTOF + 178) = Vbc_PPC
+      STOF(ISTOF + 179) = Vca_PPC
+      STOF(ISTOF + 180) = Ineg_PoC
+      STOF(ISTOF + 181) = Ipos_PoC
+      STOF(ISTOF + 182) = Izero_PoC
+      STOF(ISTOF + 183) = PCU1_P_LV
+      STOF(ISTOF + 184) = PCU1_Q_LV
+      STOF(ISTOF + 188) = PCU1_V_LV_pu
+      STOF(ISTOF + 189) = PCU1_Q_MV
+      STOF(ISTOF + 190) = PCU1_P_MV
+      STOF(ISTOF + 194) = RT_18
+      STOF(ISTOF + 195) = RT_19
+      STOF(ISTOF + 196) = RT_20
+      STOF(ISTOF + 197) = RT_21
+      STOF(ISTOF + 198) = RT_22
+      STOF(ISTOF + 199) = RT_23
+      STOF(ISTOF + 203) = PCU2_P_MV
+      STOF(ISTOF + 204) = PCU2_Q_MV
+      STOF(ISTOF + 205) = PCU2_Q_LV
+      STOF(ISTOF + 206) = PCU2_P_LV
       STOI(ISTOI + 3) = PCU2_BRK
       STOL(ISTOL + 1) = LT_1
       STOI(ISTOI + 4) = POI_BRK
       STOI(ISTOI + 5) = IT_1
       STOI(ISTOI + 6) = IT_2
-      STOF(ISTOF + 208) = PCU1_Arms_LV
-      STOF(ISTOF + 209) = PCU2_Arms_LV
-      STOF(ISTOF + 210) = PCU2_Phs
-      STOF(ISTOF + 211) = PCU1_Phs
-      STOF(ISTOF + 212) = PLANT_Phs
+      STOF(ISTOF + 207) = PCU1_Arms_LV
+      STOF(ISTOF + 208) = PCU2_Arms_LV
+      STOF(ISTOF + 209) = PCU2_Phs
+      STOF(ISTOF + 210) = PCU1_Phs
+      STOF(ISTOF + 211) = PLANT_Phs
       STOI(ISTOI + 7) = MVBRK
-      STOF(ISTOF + 213) = RT_24
+      STOF(ISTOF + 212) = RT_24
       STOI(ISTOI + 8) = IT_3
-      STOF(ISTOF + 214) = MV_Bus_Vol
-      STOF(ISTOF + 215) = RT_25
-      STOF(ISTOF + 216) = Fsys
+      STOF(ISTOF + 213) = MV_Bus_Vol
+      STOF(ISTOF + 214) = RT_25
+      STOF(ISTOF + 215) = Fsys
       STOI(ISTOI + 9) = No_PCU2
       STOI(ISTOI + 10) = IT_4
       STOI(ISTOI + 11) = PCU1_BRK
       STOI(ISTOI + 12) = IT_5
       STOI(ISTOI + 13) = IT_6
       STOI(ISTOI + 14) = PVmode
-      STOF(ISTOF + 247) = PoiVArSpt
-      STOF(ISTOF + 248) = PoiVolSpt
-      STOF(ISTOF + 249) = PCU1_P_MV_AGGR
-      STOF(ISTOF + 250) = PCU1_Q_MV_AGGR
-      STOF(ISTOF + 251) = PCU2_P_MV_AGGR
-      STOF(ISTOF + 252) = PCU2_Q_MV_AGGR
-      STOF(ISTOF + 253) = Qspt_MVAr
-      STOF(ISTOF + 254) = PoiPfSpt
-      STOF(ISTOF + 255) = Pspt_MW
-      STOF(ISTOF + 256) = PoiWLimSales_pu
-      STOF(ISTOF + 257) = PCU1_V_LV
-      STOF(ISTOF + 258) = PCU1_V_MV_pu
-      STOF(ISTOF + 259) = PCU1_V_MV
-      STOF(ISTOF + 260) = PCU2_V_MV_pu
-      STOF(ISTOF + 261) = PCU2_V_MV
-      STOF(ISTOF + 262) = MV_Vol_base
-      STOF(ISTOF + 263) = RT_26
-      STOF(ISTOF + 264) = RT_27
-      STOF(ISTOF + 265) = inf_BRK
-      STOF(ISTOF + 266) = Pcmd_PPC_to_INV_PV
-      STOF(ISTOF + 267) = Qcmd_PPC_to_INV_PV
-      STOF(ISTOF + 268) = Pcmd_PPC_to_INV_BESS
-      STOF(ISTOF + 269) = Qcmd_PPC_to_INV_BESS
-      STOF(ISTOF + 270) = Pout_INV_PV
-      STOF(ISTOF + 271) = RT_28
-      STOF(ISTOF + 272) = P_Base_PV
-      STOF(ISTOF + 273) = Qout_INV_PV
-      STOF(ISTOF + 274) = RT_29
-      STOF(ISTOF + 275) = Pout_INV_BESS
-      STOF(ISTOF + 276) = RT_30
-      STOF(ISTOF + 277) = P_Base_BESS
-      STOF(ISTOF + 278) = Qout_INV_BESS
-      STOF(ISTOF + 279) = RT_31
-      STOF(ISTOF + 280) = PCU2_V_LV_pu
-      STOF(ISTOF + 281) = PCU2_V_LV
-      STOF(ISTOF + 282) = LV_Vol_base
-      STOF(ISTOF + 286) = HV_Vol_base
-      STOF(ISTOF + 287) = BESSspt_MW
-      STOF(ISTOF + 288) = BessWSpt_pu
-      STOF(ISTOF + 289) = PoiVolSpt_pu
-      STOF(ISTOF + 290) = Q_Base_PV
-      STOF(ISTOF + 291) = Q_Base_BESS
-      STOF(ISTOF + 292) = Iq_neg_pos_ratio
-      STOF(ISTOF + 293) = Iqneg_PoC
-      STOF(ISTOF + 294) = Iqpos_PoC
-      STOF(ISTOF + 295) = Itot_PoC
-      STOF(ISTOF + 296) = RT_32
-      STOF(ISTOF + 297) = RT_33
-      STOF(ISTOF + 298) = RT_34
-      STOF(ISTOF + 299) = Iq_PoC
-      STOF(ISTOF + 300) = Id_PoC
-      STOF(ISTOF + 301) = RT_35
-      STOF(ISTOF + 302) = RT_36
-      STOF(ISTOF + 303) = RT_37
-      STOF(ISTOF + 304) = RT_38
-      STOF(ISTOF + 305) = RT_39
-      STOF(ISTOF + 306) = RT_40
-      STOF(ISTOF + 307) = Ia_PoC
-      STOF(ISTOF + 308) = Ib_PoC
-      STOF(ISTOF + 309) = Ic_PoC
-      STOF(ISTOF + 310) = PLANT_V_HV_pu
-      STOF(ISTOF + 311) = PLANT_P_HV
-      STOF(ISTOF + 312) = PLANT_Q_HV
-      STOF(ISTOF + 313) = Vol_POI
-      STOF(ISTOF + 314) = Hz_POI
-      STOF(ISTOF + 315) = McbStt
-      STOF(ISTOF + 316) = GcbStt
-      STOF(ISTOF + 320) = PoiWLimSales
-      STOF(ISTOF + 321) = BessWSpt
-      STOF(ISTOF + 322) = PVini
-      STOF(ISTOF + 323) = FRT_flag_PV
-      STOF(ISTOF + 324) = FRT_flag_BESS
-      STOF(ISTOF + 325) = FRT_flag_POC
-      STOF(ISTOF + 619) = PLANT_V_HV
-      STOF(ISTOF + 623) = PLANT_P_MV
-      STOF(ISTOF + 624) = PLANT_Q_MV
-      STOF(ISTOF + 625) = PLANT_I_MV
+      STOF(ISTOF + 246) = PoiVolSpt
+      STOF(ISTOF + 247) = PCU1_P_MV_AGGR
+      STOF(ISTOF + 248) = PCU1_Q_MV_AGGR
+      STOF(ISTOF + 249) = PCU2_P_MV_AGGR
+      STOF(ISTOF + 250) = PCU2_Q_MV_AGGR
+      STOF(ISTOF + 251) = Qspt_MVAr
+      STOF(ISTOF + 252) = PoiPfSpt
+      STOF(ISTOF + 253) = Pspt_MW
+      STOF(ISTOF + 254) = PoiWLimSales_pu
+      STOF(ISTOF + 255) = PCU1_V_LV
+      STOF(ISTOF + 256) = PCU1_V_MV_pu
+      STOF(ISTOF + 257) = PCU1_V_MV
+      STOF(ISTOF + 258) = PCU2_V_MV_pu
+      STOF(ISTOF + 259) = PCU2_V_MV
+      STOF(ISTOF + 260) = MV_Vol_base
+      STOF(ISTOF + 261) = RT_26
+      STOF(ISTOF + 262) = RT_27
+      STOF(ISTOF + 263) = inf_BRK
+      STOF(ISTOF + 264) = Pcmd_PPC_to_INV_PV
+      STOF(ISTOF + 265) = Qcmd_PPC_to_INV_PV
+      STOF(ISTOF + 266) = Pcmd_PPC_to_INV_BESS
+      STOF(ISTOF + 267) = Qcmd_PPC_to_INV_BESS
+      STOF(ISTOF + 268) = Pout_INV_PV
+      STOF(ISTOF + 269) = RT_28
+      STOF(ISTOF + 270) = P_Base_PV
+      STOF(ISTOF + 271) = Qout_INV_PV
+      STOF(ISTOF + 272) = RT_29
+      STOF(ISTOF + 273) = Pout_INV_BESS
+      STOF(ISTOF + 274) = RT_30
+      STOF(ISTOF + 275) = P_Base_BESS
+      STOF(ISTOF + 276) = Qout_INV_BESS
+      STOF(ISTOF + 277) = RT_31
+      STOF(ISTOF + 278) = PCU2_V_LV_pu
+      STOF(ISTOF + 279) = PCU2_V_LV
+      STOF(ISTOF + 280) = LV_Vol_base
+      STOF(ISTOF + 284) = HV_Vol_base
+      STOF(ISTOF + 285) = BESSspt_MW
+      STOF(ISTOF + 286) = BessWSpt_pu
+      STOF(ISTOF + 287) = PoiVolSpt_pu
+      STOF(ISTOF + 288) = Q_Base_PV
+      STOF(ISTOF + 289) = Q_Base_BESS
+      STOF(ISTOF + 290) = Iq_neg_pos_ratio
+      STOF(ISTOF + 291) = Iqneg_PoC
+      STOF(ISTOF + 292) = Iqpos_PoC
+      STOF(ISTOF + 293) = Itot_PoC
+      STOF(ISTOF + 294) = RT_32
+      STOF(ISTOF + 295) = RT_33
+      STOF(ISTOF + 296) = RT_34
+      STOF(ISTOF + 297) = Iq_PoC
+      STOF(ISTOF + 298) = Id_PoC
+      STOF(ISTOF + 299) = RT_35
+      STOF(ISTOF + 300) = RT_36
+      STOF(ISTOF + 301) = RT_37
+      STOF(ISTOF + 302) = RT_38
+      STOF(ISTOF + 303) = RT_39
+      STOF(ISTOF + 304) = RT_40
+      STOF(ISTOF + 305) = Ia_PoC
+      STOF(ISTOF + 306) = Ib_PoC
+      STOF(ISTOF + 307) = Ic_PoC
+      STOF(ISTOF + 308) = PLANT_V_HV_pu
+      STOF(ISTOF + 309) = PLANT_P_HV
+      STOF(ISTOF + 310) = PLANT_Q_HV
+      STOF(ISTOF + 311) = Vol_POI
+      STOF(ISTOF + 312) = Hz_POI
+      STOF(ISTOF + 313) = McbStt
+      STOF(ISTOF + 314) = GcbStt
+      STOF(ISTOF + 318) = PoiWLimSales
+      STOF(ISTOF + 319) = BessWSpt
+      STOF(ISTOF + 320) = PVini
+      STOF(ISTOF + 321) = FRT_flag_PV
+      STOF(ISTOF + 322) = FRT_flag_BESS
+      STOF(ISTOF + 323) = FRT_flag_POC
+      STOF(ISTOF + 324) = PLANT_Q_MV
+      STOF(ISTOF + 325) = PLANT_P_MV
+      STOF(ISTOF + 326) = PLANT_V_MV
+      STOF(ISTOF + 327) = QiniBESS
+      STOF(ISTOF + 328) = RT_41
+      STOF(ISTOF + 329) = PoiVArSpt
+      STOF(ISTOF + 330) = RT_42
+      STOF(ISTOF + 624) = PLANT_V_HV
+      STOF(ISTOF + 628) = PLANT_I_MV
 
 ! Array (1:3) quantities...
       DO IT_0 = 1,3
-         STOF(ISTOF + 185 + IT_0) = PCU1_A_LV(IT_0)
-         STOF(ISTOF + 191 + IT_0) = PCU1_A_MV(IT_0)
-         STOF(ISTOF + 200 + IT_0) = PCU2_A_MV(IT_0)
-         STOF(ISTOF + 282 + IT_0) = PCU2_A_LV(IT_0)
-         STOF(ISTOF + 316 + IT_0) = Vrms_abc_POI(IT_0)
-         STOF(ISTOF + 355 + IT_0) = V_ph(IT_0)
-         STOF(ISTOF + 619 + IT_0) = Amp_MV(IT_0)
+         STOF(ISTOF + 184 + IT_0) = PCU1_A_LV(IT_0)
+         STOF(ISTOF + 190 + IT_0) = PCU1_A_MV(IT_0)
+         STOF(ISTOF + 199 + IT_0) = PCU2_A_MV(IT_0)
+         STOF(ISTOF + 280 + IT_0) = PCU2_A_LV(IT_0)
+         STOF(ISTOF + 314 + IT_0) = Vrms_abc_POI(IT_0)
+         STOF(ISTOF + 360 + IT_0) = V_ph(IT_0)
+         STOF(ISTOF + 624 + IT_0) = Amp_MV(IT_0)
       END DO
 
 ! Array (1:4) quantities...
@@ -1760,14 +1782,14 @@
          STOF(ISTOF + 87 + IT_0) = PCU2_Fb_SI(IT_0)
          STOF(ISTOF + 101 + IT_0) = DPS2_Fb(IT_0)
          STOF(ISTOF + 111 + IT_0) = DPS1_Fb(IT_0)
-         STOF(ISTOF + 216 + IT_0) = PCU1_Fb_SI(IT_0)
-         STOF(ISTOF + 226 + IT_0) = dummy_fb(IT_0)
-         STOF(ISTOF + 236 + IT_0) = SC_Fb(IT_0)
-         STOF(ISTOF + 325 + IT_0) = Meas_Plant(IT_0)
-         STOF(ISTOF + 335 + IT_0) = PCU1_Fb(IT_0)
-         STOF(ISTOF + 345 + IT_0) = PCU2_Fb(IT_0)
-         STOF(ISTOF + 358 + IT_0) = PCU1_Spt(IT_0)
-         STOF(ISTOF + 368 + IT_0) = PCU2_Spt(IT_0)
+         STOF(ISTOF + 215 + IT_0) = PCU1_Fb_SI(IT_0)
+         STOF(ISTOF + 225 + IT_0) = dummy_fb(IT_0)
+         STOF(ISTOF + 235 + IT_0) = SC_Fb(IT_0)
+         STOF(ISTOF + 330 + IT_0) = Meas_Plant(IT_0)
+         STOF(ISTOF + 340 + IT_0) = PCU1_Fb(IT_0)
+         STOF(ISTOF + 350 + IT_0) = PCU2_Fb(IT_0)
+         STOF(ISTOF + 363 + IT_0) = PCU1_Spt(IT_0)
+         STOF(ISTOF + 373 + IT_0) = PCU2_Spt(IT_0)
       END DO
 
 ! Array (1:11) quantities...
@@ -1782,8 +1804,8 @@
 
 ! Array (1:17) quantities...
       DO IT_0 = 1,17
-         STOF(ISTOF + 136 + IT_0) = MEAS_PCU1(IT_0)
-         STOF(ISTOF + 153 + IT_0) = MEAS_PCU2(IT_0)
+         STOF(ISTOF + 135 + IT_0) = MEAS_PCU1(IT_0)
+         STOF(ISTOF + 152 + IT_0) = MEAS_PCU2(IT_0)
       END DO
 
 ! Array (1:20) quantities...
@@ -1794,13 +1816,13 @@
 
 ! Array (1:40) quantities...
       DO IT_0 = 1,40
-         STOF(ISTOF + 578 + IT_0) = DEBUG_HyCon1(IT_0)
+         STOF(ISTOF + 583 + IT_0) = DEBUG_HyCon1(IT_0)
       END DO
 
 ! Array (1:100) quantities...
       DO IT_0 = 1,100
-         STOF(ISTOF + 378 + IT_0) = DEBUG_PCU1(IT_0)
-         STOF(ISTOF + 478 + IT_0) = DEBUG_PCU2(IT_0)
+         STOF(ISTOF + 383 + IT_0) = DEBUG_PCU1(IT_0)
+         STOF(ISTOF + 483 + IT_0) = DEBUG_PCU2(IT_0)
       END DO
 
 
@@ -1879,16 +1901,16 @@
 ! Control Signals
       INTEGER  No_PCU1, PCU2_BRK, POI_BRK, MVBRK
       INTEGER  IT_3, No_PCU2, IT_6
-      REAL     PLANT_V_MV, RT_4, RT_12, RT_14
-      REAL     RT_15, RT_16, RT_17, Vab_PPC
-      REAL     Vbc_PPC, Vca_PPC, PCU1_P_LV
-      REAL     PCU1_Q_LV, PCU1_A_LV(3), PCU1_Q_MV
-      REAL     PCU1_P_MV, PCU1_A_MV(3), RT_18
-      REAL     RT_19, RT_20, RT_21, RT_22, RT_23
-      REAL     PCU2_A_MV(3), PCU2_P_MV, PCU2_Q_MV
-      REAL     PCU2_Q_LV, PCU2_P_LV, PCU1_Arms_LV
-      REAL     PCU2_Arms_LV, PCU2_Phs, PCU1_Phs
-      REAL     PLANT_Phs, RT_24, MV_Bus_Vol, Fsys
+      REAL     RT_4, RT_12, RT_14, RT_15, RT_16
+      REAL     RT_17, Vab_PPC, Vbc_PPC, Vca_PPC
+      REAL     PCU1_P_LV, PCU1_Q_LV, PCU1_A_LV(3)
+      REAL     PCU1_Q_MV, PCU1_P_MV, PCU1_A_MV(3)
+      REAL     RT_18, RT_19, RT_20, RT_21, RT_22
+      REAL     RT_23, PCU2_A_MV(3), PCU2_P_MV
+      REAL     PCU2_Q_MV, PCU2_Q_LV, PCU2_P_LV
+      REAL     PCU1_Arms_LV, PCU2_Arms_LV
+      REAL     PCU2_Phs, PCU1_Phs, PLANT_Phs
+      REAL     RT_24, MV_Bus_Vol, Fsys
       REAL     PCU1_P_MV_AGGR, PCU1_Q_MV_AGGR
       REAL     PCU2_P_MV_AGGR, PCU2_Q_MV_AGGR
       REAL     PCU1_V_LV, PCU1_V_MV, PCU2_V_MV
@@ -1898,9 +1920,9 @@
       REAL     HV_Vol_base, Q_Base_PV
       REAL     Q_Base_BESS, RT_36, RT_40, Ia_PoC
       REAL     Ib_PoC, Ic_PoC, PLANT_P_HV
-      REAL     PLANT_Q_HV, GcbStt, V_ph(3)
-      REAL     PLANT_V_HV, Amp_MV(3), PLANT_P_MV
-      REAL     PLANT_Q_MV, PLANT_I_MV
+      REAL     PLANT_Q_HV, GcbStt, PLANT_Q_MV
+      REAL     PLANT_P_MV, PLANT_V_MV, V_ph(3)
+      REAL     PLANT_V_HV, Amp_MV(3), PLANT_I_MV
 
 ! Internal Variables
       INTEGER  IVD1_1
@@ -1935,7 +1957,7 @@
 ! Increment global storage indices
 
       IPGB      = NPGB
-      NPGB      = NPGB + 66
+      NPGB      = NPGB + 70
       NCX       = NCX + 0
       INODE     = NNODE + 2
       NNODE     = NNODE + 96
@@ -1991,81 +2013,81 @@
 !---------------------------------------
 
       No_PCU1  = STOI(ISTOI + 1)
-      PLANT_V_MV = STOF(ISTOF + 123)
-      RT_4     = STOF(ISTOF + 124)
-      RT_12    = STOF(ISTOF + 134)
-      RT_14    = STOF(ISTOF + 136)
-      RT_15    = STOF(ISTOF + 172)
-      RT_16    = STOF(ISTOF + 173)
-      RT_17    = STOF(ISTOF + 174)
-      Vab_PPC  = STOF(ISTOF + 178)
-      Vbc_PPC  = STOF(ISTOF + 179)
-      Vca_PPC  = STOF(ISTOF + 180)
-      PCU1_P_LV = STOF(ISTOF + 184)
-      PCU1_Q_LV = STOF(ISTOF + 185)
-      PCU1_Q_MV = STOF(ISTOF + 190)
-      PCU1_P_MV = STOF(ISTOF + 191)
-      RT_18    = STOF(ISTOF + 195)
-      RT_19    = STOF(ISTOF + 196)
-      RT_20    = STOF(ISTOF + 197)
-      RT_21    = STOF(ISTOF + 198)
-      RT_22    = STOF(ISTOF + 199)
-      RT_23    = STOF(ISTOF + 200)
-      PCU2_P_MV = STOF(ISTOF + 204)
-      PCU2_Q_MV = STOF(ISTOF + 205)
-      PCU2_Q_LV = STOF(ISTOF + 206)
-      PCU2_P_LV = STOF(ISTOF + 207)
+      RT_4     = STOF(ISTOF + 123)
+      RT_12    = STOF(ISTOF + 133)
+      RT_14    = STOF(ISTOF + 135)
+      RT_15    = STOF(ISTOF + 171)
+      RT_16    = STOF(ISTOF + 172)
+      RT_17    = STOF(ISTOF + 173)
+      Vab_PPC  = STOF(ISTOF + 177)
+      Vbc_PPC  = STOF(ISTOF + 178)
+      Vca_PPC  = STOF(ISTOF + 179)
+      PCU1_P_LV = STOF(ISTOF + 183)
+      PCU1_Q_LV = STOF(ISTOF + 184)
+      PCU1_Q_MV = STOF(ISTOF + 189)
+      PCU1_P_MV = STOF(ISTOF + 190)
+      RT_18    = STOF(ISTOF + 194)
+      RT_19    = STOF(ISTOF + 195)
+      RT_20    = STOF(ISTOF + 196)
+      RT_21    = STOF(ISTOF + 197)
+      RT_22    = STOF(ISTOF + 198)
+      RT_23    = STOF(ISTOF + 199)
+      PCU2_P_MV = STOF(ISTOF + 203)
+      PCU2_Q_MV = STOF(ISTOF + 204)
+      PCU2_Q_LV = STOF(ISTOF + 205)
+      PCU2_P_LV = STOF(ISTOF + 206)
       PCU2_BRK = STOI(ISTOI + 3)
       POI_BRK  = STOI(ISTOI + 4)
-      PCU1_Arms_LV = STOF(ISTOF + 208)
-      PCU2_Arms_LV = STOF(ISTOF + 209)
-      PCU2_Phs = STOF(ISTOF + 210)
-      PCU1_Phs = STOF(ISTOF + 211)
-      PLANT_Phs = STOF(ISTOF + 212)
+      PCU1_Arms_LV = STOF(ISTOF + 207)
+      PCU2_Arms_LV = STOF(ISTOF + 208)
+      PCU2_Phs = STOF(ISTOF + 209)
+      PCU1_Phs = STOF(ISTOF + 210)
+      PLANT_Phs = STOF(ISTOF + 211)
       MVBRK    = STOI(ISTOI + 7)
-      RT_24    = STOF(ISTOF + 213)
+      RT_24    = STOF(ISTOF + 212)
       IT_3     = STOI(ISTOI + 8)
-      MV_Bus_Vol = STOF(ISTOF + 214)
-      Fsys     = STOF(ISTOF + 216)
+      MV_Bus_Vol = STOF(ISTOF + 213)
+      Fsys     = STOF(ISTOF + 215)
       No_PCU2  = STOI(ISTOI + 9)
       IT_6     = STOI(ISTOI + 13)
-      PCU1_P_MV_AGGR = STOF(ISTOF + 249)
-      PCU1_Q_MV_AGGR = STOF(ISTOF + 250)
-      PCU2_P_MV_AGGR = STOF(ISTOF + 251)
-      PCU2_Q_MV_AGGR = STOF(ISTOF + 252)
-      PCU1_V_LV = STOF(ISTOF + 257)
-      PCU1_V_MV = STOF(ISTOF + 259)
-      PCU2_V_MV = STOF(ISTOF + 261)
-      MV_Vol_base = STOF(ISTOF + 262)
-      RT_27    = STOF(ISTOF + 264)
-      P_Base_PV = STOF(ISTOF + 272)
-      P_Base_BESS = STOF(ISTOF + 277)
-      PCU2_V_LV = STOF(ISTOF + 281)
-      LV_Vol_base = STOF(ISTOF + 282)
-      HV_Vol_base = STOF(ISTOF + 286)
-      Q_Base_PV = STOF(ISTOF + 290)
-      Q_Base_BESS = STOF(ISTOF + 291)
-      RT_36    = STOF(ISTOF + 302)
-      RT_40    = STOF(ISTOF + 306)
-      Ia_PoC   = STOF(ISTOF + 307)
-      Ib_PoC   = STOF(ISTOF + 308)
-      Ic_PoC   = STOF(ISTOF + 309)
-      PLANT_P_HV = STOF(ISTOF + 311)
-      PLANT_Q_HV = STOF(ISTOF + 312)
-      GcbStt   = STOF(ISTOF + 316)
-      PLANT_V_HV = STOF(ISTOF + 619)
-      PLANT_P_MV = STOF(ISTOF + 623)
-      PLANT_Q_MV = STOF(ISTOF + 624)
-      PLANT_I_MV = STOF(ISTOF + 625)
+      PCU1_P_MV_AGGR = STOF(ISTOF + 247)
+      PCU1_Q_MV_AGGR = STOF(ISTOF + 248)
+      PCU2_P_MV_AGGR = STOF(ISTOF + 249)
+      PCU2_Q_MV_AGGR = STOF(ISTOF + 250)
+      PCU1_V_LV = STOF(ISTOF + 255)
+      PCU1_V_MV = STOF(ISTOF + 257)
+      PCU2_V_MV = STOF(ISTOF + 259)
+      MV_Vol_base = STOF(ISTOF + 260)
+      RT_27    = STOF(ISTOF + 262)
+      P_Base_PV = STOF(ISTOF + 270)
+      P_Base_BESS = STOF(ISTOF + 275)
+      PCU2_V_LV = STOF(ISTOF + 279)
+      LV_Vol_base = STOF(ISTOF + 280)
+      HV_Vol_base = STOF(ISTOF + 284)
+      Q_Base_PV = STOF(ISTOF + 288)
+      Q_Base_BESS = STOF(ISTOF + 289)
+      RT_36    = STOF(ISTOF + 300)
+      RT_40    = STOF(ISTOF + 304)
+      Ia_PoC   = STOF(ISTOF + 305)
+      Ib_PoC   = STOF(ISTOF + 306)
+      Ic_PoC   = STOF(ISTOF + 307)
+      PLANT_P_HV = STOF(ISTOF + 309)
+      PLANT_Q_HV = STOF(ISTOF + 310)
+      GcbStt   = STOF(ISTOF + 314)
+      PLANT_Q_MV = STOF(ISTOF + 324)
+      PLANT_P_MV = STOF(ISTOF + 325)
+      PLANT_V_MV = STOF(ISTOF + 326)
+      PLANT_V_HV = STOF(ISTOF + 624)
+      PLANT_I_MV = STOF(ISTOF + 628)
 
 ! Array (1:3) quantities...
       DO IT_0 = 1,3
-         PCU1_A_LV(IT_0) = STOF(ISTOF + 185 + IT_0)
-         PCU1_A_MV(IT_0) = STOF(ISTOF + 191 + IT_0)
-         PCU2_A_MV(IT_0) = STOF(ISTOF + 200 + IT_0)
-         PCU2_A_LV(IT_0) = STOF(ISTOF + 282 + IT_0)
-         V_ph(IT_0) = STOF(ISTOF + 355 + IT_0)
-         Amp_MV(IT_0) = STOF(ISTOF + 619 + IT_0)
+         PCU1_A_LV(IT_0) = STOF(ISTOF + 184 + IT_0)
+         PCU1_A_MV(IT_0) = STOF(ISTOF + 190 + IT_0)
+         PCU2_A_MV(IT_0) = STOF(ISTOF + 199 + IT_0)
+         PCU2_A_LV(IT_0) = STOF(ISTOF + 280 + IT_0)
+         V_ph(IT_0) = STOF(ISTOF + 360 + IT_0)
+         Amp_MV(IT_0) = STOF(ISTOF + 624 + IT_0)
       END DO
 
 
@@ -2157,63 +2179,63 @@
 
       RT_22 = 47005.0
 
-! 150:[const] Real Constant 
+! 180:[const] Real Constant 
 
       RT_23 = -47005.0
 
-! 160:[const] Real Constant 'Gcb'
+! 190:[const] Real Constant 'Gcb'
 
       GcbStt = 0.0
 
-! 170:[const] Real Constant 
+! 200:[const] Real Constant 
 
       RT_19 = 50.0
 
-! 180:[InvFbDummy]  
+! 210:[InvFbDummy]  
       CALL InvFbDummyOut()
 
 
-! 190:[const] Real Constant 
+! 220:[const] Real Constant 
 
       RT_40 = 96.77
 
-! 210:[const] Real Constant 
+! 240:[const] Real Constant 
 
       RT_36 = 96.77
 
-! 280:[consti] Integer Constant 'PCU1_BRK'
+! 310:[consti] Integer Constant 'PCU1_BRK'
 
       IT_6 = 0
 
-! 300:[const] Real Constant 
+! 330:[const] Real Constant 
 
       RT_12 = 0.0
 
-! 320:[consti] Integer Constant 'PCU2_BRK'
+! 350:[consti] Integer Constant 'PCU2_BRK'
 
       PCU2_BRK = 0
 
-! 330:[const] Real Constant 
+! 360:[const] Real Constant 
 
       RT_14 = 0.0
 
-! 340:[consti] Integer Constant 'MVBRK'
+! 370:[consti] Integer Constant 'MVBRK'
 
       MVBRK = 0
 
-! 370:[const] Real Constant 'inf_BRK_time'
+! 400:[const] Real Constant 'inf_BRK_time'
 
       RT_27 = 1000.0
 
-! 380:[consti] Integer Constant 
+! 410:[consti] Integer Constant 
 
       No_PCU1 = 36
 
-! 390:[const] Real Constant 
+! 420:[const] Real Constant 
 
       RT_24 = 25.0
 
-! 400:[multimeter] Multimeter 
+! 430:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       PCU1_A_LV(1) = ( CBR((IBRCH(1)+1), SS(1)))
@@ -2247,7 +2269,7 @@
         CALL PSCAD_AGI2(ICALL_NO,1675394643,1,"hide2")
       ENDIF
 
-! 420:[multimeter] Multimeter 
+! 450:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       RVD1_1 = RTCF(IVD1_1) * P3PH3(SS(1), (IBRCH(1)+91), (IBRCH(1)+92),&
@@ -2267,7 +2289,7 @@
         CALL PSCAD_AGI2(ICALL_NO,1251734031,1,"hide2")
       ENDIF
 
-! 430:[multimeter] Multimeter 
+! 460:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       PCU1_A_MV(1) = ( CBR((IBRCH(1)+10), SS(1)))
@@ -2291,20 +2313,20 @@
         CALL PSCAD_AGI2(ICALL_NO,954405753,1,"hide2")
       ENDIF
 
-! 440:[const] Real Constant 
+! 470:[const] Real Constant 
 
       RT_4 = 1.03
 
-! 450:[DPS_Dummy]  
+! 480:[DPS_Dummy]  
       CALL DPS_DummyOut()
 
 
-! 460:[breaker3] 3 Phase Breaker 'MVBRK'
+! 490:[breaker3] 3 Phase Breaker 'MVBRK'
 ! Three Phase Breaker Currents
       CALL BRK_POWER(SS(1), (IBRCH(1)+52), (IBRCH(1)+53), (IBRCH(1)+54),&
      &0,0,0,IVD1_1,0.02,RVD1_1,RVD1_2)
 
-! 470:[multimeter] Multimeter 
+! 500:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       Amp_MV(1) = ( CBR((IBRCH(1)+49), SS(1)))
@@ -2332,15 +2354,15 @@
         CALL PSCAD_AGI2(ICALL_NO,122835826,1,"hide2")
       ENDIF
 
-! 480:[ammeter] Current Meter 'Ia_Poc'
+! 510:[ammeter] Current Meter 'Ia_Poc'
       Ia_PoC = ( CBR((IBRCH(1)+39), SS(1)))
 
-! 490:[breaker3] 3 Phase Breaker 'POI_BRK'
+! 520:[breaker3] 3 Phase Breaker 'POI_BRK'
 ! Three Phase Breaker Currents
       CALL BRK_POWER(SS(1), (IBRCH(1)+25), (IBRCH(1)+26), (IBRCH(1)+27),&
      &0,0,0,IVD1_1,0.02,RVD1_1,RVD1_2)
 
-! 500:[multimeter] Multimeter 
+! 530:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       V_ph(1) = EMTDC_VVDC(SS(1), NT_14(1), 0)
@@ -2373,14 +2395,14 @@
         CALL PSCAD_AGI2(ICALL_NO,1543620566,1,"hide2")
       ENDIF
 
-! 510:[consti] Integer Constant 
+! 540:[consti] Integer Constant 
 
       No_PCU2 = 40
 
-! 520:[ammeter] Current Meter 'Ib_PoC'
+! 550:[ammeter] Current Meter 'Ib_PoC'
       Ib_PoC = ( CBR((IBRCH(1)+38), SS(1)))
 
-! 530:[multimeter] Multimeter 
+! 560:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       PCU2_A_LV(1) = ( CBR((IBRCH(1)+22), SS(1)))
@@ -2414,14 +2436,14 @@
         CALL PSCAD_AGI2(ICALL_NO,469044665,1,"hide2")
       ENDIF
 
-! 540:[GridSource]  'GridSource_1'
+! 570:[GridSource]  'GridSource_1'
       CALL GridSourceOut()
 
 
-! 560:[ammeter] Current Meter 'Ic_PoC'
+! 590:[ammeter] Current Meter 'Ic_PoC'
       Ic_PoC = ( CBR((IBRCH(1)+37), SS(1)))
 
-! 570:[multimeter] Multimeter 
+! 600:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       RVD1_1 = RTCF(IVD1_1) * P3PH3(SS(1), (IBRCH(1)+94), (IBRCH(1)+95),&
@@ -2441,7 +2463,7 @@
         CALL PSCAD_AGI2(ICALL_NO,306794587,1,"hide2")
       ENDIF
 
-! 580:[multimeter] Multimeter 
+! 610:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       PCU2_A_MV(1) = ( CBR((IBRCH(1)+13), SS(1)))
@@ -2465,26 +2487,26 @@
         CALL PSCAD_AGI2(ICALL_NO,71743599,1,"hide2")
       ENDIF
 
-! 590:[breaker3] 3 Phase Breaker 'PCU2_BRK'
+! 620:[breaker3] 3 Phase Breaker 'PCU2_BRK'
 ! Three Phase Breaker Currents
       CALL BRK_POWER(SS(1), (IBRCH(1)+16), (IBRCH(1)+17), (IBRCH(1)+18),&
      &0,0,0,IVD1_1,0.02,RVD1_1,RVD1_2)
 
-! 610:[DPS_Dummy]  
+! 640:[DPS_Dummy]  
       CALL DPS_DummyOut()
 
 
-! 620:[voltmeter] Voltmeter (Line - Line) 'Vab_PPC'
+! 650:[voltmeter] Voltmeter (Line - Line) 'Vab_PPC'
       Vab_PPC = EMTDC_VVDC(SS(1), NT_36, NT_34)
 
-! 630:[FaultBlock]  'FaultBlock_1'
+! 660:[FaultBlock]  'FaultBlock_1'
       CALL FaultBlockOut()
 
 
-! 640:[voltmeter] Voltmeter (Line - Line) 'Vbc_PPC'
+! 670:[voltmeter] Voltmeter (Line - Line) 'Vbc_PPC'
       Vbc_PPC = EMTDC_VVDC(SS(1), NT_34, NT_35)
 
-! 650:[voltmeter] Voltmeter (Line - Line) 'Vca_PPC'
+! 680:[voltmeter] Voltmeter (Line - Line) 'Vca_PPC'
       Vca_PPC = EMTDC_VVDC(SS(1), NT_35, NT_36)
 
 ! 690:[datatap] Scalar/Array Tap 
@@ -2516,31 +2538,31 @@
       CALL TapCtrl_1Out()
 
 
-! 860:[Aggr_Fb_Scaled]  
+! 900:[Aggr_Fb_Scaled]  
       CALL Aggr_Fb_ScaledOut()
 
 
-! 880:[DDSRF_PLL_1]  
+! 920:[DDSRF_PLL_1]  
       CALL DDSRF_PLL_1Out()
 
 
-! 950:[HyCtl]  'HyCon1'
+! 990:[HyCtl]  'HyCon1'
       CALL HyCtlOut()
 
 
-! 970:[SCxxxx] SMA  SC xxxx 
+! 1010:[SCxxxx] SMA  SC xxxx 
       CALL SCxxxxOut()
 
 
-! 980:[Aggr_Fb_Scaled]  
+! 1020:[Aggr_Fb_Scaled]  
       CALL Aggr_Fb_ScaledOut()
 
 
-! 1000:[SCxxxx] SMA  SC xxxx 
+! 1040:[SCxxxx] SMA  SC xxxx 
       CALL SCxxxxOut()
 
 
-! 1250:[rms3ph] Three Phase RMS Meter 
+! 1290:[rms3ph] Three Phase RMS Meter 
       RVD1_1 = RTCF(NRTCF) ! Inverse of rated voltage
       RVD1_2 = RTCF(NRTCF+1) ! Frequency
       RVD1_3 = RTCF(NRTCF+2) ! Initial value
@@ -2549,124 +2571,136 @@
      &3),RVD1_2,RVD1_1,RVD1_3,MV_Bus_Vol)
 !
 
-! 1260:[breaker3] 3 Phase Breaker 'inf_BRK'
+! 1300:[breaker3] 3 Phase Breaker 'inf_BRK'
 ! Three Phase Breaker Currents
       CALL BRK_POWER(SS(1), (IBRCH(1)+109), (IBRCH(1)+110), (IBRCH(1)+11&
      &1),0,0,0,IVD1_1,0.02,RVD1_1,RVD1_2)
 
-! 1280:[breaker3] 3 Phase Breaker 'PCU1_BRK'
+! 1330:[breaker3] 3 Phase Breaker 'PCU1_BRK'
 ! Three Phase Breaker Currents
       CALL BRK_POWER(SS(1), (IBRCH(1)+7), (IBRCH(1)+8), (IBRCH(1)+9),0,0&
      &,0,IVD1_1,0.02,RVD1_1,RVD1_2)
 
-! 1300:[photovoltaic_source] photovoltaic source 'PVarray1'
+! 1350:[photovoltaic_source] photovoltaic source 'PVarray1'
       NRTCF = NRTCF + 1
 
-! 1310:[pgb] Output Channel 'Ic_PoC'
+! 1360:[pgb] Output Channel 'Ic_PoC'
 
-      PGB(IPGB+2) = Ic_PoC
+      PGB(IPGB+3) = Ic_PoC
 
-! 1320:[pgb] Output Channel 'Ib_PoC'
+! 1370:[pgb] Output Channel 'Ib_PoC'
 
-      PGB(IPGB+3) = Ib_PoC
+      PGB(IPGB+4) = Ib_PoC
 
-! 1350:[pgb] Output Channel 'Ia_PoC'
+! 1400:[pgb] Output Channel 'Ia_PoC'
 
-      PGB(IPGB+5) = Ia_PoC
+      PGB(IPGB+6) = Ia_PoC
 
-! 1550:[pgb] Output Channel 'PCU2_Phs'
+! 1530:[pgb] Output Channel 'PLANT_Q_MV'
 
-      PGB(IPGB+18) = PCU2_Phs
+      PGB(IPGB+12) = PLANT_Q_MV
 
-! 1570:[pgb] Output Channel 'PCU1_Phs'
+! 1550:[pgb] Output Channel 'PLANT_P_MV'
 
-      PGB(IPGB+20) = PCU1_Phs
+      PGB(IPGB+14) = PLANT_P_MV
 
-! 1600:[pgb] Output Channel 'PCU2_Arms_LV'
+! 1580:[pgb] Output Channel 'PLANT_V_MV'
 
-      PGB(IPGB+23) = PCU2_Arms_LV
+      PGB(IPGB+17) = PLANT_V_MV
 
-! 1610:[pgb] Output Channel 'PCU1_Arms_LV'
+! 1630:[pgb] Output Channel 'PCU2_Phs'
 
-      PGB(IPGB+24) = PCU1_Arms_LV
+      PGB(IPGB+22) = PCU2_Phs
 
-! 1630:[DEBUG_HyCon_Scope]  'HyCon1'
+! 1650:[pgb] Output Channel 'PCU1_Phs'
+
+      PGB(IPGB+24) = PCU1_Phs
+
+! 1680:[pgb] Output Channel 'PCU2_Arms_LV'
+
+      PGB(IPGB+27) = PCU2_Arms_LV
+
+! 1690:[pgb] Output Channel 'PCU1_Arms_LV'
+
+      PGB(IPGB+28) = PCU1_Arms_LV
+
+! 1710:[DEBUG_HyCon_Scope]  'HyCon1'
       CALL DEBUG_HyCon_ScopeOut()
 
 
-! 1650:[pgb] Output Channel 'PCU2_Q_MV'
+! 1730:[pgb] Output Channel 'PCU2_Q_MV'
 
-      PGB(IPGB+27) = PCU2_Q_MV
+      PGB(IPGB+31) = PCU2_Q_MV
 
-! 1680:[pgb] Output Channel 'PCU1_Q_MV'
+! 1760:[pgb] Output Channel 'PCU1_Q_MV'
 
-      PGB(IPGB+30) = PCU1_Q_MV
+      PGB(IPGB+34) = PCU1_Q_MV
 
-! 1700:[pgb] Output Channel 'PCU2_P_MV'
+! 1780:[pgb] Output Channel 'PCU2_P_MV'
 
-      PGB(IPGB+32) = PCU2_P_MV
+      PGB(IPGB+36) = PCU2_P_MV
 
-! 1720:[pgb] Output Channel 'PCU1_P_MV'
+! 1800:[pgb] Output Channel 'PCU1_P_MV'
 
-      PGB(IPGB+34) = PCU1_P_MV
+      PGB(IPGB+38) = PCU1_P_MV
 
-! 1760:[pgb] Output Channel 'PCU2_A_MV'
-
-      DO IVD1_1 = 1, 3
-         PGB(IPGB+38+IVD1_1-1) = 1000.0 * PCU2_A_MV(IVD1_1)
-      ENDDO
-
-! 1780:[pgb] Output Channel 'PCU1_A_MV'
+! 1840:[pgb] Output Channel 'PCU2_A_MV'
 
       DO IVD1_1 = 1, 3
-         PGB(IPGB+42+IVD1_1-1) = 1000.0 * PCU1_A_MV(IVD1_1)
+         PGB(IPGB+42+IVD1_1-1) = 1000.0 * PCU2_A_MV(IVD1_1)
       ENDDO
 
-! 1830:[pgb] Output Channel 'PLANT_Phs'
+! 1850:[pgb] Output Channel 'PCU1_A_MV'
 
-      PGB(IPGB+49) = PLANT_Phs
+      DO IVD1_1 = 1, 3
+         PGB(IPGB+45+IVD1_1-1) = 1000.0 * PCU1_A_MV(IVD1_1)
+      ENDDO
 
-! 1850:[SC_Scope] Scopes for monitoring 
+! 1900:[pgb] Output Channel 'PLANT_Phs'
+
+      PGB(IPGB+52) = PLANT_Phs
+
+! 1930:[SC_Scope] Scopes for monitoring 
       CALL SC_ScopeOut()
 
 
-! 1860:[pgb] Output Channel 'PCU2_Q_LV'
+! 1940:[pgb] Output Channel 'PCU2_Q_LV'
 
-      PGB(IPGB+51) = PCU2_Q_LV
+      PGB(IPGB+55) = PCU2_Q_LV
 
-! 1870:[pgb] Output Channel 'PLANT_Q_HV'
+! 1950:[pgb] Output Channel 'PLANT_Q_HV'
 
-      PGB(IPGB+52) = PLANT_Q_HV
+      PGB(IPGB+56) = PLANT_Q_HV
 
-! 1890:[pgb] Output Channel 'PCU1_Q_LV'
+! 1970:[pgb] Output Channel 'PCU1_Q_LV'
 
-      PGB(IPGB+54) = PCU1_Q_LV
+      PGB(IPGB+58) = PCU1_Q_LV
 
-! 1900:[pgb] Output Channel 'PCU2_P_LV'
+! 1980:[pgb] Output Channel 'PCU2_P_LV'
 
-      PGB(IPGB+55) = PCU2_P_LV
+      PGB(IPGB+59) = PCU2_P_LV
 
-! 1910:[pgb] Output Channel 'PLANT_P_HV'
+! 1990:[pgb] Output Channel 'PLANT_P_HV'
 
-      PGB(IPGB+56) = PLANT_P_HV
+      PGB(IPGB+60) = PLANT_P_HV
 
-! 1920:[pgb] Output Channel 'PCU1_P_LV'
+! 2000:[pgb] Output Channel 'PCU1_P_LV'
 
-      PGB(IPGB+57) = PCU1_P_LV
+      PGB(IPGB+61) = PCU1_P_LV
 
-! 1940:[pgb] Output Channel 'PCU2_A_LV'
-
-      DO IVD1_1 = 1, 3
-         PGB(IPGB+58+IVD1_1-1) = PCU2_A_LV(IVD1_1)
-      ENDDO
-
-! 1960:[pgb] Output Channel 'PCU1_A_LV'
+! 2010:[pgb] Output Channel 'PCU2_A_LV'
 
       DO IVD1_1 = 1, 3
-         PGB(IPGB+62+IVD1_1-1) = PCU1_A_LV(IVD1_1)
+         PGB(IPGB+62+IVD1_1-1) = PCU2_A_LV(IVD1_1)
       ENDDO
 
-! 1970:[SC_Scope] Scopes for monitoring 
+! 2030:[pgb] Output Channel 'PCU1_A_LV'
+
+      DO IVD1_1 = 1, 3
+         PGB(IPGB+66+IVD1_1-1) = PCU1_A_LV(IVD1_1)
+      ENDDO
+
+! 2040:[SC_Scope] Scopes for monitoring 
       CALL SC_ScopeOut()
 
 
@@ -2675,81 +2709,81 @@
 !---------------------------------------
 
       STOI(ISTOI + 1) = No_PCU1
-      STOF(ISTOF + 123) = PLANT_V_MV
-      STOF(ISTOF + 124) = RT_4
-      STOF(ISTOF + 134) = RT_12
-      STOF(ISTOF + 136) = RT_14
-      STOF(ISTOF + 172) = RT_15
-      STOF(ISTOF + 173) = RT_16
-      STOF(ISTOF + 174) = RT_17
-      STOF(ISTOF + 178) = Vab_PPC
-      STOF(ISTOF + 179) = Vbc_PPC
-      STOF(ISTOF + 180) = Vca_PPC
-      STOF(ISTOF + 184) = PCU1_P_LV
-      STOF(ISTOF + 185) = PCU1_Q_LV
-      STOF(ISTOF + 190) = PCU1_Q_MV
-      STOF(ISTOF + 191) = PCU1_P_MV
-      STOF(ISTOF + 195) = RT_18
-      STOF(ISTOF + 196) = RT_19
-      STOF(ISTOF + 197) = RT_20
-      STOF(ISTOF + 198) = RT_21
-      STOF(ISTOF + 199) = RT_22
-      STOF(ISTOF + 200) = RT_23
-      STOF(ISTOF + 204) = PCU2_P_MV
-      STOF(ISTOF + 205) = PCU2_Q_MV
-      STOF(ISTOF + 206) = PCU2_Q_LV
-      STOF(ISTOF + 207) = PCU2_P_LV
+      STOF(ISTOF + 123) = RT_4
+      STOF(ISTOF + 133) = RT_12
+      STOF(ISTOF + 135) = RT_14
+      STOF(ISTOF + 171) = RT_15
+      STOF(ISTOF + 172) = RT_16
+      STOF(ISTOF + 173) = RT_17
+      STOF(ISTOF + 177) = Vab_PPC
+      STOF(ISTOF + 178) = Vbc_PPC
+      STOF(ISTOF + 179) = Vca_PPC
+      STOF(ISTOF + 183) = PCU1_P_LV
+      STOF(ISTOF + 184) = PCU1_Q_LV
+      STOF(ISTOF + 189) = PCU1_Q_MV
+      STOF(ISTOF + 190) = PCU1_P_MV
+      STOF(ISTOF + 194) = RT_18
+      STOF(ISTOF + 195) = RT_19
+      STOF(ISTOF + 196) = RT_20
+      STOF(ISTOF + 197) = RT_21
+      STOF(ISTOF + 198) = RT_22
+      STOF(ISTOF + 199) = RT_23
+      STOF(ISTOF + 203) = PCU2_P_MV
+      STOF(ISTOF + 204) = PCU2_Q_MV
+      STOF(ISTOF + 205) = PCU2_Q_LV
+      STOF(ISTOF + 206) = PCU2_P_LV
       STOI(ISTOI + 3) = PCU2_BRK
       STOI(ISTOI + 4) = POI_BRK
-      STOF(ISTOF + 208) = PCU1_Arms_LV
-      STOF(ISTOF + 209) = PCU2_Arms_LV
-      STOF(ISTOF + 210) = PCU2_Phs
-      STOF(ISTOF + 211) = PCU1_Phs
-      STOF(ISTOF + 212) = PLANT_Phs
+      STOF(ISTOF + 207) = PCU1_Arms_LV
+      STOF(ISTOF + 208) = PCU2_Arms_LV
+      STOF(ISTOF + 209) = PCU2_Phs
+      STOF(ISTOF + 210) = PCU1_Phs
+      STOF(ISTOF + 211) = PLANT_Phs
       STOI(ISTOI + 7) = MVBRK
-      STOF(ISTOF + 213) = RT_24
+      STOF(ISTOF + 212) = RT_24
       STOI(ISTOI + 8) = IT_3
-      STOF(ISTOF + 214) = MV_Bus_Vol
-      STOF(ISTOF + 216) = Fsys
+      STOF(ISTOF + 213) = MV_Bus_Vol
+      STOF(ISTOF + 215) = Fsys
       STOI(ISTOI + 9) = No_PCU2
       STOI(ISTOI + 13) = IT_6
-      STOF(ISTOF + 249) = PCU1_P_MV_AGGR
-      STOF(ISTOF + 250) = PCU1_Q_MV_AGGR
-      STOF(ISTOF + 251) = PCU2_P_MV_AGGR
-      STOF(ISTOF + 252) = PCU2_Q_MV_AGGR
-      STOF(ISTOF + 257) = PCU1_V_LV
-      STOF(ISTOF + 259) = PCU1_V_MV
-      STOF(ISTOF + 261) = PCU2_V_MV
-      STOF(ISTOF + 262) = MV_Vol_base
-      STOF(ISTOF + 264) = RT_27
-      STOF(ISTOF + 272) = P_Base_PV
-      STOF(ISTOF + 277) = P_Base_BESS
-      STOF(ISTOF + 281) = PCU2_V_LV
-      STOF(ISTOF + 282) = LV_Vol_base
-      STOF(ISTOF + 286) = HV_Vol_base
-      STOF(ISTOF + 290) = Q_Base_PV
-      STOF(ISTOF + 291) = Q_Base_BESS
-      STOF(ISTOF + 302) = RT_36
-      STOF(ISTOF + 306) = RT_40
-      STOF(ISTOF + 307) = Ia_PoC
-      STOF(ISTOF + 308) = Ib_PoC
-      STOF(ISTOF + 309) = Ic_PoC
-      STOF(ISTOF + 311) = PLANT_P_HV
-      STOF(ISTOF + 312) = PLANT_Q_HV
-      STOF(ISTOF + 316) = GcbStt
-      STOF(ISTOF + 619) = PLANT_V_HV
-      STOF(ISTOF + 623) = PLANT_P_MV
-      STOF(ISTOF + 624) = PLANT_Q_MV
-      STOF(ISTOF + 625) = PLANT_I_MV
+      STOF(ISTOF + 247) = PCU1_P_MV_AGGR
+      STOF(ISTOF + 248) = PCU1_Q_MV_AGGR
+      STOF(ISTOF + 249) = PCU2_P_MV_AGGR
+      STOF(ISTOF + 250) = PCU2_Q_MV_AGGR
+      STOF(ISTOF + 255) = PCU1_V_LV
+      STOF(ISTOF + 257) = PCU1_V_MV
+      STOF(ISTOF + 259) = PCU2_V_MV
+      STOF(ISTOF + 260) = MV_Vol_base
+      STOF(ISTOF + 262) = RT_27
+      STOF(ISTOF + 270) = P_Base_PV
+      STOF(ISTOF + 275) = P_Base_BESS
+      STOF(ISTOF + 279) = PCU2_V_LV
+      STOF(ISTOF + 280) = LV_Vol_base
+      STOF(ISTOF + 284) = HV_Vol_base
+      STOF(ISTOF + 288) = Q_Base_PV
+      STOF(ISTOF + 289) = Q_Base_BESS
+      STOF(ISTOF + 300) = RT_36
+      STOF(ISTOF + 304) = RT_40
+      STOF(ISTOF + 305) = Ia_PoC
+      STOF(ISTOF + 306) = Ib_PoC
+      STOF(ISTOF + 307) = Ic_PoC
+      STOF(ISTOF + 309) = PLANT_P_HV
+      STOF(ISTOF + 310) = PLANT_Q_HV
+      STOF(ISTOF + 314) = GcbStt
+      STOF(ISTOF + 324) = PLANT_Q_MV
+      STOF(ISTOF + 325) = PLANT_P_MV
+      STOF(ISTOF + 326) = PLANT_V_MV
+      STOF(ISTOF + 624) = PLANT_V_HV
+      STOF(ISTOF + 628) = PLANT_I_MV
 
 ! Array (1:3) quantities...
       DO IT_0 = 1,3
-         STOF(ISTOF + 185 + IT_0) = PCU1_A_LV(IT_0)
-         STOF(ISTOF + 191 + IT_0) = PCU1_A_MV(IT_0)
-         STOF(ISTOF + 200 + IT_0) = PCU2_A_MV(IT_0)
-         STOF(ISTOF + 282 + IT_0) = PCU2_A_LV(IT_0)
-         STOF(ISTOF + 355 + IT_0) = V_ph(IT_0)
-         STOF(ISTOF + 619 + IT_0) = Amp_MV(IT_0)
+         STOF(ISTOF + 184 + IT_0) = PCU1_A_LV(IT_0)
+         STOF(ISTOF + 190 + IT_0) = PCU1_A_MV(IT_0)
+         STOF(ISTOF + 199 + IT_0) = PCU2_A_MV(IT_0)
+         STOF(ISTOF + 280 + IT_0) = PCU2_A_LV(IT_0)
+         STOF(ISTOF + 360 + IT_0) = V_ph(IT_0)
+         STOF(ISTOF + 624 + IT_0) = Amp_MV(IT_0)
       END DO
 
 
@@ -2945,94 +2979,100 @@
 
 ! 140:[unity] Type/Shape conversion block 
 
-! 150:[const] Real Constant 
+! 150:[inv] Interpolated Logic Inverter 
+
+! 160:[bin_delay] Timed ON/OFF Logic Transition 
+
+! 170:[unity] Type/Shape conversion block 
+
+! 180:[const] Real Constant 
       RT_23 = -47005.0
 
-! 160:[const] Real Constant 'Gcb'
+! 190:[const] Real Constant 'Gcb'
       GcbStt = 0.0
 
-! 170:[const] Real Constant 
+! 200:[const] Real Constant 
       RT_19 = 50.0
 
-! 180:[InvFbDummy]  
+! 210:[InvFbDummy]  
       CALL InvFbDummyDyn_Begin()
 
 
-! 190:[const] Real Constant 
+! 220:[const] Real Constant 
       RT_40 = 96.77
 
-! 200:[var] Variable Input Slider 'Vstp_manual'
+! 230:[var] Variable Input Slider 'Vstp_manual'
 
-! 210:[const] Real Constant 
+! 240:[const] Real Constant 
       RT_36 = 96.77
 
-! 220:[var] Variable Input Slider 'Qstp_manual'
+! 250:[var] Variable Input Slider 'Qstp_manual'
 
-! 230:[var_switch] Two State Switch 'PV'
+! 260:[var_switch] Two State Switch 'PV'
 
-! 240:[unity] Type/Shape conversion block 
+! 270:[unity] Type/Shape conversion block 
 
-! 250:[var] Variable Input Slider 'Pstp_manual'
+! 280:[var] Variable Input Slider 'Pstp_manual'
 
-! 260:[unity] Type/Shape conversion block 
+! 290:[unity] Type/Shape conversion block 
 
-! 270:[var] Variable Input Slider 'PFstp_manual'
+! 300:[var] Variable Input Slider 'PFstp_manual'
 
-! 280:[consti] Integer Constant 'PCU1_BRK'
+! 310:[consti] Integer Constant 'PCU1_BRK'
       IT_6 = 0
 
-! 290:[inv] Interpolated Logic Inverter 
-
-! 300:[const] Real Constant 
-      RT_12 = 0.0
-
-! 310:[var] Variable Input Slider 'P1stp_manual'
-
-! 320:[consti] Integer Constant 'PCU2_BRK'
-      PCU2_BRK = 0
+! 320:[inv] Interpolated Logic Inverter 
 
 ! 330:[const] Real Constant 
+      RT_12 = 0.0
+
+! 340:[var] Variable Input Slider 'P1stp_manual'
+
+! 350:[consti] Integer Constant 'PCU2_BRK'
+      PCU2_BRK = 0
+
+! 360:[const] Real Constant 
       RT_14 = 0.0
 
-! 340:[consti] Integer Constant 'MVBRK'
+! 370:[consti] Integer Constant 'MVBRK'
       MVBRK = 0
 
-! 350:[var] Variable Input Slider 'Irradiance'
+! 380:[var] Variable Input Slider 'Irradiance'
 
-! 360:[time-sig] Output of Simulation Time 
+! 390:[time-sig] Output of Simulation Time 
 
-! 370:[const] Real Constant 'inf_BRK_time'
+! 400:[const] Real Constant 'inf_BRK_time'
       RT_27 = 1000.0
 
-! 380:[consti] Integer Constant 
+! 410:[consti] Integer Constant 
       No_PCU1 = 36
 
-! 390:[const] Real Constant 
+! 420:[const] Real Constant 
       RT_24 = 25.0
 
-! 410:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
+! 440:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
 
-! 440:[const] Real Constant 
+! 470:[const] Real Constant 
       RT_4 = 1.03
 
-! 450:[DPS_Dummy]  
+! 480:[DPS_Dummy]  
       CALL DPS_DummyDyn_Begin()
 
 
-! 460:[breaker3] 3 Phase Breaker 'MVBRK'
+! 490:[breaker3] 3 Phase Breaker 'MVBRK'
       CALL COMPONENT_ID(ICALL_NO,943764813)
       RTCF(NRTCF) = ABS(0.0)
       NRTCF = NRTCF + 1
 
-! 490:[breaker3] 3 Phase Breaker 'POI_BRK'
+! 520:[breaker3] 3 Phase Breaker 'POI_BRK'
       CALL COMPONENT_ID(ICALL_NO,715073575)
       RTCF(NRTCF) = ABS(0.0)
       NRTCF = NRTCF + 1
 
-! 510:[consti] Integer Constant 
+! 540:[consti] Integer Constant 
       No_PCU2 = 40
 
-! 540:[GridSource]  'GridSource_1'
+! 570:[GridSource]  'GridSource_1'
       CALL GridSourceDyn_Begin(0, 0.0, 0.0, 0.0, 0.0, 0.999776463133, 0,&
      & 0.0, 0.0, 50.0, 50.0, 51.0, 51.0, 51.5, 51.5, 50.0, 50.0, 0.0, 5.&
      &0, 5.5, 1, 10.0, 10.5, 15.0, 15.5, 25.0, 0.0, 0.0, 0.0, 0, 0, 8, 1&
@@ -3042,18 +3082,18 @@
      &, 0.0, 0.0, 5.0, 5.01, 10.0, 10.01, 15.0, 15.01, 0.0, 0.0, 0.0, 6)
 
 
-! 550:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
+! 580:[xfmr_2w_scaled] 3 Phase 2 Winding Transformer - With Scaling! 'T1_2'
 
-! 590:[breaker3] 3 Phase Breaker 'PCU2_BRK'
+! 620:[breaker3] 3 Phase Breaker 'PCU2_BRK'
       CALL COMPONENT_ID(ICALL_NO,1701648050)
       RTCF(NRTCF) = ABS(0.0)
       NRTCF = NRTCF + 1
 
-! 610:[DPS_Dummy]  
+! 640:[DPS_Dummy]  
       CALL DPS_DummyDyn_Begin()
 
 
-! 630:[FaultBlock]  'FaultBlock_1'
+! 660:[FaultBlock]  'FaultBlock_1'
       CALL FaultBlockDyn_Begin(0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, &
      &0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0,&
      & 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0&
@@ -3062,12 +3102,6 @@
      &0.0, 0.0, 0.0, 3.0, 1, 1, 5.0, 0.43, 0, 18.0, 3.0, 50.0, 0.0, 0.0,&
      & 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
-
-! 660:[inv] Interpolated Logic Inverter 
-
-! 670:[bin_delay] Timed ON/OFF Logic Transition 
-
-! 680:[unity] Type/Shape conversion block 
 
 ! 720:[SymmetricalComponentsCalc_1_1]  'SymmetricalComponentsCalc_1_1'
       CALL SymmetricalComponentsCalc_1_1Dyn_Begin(50.0)
@@ -3112,112 +3146,121 @@
 ! 820:[compar] Two Input Comparator 
 
 ! 830:[TapCtrl_1]  
-      CALL TapCtrl_1Dyn_Begin(1, 220.0, 0.0125, 0.8, 8, 8, 3.0, 3.0, 1)
+      CALL TapCtrl_1Dyn_Begin(1, 220.0, 0.0125, 0.64, 8, 8, 3.0, 3.0, 1)
 
 
-! 840:[gain] Gain Block 
+! 840:[sumjct] Summing/Differencing Junctions 
 
-! 850:[datamerge] Merges data signals into an array 
+! 850:[scale_changer] Scale Changer 
+      CALL COMPONENT_ID(ICALL_NO,1009100837)
+      CALL CONVERT_SCALE1_CFG(-47005.0,5000.0,47000.0,2500.0)
 
-! 860:[Aggr_Fb_Scaled]  
+! 860:[gain] Gain Block 
+
+! 870:[datamerge] Merges data signals into an array 
+
+! 880:[sumjct] Summing/Differencing Junctions 
+
+! 890:[gain] Gain Block 
+
+! 900:[Aggr_Fb_Scaled]  
       CALL Aggr_Fb_ScaledDyn_Begin()
 
 
-! 870:[select] Two Input Selector 
+! 910:[select] Two Input Selector 
       RTCI(NRTCI) = 1
       NRTCI = NRTCI + 1
 
-! 880:[DDSRF_PLL_1]  
+! 920:[DDSRF_PLL_1]  
       CALL DDSRF_PLL_1Dyn_Begin(220.0, 50.0)
 
 
-! 890:[datatap] Scalar/Array Tap 
+! 930:[datatap] Scalar/Array Tap 
 
-! 900:[datatap] Scalar/Array Tap 
+! 940:[datatap] Scalar/Array Tap 
 
-! 910:[datatap] Scalar/Array Tap 
+! 950:[datatap] Scalar/Array Tap 
 
-! 920:[datamerge] Merges data signals into an array 
+! 960:[datamerge] Merges data signals into an array 
 
-! 930:[datamerge] Merges data signals into an array 
+! 970:[datamerge] Merges data signals into an array 
 
-! 940:[datamerge] Merges data signals into an array 
+! 980:[datamerge] Merges data signals into an array 
 
-! 950:[HyCtl]  'HyCon1'
-      CALL HyCtlDyn_Begin(1, 0, 50.0, 21521, 0.04, 1.9, 50000.0, 0.0, 69&
-     &000.0, 0.0)
+! 990:[HyCtl]  'HyCon1'
+      CALL HyCtlDyn_Begin(1, 0, 50.0, 21521, 0.04, 1.9)
 
 
-! 960:[datatap] Scalar/Array Tap 
+! 1000:[datatap] Scalar/Array Tap 
 
-! 970:[SCxxxx] SMA  SC xxxx 
+! 1010:[SCxxxx] SMA  SC xxxx 
       CALL SCxxxxDyn_Begin(51, 16641, 9, 0, 1700)
 
 
-! 980:[Aggr_Fb_Scaled]  
+! 1020:[Aggr_Fb_Scaled]  
       CALL Aggr_Fb_ScaledDyn_Begin()
 
 
-! 990:[datatap] Scalar/Array Tap 
+! 1030:[datatap] Scalar/Array Tap 
 
-! 1000:[SCxxxx] SMA  SC xxxx 
+! 1040:[SCxxxx] SMA  SC xxxx 
       CALL SCxxxxDyn_Begin(57, 82177, 9, 0, 1500)
 
 
-! 1010:[div] Divider 
+! 1050:[div] Divider 
 
-! 1020:[hardlimit] Hard Limiter 
+! 1060:[hardlimit] Hard Limiter 
 
-! 1030:[div] Divider 
+! 1070:[div] Divider 
 
-! 1040:[square] Square 
+! 1080:[square] Square 
 
-! 1050:[hardlimit] Hard Limiter 
+! 1090:[hardlimit] Hard Limiter 
 
-! 1060:[div] Divider 
+! 1100:[div] Divider 
 
-! 1070:[square] Square 
+! 1110:[square] Square 
 
-! 1080:[sumjct] Summing/Differencing Junctions 
-
-! 1090:[datatap] Scalar/Array Tap 
-
-! 1100:[sqrt] Square Root 
-
-! 1110:[datatap] Scalar/Array Tap 
-
-! 1120:[datatap] Scalar/Array Tap 
+! 1120:[sumjct] Summing/Differencing Junctions 
 
 ! 1130:[datatap] Scalar/Array Tap 
 
-! 1140:[datatap] Scalar/Array Tap 
+! 1140:[sqrt] Square Root 
 
 ! 1150:[datatap] Scalar/Array Tap 
 
 ! 1160:[datatap] Scalar/Array Tap 
 
-! 1170:[gain] Gain Block 
+! 1170:[datatap] Scalar/Array Tap 
 
-! 1180:[gain] Gain Block 
+! 1180:[datatap] Scalar/Array Tap 
 
-! 1190:[gain] Gain Block 
+! 1190:[datatap] Scalar/Array Tap 
 
-! 1200:[div] Divider 
+! 1200:[datatap] Scalar/Array Tap 
 
-! 1210:[datatap] Scalar/Array Tap 
+! 1210:[gain] Gain Block 
 
-! 1220:[datatap] Scalar/Array Tap 
+! 1220:[gain] Gain Block 
 
-! 1230:[datatap] Scalar/Array Tap 
+! 1230:[gain] Gain Block 
 
-! 1240:[datatap] Scalar/Array Tap 
+! 1240:[div] Divider 
 
-! 1260:[breaker3] 3 Phase Breaker 'inf_BRK'
+! 1250:[datatap] Scalar/Array Tap 
+
+! 1260:[datatap] Scalar/Array Tap 
+
+! 1270:[datatap] Scalar/Array Tap 
+
+! 1280:[datatap] Scalar/Array Tap 
+
+! 1300:[breaker3] 3 Phase Breaker 'inf_BRK'
       CALL COMPONENT_ID(ICALL_NO,371043801)
       RTCF(NRTCF) = ABS(0.0)
       NRTCF = NRTCF + 1
 
-! 1270:[xfmr-3p2w] 3 Phase 2 Winding Transformer 'T2'
+! 1310:[xfmr-3p2w] 3 Phase 2 Winding Transformer 'T2'
       CALL COMPONENT_ID(ICALL_NO,581045017)
       RVD1_1 = ONE_3RD*170.0
       RVD1_2 = 220.0*SQRT_1BY3
@@ -3248,117 +3291,117 @@
       CALL TSAT1_CFG( (IBRCH(1)+46), (IBRCH(1)+47), (IBRCH(1)+48),SS(1),&
      &RVD1_1,RVD1_2,0.2,1.25,50.0,1.0,1.0,0.1)
 
-! 1280:[breaker3] 3 Phase Breaker 'PCU1_BRK'
+! 1320:[pgb] Output Channel 'Tap_position'
+
+! 1330:[breaker3] 3 Phase Breaker 'PCU1_BRK'
       CALL COMPONENT_ID(ICALL_NO,2042303879)
       RTCF(NRTCF) = ABS(0.0)
       NRTCF = NRTCF + 1
 
-! 1290:[pgb] Output Channel 'maintap'
+! 1340:[pgb] Output Channel 'maintap'
 
-! 1300:[photovoltaic_source] photovoltaic source 'PVarray1'
+! 1350:[photovoltaic_source] photovoltaic source 'PVarray1'
       CALL COMPONENT_ID(ICALL_NO,1473112425)
       CALL PHOTOVOLT1_CFG(24,2000,72,1,0.02,1000.0,0.01,1.5,1.103,1.0e-1&
      &2,0.0025,0.001,1000.0,25.0)
 
-! 1330:[pgb] Output Channel 'Itot_PoC'
-
-! 1340:[div] Divider 
-
-! 1360:[div] Divider 
-
-! 1370:[div] Divider 
-
-! 1380:[pgb] Output Channel 'Ineg_PoC'
+! 1380:[pgb] Output Channel 'Itot_PoC'
 
 ! 1390:[div] Divider 
 
-! 1400:[div] Divider 
-
 ! 1410:[div] Divider 
 
-! 1420:[pgb] Output Channel 'Ipos_PoC'
+! 1420:[div] Divider 
 
-! 1430:[pgb] Output Channel 'Iq_PoC'
+! 1430:[pgb] Output Channel 'Ineg_PoC'
 
-! 1440:[pgb] Output Channel 'Izero_PoC'
+! 1440:[div] Divider 
 
 ! 1450:[div] Divider 
 
 ! 1460:[div] Divider 
 
-! 1470:[pgb] Output Channel 'FRT_flag_POC'
+! 1470:[pgb] Output Channel 'Ipos_PoC'
 
-! 1480:[pgb] Output Channel 'FRT_flag_BESS'
+! 1480:[pgb] Output Channel 'Iq_PoC'
 
-! 1490:[pgb] Output Channel 'FRT_flag_PV'
+! 1490:[pgb] Output Channel 'Izero_PoC'
 
-! 1500:[pgb] Output Channel 'Vneg_PoC'
+! 1500:[div] Divider 
 
-! 1510:[pgb] Output Channel 'Id_PoC'
+! 1510:[div] Divider 
 
-! 1520:[pgb] Output Channel 'Vpos_PoC'
+! 1520:[pgb] Output Channel 'FRT_flag_POC'
 
-! 1530:[pgb] Output Channel 'Qout_INV_BESS'
+! 1540:[pgb] Output Channel 'FRT_flag_BESS'
 
-! 1540:[pgb] Output Channel 'BESSspt_MW'
+! 1560:[pgb] Output Channel 'FRT_flag_PV'
 
-! 1560:[pgb] Output Channel 'Vzero_PoC'
+! 1570:[pgb] Output Channel 'Vneg_PoC'
 
-! 1580:[pgb] Output Channel 'Pout_INV_BESS'
+! 1590:[pgb] Output Channel 'Id_PoC'
 
-! 1590:[pgb] Output Channel 'Qspt_MVAr'
+! 1600:[pgb] Output Channel 'Vpos_PoC'
 
-! 1620:[pgb] Output Channel 'Qout_INV_PV'
+! 1610:[pgb] Output Channel 'Qout_INV_BESS'
 
-! 1630:[DEBUG_HyCon_Scope]  'HyCon1'
+! 1620:[pgb] Output Channel 'BESSspt_MW'
+
+! 1640:[pgb] Output Channel 'Vzero_PoC'
+
+! 1660:[pgb] Output Channel 'Pout_INV_BESS'
+
+! 1670:[pgb] Output Channel 'Qspt_MVAr'
+
+! 1700:[pgb] Output Channel 'Qout_INV_PV'
+
+! 1710:[DEBUG_HyCon_Scope]  'HyCon1'
       CALL DEBUG_HyCon_ScopeDyn_Begin()
 
 
-! 1640:[pgb] Output Channel 'Pspt_MW'
+! 1720:[pgb] Output Channel 'Pspt_MW'
 
-! 1660:[pgb] Output Channel 'Pout_INV_PV'
+! 1740:[pgb] Output Channel 'Pout_INV_PV'
 
-! 1670:[pgb] Output Channel 'PoiPfSpt'
+! 1750:[pgb] Output Channel 'PoiPfSpt'
 
-! 1690:[pgb] Output Channel 'Iqneg_PoC'
+! 1770:[pgb] Output Channel 'Iqneg_PoC'
 
-! 1710:[pgb] Output Channel 'PoiVolSpt_pu'
+! 1790:[pgb] Output Channel 'PoiVolSpt_pu'
 
-! 1730:[pgb] Output Channel 'Qcmd_PPC_to_INV_BESS'
+! 1810:[pgb] Output Channel 'Qcmd_PPC_to_INV_BESS'
 
-! 1740:[pgb] Output Channel 'Iqpos_PoC'
+! 1820:[pgb] Output Channel 'Iqpos_PoC'
 
-! 1750:[pgb] Output Channel 'Iq_neg_pos_ratio'
+! 1830:[pgb] Output Channel 'Iq_neg_pos_ratio'
 
-! 1770:[pgb] Output Channel 'Hz_POI'
+! 1860:[pgb] Output Channel 'Hz_POI'
 
-! 1790:[pgb] Output Channel 'Pcmd_PPC_to_INV_BESS'
+! 1870:[pgb] Output Channel 'Pcmd_PPC_to_INV_BESS'
 
-! 1800:[pgb] Output Channel 'Iqzero_PoC'
+! 1880:[pgb] Output Channel 'Iqzero_PoC'
 
-! 1810:[pgb] Output Channel 'PCU2_V_MV_pu'
+! 1890:[pgb] Output Channel 'PCU2_V_MV_pu'
 
-! 1820:[pgb] Output Channel 'PCU1_V_MV_pu'
+! 1910:[pgb] Output Channel 'PCU1_V_MV_pu'
 
-! 1840:[pgb] Output Channel 'Qcmd_PPC_to_INV_PV'
+! 1920:[pgb] Output Channel 'Qcmd_PPC_to_INV_PV'
 
-! 1850:[SC_Scope] Scopes for monitoring 
+! 1930:[SC_Scope] Scopes for monitoring 
       CALL SC_ScopeDyn_Begin()
 
 
-! 1880:[pgb] Output Channel 'Pcmd_PPC_to_INV_PV'
+! 1960:[pgb] Output Channel 'Pcmd_PPC_to_INV_PV'
 
-! 1930:[sumjct] Summing/Differencing Junctions 
+! 2020:[pgb] Output Channel 'PLANT_V_HV_pu'
 
-! 1950:[pgb] Output Channel 'PLANT_V_HV_pu'
-
-! 1970:[SC_Scope] Scopes for monitoring 
+! 2040:[SC_Scope] Scopes for monitoring 
       CALL SC_ScopeDyn_Begin()
 
 
-! 1980:[pgb] Output Channel 'PCU2_V_LV_pu'
+! 2050:[pgb] Output Channel 'PCU2_V_LV_pu'
 
-! 1990:[pgb] Output Channel 'PCU1_V_LV_pu'
+! 2060:[pgb] Output Channel 'PCU1_V_LV_pu'
 
 ! 1:[newpi] Coupled Pi Section Transmission Line 'Line1'
       CALL COMPONENT_ID(ICALL_NO,1154644512)
@@ -3382,7 +3425,7 @@
 
 ! 1:[newpi] Coupled Pi Section Transmission Line 'Line132'
       CALL COMPONENT_ID(ICALL_NO,56359452)
-      CALL PI3_SECTION_CFG(3,1,0, 132.0,100.0,50.0,1.0,0.000156,0.000524&
+      CALL PI3_SECTION_CFG(3,1,0, 220.0,100.0,50.0,1.0,0.000156,0.000524&
      &,0.006823,0.000113,0.000524,0.006823,RVD1_1,RVD1_2,RVD1_3,RVD1_4,R&
      &VD1_5,RVD1_6,IVD1_1,IVD1_2,IVD1_3,IVD1_4)
       CALL E_BRANCH_CFG( (IBRCH(1)+97),SS(1),0,0,IVD1_3,0.0,0.0,RVD1_6)
@@ -3675,50 +3718,50 @@
 ! 130:[const] Real Constant 
       RT_22 = 47005.0
 
-! 150:[const] Real Constant 
+! 180:[const] Real Constant 
       RT_23 = -47005.0
 
-! 160:[const] Real Constant 'Gcb'
+! 190:[const] Real Constant 'Gcb'
       GcbStt = 0.0
 
-! 170:[const] Real Constant 
+! 200:[const] Real Constant 
       RT_19 = 50.0
 
-! 180:[InvFbDummy]  
+! 210:[InvFbDummy]  
       CALL InvFbDummyOut_Begin()
 
 
-! 190:[const] Real Constant 
+! 220:[const] Real Constant 
       RT_40 = 96.77
 
-! 210:[const] Real Constant 
+! 240:[const] Real Constant 
       RT_36 = 96.77
 
-! 280:[consti] Integer Constant 'PCU1_BRK'
+! 310:[consti] Integer Constant 'PCU1_BRK'
       IT_6 = 0
 
-! 300:[const] Real Constant 
+! 330:[const] Real Constant 
       RT_12 = 0.0
 
-! 320:[consti] Integer Constant 'PCU2_BRK'
+! 350:[consti] Integer Constant 'PCU2_BRK'
       PCU2_BRK = 0
 
-! 330:[const] Real Constant 
+! 360:[const] Real Constant 
       RT_14 = 0.0
 
-! 340:[consti] Integer Constant 'MVBRK'
+! 370:[consti] Integer Constant 'MVBRK'
       MVBRK = 0
 
-! 370:[const] Real Constant 'inf_BRK_time'
+! 400:[const] Real Constant 'inf_BRK_time'
       RT_27 = 1000.0
 
-! 380:[consti] Integer Constant 
+! 410:[consti] Integer Constant 
       No_PCU1 = 36
 
-! 390:[const] Real Constant 
+! 420:[const] Real Constant 
       RT_24 = 25.0
 
-! 400:[multimeter] Multimeter 
+! 430:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       IF (ABS(1.0) .GT. 1.0E-20) THEN
@@ -3739,7 +3782,7 @@
         RTCF(IVD1_1+4) = 1.0
       ENDIF
 
-! 420:[multimeter] Multimeter 
+! 450:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       IF (ABS(1.0) .GT. 1.0E-20) THEN
@@ -3755,7 +3798,7 @@
       RTCF(IVD1_1+2) = 0.05
       RTCF(IVD1_1+3) = Fsys
 
-! 430:[multimeter] Multimeter 
+! 460:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       IF (ABS(1.0) .GT. 1.0E-20) THEN
@@ -3771,14 +3814,14 @@
       RTCF(IVD1_1+2) = 0.02
       RTCF(IVD1_1+3) = 50.0
 
-! 440:[const] Real Constant 
+! 470:[const] Real Constant 
       RT_4 = 1.03
 
-! 450:[DPS_Dummy]  
+! 480:[DPS_Dummy]  
       CALL DPS_DummyOut_Begin()
 
 
-! 470:[multimeter] Multimeter 
+! 500:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       IF (ABS(1.0) .GT. 1.0E-20) THEN
@@ -3799,7 +3842,7 @@
         RTCF(IVD1_1+4) = 1.0
       ENDIF
 
-! 500:[multimeter] Multimeter 
+! 530:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       IF (ABS(1.0) .GT. 1.0E-20) THEN
@@ -3820,10 +3863,10 @@
         RTCF(IVD1_1+4) = 1.0
       ENDIF
 
-! 510:[consti] Integer Constant 
+! 540:[consti] Integer Constant 
       No_PCU2 = 40
 
-! 530:[multimeter] Multimeter 
+! 560:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       IF (ABS(1.0) .GT. 1.0E-20) THEN
@@ -3844,7 +3887,7 @@
         RTCF(IVD1_1+4) = 1.0
       ENDIF
 
-! 540:[GridSource]  'GridSource_1'
+! 570:[GridSource]  'GridSource_1'
       CALL GridSourceOut_Begin(0, 0.0, 0.0, 0.0, 0.0, 0.999776463133, 0,&
      & 0.0, 0.0, 50.0, 50.0, 51.0, 51.0, 51.5, 51.5, 50.0, 50.0, 0.0, 5.&
      &0, 5.5, 1, 10.0, 10.5, 15.0, 15.5, 25.0, 0.0, 0.0, 0.0, 0, 0, 8, 1&
@@ -3854,7 +3897,7 @@
      &, 0.0, 0.0, 5.0, 5.01, 10.0, 10.01, 15.0, 15.01, 0.0, 0.0, 0.0, 6)
 
 
-! 570:[multimeter] Multimeter 
+! 600:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       IF (ABS(1.0) .GT. 1.0E-20) THEN
@@ -3870,7 +3913,7 @@
       RTCF(IVD1_1+2) = 0.02
       RTCF(IVD1_1+3) = Fsys
 
-! 580:[multimeter] Multimeter 
+! 610:[multimeter] Multimeter 
       IVD1_1 = NRTCF
       NRTCF  = NRTCF + 5
       IF (ABS(1.0) .GT. 1.0E-20) THEN
@@ -3886,11 +3929,11 @@
       RTCF(IVD1_1+2) = 0.02
       RTCF(IVD1_1+3) = 50.0
 
-! 610:[DPS_Dummy]  
+! 640:[DPS_Dummy]  
       CALL DPS_DummyOut_Begin()
 
 
-! 630:[FaultBlock]  'FaultBlock_1'
+! 660:[FaultBlock]  'FaultBlock_1'
       CALL FaultBlockOut_Begin(0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, &
      &0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0,&
      & 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0&
@@ -3937,98 +3980,103 @@
 
 
 ! 830:[TapCtrl_1]  
-      CALL TapCtrl_1Out_Begin(1, 220.0, 0.0125, 0.8, 8, 8, 3.0, 3.0, 1)
+      CALL TapCtrl_1Out_Begin(1, 220.0, 0.0125, 0.64, 8, 8, 3.0, 3.0, 1)
 
 
-! 860:[Aggr_Fb_Scaled]  
+! 900:[Aggr_Fb_Scaled]  
       CALL Aggr_Fb_ScaledOut_Begin()
 
 
-! 880:[DDSRF_PLL_1]  
+! 920:[DDSRF_PLL_1]  
       CALL DDSRF_PLL_1Out_Begin(220.0, 50.0)
 
 
-! 950:[HyCtl]  'HyCon1'
-      CALL HyCtlOut_Begin(1, 0, 50.0, 21521, 0.04, 1.9, 50000.0, 0.0, 69&
-     &000.0, 0.0)
+! 990:[HyCtl]  'HyCon1'
+      CALL HyCtlOut_Begin(1, 0, 50.0, 21521, 0.04, 1.9)
 
 
-! 970:[SCxxxx] SMA  SC xxxx 
+! 1010:[SCxxxx] SMA  SC xxxx 
       CALL SCxxxxOut_Begin(51, 16641, 9, 0, 1700)
 
 
-! 980:[Aggr_Fb_Scaled]  
+! 1020:[Aggr_Fb_Scaled]  
       CALL Aggr_Fb_ScaledOut_Begin()
 
 
-! 1000:[SCxxxx] SMA  SC xxxx 
+! 1040:[SCxxxx] SMA  SC xxxx 
       CALL SCxxxxOut_Begin(57, 82177, 9, 0, 1500)
 
 
-! 1250:[rms3ph] Three Phase RMS Meter 
+! 1290:[rms3ph] Three Phase RMS Meter 
       RTCF(NRTCF) = 1.0
       IF (1.0 .GT. 1.0E-20) RTCF(NRTCF) = 1.0/1.0
       RTCF(NRTCF+1) = Fsys
       RTCF(NRTCF+2) = 0.0
       NRTCF = NRTCF + 3
 
-! 1300:[photovoltaic_source] photovoltaic source 'PVarray1'
+! 1350:[photovoltaic_source] photovoltaic source 'PVarray1'
       RTCF(NRTCF) = 1.0/REAL(24*2000)
       NRTCF = NRTCF + 1
 
-! 1310:[pgb] Output Channel 'Ic_PoC'
+! 1360:[pgb] Output Channel 'Ic_PoC'
 
-! 1320:[pgb] Output Channel 'Ib_PoC'
+! 1370:[pgb] Output Channel 'Ib_PoC'
 
-! 1350:[pgb] Output Channel 'Ia_PoC'
+! 1400:[pgb] Output Channel 'Ia_PoC'
 
-! 1550:[pgb] Output Channel 'PCU2_Phs'
+! 1530:[pgb] Output Channel 'PLANT_Q_MV'
 
-! 1570:[pgb] Output Channel 'PCU1_Phs'
+! 1550:[pgb] Output Channel 'PLANT_P_MV'
 
-! 1600:[pgb] Output Channel 'PCU2_Arms_LV'
+! 1580:[pgb] Output Channel 'PLANT_V_MV'
 
-! 1610:[pgb] Output Channel 'PCU1_Arms_LV'
+! 1630:[pgb] Output Channel 'PCU2_Phs'
 
-! 1630:[DEBUG_HyCon_Scope]  'HyCon1'
+! 1650:[pgb] Output Channel 'PCU1_Phs'
+
+! 1680:[pgb] Output Channel 'PCU2_Arms_LV'
+
+! 1690:[pgb] Output Channel 'PCU1_Arms_LV'
+
+! 1710:[DEBUG_HyCon_Scope]  'HyCon1'
       CALL DEBUG_HyCon_ScopeOut_Begin()
 
 
-! 1650:[pgb] Output Channel 'PCU2_Q_MV'
+! 1730:[pgb] Output Channel 'PCU2_Q_MV'
 
-! 1680:[pgb] Output Channel 'PCU1_Q_MV'
+! 1760:[pgb] Output Channel 'PCU1_Q_MV'
 
-! 1700:[pgb] Output Channel 'PCU2_P_MV'
+! 1780:[pgb] Output Channel 'PCU2_P_MV'
 
-! 1720:[pgb] Output Channel 'PCU1_P_MV'
+! 1800:[pgb] Output Channel 'PCU1_P_MV'
 
-! 1760:[pgb] Output Channel 'PCU2_A_MV'
+! 1840:[pgb] Output Channel 'PCU2_A_MV'
 
-! 1780:[pgb] Output Channel 'PCU1_A_MV'
+! 1850:[pgb] Output Channel 'PCU1_A_MV'
 
-! 1830:[pgb] Output Channel 'PLANT_Phs'
+! 1900:[pgb] Output Channel 'PLANT_Phs'
 
-! 1850:[SC_Scope] Scopes for monitoring 
+! 1930:[SC_Scope] Scopes for monitoring 
       CALL SC_ScopeOut_Begin()
 
 
-! 1860:[pgb] Output Channel 'PCU2_Q_LV'
+! 1940:[pgb] Output Channel 'PCU2_Q_LV'
 
-! 1870:[pgb] Output Channel 'PLANT_Q_HV'
+! 1950:[pgb] Output Channel 'PLANT_Q_HV'
 
-! 1890:[pgb] Output Channel 'PCU1_Q_LV'
+! 1970:[pgb] Output Channel 'PCU1_Q_LV'
 
-! 1900:[pgb] Output Channel 'PCU2_P_LV'
+! 1980:[pgb] Output Channel 'PCU2_P_LV'
 
-! 1910:[pgb] Output Channel 'PLANT_P_HV'
+! 1990:[pgb] Output Channel 'PLANT_P_HV'
 
-! 1920:[pgb] Output Channel 'PCU1_P_LV'
+! 2000:[pgb] Output Channel 'PCU1_P_LV'
 
-! 1940:[pgb] Output Channel 'PCU2_A_LV'
+! 2010:[pgb] Output Channel 'PCU2_A_LV'
 
-! 1960:[pgb] Output Channel 'PCU1_A_LV'
+! 2030:[pgb] Output Channel 'PCU1_A_LV'
 
-! 1970:[SC_Scope] Scopes for monitoring 
+! 2040:[SC_Scope] Scopes for monitoring 
       CALL SC_ScopeOut_Begin()
 
 

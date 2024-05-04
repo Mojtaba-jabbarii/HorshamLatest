@@ -37,8 +37,8 @@
 ! Function/Subroutine Declarations 
 !---------------------------------------
 
-      REAL    REALPOLE      ! Real Pole
 !     SUBR    EMTDC_X2COMP  ! 'Comparator with Interpolation'
+      REAL    REALPOLE      ! Real Pole
       REAL    EMTDC_XINT    ! 'Integrator /w Interpolation'
 
 !---------------------------------------
@@ -70,10 +70,10 @@
       INTEGER  IT_16, NP
       REAL     RT_1, Vrms2_pu, RT_2, RT_3, RT_4
       REAL     RT_5, RT_6, RT_7, RT_8, RT_9
-      REAL     RT_10, Hband, RT_11, RT_12, RT_13
+      REAL     RT_10, RT_11, Hband, RT_12, RT_13
       REAL     RT_14, RT_15, RT_16, RT_17, RT_18
-      REAL     Ttap_current, RT_19, RT_20
-      REAL     initial_combined_constant, RT_21
+      REAL     RT_19, Ttap_current, RT_20, RT_21
+      REAL     initial_combined_constant, RT_22
 
 ! Internal Variables
       REAL     RVD2_1(2), RVD1_1, RVD2_2(2)
@@ -108,7 +108,7 @@
       ISTOI     = NSTOI
       NSTOI     = NSTOI + 24
       ISTOF     = NSTOF
-      NSTOF     = NSTOF + 38
+      NSTOF     = NSTOF + 39
       IPGB      = NPGB
       NPGB      = NPGB + 7
       NNODE     = NNODE + 2
@@ -142,27 +142,28 @@
       IT_9     = STOI(ISTOI + 16)
       RT_9     = STOF(ISTOF + 23)
       RT_10    = STOF(ISTOF + 24)
-      Hband    = STOF(ISTOF + 25)
-      RT_11    = STOF(ISTOF + 26)
+      RT_11    = STOF(ISTOF + 25)
+      Hband    = STOF(ISTOF + 26)
       RT_12    = STOF(ISTOF + 27)
       RT_13    = STOF(ISTOF + 28)
       RT_14    = STOF(ISTOF + 29)
       RT_15    = STOF(ISTOF + 30)
       RT_16    = STOF(ISTOF + 31)
+      RT_17    = STOF(ISTOF + 32)
       IT_10    = STOI(ISTOI + 17)
       IT_11    = STOI(ISTOI + 18)
-      RT_17    = STOF(ISTOF + 32)
+      RT_18    = STOF(ISTOF + 33)
       IT_12    = STOI(ISTOI + 19)
       IT_13    = STOI(ISTOI + 20)
-      RT_18    = STOF(ISTOF + 33)
-      Ttap_current = STOF(ISTOF + 34)
-      RT_19    = STOF(ISTOF + 35)
-      IT_14    = STOI(ISTOI + 21)
+      RT_19    = STOF(ISTOF + 34)
+      Ttap_current = STOF(ISTOF + 35)
       RT_20    = STOF(ISTOF + 36)
-      initial_combined_constant = STOF(ISTOF + 37)
+      IT_14    = STOI(ISTOI + 21)
+      RT_21    = STOF(ISTOF + 37)
+      initial_combined_constant = STOF(ISTOF + 38)
       IT_15    = STOI(ISTOI + 22)
       IT_16    = STOI(ISTOI + 23)
-      RT_21    = STOF(ISTOF + 38)
+      RT_22    = STOF(ISTOF + 39)
       NP       = STOI(ISTOI + 24)
 
 
@@ -191,93 +192,92 @@
       Hband = Hyst_pu * dPos
 
 ! 180:[const] Real Constant 
-      RT_11 = 1.0
+      RT_12 = 1.0
 
 ! 190:[const] Real Constant 
-      RT_15 = 1.0
+      RT_16 = 1.0
 
-! 200:[div] Divider 
-      IF (ABS(Vtr_2) .LT. 1.0E-100) THEN
-         IF (Vtr_2 .LT. 0.0)  THEN
+! 210:[const] Real Constant 
+      RT_11 = 1.0
+
+! 230:[sumjct] Summing/Differencing Junctions 
+      RT_10 = + Vord_pu + Hband
+
+! 240:[const] Real Constant 
+      RT_5 = 1.0
+
+! 250:[sumjct] Summing/Differencing Junctions 
+      RT_9 = + Vord_pu - Hband
+
+! 260:[const] Real Constant 
+      RT_3 = 1.0
+
+! 290:[time-sig] Output of Simulation Time 
+      RT_20 = TIME
+
+! 300:[time-sig] Output of Simulation Time 
+      RT_21 = TIME
+
+! 310:[time-sig] Output of Simulation Time 
+      RT_18 = TIME
+
+! 320:[compar] Two Input Comparator 
+!
+      CALL EMTDC_X2COMP(0,0,RT_18,TendInit,1.0,0.0,0.0,RVD2_1)
+      IT_12 = NINT(RVD2_1(1))
+
+! 330:[unity] Type/Shape conversion block 
+! real -> nearest integer
+      IT_13 = NINT(REAL(IT_12))
+
+! 340:[div] Divider 
+      IF (ABS(RT_11) .LT. 1.0E-100) THEN
+         IF (RT_11 .LT. 0.0)  THEN
             RT_1 = -1.0E100 * Vrms
          ELSE
             RT_1 =  1.0E100 * Vrms
          ENDIF
       ELSE
-         RT_1 = Vrms / Vtr_2
+         RT_1 = Vrms / RT_11
       ENDIF
 
-! 220:[realpole] Real Pole 
+! 350:[realpole] Real Pole 
 !  Real_Pole
       Vrms2_pu = REALPOLE(0,1,0,1.0,Tfilt_rms,RT_1,0.0,-1.0E20,1.0E20)
 
-! 230:[pgb] Output Channel 'Vrms2_pu'
-
-      PGB(IPGB+1) = Vrms2_pu
-
-! 250:[sumjct] Summing/Differencing Junctions 
-      RT_10 = + Vord_pu + Hband
-
-! 260:[const] Real Constant 
-      RT_5 = 1.0
-
-! 270:[sumjct] Summing/Differencing Junctions 
-      RT_9 = + Vord_pu - Hband
-
-! 280:[compar] Two Input Comparator 
-!
-      CALL EMTDC_X2COMP(0,0,RT_9,Vrms2_pu,1.0,0.0,0.0,RVD2_1)
-      IT_8 = NINT(RVD2_1(1))
-
-! 290:[const] Real Constant 
-      RT_3 = 1.0
-
-! 300:[inv] Interpolated Logic Inverter 
-      IF (IT_8 .NE. 0) THEN
-         IT_11 = 0
-      ELSE
-         IT_11 = 1
-      ENDIF
-
-! 330:[time-sig] Output of Simulation Time 
-      RT_19 = TIME
-
-! 340:[time-sig] Output of Simulation Time 
-      RT_20 = TIME
-
-! 350:[time-sig] Output of Simulation Time 
-      RT_17 = TIME
-
 ! 360:[compar] Two Input Comparator 
-!
-      CALL EMTDC_X2COMP(0,0,RT_17,TendInit,1.0,0.0,0.0,RVD2_1)
-      IT_12 = NINT(RVD2_1(1))
-
-! 370:[unity] Type/Shape conversion block 
-! real -> nearest integer
-      IT_13 = NINT(REAL(IT_12))
-
-! 380:[compar] Two Input Comparator 
 !
       CALL EMTDC_X2COMP(0,0,Vrms2_pu,RT_10,1.0,0.0,0.0,RVD2_1)
       IT_1 = NINT(RVD2_1(1))
 
-! 390:[inv] Interpolated Logic Inverter 
+! 370:[inv] Interpolated Logic Inverter 
       IF (IT_1 .NE. 0) THEN
          IT_2 = 0
       ELSE
          IT_2 = 1
       ENDIF
 
+! 380:[compar] Two Input Comparator 
+!
+      CALL EMTDC_X2COMP(0,0,RT_9,Vrms2_pu,1.0,0.0,0.0,RVD2_1)
+      IT_8 = NINT(RVD2_1(1))
+
+! 390:[inv] Interpolated Logic Inverter 
+      IF (IT_8 .NE. 0) THEN
+         IT_11 = 0
+      ELSE
+         IT_11 = 1
+      ENDIF
+
 ! 400:[sumjct] Summing/Differencing Junctions 
-      RT_21 = + Ttap + Tdelay_subsequent
+      RT_22 = + Ttap + Tdelay_subsequent
 
 ! 410:[sumjct] Summing/Differencing Junctions 
       initial_combined_constant = + Ttap + Tdelay_first_tap
 
 ! 420:[compar] Two Input Comparator 
 !
-      CALL EMTDC_X2COMP(0,0,TstartInit,RT_19,1.0,0.0,0.0,RVD2_1)
+      CALL EMTDC_X2COMP(0,0,TstartInit,RT_20,1.0,0.0,0.0,RVD2_1)
       IT_14 = NINT(RVD2_1(1))
 
 ! 430:[unity] Type/Shape conversion block 
@@ -286,7 +286,7 @@
 
 ! 440:[compar] Two Input Comparator 
 !
-      CALL EMTDC_X2COMP(0,0,RT_20,initial_combined_constant,1.0,0.0,0.0,&
+      CALL EMTDC_X2COMP(0,0,RT_21,initial_combined_constant,1.0,0.0,0.0,&
      &RVD2_1)
       IT_15 = NINT(RVD2_1(1))
 
@@ -316,16 +316,16 @@
 
 ! 480:[select] Two Input Selector 
       IF (IT_16 .EQ. RTCI(NRTCI)) THEN
-         RT_18 = RT_21
+         RT_19 = RT_22
       ELSE
-         RT_18 = initial_combined_constant
+         RT_19 = initial_combined_constant
       ENDIF
       NRTCI = NRTCI + 1
 !
 
 ! 490:[select] Two Input Selector 
       IF (IT_13 .EQ. RTCI(NRTCI)) THEN
-         Ttap_current = RT_18
+         Ttap_current = RT_19
       ELSE
          Ttap_current = Ttap_init
       ENDIF
@@ -399,52 +399,56 @@
 !
 
 ! 590:[sumjct] Summing/Differencing Junctions 
-      RT_12 = - RT_11 + REAL(Pos_t_o) - REAL(NdnSteps)
+      RT_13 = - RT_12 + REAL(Pos_t_o) - REAL(NdnSteps)
 
 ! 600:[gain] Gain Block 
 !  Gain
-      RT_14 = REAL(TpWdg) * RT_12
+      RT_15 = REAL(TpWdg) * RT_13
 
 ! 610:[gain] Gain Block 
 !  Gain
-      RT_13 = dPos * RT_14
+      RT_14 = dPos * RT_15
 
 ! 620:[gain] Gain Block 
 !  Gain
-      RT_16 = REAL(Dir) * RT_13
+      RT_17 = REAL(Dir) * RT_14
 
 ! 630:[sumjct] Summing/Differencing Junctions 
-      Tap_o = + RT_15 + RT_16
+      Tap_o = + RT_16 + RT_17
 
 ! 640:[pgb] Output Channel 'Ttap_current'
 
-      PGB(IPGB+2) = Ttap_current
+      PGB(IPGB+1) = Ttap_current
 
 ! 650:[pgb] Output Channel 'Freeze'
 
-      PGB(IPGB+3) = REAL(Frz)
+      PGB(IPGB+2) = REAL(Frz)
 
 ! 660:[pgb] Output Channel 'Neg pos'
 
-      PGB(IPGB+4) = RT_4
+      PGB(IPGB+3) = RT_4
 
 ! 680:[pgb] Output Channel 'edge'
 
-      PGB(IPGB+5) = RT_8
+      PGB(IPGB+4) = RT_8
 
 ! 690:[pgb] Output Channel 'Int pos'
 
-      PGB(IPGB+6) = RT_7
+      PGB(IPGB+5) = RT_7
 
-! 710:[pgb] Output Channel 'tap_ratio'
+! 710:[pgb] Output Channel 'Vrms2_pu'
+
+      PGB(IPGB+6) = Vrms2_pu
+
+! 720:[pgb] Output Channel 'tap_ratio'
 
       PGB(IPGB+7) = Tap_o
 
-! 720:[zminusone] Feedback Loop Selector 'Unused'
+! 730:[zminusone] Feedback Loop Selector 'Unused'
 ! Unused
       IT_4 = IT_6
 
-! 730:[zminusone] Feedback Loop Selector 'Unused'
+! 740:[zminusone] Feedback Loop Selector 'Unused'
 ! Unused
       IT_10 = IT_5
 
@@ -492,27 +496,28 @@
       STOI(ISTOI + 16) = IT_9
       STOF(ISTOF + 23) = RT_9
       STOF(ISTOF + 24) = RT_10
-      STOF(ISTOF + 25) = Hband
-      STOF(ISTOF + 26) = RT_11
+      STOF(ISTOF + 25) = RT_11
+      STOF(ISTOF + 26) = Hband
       STOF(ISTOF + 27) = RT_12
       STOF(ISTOF + 28) = RT_13
       STOF(ISTOF + 29) = RT_14
       STOF(ISTOF + 30) = RT_15
       STOF(ISTOF + 31) = RT_16
+      STOF(ISTOF + 32) = RT_17
       STOI(ISTOI + 17) = IT_10
       STOI(ISTOI + 18) = IT_11
-      STOF(ISTOF + 32) = RT_17
+      STOF(ISTOF + 33) = RT_18
       STOI(ISTOI + 19) = IT_12
       STOI(ISTOI + 20) = IT_13
-      STOF(ISTOF + 33) = RT_18
-      STOF(ISTOF + 34) = Ttap_current
-      STOF(ISTOF + 35) = RT_19
-      STOI(ISTOI + 21) = IT_14
+      STOF(ISTOF + 34) = RT_19
+      STOF(ISTOF + 35) = Ttap_current
       STOF(ISTOF + 36) = RT_20
-      STOF(ISTOF + 37) = initial_combined_constant
+      STOI(ISTOI + 21) = IT_14
+      STOF(ISTOF + 37) = RT_21
+      STOF(ISTOF + 38) = initial_combined_constant
       STOI(ISTOI + 22) = IT_15
       STOI(ISTOI + 23) = IT_16
-      STOF(ISTOF + 38) = RT_21
+      STOF(ISTOF + 39) = RT_22
       STOI(ISTOI + 24) = NP
 
 
@@ -565,7 +570,7 @@
 ! Electrical Node Indices
 
 ! Control Signals
-      REAL     RT_3, RT_5, RT_11, RT_15
+      REAL     RT_3, RT_5, RT_11, RT_12, RT_16
 
 ! Internal Variables
 
@@ -606,8 +611,9 @@
 
       RT_3     = STOF(ISTOF + 17)
       RT_5     = STOF(ISTOF + 19)
-      RT_11    = STOF(ISTOF + 26)
-      RT_15    = STOF(ISTOF + 30)
+      RT_11    = STOF(ISTOF + 25)
+      RT_12    = STOF(ISTOF + 27)
+      RT_16    = STOF(ISTOF + 31)
 
 
 !---------------------------------------
@@ -632,17 +638,21 @@
 
 ! 180:[const] Real Constant 
 
-      RT_11 = 1.0
+      RT_12 = 1.0
 
 ! 190:[const] Real Constant 
 
-      RT_15 = 1.0
+      RT_16 = 1.0
 
-! 260:[const] Real Constant 
+! 210:[const] Real Constant 
+
+      RT_11 = 1.0
+
+! 240:[const] Real Constant 
 
       RT_5 = 1.0
 
-! 290:[const] Real Constant 
+! 260:[const] Real Constant 
 
       RT_3 = 1.0
 
@@ -652,8 +662,9 @@
 
       STOF(ISTOF + 17) = RT_3
       STOF(ISTOF + 19) = RT_5
-      STOF(ISTOF + 26) = RT_11
-      STOF(ISTOF + 30) = RT_15
+      STOF(ISTOF + 25) = RT_11
+      STOF(ISTOF + 27) = RT_12
+      STOF(ISTOF + 31) = RT_16
 
 
 !---------------------------------------
@@ -704,7 +715,7 @@
 
 ! Control Signals
       INTEGER  NP
-      REAL     RT_3, RT_5, RT_11, RT_15
+      REAL     RT_3, RT_5, RT_11, RT_12, RT_16
 
 ! Internal Variables
 
@@ -742,43 +753,44 @@
 ! 80:[gain] Gain Block 
 
 ! 180:[const] Real Constant 
-      RT_11 = 1.0
+      RT_12 = 1.0
 
 ! 190:[const] Real Constant 
-      RT_15 = 1.0
+      RT_16 = 1.0
 
-! 200:[div] Divider 
+! 210:[const] Real Constant 
+      RT_11 = 1.0
 
-! 220:[realpole] Real Pole 
-
-! 230:[pgb] Output Channel 'Vrms2_pu'
-
-! 240:[Tap_No_positons_1]  
+! 220:[Tap_No_positons_1]  
       NP = NupSteps + NdnSteps
+
+! 230:[sumjct] Summing/Differencing Junctions 
+
+! 240:[const] Real Constant 
+      RT_5 = 1.0
 
 ! 250:[sumjct] Summing/Differencing Junctions 
 
 ! 260:[const] Real Constant 
-      RT_5 = 1.0
-
-! 270:[sumjct] Summing/Differencing Junctions 
-
-! 280:[compar] Two Input Comparator 
-
-! 290:[const] Real Constant 
       RT_3 = 1.0
 
-! 300:[inv] Interpolated Logic Inverter 
+! 290:[time-sig] Output of Simulation Time 
 
-! 330:[time-sig] Output of Simulation Time 
+! 300:[time-sig] Output of Simulation Time 
 
-! 340:[time-sig] Output of Simulation Time 
+! 310:[time-sig] Output of Simulation Time 
 
-! 350:[time-sig] Output of Simulation Time 
+! 320:[compar] Two Input Comparator 
+
+! 330:[unity] Type/Shape conversion block 
+
+! 340:[div] Divider 
+
+! 350:[realpole] Real Pole 
 
 ! 360:[compar] Two Input Comparator 
 
-! 370:[unity] Type/Shape conversion block 
+! 370:[inv] Interpolated Logic Inverter 
 
 ! 380:[compar] Two Input Comparator 
 
@@ -848,11 +860,13 @@
 
 ! 690:[pgb] Output Channel 'Int pos'
 
-! 710:[pgb] Output Channel 'tap_ratio'
+! 710:[pgb] Output Channel 'Vrms2_pu'
 
-! 720:[zminusone] Feedback Loop Selector 'Unused'
+! 720:[pgb] Output Channel 'tap_ratio'
 
 ! 730:[zminusone] Feedback Loop Selector 'Unused'
+
+! 740:[zminusone] Feedback Loop Selector 'Unused'
 
       RETURN
       END
@@ -897,7 +911,7 @@
 
 ! Control Signals
       INTEGER  NP
-      REAL     RT_3, RT_5, RT_11, RT_15
+      REAL     RT_3, RT_5, RT_11, RT_12, RT_16
 
 ! Internal Variables
 
@@ -933,15 +947,18 @@
 
 
 ! 180:[const] Real Constant 
-      RT_11 = 1.0
+      RT_12 = 1.0
 
 ! 190:[const] Real Constant 
-      RT_15 = 1.0
+      RT_16 = 1.0
 
-! 260:[const] Real Constant 
+! 210:[const] Real Constant 
+      RT_11 = 1.0
+
+! 240:[const] Real Constant 
       RT_5 = 1.0
 
-! 290:[const] Real Constant 
+! 260:[const] Real Constant 
       RT_3 = 1.0
 
       RETURN

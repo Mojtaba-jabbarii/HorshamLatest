@@ -179,7 +179,9 @@ def createPath(main_path_out):
 ##############################################################################
 TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 #simulation_batches=['DMAT', 'Prof_chng', 'AEMO_fdb', 'missing', 'legend', 'SCR_chng', 'timing'] #specify batch from spreadsheet that shall be run. If empty, run all batches
-simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl']
+#simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl']
+simulation_batches=['DMATsl1_db','DMATsl2_db','DMATsl3_db','DMATsl4_db','DMATsl5_db','DMATsl6_db','DMATsl_db']
+#simulation_batches=['INIT_TEST_db']
 # simulation_batches=['S52511','S52513','S52514','S5255Iq1','S5255Iq2','S5255Iq3']
 #simulation_batches=['S5253_T']
 #The below can alternatively be defined in the Excel sheet

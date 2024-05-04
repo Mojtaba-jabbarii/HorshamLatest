@@ -1,1 +1,76 @@
 1) Scale on LV power input wrong --> probably fixed
+2) small38, Q-setpoint test: Model does not initialise for P1 Q0 (small 38, 39) --> CRITICAL
+3) small44: Active power setpoint signal not correctly scaled (small 44)
+4) small46: active power and reactive power dents, presumably due to BESS inertia (small46) --> Recently not seeing anymore. Not spiking like that. Reduce frequency control delay? Maybe not. Could reduce inertia (gain).
+5) voltage plot scale needs to be increased for minrange of 0.2pu or 0.1pu or something.
+6) small65: BESS does not appear to be participating in frequency control response, only inertial contribution (small65 and other frequency tests) --> need t osee what 5.2.5.11 looks like. --> MEDIUM
+	PPC prioritises the PV inverter response and Pmax is already hit at POC.
+
+7) small83: FRT oscillation issue, PV inverters oscillate in and out of HVRT, PPC enters HVRT --> CRITICAL
+small84: HVRT is entered, Active Power spike
+		Look at TAP changer settings in Sepoint list!
+		Diverging active power setpoints: Seen on Summerville with high Inertia constant. Not sure if applicable.
+		Might be linked to FRT of PV: Maybe some extreme windup for no reason?
+		
+		
+8) small 101: large active power increase after LVRT, oscillation in active power. --> CRITICAL
+	Looks like active powdr control misbehaves. Gain too high??
+	Workaround: FRT stop delay increase to 0.3??
+	
+small 106: PV LVRT activation --> Double-check tap changer setting. 
+9) small107: ACTIVE POWER COMMANDS DRIFT --> CRITICAL
+	seems again linked to FRT. Not sure why.
+	Could consider dropping voltage more so that the voltage at POC is to 0.85
+	
+9.5) small109: vertical step in P command for some reason.	
+
+10) large 85 and following: active power noise, increase minrange on active power to 60?
+11) large127: any concerns with reactive power magnitude? Some noise
+12) large 139 active power slope, medium priority
+13) Large 347, 353: ABSOLUTE DISASTER, GOES IN HVRT AND GETS STUCK?? LOOKS LIKE MAYBE SIMULATION CRASHED
+	ISSUE IN PLOT SCRIPT> -0st-fault SCR=1, not 90.
+14) large365: Reactive power response weird --> MINOR
+	BESS not in FRT. --> can this be configured? Voltage inertia acting.
+15) large368:  Reactive power overshoot post-fault. --> LOW/MINOR (might be able to work with scaling)
+16) TOV 7 and 10: Reactive Power Undershoot --> INstantaneous voltage decrease causes Q of PV inverters to drop and "voltage inertia" of BESS causes another part of the spike.
+
+INIT RUN
+small1031 (setpoint 2) voltage at POC too high --> is it the correct one? Also voltage at MV=1.064 --> WAY TOO HIGH.
+
+small Pout_INV_BESSS of 0.35 corresponds to 60MW in case 1030 but in case 1080 Pout_INV_BESS of 0.39 only corresponds to 29 MW. 
+
+Summary of parameter changes:
+
+considered: 
+	tap changer	
+	FrtStopDelay
+	LVRT threshold
+	
+	SUM dyr file for PV inverter?
+	
+	
+NOTES:
+	MV voltage range has to be within 1.025 to 1.035 for tap to be accurately set. This only allows for one possible tap changer setting
+	
+
+
+TO DO:
+	finalise tap changer settings for all setpoints.
+		1034, PmaxQmin looking weird/slow init
+		1037, P0 Q-0.3 weird/slow init
+		1039 P0Qmin weird/slow init
+		
+	Rerun DMAT sample run (PSS/E and PSCAD)
+	Plot combined DMAT report (limited sample run)
+	investigate issues
+		known PSCAD issues
+		misalignments? --> double-check parameters or involve Dao
+		
+	Run BM tests and produce overlays
+	investigate issues
+	
+	launch DMAT full run over night.
+	
+	update Voltage Control Strategy
+	
+	
