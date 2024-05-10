@@ -1023,7 +1023,8 @@
 
 ! 830:[TapCtrl_1]  
       CALL TapCtrl_1Dyn(Tap_position, maintap, PLANT_V_MV, RT_4, 1, 220.&
-     &0, 0.0125, 0.64, 8, 8, 10, 0.01, 1.0, 1.0, 1.0, 1.0, 3.0, 3.0, 1)
+     &0, 0.0125, 0.64, 8, 8, 10, 0.01, 30.0, 30.0, 30.0, 1.0, 3.0, 3.0, &
+     &1)
 
 
 ! 840:[sumjct] Summing/Differencing Junctions 
@@ -1231,7 +1232,7 @@
       RT_28 = PCU1_Fb(5)
 
 ! 1180:[datatap] Scalar/Array Tap 
-      FRT_flag_POC = DEBUG_HyCon1(1)
+      FRT_flag_POC = DEBUG_HyCon1(18)
 
 ! 1190:[datatap] Scalar/Array Tap 
       FRT_flag_BESS = DEBUG_PCU2(1)

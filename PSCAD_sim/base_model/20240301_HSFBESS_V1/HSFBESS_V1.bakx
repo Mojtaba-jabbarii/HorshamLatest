@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1714783543" />
+    <param name="revisor" value="SIMULATION, 1714910011" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="27776387" instances="1" key="" view="false" date="1714697462" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="76943327" instances="1" key="" view="false" date="1714697462" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -3298,15 +3298,15 @@ OX2 Australia - Jan 2024
             <param name="NdnSteps" value="8" />
             <param name="Pos0" value="10" />
             <param name="Tfilt_rms" value="0.01" />
-            <param name="Ttap" value="1 [s]" />
+            <param name="Ttap" value="30 [s]" />
             <param name="Dir" value="1" />
             <param name="Ttap_0_init" value="0.05 [s]" />
             <param name="TstartInit" value="3.0" />
             <param name="TendInit_0" value="3.0" />
             <param name="Ttap_init" value="1" />
             <param name="TendInit" value="3.0" />
-            <param name="Tdelay_first_tap" value="1 [s]" />
-            <param name="Tdelay_subsequent" value="1 [s]" />
+            <param name="Tdelay_first_tap" value="30 [s]" />
+            <param name="Tdelay_subsequent" value="30 [s]" />
           </paramlist>
           <paramlist link="561344123" name="">
             <param name="xmin" value="3.75" />
@@ -7314,7 +7314,7 @@ OX2 Australia - Jan 2024
         </User>
         <User classid="UserCmp" name="master:datatap" id="325362530" x="2970" y="558" w="28" h="26" z="1180" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
-            <param name="Index" value="1" />
+            <param name="Index" value="18" />
             <param name="Dim" value="1" />
             <param name="Type" value="2" />
             <param name="Style" value="0" />

@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1714785211" />
+    <param name="revisor" value="SIMULATION, 1714910036" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="63073330" instances="1" key="" view="false" date="1714697462" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="76943327" instances="1" key="" view="false" date="1714697462" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -7314,7 +7314,7 @@ OX2 Australia - Jan 2024
         </User>
         <User classid="UserCmp" name="master:datatap" id="325362530" x="2970" y="558" w="28" h="26" z="1180" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
-            <param name="Index" value="1" />
+            <param name="Index" value="18" />
             <param name="Dim" value="1" />
             <param name="Type" value="2" />
             <param name="Style" value="0" />
@@ -67093,8 +67093,8 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <ref link="1089318121" />
       </path>
       <paramlist>
-        <param name="xmin" value="0.0" />
-        <param name="xmax" value="8.0" />
+        <param name="xmin" value="6.2" />
+        <param name="xmax" value="6.9" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1531568730" link="1830306561">
@@ -67111,8 +67111,8 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <ref link="1089318121" />
       </path>
       <paramlist>
-        <param name="ymin" value="-40.0" />
-        <param name="ymax" value="160.0" />
+        <param name="ymin" value="-50.0" />
+        <param name="ymax" value="175.0" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1257780583" link="845955295">

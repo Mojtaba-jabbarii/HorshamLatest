@@ -47,12 +47,12 @@ TestDefinitionSheet=r'20240403_HSFBESS_TESTINFO_V1.xlsx'
     """
 
 # different datasets for SMIB and Network tests
-datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240504-1338_DMATsl1_db", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':0.0,#-3.0,
+datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240510-1739_DMATsl1_db", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':0.0,#-3.0,
                   'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.010334129, }, # #negative due to the reversed Q measurement
                                   {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.0099206, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
                                   {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.010334129, },],  
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":-1.0, } ], } #calculate power factor from P and Q results scaling -1 due to reversed power measure
-datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20240504-1335_DMATsl1_db", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-0.0,#-3.0, 
+datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20240510-1734_DMATsl1_db", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-0.0,#-3.0, 
                   'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.010334129, }, 
                                   {"P":"PCU1_P_LV", "Q":"PCU1_Q_LV", "V":"PCU1_V_LV_pu", "nameLabel":"PV", "scaling":36.0, },
                                    {"P":"PCU2_P_LV", "Q":"PCU2_Q_LV", "V":"PCU2_V_LV_pu", "nameLabel":"BESS", "scaling":40.0, }],

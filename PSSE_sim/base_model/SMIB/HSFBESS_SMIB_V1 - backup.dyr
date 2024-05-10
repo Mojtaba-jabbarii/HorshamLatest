@@ -77,7 +77,7 @@
 @!/GridService.FrqPoiDynMod                GridService.FrqPoiFilterTm              GridService.FrqPoiRateMax               GridService.PoiPwrAtCtrlMode            GridService.PwrApNomPoi                 
    1                                       0.0                                     0.04                                    3                                       127947                                  
 @!/GridService.PwrApPrioMode               GridService.PwrAtNomPoi                 GridService.PwrAtPoiFilterTm            GridService.PwrRtNomPoi                 GridService.PwrRtPoiFilterTm            
-   2                                       119000                                  0                                       90720                                   0                                       
+   2                                       119000                                  0                                       47005                                   0                                       
 @!/GridVtgCtrl.Ena                         GridVtgCtrl.IntGain                     GridVtgCtrl.IntLimAwu                   GridVtgCtrl.PropGain                    GridVtgCtrl.VtgFilterTm                 
    0                                       5                                       0.5                                     0                                       0                                       
 @!/PvPwrAtCtrl.CtrlKi                      PvPwrAtCtrl.CtrlKp                      PvPwrAtCtrl.DynSpntSwitchHysPc          PvPwrAtCtrl.Ena                         PvPwrAtCtrl.EnaAdapCtrl                 
@@ -85,7 +85,7 @@
 @!/PvPwrAtCtrl.EnaDynSpntSwitch            PvPwrAtCtrl.EnaStepReset                PvPwrAtCtrl.FeedForwardOffset           PvPwrAtCtrl.MeasFilterTm                PvPwrAtCtrl.OvershootResetPc            
    0                                       0                                       0                                       0                                       100                                     
 @!/PvPwrAtCtrl.PiCtrlLimPc                 PvPwrAtCtrl.PilotControlGain            PvPwrAtCtrl.SpntDelaySamples            PvPwrAtCtrl.StepResetThrsldPc           PwrRt.PwrRtCtrlMode                     
-   100                                     0                                       0                                       100                                     303                                    
+   100                                     0                                       0                                       100                                     1069                                    
 @!/PwrRtCtrl.CtrlKi                        PwrRtCtrl.CtrlKp                        PwrRtCtrl.DynSpntSwitchHysPc            PwrRtCtrl.Ena                           PwrRtCtrl.EnaAdapCtrl                   
    1.25                                    0                                       0                                       1                                       1                                       
 @!/PwrRtCtrl.EnaDynSpntSwitch              PwrRtCtrl.EnaStepReset                  PwrRtCtrl.FeedForwardOffset             PwrRtCtrl.MeasFilterTm                  PwrRtCtrl.OvershootResetPc              
@@ -253,7 +253,7 @@
 @!/ AcCtl.VolABKp                           AcCtl.AmpDQFilTm                        AcCtl.ParamFilTm                        
      0.01                                    0.02                                    10                                     
 @!/ Frt.Frt_Mod                             Frt.LoVolOnLim                          Frt.LoVolOffLim                         
-     2                                       0.6                                     0.87                                    
+     2                                       0.80                                     0.87                                    
 @!/ Frt.HiVolOffLim                         Frt.DynVolOffLimEna                     Frt.VirtImpSwDetLim                     
      1.15                                     0                                       1.4                                    
 @!/ Frt.VirtImpDlTm                         Frt.VirtImpLockTm                       Frt.VirtImpWaitTm                       

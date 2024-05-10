@@ -39,14 +39,32 @@ small1031 (setpoint 2) voltage at POC too high --> is it the correct one? Also v
 
 small Pout_INV_BESSS of 0.35 corresponds to 60MW in case 1030 but in case 1080 Pout_INV_BESS of 0.39 only corresponds to 29 MW. 
 
+
+ISSUES DMAT run 2: 
+	-general: 
+			it seems there is a difference in voltage control aggressiveness/base/Droop setting. maybe also impedance somewhere
+			SCR post-fault wrong in plot script for cases where SCR changes after fault
+	-small 14, small26: Q initialisation not aligned, reactive power steps smaller magnitude in PSS/E, slower slope in PSSE
+	-small 44: difference in reactive power
+	-small 45: difference in reactive power
+	-small 46: difference in reactive power
+	-small75: Q step size misalignment
+	-small83 PSCAD FRT retriggering
+	-small91: PSCAD complete instability
+	-small98: BESS in PSS/E goes completely bonkers
+	-small 101: active and reactive power misalignment durign fault 
+	-small118: ANG profile does not apepar to be done at all in PSS/E
+	-small137: slight misalignment, shoudl be easy to fix
+	-large139 active power slope PSCAD during fault
+	-large362 fault behaviour misalignment PSS/E PSCAD	
+	-large365: active power and reactive power in PSS/E drifts after fault. Completely bonkers.
+	-large368: reactive power overshoot after fault
+
 Summary of parameter changes:
 
-considered: 
-	tap changer	
-	FrtStopDelay
-	LVRT threshold
-	
-	SUM dyr file for PV inverter?
+CONSIDERED CHANGES: 
+	LVRT threshold	
+	SUM dyr file for PV inverter and PPC? Updated BESS settings for SUM
 	
 	
 NOTES:
@@ -55,22 +73,35 @@ NOTES:
 
 
 TO DO:
-	finalise tap changer settings for all setpoints.
-		1034, PmaxQmin looking weird/slow init
-		1037, P0 Q-0.3 weird/slow init
-		1039 P0Qmin weird/slow init
-		
-	Rerun DMAT sample run (PSS/E and PSCAD)
-	Plot combined DMAT report (limited sample run)
-	investigate issues
-		known PSCAD issues
-		misalignments? --> double-check parameters or involve Dao
-		
-	Run BM tests and produce overlays
-	investigate issues
+	fix Q control issue 
+	    1)plot last night's results
+		2)Test setting PwrRtNomPoi to 90720.
+		3)run and plot again
+		4)run small14 with high SCR
+		5) debug Q initialisation procedure to get better Q init in PSS/E
+		6) double-check impedances in models.
+		7) alternatively test re-scaled SUM parameter file for PPC
+		8) double-check params in param spreadsheet
 	
-	launch DMAT full run over night.
+	instability: 
+		1) test Summerville parameters for BESS inverters.
+		
 	
-	update Voltage Control Strategy
+	new BM run and DMAT run over night.
+	
+	VCS draft
+	RUGS draft
+	populate folders with existing docs
+
+Monday (very optimistic)
+	fix bloody model issues
+	final run of DMAT and BM
+	GPS cases and review
+	
+	Update GPS report and appendices
+	
+	GPS document
+	
+	
 	
 	

@@ -25,11 +25,11 @@
 @!/Poi_power_flt_tm                        Poi_Base_KV                             HyconToInv_AtPwr_TmDelay                HyconToInv_RtPwr_TmDelay                PvPwrAtMaxTot                           
    0.02                                    220000                                  0.02                                    0.02                                    151200                                  
 @!/PvPwrRtMaxTot                           PvPwrApMaxTot                           BESSPwrAtMaxTot                         BESSPwrRtMaxTot                         BESSPwrApMaxTot                         
-   90720                                   151200                                  151200                                  90720                                   151200                                  
+   90720                                   151200                                  168000                                  100800                                  168000                                  
 @!/Reserved                                ExtPwrApLim                             ExtPwrAtLimHi                           ExtPwrAtLimLo                           PwrAtLimSale                            
    1                                       151200                                  119000                                  -100000                                 119000                                  
-@!/ExtPwrRtLimHi                           ExtPwrRtLimLo                           QVARScale                               Reserved                                Reserved                                
-   47005                                   -47005                                  0.6                                     0                                       0                                       
+@!/ExtPwrRtLimHi                           ExtPwrRtLimLo                           QVARScale                               PvPwrAtSpt                              Reserved                                
+   47005                                   -47005                                  0.6                                     151200                                  0                                       
 @!/Reserved                                Reserved                                BatPwrAtCtrl.CtrlKi                     BatPwrAtCtrl.CtrlKp                     BatPwrAtCtrl.DynSpntSwitchHysPc         
    0                                       0                                       1.25                                    0                                       0                                       
 @!/BatPwrAtCtrl.Ena                        BatPwrAtCtrl.EnaAdapCtrl                BatPwrAtCtrl.EnaDynSpntSwitch           BatPwrAtCtrl.EnaStepReset               BatPwrAtCtrl.FeedForwardOffset          
@@ -63,7 +63,7 @@
 @!/FrqDroop.FrqOffsets[9]                  FrqDroop.FrqOffsets[10]                 FrqDroop.MaxPwrDecrease                 FrqDroop.MaxRelPwrIncrease              FrqDroop.MinHoldTm                      
    3.3                                     3.4                                     100                                     100                                     0.5                                     
 @!/FrqDroop.MinPwrSpnt                     FrqDroop.OverFrqMode                    FrqDroop.PwrAtDataPc[1]                 FrqDroop.PwrAtDataPc[2]                 FrqDroop.PwrAtDataPc[3]                 
-   -66.14                                  0                                       200                                     100                                     100                                     
+   -84.0336                                2                                       200                                     100                                     100                                     
 @!/FrqDroop.PwrAtDataPc[4]                 FrqDroop.PwrAtDataPc[5]                 FrqDroop.PwrAtDataPc[6]                 FrqDroop.PwrAtDataPc[7]                 FrqDroop.PwrAtDataPc[8]                 
    100                                     0                                       0                                       0                                       0                                       
 @!/FrqDroop.PwrAtDataPc[9]                 FrqDroop.PwrAtDataPc[10]                FrqDroop.PwrAtRateMax                   FrqDroop.ResetFrqOffset[1]              FrqDroop.ResetFrqOffset[2]              
@@ -71,13 +71,13 @@
 @!/FrqDroop.ResetMode                      FrqDroop.ResetTm                        FrqDroop.UnderFrqMode                   FrqDroop.UseBatPwr                      FrtDetection.Ena                        
    1                                       0                                       2                                       1                                       1                                       
 @!/FrtDetection.FilterTm                   FrtDetection.PreFrtSamples              FrtDetection.RefMode                    FrtDetection.StopDelay                  FrtDetection.ThrsldMode                 
-   20                                      5                                       0                                       0.0666                                  1                                       
+   20                                      5                                       0                                       0.3                                     1                                       
 @!/FrtDetection.VtgLoLimPc                 FrtDetection.VtgUpLimPc                 GridService.EnaFrqRespForPv             GridService.EnaPrioBatFrqResp           GridService.FrqPoiCompFactor            
    83                                      117                                     0                                       0                                       0                                       
 @!/GridService.FrqPoiDynMod                GridService.FrqPoiFilterTm              GridService.FrqPoiRateMax               GridService.PoiPwrAtCtrlMode            GridService.PwrApNomPoi                 
    1                                       0.0                                     0.04                                    3                                       127947                                  
 @!/GridService.PwrApPrioMode               GridService.PwrAtNomPoi                 GridService.PwrAtPoiFilterTm            GridService.PwrRtNomPoi                 GridService.PwrRtPoiFilterTm            
-   2                                       119000                                  0                                       47005                                   0                                       
+   2                                       119000                                  0                                       90720                                   0                                       
 @!/GridVtgCtrl.Ena                         GridVtgCtrl.IntGain                     GridVtgCtrl.IntLimAwu                   GridVtgCtrl.PropGain                    GridVtgCtrl.VtgFilterTm                 
    0                                       5                                       0.5                                     0                                       0                                       
 @!/PvPwrAtCtrl.CtrlKi                      PvPwrAtCtrl.CtrlKp                      PvPwrAtCtrl.DynSpntSwitchHysPc          PvPwrAtCtrl.Ena                         PvPwrAtCtrl.EnaAdapCtrl                 
@@ -123,7 +123,7 @@
 @!/VtgPwrRtDroop.VtgBreakpoints[8]         VtgPwrRtDroop.VtgBreakpoints[9]         VtgPwrRtDroop.VtgBreakpoints[10]        VtgPwrRtDroop.VtgFilterTm               VtgPwrRtDroop.VtgSpntFilterTm           
    10                                      11                                      12                                       0                                       0                                       
  
-/ SMASC_G189
+/ SMASC_G190
 @!/PV_BUSNO                                MODEL                                   MCHID                                   ModelName                               IC                                      
    334094                                  'USRMDL'                                1                                       'SMASC190'                              1                                       
 @!/IT                                      NoOfICONS                               NoOfCONS                                NoOfStates                              NoOfVars                                
@@ -173,7 +173,7 @@
 @!/SOCIni                                  KP_C                                    KI_C                                    CDB                                     Cnom                                    
    0.7                                     1                                       0.001                                   0                                       0.7                                     
 @!/FSCScale                                ChargePMax                              ChargePMin                              PC_BUS                                  QVArScale                               
-   1                                       1                                       1                                       334090                                  0.6                                     
+   1                                       1                                       1                                       334081                                  0.6                                     
 @!/VREps                                   FRT_AmpDLim                             FRT_AmpQLim                             Reserved                                Reserved                                
    0.1                                     2                                       2                                       0                                       0                                       
 @!/GriMngInvVArMod                         VarCtlVolLoVolRef3                      VarCtlVolLoVolRef2                      VarCtlVolLoVolRef1HiVolRef1             VarCtlVolHiVolRef2                      
@@ -253,7 +253,7 @@
 @!/ AcCtl.VolABKp                           AcCtl.AmpDQFilTm                        AcCtl.ParamFilTm                        
      0.01                                    0.02                                    10                                     
 @!/ Frt.Frt_Mod                             Frt.LoVolOnLim                          Frt.LoVolOffLim                         
-     2                                       0.80                                     0.87                                    
+     2                                       0.6                                     0.87                                    
 @!/ Frt.HiVolOffLim                         Frt.DynVolOffLimEna                     Frt.VirtImpSwDetLim                     
      1.15                                     0                                       1.4                                    
 @!/ Frt.VirtImpDlTm                         Frt.VirtImpLockTm                       Frt.VirtImpWaitTm                       
