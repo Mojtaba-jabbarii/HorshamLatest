@@ -94,7 +94,7 @@ FrtDetection.Ena                    1          #Enables function
 FrtDetection.FilterTm               20          #Filter time for upper and lower limits in sec
 FrtDetection.VtgUpLimPc             117        #Upper voltage threshold for FRT detection in percentage of VtgNom
 FrtDetection.VtgLoLimPc             83         #Lower voltage threshold for FRT detection in percentage of VtgNom
-FrtDetection.StopDelay              0.3        #Stop delay for leaving state FRT in sec
+FrtDetection.StopDelay              0.5        #Stop delay for leaving state FRT in sec
 FrtDetection.ThrsldMode             1          #Selects the source for the calculation of upper and lower thresholds / 0: FRTDETECT_MODE_MEAS / 1: FRTDETECT_MODE_NOM
 FrtDetection.PreFrtSamples          5          #Re-initializes pi controllers to the pre frt output $19844$
 FrtDetection.VtgNom                 220000     #Nominal voltage for FRT detection in V $24734$

@@ -73,19 +73,51 @@ NOTES:
 
 
 TO DO:
-	fix Q control issue 
-	    1)plot last night's results
-		2)Test setting PwrRtNomPoi to 90720.
-		3)run and plot again
-		4)run small14 with high SCR
-		5) debug Q initialisation procedure to get better Q init in PSS/E
-		6) double-check impedances in models.
-		7) alternatively test re-scaled SUM parameter file for PPC
-		8) double-check params in param spreadsheet
+	small 63: Q initialisation PSSE --> scenario issue
+	small91: plant never exits FRT. Ongoing oscillation in PSSE and PSCAD
+	small92: weird Q response of BESS i in PSSE leading to strange recovery behaviour
+	small101 active power overshoot post fault in PSSE
 	
 	instability: 
+		0.5) DRPVOL of BESS --> reduce! If too low then will reacti too strongly, if too high it follows PPC commands closely but causes oscillation issue. default 0.05. was increase to 0.3. now 0.2. 
 		1) test Summerville parameters for BESS inverters.
+		2) test less aggressive droop setting (making PSS/E BESS more aggressive appears to have made issue appear in PSS/E). Try slower Ki constant for reactive Power control
+		3) 20240505- 15:52 PSS/E model stable! --> Check parameter set in corresponding PSSE result folder and compare against current set.
 		
+	small101 - active power overshoot post fault. PPC out of FRT while. Exit delay increase. Maye tune LVRT exit of PV a bit tighter. PPC command reset threshold might be intervening. Try 0.5
+		try smaller Ki? May cause issue with initialisation time
+		check active power command debug channels earlier in the signal chain before limiter. PV out of LVRT earlier might resolve issue
+	
+	large 413 HORRIBLE P response
+	
+	small58: PSSE BESS WEIRD ACTIVE POWER RESPONSE
+	small63: Q misalignment
+	
+	small92: ACTIVE POWER ALSO WEIRD
+	
+	large 362, 372 WEIRD P repsonse and misalignment
+	
+	ANGLE TEST NOT RUNNING in PSSE
+	
+	Q misalignment in some SCR=9cases
+	
+	PF-CTRL benchmarking case: Q init mismatch PV vs. BESS
+	
+	
+		
+	small966: Q ctrl mode misalignment --> Must be setpoint scaling issue!
+	
+	small968: different contorl response dynamic
+	
+	small973: Initial reactive power misalignment PSS/E --> Fix losse assumption across cases
+	
+	small974: BESS responding continuously to F change
+	
+	UPGRADE MODEL TO 12 MVAr Filter
+	
+	New BM run stopDelay 0.5, DrpVol=0.2 LVRT=0.58, LVRT exit 0.6
+	
+	new DMAT and BM dbg run LVRT 0.5, EVRT exit 0.52
 	
 	new BM run and DMAT run over night.
 	

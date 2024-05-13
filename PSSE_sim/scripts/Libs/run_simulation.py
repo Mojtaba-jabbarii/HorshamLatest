@@ -201,6 +201,7 @@ def is_number(s):
 def process_next_event(event_queue,start_offset, PSSEmodelDict): # added start_offset to delay the start of dynamic simulation 20/1/2022
     global standalone_script, runtime_big
     InfiniteBus=PSSEmodelDict['InfiniteBus']
+    POC=PSSEmodelDict['POC']
     FaultBus=PSSEmodelDict['FaultBus']
     DummyTxBus=PSSEmodelDict['DummyTxBus']
     event=event_queue[0] #take always the first event only
@@ -234,7 +235,7 @@ def process_next_event(event_queue,start_offset, PSSEmodelDict): # added start_o
 #        standalone_script+="psspy.two_winding_chng_5("+str(DummyTxBus) +","+str(event['POC'])+",'1',[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f, "+str(-1*event['angle'])+",_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)\n"
         
         # Chagne the angle at the INF bus
-        psspy.two_winding_chng_5(InfiniteBus,DummyTxBus,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f, -1*event['angle'],_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
+        psspy.two_winding_chng_5(DummyTxBus,POC,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f, -1*event['angle'],_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
         standalone_script+="psspy.two_winding_chng_5("+str(InfiniteBus) +","+str(DummyTxBus)+",'1',[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f, "+str(-1*event['angle'])+",_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)\n"
         
     elif(event['type']=='var_change_abs'): #change variable during runtime (e.g. for changing setpoint(s))        
