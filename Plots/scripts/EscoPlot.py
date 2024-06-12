@@ -634,6 +634,7 @@ class ESCOPlot(object):
                     break
         time = self.timearrays[entry] + self.timeoffset[entry]
         timestep = time[1] - time[0]
+        if timestep == 0: timestep = time[2] - time[1]
         # Determine location in array of starttime, as it's easier to use array location than actual time in seconds.
         measstart = np.argmin(abs(starttime - time))
         measend = np.argmin(abs(endtime - time))
@@ -845,7 +846,7 @@ class ESCOPlot(object):
                         distEndTime=time[n+1]
                 
         timestep = time[1] - time[0]        
-        
+        if timestep == 0: timestep = time[2] - time[1]
                         
         time=self.timearrays[entry] + self.timeoffset[entry] #will offset time by -4
         Iq= self.dataarrays[entry][Iqchan-1]
@@ -898,6 +899,7 @@ class ESCOPlot(object):
                     distEndTime=time[n+1]
         
         timestep = time[1] - time[0]
+        if timestep == 0: timestep = time[2] - time[1]
         #startindex = np.argmin(abs(starttime - time)) - 10 #read current value 10 samples before the fault is applied. 
         endindex= np.argmin(abs(distEndTime - time))-int(0.001/timestep*endoffset) #determine index 10 samples before the end of the fault period
         

@@ -863,8 +863,8 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
     GRID_R2=(F_dist)*GRID_R
     GRID_X2=(F_dist)*GRID_X
     #make grid infinite for initialisation and set to correct POC voltage
-#    psspy.plant_data_3(InfiniteBus,0,_i,[setpoint['V_POC'],_f])
-    psspy.plant_data_4(InfiniteBus,0,[_i,_i],[ 1.0,_f])  # set the inf bus voltage spt to 1.0pu so the case is more stable at initialisation with low SCR conditions
+    #psspy.plant_data_3(InfiniteBus,0,_i,[setpoint['V_POC'],_f])
+    psspy.plant_data_4(InfiniteBus,0,[_i,_i],[ setpoint['V_POC'],_f])  # set the inf bus voltage spt to 1.0pu so the case is more stable at initialisation with low SCR conditions
     test_convergence()
 
     #iteratively initialise loadflow
@@ -954,7 +954,7 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
             P_meas=powers[1].real
             Q_meas=powers[1].imag
             P_target = gen_list[gen]['P']
-            Q_target = gen_list[gen]['Q']/2
+            Q_target = gen_list[gen]['Q']
             P_err=P_target-P_meas
             Q_err=Q_target-Q_meas
             P_set = 0
@@ -1075,6 +1075,20 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
     #psspy.machine_chng_2(322821,r"""1""",[0,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
     #read voltage here for debugging
 
+    if setpoint['Q1ini'] != "":
+        gen1_q_pct = setpoint['Q1ini'] #setpoint['Q1ini']/setpoint['Qini']
+        gen_buses = [PSSEmodelDict['Generator1'], PSSEmodelDict['Generator2']]
+        gen_id = ['1','1']
+        gens_with_vdc = {
+                        'gens':[ # One generator controlling POC voltage
+       
+                                ],
+                        'gens2':[ # Two generators controlling voltage at same POC point
+    #                                {'gen_bus':[[gen_list[gen_list.keys()[0]]['genBus'], gen_list[gen_list.keys()[1]]['genBus']],'gen_id':['1','1'],'poc_bus':POC,'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'poc_q_max':35.55,'gen_q_max':[60.48,45.36],'gen_q_pct':[0.5,0.5]},
+                                    {'gen_bus':gen_buses,'gen_id':gen_id,'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'gen_q_pct':[1-gen1_q_pct,gen1_q_pct]},
+                                ]
+                        }
+        share_Q(gens_with_vdc, err_code = 0, auto_script = '')
 #########################      
     #check voltage at POC. if target is not hit, reiterate infinite bus voltage to hit. 
     v_poc_check=get_bus_info(POC, 'PU')[POC]['PU']
@@ -1398,7 +1412,7 @@ def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, Projec
 
 #    ############################################################    
     # 07/09/2022: Implement Pavai to initialise model at correct irradiance level
-#    implement_Pavai(Pavai, PSSEmodelDict, ProfilesDict, scenario_params, event_queue)
+    #implement_Pavai(Pavai, PSSEmodelDict, ProfilesDict, scenario_params, event_queue)
 #    ############################################################  
     
     #add event to limit availabel power if explicitly specified in setpoint

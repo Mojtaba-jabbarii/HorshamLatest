@@ -71,7 +71,7 @@
 @!/FrqDroop.ResetMode                      FrqDroop.ResetTm                        FrqDroop.UnderFrqMode                   FrqDroop.UseBatPwr                      FrtDetection.Ena                        
    1                                       0                                       2                                       1                                       1                                       
 @!/FrtDetection.FilterTm                   FrtDetection.PreFrtSamples              FrtDetection.RefMode                    FrtDetection.StopDelay                  FrtDetection.ThrsldMode                 
-   20                                      5                                       0                                       0.3                                     1                                       
+   20                                      5                                       0                                       0.5                                     1                                       
 @!/FrtDetection.VtgLoLimPc                 FrtDetection.VtgUpLimPc                 GridService.EnaFrqRespForPv             GridService.EnaPrioBatFrqResp           GridService.FrqPoiCompFactor            
    83                                      117                                     0                                       0                                       0                                       
 @!/GridService.FrqPoiDynMod                GridService.FrqPoiFilterTm              GridService.FrqPoiRateMax               GridService.PoiPwrAtCtrlMode            GridService.PwrApNomPoi                 
@@ -227,7 +227,7 @@
 @!/ AcCtl.WSptScal                          AcCtl.VArSptScal                        AcCtl.DrpHz                             
      1.15                                    2.25                                    -4                                      
 @!/ AcCtl.DrpVol                            AcCtl.DrpVolH                           AcCtl.DrpVolDmp                         
-     0.3                                     0.1                                     0                                       
+     0.2                                     0.1                                     0                                       
 @!/ AcCtl.DrpTheta                          AcCtl.DrpThetaH                         AcCtl.DrpThetaDmp                       
      -0.12                                   1.5                                     0                                       
 @!/ AcCtl.DrpThetaFilTm                     AcCtl.DrpAmpD                           AcCtl.DrpAmpDFilTm                      
@@ -253,7 +253,7 @@
 @!/ AcCtl.VolABKp                           AcCtl.AmpDQFilTm                        AcCtl.ParamFilTm                        
      0.01                                    0.02                                    10                                     
 @!/ Frt.Frt_Mod                             Frt.LoVolOnLim                          Frt.LoVolOffLim                         
-     2                                       0.6                                     0.87                                    
+     2                                       0.64                                     0.66                                    
 @!/ Frt.HiVolOffLim                         Frt.DynVolOffLimEna                     Frt.VirtImpSwDetLim                     
      1.15                                     0                                       1.4                                    
 @!/ Frt.VirtImpDlTm                         Frt.VirtImpLockTm                       Frt.VirtImpWaitTm                       
@@ -319,7 +319,7 @@
 @!/ VCtl.Hi1Lim                             VCtl.Hi1LimTm                           VCtl.Hi2Lim                             
      1.2                                     25000                                   1.25                                     
 @!/ VCtl.Hi2LimTm                           VCtl.Hi3Lim                             VCtl.Hi3LimTm                           
-     1000                                    1.3                                    300                                     
+     2500                                    1.3                                    300                                     
 @!/ VCtl.Hi4Lim                             VCtl.Hi4LimTm                           VCtl.Hi5Lim                             
      1.3                                     300                                     1.3                                     
 @!/ VCtl.Hi5LimTm                           VCtl.Hi6Lim                             VCtl.Hi6LimTm                           

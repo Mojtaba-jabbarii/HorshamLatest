@@ -23,12 +23,12 @@ from io import BytesIO
 ###############################################################################
 #USER INPUTS
 ###############################################################################
-TestDefinitionSheet=r'20230828_SUM_TESTINFO_V2.xlsx'
-raw_PQ_result_folder = '20240319-104054_S5251'
+TestDefinitionSheet=r'20240403_HSFBESS_TESTINFO_V1.xlsx'
+raw_PQ_result_folder = '20240530-163815_S5251'
 simulation_batches=['S5251_PQcurve']
 simulation_batch_label = simulation_batches[0]
 
-temperature = ["35degC","50degC"]
+temperature = ["40degC","50degC"]
     
 ###############################################################################
 # Supporting functions

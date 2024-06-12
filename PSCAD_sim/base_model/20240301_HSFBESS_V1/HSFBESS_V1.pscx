@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1714910036" />
+    <param name="revisor" value="SIMULATION, 1715628376" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="76943327" instances="1" key="" view="false" date="1714697462" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="113541264" instances="1" key="" view="false" date="1714910039" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -7357,40 +7357,6 @@ OX2 Australia - Jan 2024
             <param name="gaddress" value="100663307" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:filter" id="1906303625" x="1188" y="2034" w="45" h="142" z="1" orient="1" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="53927706">
-            <param name="Cnfg" value="0" />
-            <param name="Q" value="100.0" />
-            <param name="Fo" value="60.0 [Hz]" />
-            <param name="F" value="300.0 [Hz]" />
-            <param name="MVAR" value="100.0 [MVAR]" />
-            <param name="Volt" value="132.79 [kV]" />
-            <param name="R" value="17.86 [ohm]" />
-            <param name="L" value="0.00134 [H]" />
-            <param name="C" value="26.22 [uF]" />
-            <param name="Name" value="" />
-          </paramlist>
-        </User>
-        <User classid="UserCmp" defn="master:filter" id="97327472" x="1260" y="2034" w="45" h="142" z="1" orient="1" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="53927706">
-            <param name="Cnfg" value="0" />
-            <param name="Q" value="100.0" />
-            <param name="Fo" value="60.0 [Hz]" />
-            <param name="F" value="300.0 [Hz]" />
-            <param name="MVAR" value="100.0 [MVAR]" />
-            <param name="Volt" value="132.79 [kV]" />
-            <param name="R" value="100.89 [ohm]" />
-            <param name="L" value="0.00217 [H]" />
-            <param name="C" value="2.92 [uF]" />
-            <param name="Name" value="" />
-          </paramlist>
-        </User>
-        <User classid="UserCmp" name="master:ground" id="1464909370" x="1260" y="2106" w="26" h="34" z="0" orient="1" defn="master:ground" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="28206164" />
-        </User>
-        <User classid="UserCmp" name="master:ground" id="952214647" x="1188" y="2106" w="26" h="34" z="0" orient="1" defn="master:ground" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="28206164" />
-        </User>
         <Wire classid="WireOrthogonal" id="1270326910" name="" x="1386" y="1998" w="10" h="64" orient="0" disable="false">
           <vertex x="0" y="0" />
           <vertex x="0" y="-54" />
@@ -7399,40 +7365,6 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="0" />
           <vertex x="0" y="-72" />
         </Wire>
-        <User classid="UserCmp" defn="master:filter" id="1252342035" x="1458" y="2034" w="45" h="142" z="1" orient="1" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="53927706">
-            <param name="Cnfg" value="0" />
-            <param name="Q" value="100.0" />
-            <param name="Fo" value="60.0 [Hz]" />
-            <param name="F" value="300.0 [Hz]" />
-            <param name="MVAR" value="100.0 [MVAR]" />
-            <param name="Volt" value="132.79 [kV]" />
-            <param name="R" value="17.86 [ohm]" />
-            <param name="L" value="0.00134 [H]" />
-            <param name="C" value="26.22 [uF]" />
-            <param name="Name" value="" />
-          </paramlist>
-        </User>
-        <User classid="UserCmp" defn="master:filter" id="1189133514" x="1386" y="2034" w="45" h="142" z="1" orient="1" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="53927706">
-            <param name="Cnfg" value="0" />
-            <param name="Q" value="100.0" />
-            <param name="Fo" value="60.0 [Hz]" />
-            <param name="F" value="300.0 [Hz]" />
-            <param name="MVAR" value="100.0 [MVAR]" />
-            <param name="Volt" value="132.79 [kV]" />
-            <param name="R" value="100.89 [ohm]" />
-            <param name="L" value="0.00217 [H]" />
-            <param name="C" value="2.92 [uF]" />
-            <param name="Name" value="" />
-          </paramlist>
-        </User>
-        <User classid="UserCmp" name="master:ground" id="864945784" x="1386" y="2106" w="26" h="34" z="0" orient="1" defn="master:ground" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="28206164" />
-        </User>
-        <User classid="UserCmp" name="master:ground" id="312102924" x="1458" y="2106" w="26" h="34" z="0" orient="1" defn="master:ground" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="28206164" />
-        </User>
         <Wire classid="WireOrthogonal" id="1706961946" name="" x="1314" y="1926" w="154" h="10" orient="0" disable="false">
           <vertex x="0" y="0" />
           <vertex x="144" y="0" />
@@ -7612,6 +7544,42 @@ OX2 Australia - Jan 2024
           <vertex x="0" y="18" />
           <vertex x="54" y="18" />
         </Wire>
+        <User classid="UserCmp" defn="master:capacitive_load" id="985103063" x="1458" y="1998" w="70" h="67" z="0" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="81332344">
+            <param name="S" value="2.0 [MVAR]" />
+            <param name="V" value="33.0 [kV]" />
+            <param name="F" value="50.0 [Hz]" />
+            <param name="SD" value="0" />
+            <param name="Name" value="" />
+          </paramlist>
+        </User>
+        <User classid="UserCmp" defn="master:capacitive_load" id="1645242931" x="1386" y="1998" w="70" h="67" z="0" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="81332344">
+            <param name="S" value="6.0 [MVAR]" />
+            <param name="V" value="33.0 [kV]" />
+            <param name="F" value="50.0 [Hz]" />
+            <param name="SD" value="0" />
+            <param name="Name" value="" />
+          </paramlist>
+        </User>
+        <User classid="UserCmp" defn="master:capacitive_load" id="1283867777" x="1260" y="1998" w="70" h="67" z="0" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="81332344">
+            <param name="S" value="3.0 [MVAR]" />
+            <param name="V" value="33.0 [kV]" />
+            <param name="F" value="50.0 [Hz]" />
+            <param name="SD" value="0" />
+            <param name="Name" value="" />
+          </paramlist>
+        </User>
+        <User classid="UserCmp" defn="master:capacitive_load" id="1696299870" x="1188" y="1998" w="70" h="67" z="0" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="81332344">
+            <param name="S" value="1.0 [MVAR]" />
+            <param name="V" value="33.0 [kV]" />
+            <param name="F" value="50.0 [Hz]" />
+            <param name="SD" value="0" />
+            <param name="Name" value="" />
+          </paramlist>
+        </User>
       </schematic>
       <references>
         <using namespace="master" />

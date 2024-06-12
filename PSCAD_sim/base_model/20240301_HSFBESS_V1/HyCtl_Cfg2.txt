@@ -78,7 +78,7 @@ PwrRtCtrl.EnaAdapCtrl               1          #Enables adaptive control (Yes: r
 PwrRtCtrl.EnaDynSpntSwitch          0          #Enables dynamic setpoint switching if limits are exceeded
 PwrRtCtrl.DynSpntSwitchHysPc        0          #Hysteresis for switching to the limit if measurement exceeds the limit, in % of PwrRtNomPoi
 
-PwrRt.PwrRtCtrlMode                 303        #Defines which reactive power function is used / 1076: PWR_RT_MODE_COSPHI_P / 1081: PWR_RT_MODE_COSPHI_P_VTG_DROOP / 1082: PWR_RT_MODE_COSPHI_P_VTG_LIM / 1074: PWR_RT_MODE_FIX_COSPHI / 1077: PWR_RT_MODE_FIX_COSPHI_VTG_DROPP / 1078: PWR_RT_MODE_FIX_COSPHI_VTG_LIM / 1984: PWR_RT_MODE_GRID_VTG_CTRL / 303: PWR_RT_MODE_OFF / 1073: PWR_RT_MODE_PWR_AT_CURVE / 1079: PWR_RT_MODE_PWR_AT_CURVE_VTG_DROPP / 1080: PWR_RT_MODE_PWR_AT_CURVE_VTG_LIM / 1069: PWR_RT_MODE_VTG_DROOP / 1072: PWR_RT_MODE_VTG_LIM
+PwrRt.PwrRtCtrlMode                 303       #Defines which reactive power function is used / 1076: PWR_RT_MODE_COSPHI_P / 1081: PWR_RT_MODE_COSPHI_P_VTG_DROOP / 1082: PWR_RT_MODE_COSPHI_P_VTG_LIM / 1074: PWR_RT_MODE_FIX_COSPHI / 1077: PWR_RT_MODE_FIX_COSPHI_VTG_DROPP / 1078: PWR_RT_MODE_FIX_COSPHI_VTG_LIM / 1984: PWR_RT_MODE_GRID_VTG_CTRL / 303: PWR_RT_MODE_OFF / 1073: PWR_RT_MODE_PWR_AT_CURVE / 1079: PWR_RT_MODE_PWR_AT_CURVE_VTG_DROPP / 1080: PWR_RT_MODE_PWR_AT_CURVE_VTG_LIM / 1069: PWR_RT_MODE_VTG_DROOP / 1072: PWR_RT_MODE_VTG_LIM
 PwrRt.MeasSrc                       3          #Defines which measurement of the POI is used / 5: AUTO_SWITCH_MEAS_COS_PHI / 4: AUTO_SWITCH_MEAS_FRQ / 1: AUTO_SWITCH_MEAS_PWR_AT / 2: AUTO_SWITCH_MEAS_PWR_RT / 3: AUTO_SWITCH_MEAS_VTG
 PwrRt.PwrRtAutoSwitchMode           1          #Enables automatic switching of reactive power control modes / 1: PWR_RT_SWITCH_AUTO / 2: PWR_RT_SWITCH_DAY_NIGHT / 5: PWR_RT_SWITCH_DAY_NIGHT_AUTO / 3: PWR_RT_SWITCH_NIGHT / 4: PWR_RT_SWITCH_NIGHT_AUTO / 0: PWR_RT_SWITCH_OFF
 PwrRt.PwrRtCtrlModeAuto1            303        #Defines which reactive power function is used at threshold 1 / 1076: PWR_RT_MODE_COSPHI_P / 1081: PWR_RT_MODE_COSPHI_P_VTG_DROOP / 1082: PWR_RT_MODE_COSPHI_P_VTG_LIM / 1074: PWR_RT_MODE_FIX_COSPHI / 1077: PWR_RT_MODE_FIX_COSPHI_VTG_DROPP / 1078: PWR_RT_MODE_FIX_COSPHI_VTG_LIM / 1984: PWR_RT_MODE_GRID_VTG_CTRL / 303: PWR_RT_MODE_OFF / 1073: PWR_RT_MODE_PWR_AT_CURVE / 1079: PWR_RT_MODE_PWR_AT_CURVE_VTG_DROPP / 1080: PWR_RT_MODE_PWR_AT_CURVE_VTG_LIM / 1069: PWR_RT_MODE_VTG_DROOP / 1072: PWR_RT_MODE_VTG_LIM
@@ -94,7 +94,7 @@ FrtDetection.Ena                    1          #Enables function
 FrtDetection.FilterTm               20          #Filter time for upper and lower limits in sec
 FrtDetection.VtgUpLimPc             117        #Upper voltage threshold for FRT detection in percentage of VtgNom
 FrtDetection.VtgLoLimPc             83         #Lower voltage threshold for FRT detection in percentage of VtgNom
-FrtDetection.StopDelay              0.3        #Stop delay for leaving state FRT in sec
+FrtDetection.StopDelay              0.5        #Stop delay for leaving state FRT in sec
 FrtDetection.ThrsldMode             1          #Selects the source for the calculation of upper and lower thresholds / 0: FRTDETECT_MODE_MEAS / 1: FRTDETECT_MODE_NOM
 FrtDetection.PreFrtSamples          5          #Re-initializes pi controllers to the pre frt output $19844$
 FrtDetection.VtgNom                 220000     #Nominal voltage for FRT detection in V $24734$

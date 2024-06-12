@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1714910011" />
+    <param name="revisor" value="SIMULATION, 1714910036" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -67093,8 +67093,8 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <ref link="1089318121" />
       </path>
       <paramlist>
-        <param name="xmin" value="0.0" />
-        <param name="xmax" value="8.0" />
+        <param name="xmin" value="6.2" />
+        <param name="xmax" value="6.9" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1531568730" link="1830306561">
@@ -67111,8 +67111,8 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <ref link="1089318121" />
       </path>
       <paramlist>
-        <param name="ymin" value="-40.0" />
-        <param name="ymax" value="160.0" />
+        <param name="ymin" value="-50.0" />
+        <param name="ymax" value="175.0" />
       </paramlist>
     </Settings>
     <Settings classid="OverlayGraphSettings" id="1257780583" link="845955295">

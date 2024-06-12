@@ -232,7 +232,7 @@ GriForm_Frt_VirtImpKeFilTm			0.006
 # SW FRT VI Threshold / software threshold in pu of AmpRtg
 GriForm_Frt_VirtImpSwDetLim 	1.4
 
-Griform_Frt_LoVolOnLim				0.52
-Griform_Frt_LoVolOffLim				0.5
+Griform_Frt_LoVolOnLim				0.64
+Griform_Frt_LoVolOffLim				0.66
 
 #End of Sunny Central PSCAD configuration file

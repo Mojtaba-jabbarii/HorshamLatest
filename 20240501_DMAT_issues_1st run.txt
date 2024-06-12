@@ -117,23 +117,59 @@ TO DO:
 	
 	New BM run stopDelay 0.5, DrpVol=0.2 LVRT=0.58, LVRT exit 0.6
 	
-	new DMAT and BM dbg run LVRT 0.5, EVRT exit 0.52
+	new DMAT and BM dbg run LVRT 0.5, EVRT exit 0.52 --> ISSUE Fault misalignment due to BESS LVRT exit being different/non-existent in PSCAD 
 	
-	new BM run and DMAT run over night.
+	1) new BM run and DMAT run over night. LVRT 0.64 LVRT exit 0.66 --> if better, run DMAT dbg set in the morning and check if also acceptable. 
 	
-	VCS draft
-	RUGS draft
-	populate folders with existing docs
+	2) Last resort: deactivate BES LVRT (set entry to 1%). Re-run Benchmarking selection and DMAT with that.
+	
+	3) Select best Param set for GPS.  Omit shitty results.
+	
+	4) Rework Q misalignment in SCR 9.32 case
+	
+	Setpoint 295 refuses to initialise apparently
+	
+	
+	
+TO do before submission	
+	
+	
+GPS report document	
+	update "generating system" references in connection study report
+	check references
+GPS document
+	compare 5.2.8 current against PSDSDS
+PSCAD RUG
+PSSE RUG
 
-Monday (very optimistic)
-	fix bloody model issues
-	final run of DMAT and BM
-	GPS cases and review
+maybe some sort of Excel overview document on what is included in the package, or otherwise include information in the email.
+
+update all tables of content
+convert to pdf
+search for "error" in pdf docs. 
+
+pull together submission folder
+Scroll once through every pdf doc.
+
+
 	
-	Update GPS report and appendices
 	
-	GPS document
+known issues: 
+	PSSE:
+		-weird active power steps in PSSE in certain scenarios when using smaller StopDelay --> appears there is windup even while PPC in FRT. Leading do active power step post fault. Example small109
+		-misalignment in fault test: either weird gian t swings when using FRT entry of 0.8-ish and exit of 0.87. or when using smaller thresholds there is misalignment in certain faults. large 361 362, 371, 372
+	PSCAD:
+		-small91 oscillation issue in PSCAD --> tuning?
+		-plant seemingly not tripping when it shoudl on frequency tests. (affecting S5.2.5.8)
+		
+		weird reactive power control dynamic mismatch.
+		
+	with package:
+		BESS only case not appropriately accounted for
+		network simulations missing
+		S5.2.8 fault current calculations inaccurate.
+		
 	
-	
+				
 	
 	

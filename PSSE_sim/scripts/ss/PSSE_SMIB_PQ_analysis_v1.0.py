@@ -32,11 +32,11 @@ timestr = time.strftime("%Y%m%d-%H%M%S")
 #USER INPUTS
 ###############################################################################
 
-TestDefinitionSheet = r'20230828_SUM_TESTINFO_V1.xlsx'
+TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 
-case_name = 'SUMSF_SMIB_V1.sav' #to match with the model name provided in \PSSE_sim\base_model\SMIB
+case_name = 'HSFBESS_SMIB_V1.sav' #to match with the model name provided in \PSSE_sim\base_model\SMIB
 source_type = "BESS_PV" #"BESS" # "PV" #"BESS_PV"
-temp_cases = ["40degC","50degC"] #"35degC" # "50degC" #"40degC"
+temp_cases = ["35degC","50degC"] #"35degC" # "50degC" #"40degC"
 Vinfinite = [0.90, 1.0, 1.10] #0.90, 1.0, 1.10
 BESS_pct = 1.0 #[0.0-1.0]BESS setpoint to be a proportion of POC active power setpoint
 
@@ -46,56 +46,58 @@ try: testRun = timestr + '_' + simulation_batches[0] #define a test name for the
 except: testRun = timestr
 
 # Generator (OEM) inputs
-PV_INV_num = 24.0 # PV INV quantity aggregated
+PV_INV_num = 36.0 # PV INV quantity aggregated
 PV_INV_rate = 4.2 # MVA INV individual rating
-BESS_INV_num = 18.0 # BESS INV quantity aggregated
+BESS_INV_num = 40.0 # BESS INV quantity aggregated
 BESS_INV_rate = 3.6 # MVA INV individual rating
     
 # SMIB model inputs
 tapstep = 1 
 bus_inf = 10000 # INF bus to control the voltage for over and under excitation mode
-bus_inf_scr = 273540  # To update the SCR to very big during analysis
-bus_POC_fr = 273540 # POC bus from: connect the branch for measuring power flow
-bus_POC_to = 273541 # POC bus to: connect the branch for measuring power flow
+bus_inf_scr = 334081  # To update the SCR to very big during analysis
+bus_POC_fr = 334081 # POC bus from: connect the branch for measuring power flow
+bus_POC_to = 334090 # POC bus to: connect the branch for measuring power flow
 pq_drt = -1 # direction of the power measured =-1 if measuring bus_POC_to to bus_POC_fr
 
 # Branch 1 - PV leg
-busgen1 = 273501 # Generator bus
-busTx1 = 273531
+busgen1 = 334094 # Generator bus
+busTx1 = 334092
 # Branch 2 - BESS leg
-busgen2 = 273502
-busTx2 = 273532
+busgen2 = 334095
+busTx2 = 334093
 
 Sbase_analysis_PV = PV_INV_num * PV_INV_rate
 Sbase_analysis_BESS = BESS_INV_num * BESS_INV_rate
 
 busgen_V_PV = busgen1
 busgen_V_BESS = busgen2
+Prated = 119.0
+Pmax_POC = 100 
+Pmin_POC = -100
+q_poc_ner = 0.395*Prated # Q required at POC as NER = 0.395*Prated
     
-if source_type == "BESS":
-    bus_dis_list = [busgen1, busTx1] # all the buses in the PV leg to be disconnected
-    bus_gen_list = [busgen2] # generator bus to be mornitored voltage and power flow
-    Pmax_POC = 50   
-    Pmin_POC = -50
-
-elif source_type == "PV":
-    bus_dis_list = [busgen2, busTx2] # all the buses in the BESS leg to be disconnected
-    bus_gen_list = [busgen1]
-    Pmax_POC = 90 
-    Pmin_POC = 0
-    
-else: # "BESS_PV": PV and BESS
-    bus_dis_list = []
-    bus_gen_list = [busgen1, busgen2]  # generator buses to be mornitored voltage and power flow
-    Pmax_POC = 90 
-    Pmin_POC = -50
-
 
 Pmax_loop = Pmax_POC + 1.9 # account for the losses from POC to INV terminal
-Pmin_loop = Pmin_POC + 0.7 # account for the losses from POC to INV terminal
+Pmin_loop = Pmin_POC # account for the losses from POC to INV terminal
 # Define the range for looping P
 Ploop_range =  [Pmin_loop] + range(int(math.ceil(Pmin_loop)), int(math.floor(Pmax_loop)), 2) + [Pmax_loop]  
 #Ploop_range =  [Pmin_loop] # for debuging only
+
+# Capbanks to be turnoff
+capbanks = []
+capbanks = [
+#        {"bus": 334091, "id": "2"}, # for PV 2MVAr
+#        {"bus": 334091, "id": "4"}, # for PV 6MVAr
+#        {"bus": 334091, "id": "1"}, # for BESS 1MVAr
+#        {"bus": 334091, "id": "3"}, # for BESS 3MVAr
+        ]
+
+# Buses to be deactivated
+bus_dis_list = []
+#bus_dis_list = [busgen1, busTx1] #[busgen1, busTx1] [busgen1, busgen2] all the buses in the PV/BESS leg to be disconnected
+
+# Gen bus list
+bus_gen_list = [busgen1, busgen2]  #bus_gen_list = [busgen1] [busgen2] generator buses to be mornitored voltage and power flow
 
 ###############################################################################
 # Supporting functions
@@ -225,6 +227,10 @@ def apply_derating(P_individual_PV, Vinv_PV, case_text):
     
     return Slim_PV_ind
 
+def turn_off_capbank(capbanks):
+    if capbanks != []:
+        for capbank in capbanks:
+            psspy.shunt_chng(capbank["bus"],capbank["id"],0,[_f,_f])
 
                     
 ###############################################################################
@@ -318,6 +324,10 @@ for bus_dis_i in bus_dis_list:#if source_type in ["BESS", "PV"] deactivate the i
 psspy.fnsl([1,0,0,1,1,0,99,0])
 psspy.fnsl([1,0,0,1,1,0,99,0])
 psspy.fnsl([1,0,0,1,1,0,99,0])
+
+# turn off the capbank if needed:
+turn_off_capbank(capbanks)
+
 
 # Force the voltage at POC by changing grid impedance to zero, solve with tap enable 
 psspy.branch_chng_3(bus_inf,bus_inf_scr,r"""1""",[_i,_i,_i,_i,_i,_i],[0.0,0.00001,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)
@@ -452,8 +462,10 @@ for temperature in temp_cases: # loop through different temperature cases
                 Sinv_PV = math.sqrt(P_PV**2 + Qinv_PV**2)  
 
                 # calculate individual power from INV
-                P_individual_PV = Pinv_PV/PV_INV_num  #MW
-                P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
+                if PV_INV_num == 0: P_individual_PV = 0
+                else: P_individual_PV = Pinv_PV/PV_INV_num  #MW
+                if BESS_INV_num == 0: P_individual_BESS = 0
+                else: P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
 
                 # Iterpolate for new base base on the active power level and voltage level at inv
                 if P_individual_BESS >=0: srce_text = 'Dis'#when discharging
@@ -466,9 +478,74 @@ for temperature in temp_cases: # loop through different temperature cases
                 Slim_PV_ind = apply_derating(P_individual_PV,Vinv_PV, case_text)
                 Sbase_PV = Slim_PV_ind * PV_INV_num # Maximum Slim of all INV
 
+                # check if Q POC is sufficient -> only need to check when P is close to Pmin
+                if P == Pmin_loop:
+                    ierr, cmpval = psspy.brnflo(bus_POC_fr, bus_POC_to, r"""1""")
+                    q_poc_check = pq_drt * cmpval.imag
+                    q_poc_delta = abs(abs(q_poc_check) - q_poc_ner)
+                    k_q_poc = 0.25
+                    iters =0
+                    while  q_poc_delta>0.2 and iters < 50: 
+                        Qlim_BESS -= q_poc_delta*k_q_poc
+                        Qlim_PV -= q_poc_delta*k_q_poc
+                        if Qlim_BESS < 0.0: Qlim_BESS = 0.0
+                        if Qlim_PV < 0.0: Qlim_PV = 0.0
+                        
+                        # Apply the new base to the model
+                        psspy.machine_chng_2(busgen_V_PV, '1', [_i,_i,_i,_i,_i,_i], [ P_PV,_f, Qlim_PV, -Qlim_PV,_f,_f, Sbase_PV,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+                        psspy.machine_chng_2(busgen_V_BESS, '1', [_i,_i,_i,_i,_i,_i], [ P_BESS,_f, Qlim_BESS, -Qlim_BESS,_f,_f, Sbase_BESS,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+                        psspy.fnsl([tapstep,0,0,1,1,0,0,0]) 
+                        psspy.fnsl([tapstep,0,0,1,1,0,0,0]) 
+                        
+                        ierr, cmpval = psspy.brnflo(bus_POC_fr, bus_POC_to, r"""1""")
+                        q_poc_check = pq_drt * cmpval.imag
+                        q_poc_delta = abs(abs(q_poc_check) - q_poc_ner)
+                        
+                        # Measure V P Q and update S
+                        ierr, Vinv_BESS = psspy.busdat(busgen_V_BESS, 'PU')
+                        ierr, cmpval = psspy.gendat(busgen_V_BESS)
+                        Pinv_BESS = cmpval.real
+                        Qinv_BESS = cmpval.imag
+                        Sinv_BESS = math.sqrt(Pinv_BESS**2 + Qinv_BESS**2) 
+        
+                        ierr, Vinv_PV = psspy.busdat(busgen_V_PV, 'PU')
+                        ierr, cmpval = psspy.gendat(busgen_V_PV)
+                        Pinv_PV = cmpval.real
+                        Qinv_PV = cmpval.imag
+                        Sinv_PV = math.sqrt(P_PV**2 + Qinv_PV**2)  
+    
+                        # calculate individual power from INV
+                        if PV_INV_num == 0: P_individual_PV = 0
+                        else: P_individual_PV = Pinv_PV/PV_INV_num  #MW
+                        if BESS_INV_num == 0: P_individual_BESS = 0
+                        else: P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
+        
+                        # Iterpolate for new base base on the active power level and voltage level at inv
+                        if P_individual_BESS >=0: srce_text = 'Dis'#when discharging
+                        else: srce_text = 'Cha'# When charging
+                        case_text = srce_text+'-'+mode_text+'_'+temp_text
+                        Slim_BESS_ind = apply_derating(P_individual_BESS,Vinv_BESS, case_text)
+                        Sbase_BESS = Slim_BESS_ind * BESS_INV_num # Maximum Slim of all INV
+        
+                        case_text = 'PV'+'_'+mode_text+'_'+temp_text
+                        Slim_PV_ind = apply_derating(P_individual_PV,Vinv_PV, case_text)
+                        Sbase_PV = Slim_PV_ind * PV_INV_num # Maximum Slim of all INV
+                        
+                        iters += 1
+                    
                 # check if the base is violated, then reduce Qlim. If Qlim is at limit, then reduce P
                 iters = 0
                 while ((Sinv_BESS > Sbase_BESS) or (Sinv_PV > Sbase_PV)) and iters < 200:
+#                    # check if Q POC is sufficient
+#                    ierr, cmpval = psspy.brnflo(bus_POC_fr, bus_POC_to, r"""1""")
+#                    q_poc_check = pq_drt * cmpval.imag
+#                    q_poc_delta = abs(abs(q_poc_check) - q_poc_ner)
+#                    if  q_poc_delta>0.5: 
+#                        Qlim_BESS -= q_poc_delta*0.5
+#                        Qlim_PV -= q_poc_delta*0.5
+#                        if Qlim_BESS < 0.0: Qlim_BESS = 0.0
+#                        if Qlim_PV < 0.0: Qlim_PV = 0.0
+                
                     if (Sinv_BESS > Sbase_BESS): # If BESS overloaded
                         Qlim_BESS -= Q_step
                         if Qlim_BESS < 0.0: 
@@ -509,8 +586,10 @@ for temperature in temp_cases: # loop through different temperature cases
                     Sinv_PV = math.sqrt(P_PV**2 + Qinv_PV**2)  
 
                     # calculate individual power from INV
-                    P_individual_PV = Pinv_PV/PV_INV_num  #MW
-                    P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
+                    if PV_INV_num == 0: P_individual_PV = 0
+                    else: P_individual_PV = Pinv_PV/PV_INV_num  #MW
+                    if BESS_INV_num == 0: P_individual_BESS = 0
+                    else: P_individual_BESS = Pinv_BESS/BESS_INV_num  #MW
     
                     # Iterpolate for new base base on the active power level and voltage level at inv
                     if P_individual_BESS >=0: srce_text = 'Dis'#when discharging
@@ -526,6 +605,8 @@ for temperature in temp_cases: # loop through different temperature cases
                     iters += 1
 
 
+                
+                
                 # Prepare outputs
                 ierr, Vinv_BESS = psspy.busdat(busgen_V_BESS, 'PU')
                 ierr, cmpval = psspy.gendat(busgen_V_BESS)

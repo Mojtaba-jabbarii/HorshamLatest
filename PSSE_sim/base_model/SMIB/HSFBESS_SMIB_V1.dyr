@@ -253,7 +253,7 @@
 @!/ AcCtl.VolABKp                           AcCtl.AmpDQFilTm                        AcCtl.ParamFilTm                        
      0.01                                    0.02                                    10                                     
 @!/ Frt.Frt_Mod                             Frt.LoVolOnLim                          Frt.LoVolOffLim                         
-     2                                       0.50                                     0.52                                    
+     2                                       0.64                                     0.66                                    
 @!/ Frt.HiVolOffLim                         Frt.DynVolOffLimEna                     Frt.VirtImpSwDetLim                     
      1.15                                     0                                       1.4                                    
 @!/ Frt.VirtImpDlTm                         Frt.VirtImpLockTm                       Frt.VirtImpWaitTm                       
@@ -319,7 +319,7 @@
 @!/ VCtl.Hi1Lim                             VCtl.Hi1LimTm                           VCtl.Hi2Lim                             
      1.2                                     25000                                   1.25                                     
 @!/ VCtl.Hi2LimTm                           VCtl.Hi3Lim                             VCtl.Hi3LimTm                           
-     1000                                    1.3                                    300                                     
+     2500                                    1.3                                    300                                     
 @!/ VCtl.Hi4Lim                             VCtl.Hi4LimTm                           VCtl.Hi5Lim                             
      1.3                                     300                                     1.3                                     
 @!/ VCtl.Hi5LimTm                           VCtl.Hi6Lim                             VCtl.Hi6LimTm                           

@@ -47,20 +47,20 @@ TestDefinitionSheet=r'20240403_HSFBESS_TESTINFO_V1.xlsx'
     """
 
 # different datasets for SMIB and Network tests
-datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240513-2142_DMATsl1_db", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':0.0,#-3.0,
-                  'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.010334129, }, # #negative due to the reversed Q measurement
-                                  {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.0099206, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
-                                  {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.010334129, },],  
+datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\Final Results GPS SMIB", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
+                  'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.00840336, }, # #negative due to the reversed Q measurement
+                                  {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.00661375661, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
+                                  {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.00595238, },],  
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":-1.0, } ], } #calculate power factor from P and Q results scaling -1 due to reversed power measure
-datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20240513-2142_DMATsl1_db", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-0.0,#-3.0, 
-                  'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.010334129, }, 
+datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\Final Results GPS SMIB", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
+                  'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.00840336, }, 
                                   {"P":"PCU1_P_LV", "Q":"PCU1_Q_LV", "V":"PCU1_V_LV_pu", "nameLabel":"PV", "scaling":36.0, },
                                    {"P":"PCU2_P_LV", "Q":"PCU2_Q_LV", "V":"PCU2_V_LV_pu", "nameLabel":"BESS", "scaling":40.0, }],
                   'calPFs':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "nameLabel":"PLANT", "scaling":1.0, } ],} #inverter apaprent power rating
 datasets_nw_genon = {'label':'PSSE_genon', 'path':r"PSSE_sim\result_data\dynamic_network\Final Results GPS NEM genon", 'ID': 2, 'timeID':'Time(s)', 'timeoffset':-2.0, #20240305-101744_S5255_NW\HighLoad_genon
-                  'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.010334129, }, # #negative due to the reversed Q measurement
-                                  {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.0099206, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
-                                  {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.010334129, },], }
+                  'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.00840336, }, # #negative due to the reversed Q measurement
+                                  {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.00661375661, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
+                                  {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.00595238, },], }
 datasets_nw_genoff = {'label':'PSSE_genoff', 'path':r"PSSE_sim\result_data\dynamic_network\Final Results GPS NEM genoff", 'ID': 1, 'timeID':'Time(s)', 'timeoffset':-2.0,
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":1.0, } ],}
 
@@ -69,9 +69,10 @@ data_PSCAD_Flatrun2 = {'label':'PSCAD_Data2', 'path':r"PSCAD_sim\result_data\dyn
 data_PSCAD_Flatrun3 = {'label':'PSCAD_Data3', 'path':r"PSCAD_sim\result_data\dynamic_smib\Final Results DMAT SMIB\01_FlatRun3", 'ID': 7, 'timeID':'time(s)', 'timeoffset':-3.0, }
 
 # selected datasets for the corresponding report
-datasets = [datasets_PSCAD, datasets_PSSE] # [datasets_PSSE, datasets_PSCAD,datasets_nw_genon,datasets_nw_genoff]
-report_types = ["DMAT"] #["GPS", "BENCH", "DMAT", 'NetworkEvent']
-chapter_types = ["general"] #GPS["general","S5253","S5254","S5255","S5255_HighLoad","S5255_LowLoad","S52512_HighLoad","S52512_LowLoad","S52513_HighLoad","S52513_LowLoad",] if chapter_types == [], then include all chapters into the report
+datasets = [datasets_PSCAD]#, datasets_PSCAD, data_PSCAD_Flatrun1, data_PSCAD_Flatrun2, data_PSCAD_Flatrun3] # [datasets_PSSE, datasets_PSCAD,datasets_nw_genon,datasets_nw_genoff]
+report_types = ["GPS"] #["GPS", "BENCH", "DMAT", 'NetworkEvent']
+chapter_types = ["S5258"]#["01_FlatRun","02_UFault","03_MFRT","04_TOV","05_SptChange","06_FreqChange","07_VolChange","08_ORT","09_AngChange","10_SCR1","11_FRT","12_IrrChange"]
+ #"S5257", "S52511",GPS["general","S5253","S5254","S5255","S5255_HighLoad","S5255_LowLoad","S52512_HighLoad","S52512_LowLoad","S52513_HighLoad","S52513_LowLoad",] if chapter_types == [], then include all chapters into the report
                             #DMAT["general","01_FlatRun","02_UFault","03_MFRT","04_TOV","05_SptChange","06_FreqChange","07_VolChange","08_ORT","09_AngChange","10_SCR1","11_FRT","12_IrrChange"] following Table 22, Appendix A2 DMAT guideline 2021
 
 
@@ -220,7 +221,7 @@ channels_lib = { #to be used in the ploting each graph below
 # Start report format
 #####################################################
 
-reports = {   "Angus special test"                                                                          
+reports = {                                                                          
 
             'BENCH':{
                     'batchname': 'Benchmarking', #'GPS S5255_AEMO_PSSE', #'GPS S5254_AEMO_PSSE', #'GPS S52514_AEMO_PSSE', #'DMATsl_PSCAD_PSSSE_Final2', #'S5254a', #'Benchmarking', #'DMAT', #in DMAT
@@ -328,7 +329,7 @@ reports = {   "Angus special test"
                                            {'chapter':'general', #Array of chapters. 
                                             'datasets': [ dict(datasets[did], **{'path':datasets[did]['path']+r''}) for did in range(len(datasets))], # update the dataset path to the chapter result location
                                             'cases':[], #if empty, all cases are considered
-                                            'plots_for_report': ['Overlays','PSSE Results','PSCAD Results'],
+                                            'plots_for_report': ['PSSE Results','PSCAD Results', 'Overlays',],
                                             'summary_items': {}, #Additional description/analysis of the result data can bebe specified here. For example amount of current injection for 5.2.5.5 analysis in table format. Other items can be defined in the future.
                                             'report':True,
                                             'plots':{
@@ -1340,25 +1341,25 @@ reports = {   "Angus special test"
                                                                                         'Voltage POC':                      {'channels':[dict(channels_lib['PSSE']['V_POC'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Vspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},
                                                                                         'Active Power POC':                 {'channels':[dict(channels_lib['PSSE']['P_POC'], **{}),
-                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3},
+                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3, 'yminspan':10},
                                                                                         'Reactive Power POC':               {'channels':[dict(channels_lib['PSSE']['Q_POC'], **{}),
-                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5},
+                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5, 'yminspan':10},
                                                                                         'Frequency':                        {'channels':[dict(channels_lib['PSSE']['F_POC'], **{'markers':['callout', [1,7,17,27]]})], 'unit':'Hz', 'rank':7, 'yminspan':0.1},
                                                                                         'PPC FRT signal':                   {'channels':[dict(channels_lib['PSSE']['FRT_PPC'], **{}),], 'unit':'PPC code', 'rank':9},
     
                                                                                                                                             
                                                                                         'Voltage INV':                      {'channels':[dict(channels_lib['PSSE']['V_INV1'], **{}),
-                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.01},                                                                                                                                                
+                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.1},                                                                                                                                                
                                                                                         'Active Power INV':                 {'channels':[dict(channels_lib['PSSE']['P_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['P_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10},
                                                                                         'Reactive Power INV':               {'channels':[dict(channels_lib['PSSE']['Q_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Q_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10},
                                                                                         'PV FRT signal':                    {'channels':[dict(channels_lib['PSSE']['FRT_INV1'], **{}),], 'unit':'inverter code', 'rank':8},
                                                                                         'BESS FRT signal':                  {'channels':[dict(channels_lib['PSSE']['FRT_INV2'], **{}),], 'unit':'inverter code', 'rank':10},
                                                                               },
@@ -1565,25 +1566,26 @@ reports = {   "Angus special test"
                                                                                         'Voltage POC':                      {'channels':[dict(channels_lib['PSSE']['V_POC'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Vspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},
                                                                                         'Active Power POC':                 {'channels':[dict(channels_lib['PSSE']['P_POC'], **{}),
-                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3},
+                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3, 'yminspan':10},
                                                                                         'Reactive Power POC':               {'channels':[dict(channels_lib['PSSE']['Q_POC'], **{}),
-                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5},
-                                                                                        'Reactive Current POC':             {'channels':[dict(channels_lib['PSSE']['Iq_POC'], **{}),], 'unit':'p.u', 'rank':7, 'yminspan':0.1, 'ymaxlim':2.0, 'yminlim':-2.0},
+                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5, 'yminspan':10},
+#                                                                                        'Reactive Current POC':             {'channels':[dict(channels_lib['PSSE']['Iq_POC'], **{}),], 'unit':'p.u', 'rank':7, 'yminspan':0.1, 'ymaxlim':2.0, 'yminlim':-2.0},
+                                                                                        'Frequency':                        {'channels':[dict(channels_lib['PSSE']['F_POC'], **{'markers':['callout', [1,6.5]]})], 'unit':'Hz', 'rank':7, 'yminspan':0.1},
                                                                                         'PPC FRT signal':                   {'channels':[dict(channels_lib['PSSE']['FRT_PPC'], **{}),], 'unit':'PPC code', 'rank':9},
     
                                                                                                                                             
                                                                                         'Voltage INV':                      {'channels':[dict(channels_lib['PSSE']['V_INV1'], **{}),
-                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.01},                                                                                                                                                
+                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.1},                                                                                                                                                
                                                                                         'Active Power INV':                 {'channels':[dict(channels_lib['PSSE']['P_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['P_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10 },
                                                                                         'Reactive Power INV':               {'channels':[dict(channels_lib['PSSE']['Q_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Q_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10},
                                                                                         'PV FRT signal':                    {'channels':[dict(channels_lib['PSSE']['FRT_INV1'], **{}),], 'unit':'inverter code', 'rank':8},
                                                                                         'BESS FRT signal':                  {'channels':[dict(channels_lib['PSSE']['FRT_INV2'], **{}),], 'unit':'inverter code', 'rank':10},
                                                                               },
@@ -1639,25 +1641,25 @@ reports = {   "Angus special test"
                                                                                         'Voltage POC':                      {'channels':[dict(channels_lib['PSSE']['V_POC'], **{'scale':1.0,'markers':['dV']}),
                                                                                                                                          dict(channels_lib['PSSE']['Vspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},
                                                                                         'Active Power POC':                 {'channels':[dict(channels_lib['PSSE']['P_POC'], **{'markers':['rec_t']}),
-                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3},
+                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3, 'yminspan':10},
                                                                                         'Reactive Power POC':               {'channels':[dict(channels_lib['PSSE']['Q_POC'], **{'markers':[]}),
-                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5},
-                                                                                        'Reactive Current POC':             {'channels':[dict(channels_lib['PSSE']['Iq_POC'], **{'markers':['dIq','rise_t','set_t']}),], 'unit':'p.u', 'rank':7, 'yminspan':0.1, 'ymaxlim':2.0, 'yminlim':-2.0},
+                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5, 'yminspan':10},
+                                                                                        'Frequency':                        {'channels':[dict(channels_lib['PSSE']['F_POC'], **{'markers':['callout', [1,6.5]]})], 'unit':'Hz', 'rank':7, 'yminspan':0.1},
                                                                                         'PPC FRT signal':                   {'channels':[dict(channels_lib['PSSE']['FRT_PPC'], **{'markers':[]}),], 'unit':'PPC code', 'rank':9},
     
                                                                                                                                             
                                                                                         'Voltage INV':                      {'channels':[dict(channels_lib['PSSE']['V_INV1'], **{}),
-                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.01},                                                                                                                                                
+                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.1},                                                                                                                                                
                                                                                         'Active Power INV':                 {'channels':[dict(channels_lib['PSSE']['P_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['P_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10},
                                                                                         'Reactive Power INV':               {'channels':[dict(channels_lib['PSSE']['Q_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Q_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10},
                                                                                         'PV FRT signal':                    {'channels':[dict(channels_lib['PSSE']['FRT_INV1'], **{}),], 'unit':'inverter code', 'rank':8},
                                                                                         'BESS FRT signal':                  {'channels':[dict(channels_lib['PSSE']['FRT_INV2'], **{}),], 'unit':'inverter code', 'rank':10},
                                                                               },
@@ -1666,25 +1668,25 @@ reports = {   "Angus special test"
                                                                                         'Voltage POC':                      {'channels':[dict(channels_lib['PSCAD']['V_POC'], **{'markers':['dV']}),
                                                                                                                                          dict(channels_lib['PSCAD']['Vspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},
                                                                                         'Active Power POC':                 {'channels':[dict(channels_lib['PSCAD']['P_POC'], **{'markers':['rec_t']}),
-                                                                                                                                         dict(channels_lib['PSCAD']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3},
+                                                                                                                                         dict(channels_lib['PSCAD']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3, 'yminspan':10},
                                                                                         'Reactive Power POC':               {'channels':[dict(channels_lib['PSCAD']['Q_POC'], **{'markers':[]}),
-                                                                                                                                         dict(channels_lib['PSCAD']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5},
-                                                                                        'Reactive Current POC':             {'channels':[dict(channels_lib['PSCAD']['Iq_POC'], **{'markers':['dIq','rise_t','set_t']}),], 'unit':'p.u', 'rank':7, 'yminspan':0.1, 'ymaxlim':2.0, 'yminlim':-2.0},
+                                                                                                                                         dict(channels_lib['PSCAD']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5, 'yminspan':10},
+                                                                                        'Frequency':                        {'channels':[dict(channels_lib['PSCAD']['F_POC'], **{'markers':['callout', [1,6.5]]})], 'unit':'Hz', 'rank':7, 'yminspan':0.1},
                                                                                         'PPC FRT signal':                   {'channels':[dict(channels_lib['PSCAD']['FRT_PPC'], **{'markers':[]}),], 'unit':'PPC code', 'rank':9},
     
                                                                                                                                             
                                                                                         'Voltage INV':                      {'channels':[dict(channels_lib['PSCAD']['V_INV1'], **{}),
-                                                                                                                                         dict(channels_lib['PSCAD']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.01},                                                                                                                                                
+                                                                                                                                         dict(channels_lib['PSCAD']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.1},                                                                                                                                                
                                                                                         'Active Power INV':                 {'channels':[dict(channels_lib['PSCAD']['P_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['P_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['Pcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSCAD']['Pcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10},
                                                                                         'Reactive Power INV':               {'channels':[dict(channels_lib['PSCAD']['Q_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['Q_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['Qcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSCAD']['Qcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10},
                                                                                         'PV FRT signal':                    {'channels':[dict(channels_lib['PSCAD']['FRT_INV1'], **{}),], 'unit':'inverter code', 'rank':8},
                                                                                         'BESS FRT signal':                  {'channels':[dict(channels_lib['PSCAD']['FRT_INV2'], **{}),], 'unit':'inverter code', 'rank':10},
                                                                               },
@@ -1713,25 +1715,25 @@ reports = {   "Angus special test"
                                                                                         'Voltage POC':                      {'channels':[dict(channels_lib['PSSE']['V_POC'], **{'scale':1.0}),
                                                                                                                                          dict(channels_lib['PSSE']['Vspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},
                                                                                         'Active Power POC':                 {'channels':[dict(channels_lib['PSSE']['P_POC'], **{'markers':['callout', [1,6.5]]}),
-                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3, 'yminspan':2.0},
+                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3, 'yminspan':10.0},
                                                                                         'Reactive Power POC':               {'channels':[dict(channels_lib['PSSE']['Q_POC'], **{'markers':[]}),
-                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5, 'yminspan':2.0},
+                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5, 'yminspan':10.0},
                                                                                         'Frequency':                        {'channels':[dict(channels_lib['PSSE']['F_POC'], **{'markers':['callout', [1,6.5]]})], 'unit':'Hz', 'rank':7, 'yminspan':0.1},
                                                                                         'PPC FRT signal':                   {'channels':[dict(channels_lib['PSSE']['FRT_PPC'], **{}),], 'unit':'PPC code', 'rank':9},
     
                                                                                                                                             
                                                                                         'Voltage INV':                      {'channels':[dict(channels_lib['PSSE']['V_INV1'], **{}),
-                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.01},                                                                                                                                                
+                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.1},                                                                                                                                                
                                                                                         'Active Power INV':                 {'channels':[dict(channels_lib['PSSE']['P_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['P_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10.0},
                                                                                         'Reactive Power INV':               {'channels':[dict(channels_lib['PSSE']['Q_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Q_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10.0},
                                                                                         'PV FRT signal':                    {'channels':[dict(channels_lib['PSSE']['FRT_INV1'], **{}),], 'unit':'inverter code', 'rank':8},
                                                                                         'BESS FRT signal':                  {'channels':[dict(channels_lib['PSSE']['FRT_INV2'], **{}),], 'unit':'inverter code', 'rank':10},
                                                                               },
@@ -1786,7 +1788,7 @@ reports = {   "Angus special test"
                                                         'PSSE Results':       {
                                                                                         'Voltage POC':                      {'channels':[dict(channels_lib['PSSE']['V_POC'], **{'markers':["rise_t","set_t",'callout', [7]]}),
                                                                                                                                          dict(channels_lib['PSSE']['Vspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5, 'markers':['callout', [7]]}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},
-                                                                                        'Active Power POC':                 {'channels':[dict(channels_lib['PSSE']['P_POC'], **{'markers':["set_t"]}),
+                                                                                        'Active Power POC':                 {'channels':[dict(channels_lib['PSSE']['P_POC'], ),#**{'markers':["set_t"]}
                                                                                                                                          dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3},
                                                                                         'Reactive Power POC':               {'channels':[dict(channels_lib['PSSE']['Q_POC'], **{'markers':["rise_t","set_t",'callout', [7]]}),
                                                                                                                                          dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5},
@@ -1814,27 +1816,27 @@ reports = {   "Angus special test"
                                                         'PSCAD Results':      {
                                                                                         'Voltage POC':                      {'channels':[dict(channels_lib['PSCAD']['V_POC'], **{'markers':["rise_t","set_t",'callout', [8]]}),
                                                                                                                                          dict(channels_lib['PSCAD']['Vspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5, 'markers':['callout', [8]]}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},
-                                                                                        'Active Power POC':                 {'channels':[dict(channels_lib['PSCAD']['P_POC'], **{'markers':["set_t"]}),
-                                                                                                                                         dict(channels_lib['PSCAD']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3},
+                                                                                        'Active Power POC':                 {'channels':[dict(channels_lib['PSCAD']['P_POC'], ),#**{'markers':["set_t"]}
+                                                                                                                                         dict(channels_lib['PSCAD']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3, 'yminspan':10},
                                                                                         'Reactive Power POC':               {'channels':[dict(channels_lib['PSCAD']['Q_POC'], **{'markers':["rise_t","set_t",'callout', [8]]}),
-                                                                                                                                         dict(channels_lib['PSCAD']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5},
+                                                                                                                                         dict(channels_lib['PSCAD']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5, 'yminspan':10},
                                                                                         'Powerfactor POC':                  {'channels':[dict(channels_lib['PSCAD']['PF_POC'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['PFspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'p.u.', 'rank':7},
                                                                                         'PPC FRT signal':                   {'channels':[dict(channels_lib['PSCAD']['FRT_PPC'], **{}),], 'unit':'PPC code', 'rank':9},
     
                                                                                                                                             
                                                                                         'Voltage INV':                      {'channels':[dict(channels_lib['PSCAD']['V_INV1'], **{}),
-                                                                                                                                         dict(channels_lib['PSCAD']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.01},                                                                                                                                                
+                                                                                                                                         dict(channels_lib['PSCAD']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.1},                                                                                                                                                
                                                                                         'Active Power INV':                 {'channels':[dict(channels_lib['PSCAD']['P_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['P_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['Pcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSCAD']['Pcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0,'yminspan':10 },
                                                                                         'Reactive Power INV':               {'channels':[dict(channels_lib['PSCAD']['Q_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['Q_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSCAD']['Qcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSCAD']['Qcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, 'yminspan':10 },
                                                                                         'PV FRT signal':                    {'channels':[dict(channels_lib['PSCAD']['FRT_INV1'], **{}),], 'unit':'inverter code', 'rank':8},
                                                                                         'BESS FRT signal':                  {'channels':[dict(channels_lib['PSCAD']['FRT_INV2'], **{}),], 'unit':'inverter code', 'rank':10},
                                                                               },
@@ -1866,25 +1868,25 @@ reports = {   "Angus special test"
                                                                                         'Voltage POC':                      {'channels':[dict(channels_lib['PSSE']['V_POC'], **{'scale':1.0}),
                                                                                                                                          dict(channels_lib['PSSE']['Vspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},
                                                                                         'Active Power POC':                 {'channels':[dict(channels_lib['PSSE']['P_POC'], **{'markers':['callout', [1,15]]}),
-                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3},
+                                                                                                                                         dict(channels_lib['PSSE']['Pspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MW', 'rank':3,'yminspan':10},
                                                                                         'Reactive Power POC':               {'channels':[dict(channels_lib['PSSE']['Q_POC'], **{'markers':[]}),
-                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5},
+                                                                                                                                         dict(channels_lib['PSSE']['Qspt_POC'], **{'colour':'grey', 'linestyle':'--', 'linewidth': 1.5}),], 'unit':'MVAr', 'rank':5,'yminspan':10},
                                                                                         'Frequency':                        {'channels':[dict(channels_lib['PSSE']['F_POC'], **{})], 'unit':'Hz', 'rank':7, 'yminspan':0.1},
                                                                                         'PPC FRT signal':                   {'channels':[dict(channels_lib['PSSE']['FRT_PPC'], **{}),], 'unit':'PPC code', 'rank':9},
     
                                                                                                                                             
                                                                                         'Voltage INV':                      {'channels':[dict(channels_lib['PSSE']['V_INV1'], **{}),
-                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.01},                                                                                                                                                
+                                                                                                                                         dict(channels_lib['PSSE']['V_INV2'], **{}),], 'unit':'p.u.', 'rank':2, 'yminspan':0.1},                                                                                                                                                
                                                                                         'Active Power INV':                 {'channels':[dict(channels_lib['PSSE']['P_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['P_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Pcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MW', 'rank':4, 'ymaxlim':200.0, 'yminlim':-200.0,'yminspan':10 },
                                                                                         'Reactive Power INV':               {'channels':[dict(channels_lib['PSSE']['Q_INV1'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Q_INV2'], **{}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV1'], **{'linestyle':'--', 'linewidth': 1.5}),
                                                                                                                                          dict(channels_lib['PSSE']['Qcmd_PPC_INV2'], **{'linestyle':'--', 'linewidth': 1.5}),
-                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0, },
+                                                                                                                                         ], 'unit':'MVAr', 'rank':6, 'ymaxlim':200.0, 'yminlim':-200.0,'yminspan':10 },
                                                                                         'PV FRT signal':                    {'channels':[dict(channels_lib['PSSE']['FRT_INV1'], **{}),], 'unit':'inverter code', 'rank':8},
                                                                                         'BESS FRT signal':                  {'channels':[dict(channels_lib['PSSE']['FRT_INV2'], **{}),], 'unit':'inverter code', 'rank':10},
                                                                               },
@@ -3176,6 +3178,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
                 cell_paragraph=row_cells[0].paragraphs[0]
                 add_link(paragraph=cell_paragraph, link_to=str(cases[case_id]), text=str(cases[case_id]), tool_tip="link to test results")
                 row_cells[1].text=str(test_details['scenario_params']['Test Type'])
+#                row_cells[1].text=str(test_details['scenario_params']['Test Type'])
                 row_cells[2].text=str(test_details['scenario_params']['Test profile'])
                 row_cells[3].text=str(round(test_details['setpoint']['V_POC'],3))
 #                    row_cells[4].text=str(test_details['setpoint']['GridMVA'])
@@ -3637,7 +3640,7 @@ def add_plots_to_report(case, report, datasets, plots, plot_list, assessment):
         row_cells[0].text='Grid short circuit ratio post-fault'
         if('SCL_post' in test_details['scenario_params']):
             if(test_details['scenario_params']['SCL_post']!=''):
-                row_cells[1].text=str(test_details['scenario_params']['SCL_post'])
+                row_cells[1].text=str(float(test_details['scenario_params']['SCL_post'])/float(ProjectDetailsDict['PlantMW']))
 #            else: row_cells[1].text=str(test_details['setpoint']['GridMVA'])
             else: row_cells[1].text=str(round(test_details['setpoint']['SCR'],2))
 #        else: row_cells[1].text=str(test_details['setpoint']['GridMVA'])

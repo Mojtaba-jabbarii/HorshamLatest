@@ -111,7 +111,7 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
             
         SetpointsSheet_compInfo=pd.read_excel(testdefSheetPath, sheet_name="Setpoints", usecols="B,C,D,E,F", keep_default_na=False, skiprows=skip_rows)  
         #print(SetpointsSheet_compInfo)
-        SetpointsSheet_stp_info=pd.read_excel(testdefSheetPath, sheet_name="Setpoints", usecols="F:MZ", keep_default_na=False, skiprows=2)  
+        SetpointsSheet_stp_info=pd.read_excel(testdefSheetPath, sheet_name="Setpoints", usecols="F:VZ", keep_default_na=False, skiprows=2)  
         #print(SetpointsSheet_stp_info)
         
         SetpointsDict={}
