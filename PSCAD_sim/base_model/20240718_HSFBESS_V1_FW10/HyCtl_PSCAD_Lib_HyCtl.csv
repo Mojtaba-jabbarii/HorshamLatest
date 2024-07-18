@@ -1,0 +1,2 @@
+,Name (Name),Configuration file number (FileNum),Write HyCon logging to file (Log2File),System frequency (Fsys),GridOpCmdSCS (GRID_MOP) (GridOpCmdSCS),Controller cycle time (Tcyc),Activate controller at simulation time (Tactivate),Initial active power BESS [kW] (BatPwrAtInit),Initial reactive power BESS [kVAr] (BatPwrRtInit),Initial active power PV [kW] (PvPwrAtInit),Initial reactive power PV [kVAr] (PvPwrRtInit)
+1899582292,HyCon1,1,0,50,21521,0.04,1.9,BessWSpt,QiniBESS,PVini,QiniPV

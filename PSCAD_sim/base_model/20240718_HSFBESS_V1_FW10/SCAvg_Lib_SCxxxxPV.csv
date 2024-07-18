@@ -1,0 +1,2 @@
+,Filenumber (FileNum),Inverter name (PCU_Name),type of SC inverter (InvPwrVolTyp_),Country set (GriCod_),Enable file logging (Log2File),FastStart (time in ms until FastStart is finished) (FastStart),Output to DPS (DPS_Spt),Input from DPS (DPS_Fb),DEBUG_PCU signals (DEBUG_PCU),MEAS_PCU signals (MEAS_PCU)
+260202379,51,PCU1,16641,9,0,1700,DPS1_Spt,DPS1_Fb,DEBUG_PCU1,MEAS_PCU1
