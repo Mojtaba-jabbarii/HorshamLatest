@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1721607859" />
+    <param name="revisor" value="SIMULATION, 1721372981" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="20827605" instances="1" key="" view="false" date="1721372986" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="114218818" instances="1" key="" view="false" date="1721371965" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -3272,7 +3272,7 @@ OX2 Australia - Jul 2024
         <User classid="UserCmp" name="HSFBESS_V1:xfmr_2w_scaled" id="160824263" x="540" y="1872" w="116" h="81" z="600" orient="4" defn="HSFBESS_V1:xfmr_2w_scaled" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="19039718">
             <param name="Name" value="T1_2" />
-            <param name="Tmva" value="4.4" />
+            <param name="Tmva" value="4.2" />
             <param name="f" value="50.0" />
             <param name="YD1" value="1" />
             <param name="YD2" value="0" />
@@ -3284,7 +3284,7 @@ OX2 Australia - Jul 2024
             <param name="Tap" value="0" />
             <param name="View" value="1" />
             <param name="Dtls" value="0" />
-            <param name="V2" value="0.66" />
+            <param name="V2" value="0.63" />
             <param name="V1" value="33" />
             <param name="Im1" value="0.4" />
             <param name="Txk" value="0.1" />
@@ -5496,9 +5496,9 @@ OX2 Australia - Jul 2024
             <param name="Name" value="MV_Vol_base" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="46018860" x="810" y="126" w="82" h="23" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="46018860" x="810" y="126" w="76" h="23" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="127230955">
-            <param name="Name" value="LV_Vol_base1" />
+            <param name="Name" value="LV_Vol_base" />
           </paramlist>
         </User>
         <Wire classid="WireOrthogonal" id="424696146" name="" x="738" y="90" w="82" h="10" orient="0" disable="false">
@@ -5523,9 +5523,9 @@ OX2 Australia - Jul 2024
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="277006334" x="2466" y="666" w="82" h="23" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="277006334" x="2466" y="666" w="76" h="23" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="127230955">
-            <param name="Name" value="LV_Vol_base1" />
+            <param name="Name" value="LV_Vol_base" />
           </paramlist>
         </User>
         <User classid="UserCmp" name="master:datalabel" defn="master:datalabel" id="2044898330" x="2430" y="108" w="92" h="23" z="1" orient="4" link="-1" q="4" disable="false">
@@ -5554,9 +5554,9 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_V_LV_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="437679647" x="2700" y="666" w="82" h="23" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="437679647" x="2700" y="666" w="76" h="23" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="127230955">
-            <param name="Name" value="LV_Vol_base2" />
+            <param name="Name" value="LV_Vol_base" />
           </paramlist>
         </User>
         <Wire classid="WireOrthogonal" name="" x="2646" y="144" w="46" h="10" orient="0" id="2034773748" disable="false">
@@ -6924,7 +6924,7 @@ OX2 Australia - Jul 2024
             <param name="C" value="0" />
             <param name="D" value="1" />
             <param name="E" value="0" />
-            <param name="F" value="1" />
+            <param name="F" value="-1" />
             <param name="G" value="0" />
             <param name="Name" value="" />
             <param name="Dim" value="1" />
@@ -7623,23 +7623,7 @@ OX2 Australia - Jul 2024
         <User classid="UserCmp" name="const" defn="master:const" id="1267418214" x="1098" y="270" w="76" h="22" z="210" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
-            <param name="Value" value="1785" />
-            <param name="Dim" value="1" />
-          </paramlist>
-        </User>
-        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="560782124" x="1008" y="126" w="82" h="23" z="1" orient="0" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="127230955">
-            <param name="Name" value="LV_Vol_base2" />
-          </paramlist>
-        </User>
-        <Wire classid="WireOrthogonal" id="1552110107" name="" x="936" y="126" w="82" h="10" orient="0" disable="false">
-          <vertex x="0" y="0" />
-          <vertex x="72" y="0" />
-        </Wire>
-        <User classid="UserCmp" name="const" defn="master:const" id="782344150" x="900" y="126" w="76" h="35" z="40" orient="0" link="-1" q="4" disable="false">
-          <paramlist link="-1" name="" crc="10628662">
-            <param name="Name" value="LV Vol base" />
-            <param name="Value" value="0.66" />
+            <param name="Value" value="1500" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
@@ -74989,7 +74973,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
     </paramlist>
   </GlobalSubstitutions>
   <hierarchy>
-    <call link="223016312" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
+    <call link="1832204657" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
       <call link="1089318121" name="HSFBESS_V1:Main" z="-1" view="true" instance="0">
         <call link="1231646374" name="HyCtl_PSCAD_Lib:InvFbDummy" z="230" view="false" instance="0" />
         <call link="1286594197" name="SCAvg_Lib:DPS_Dummy" z="500" view="false" instance="0" />
@@ -75042,7 +75026,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
           <call link="1205552122" name="DDSRF_PLL_Lib:DDSRF_PLL_2" z="300" view="false" instance="1" />
         </call>
         <call link="1961074036" name="HyCtl_PSCAD_Lib:HyCtl" z="990" view="false" instance="0">
-          <call link="1725717277" name="HyCtl_PSCAD_Lib:PQ_Select" z="1530" view="false" instance="0" />
+          <call link="1725717277" name="HyCtl_PSCAD_Lib:PQ_Select" z="1540" view="false" instance="0" />
           <call link="735071606" name="HyCtl_PSCAD_Lib:PQ_Select" z="1660" view="false" instance="1" />
         </call>
         <call link="1309533768" name="SCAvg_Lib:SCxxxx" z="1000" view="false" instance="0">

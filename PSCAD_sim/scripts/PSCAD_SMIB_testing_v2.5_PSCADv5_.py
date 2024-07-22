@@ -179,12 +179,12 @@ def createPath(main_path_out):
 ##############################################################################
 TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 #simulation_batches=['DMAT', 'Prof_chng', 'AEMO_fdb', 'missing', 'legend', 'SCR_chng', 'timing'] #specify batch from spreadsheet that shall be run. If empty, run all batches
-#simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl']
+simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl','S5254_CUO']
 #simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl','DMATsl1_db','DMATsl2_db','DMATsl3_db','DMATsl4_db','DMATsl5_db','DMATsl6_db','DMATsl_db']
 #simulation_batches=['DMATsl1_db','DMATsl2_db','DMATsl3_db','DMATsl4_db','DMATsl5_db','DMATsl6_db','DMATsl_db', 'Benchmarking_db']
 #simulation_batches=['Benchmarking', 'Benchmarking_db']
 #simulation_batches=['S5255Iq3']
-simulation_batches=['S5258']
+# simulation_batches=['DMATsl1_dbg']
 
 
 # simulation_batches=['S52511','S52513','S52514','S5255Iq1','S5255Iq2','S5255Iq3']
@@ -241,7 +241,7 @@ else: # if the output location is same as input location, then delete the links
 # Locating the existing folders
 testDefinitionDir= os.path.abspath(os.path.join(main_folder, os.pardir))+"\\test_scenario_definitions"
 base_model = main_folder+"\\base_model" #parent directory of the workspace folder
-base_model_workspace = main_folder+"\\base_model\\20240301_HSFBESS_V1" #path of the workspace folder, formerly "workspace_folder" --> in case the workspace is located in a subdirectory of the model folder (as is the case with MUL model for example)
+base_model_workspace = main_folder+"\\base_model\\20240718_HSFBESS_V1_FW10" #path of the workspace folder, formerly "workspace_folder" --> in case the workspace is located in a subdirectory of the model folder (as is the case with MUL model for example)
 libpath = os.path.abspath(main_folder) + "\\scripts\\Libs"
 sys.path.append(libpath)
 # print ("libpath = " + libpath)
