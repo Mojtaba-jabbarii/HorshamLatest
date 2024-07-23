@@ -3,95 +3,99 @@
 / Transformer OLTC Model
 334081,'OLTC1T',334091,1,60,0.5,5 /
 
-/ SMAHYCF-G20
+/ SMAHYCF-G21
 @!/BUSNO                                   MODEL                                   ModelName                               IC                                      IT                                      
-   334081                                  'USRBUS'                                'SMAHYCF20'                             504                                     0                                       
+   334081                                  'USRBUS'                                'SMAHYCF21'                             504                                     0                                       
 @!/NoOfICONS                               NoOfCONS                                NoOfStates                              NoOfVars                                RBus                                    
-   34                                      252                                     10                                      404                                     334081                                     
-@!/FrobusPCC                               ToBusPCC                                CID                                     FrtBusNumber                            PowerFlowReverse                        
+   34                                      262                                     10                                      453                                     334081                                     
+@!/Frobus                                  ToBus                                   CID                                     FrtBusNumber                            PowerFlowReverse                        
    334081                                  334090                                  -1                                      0                                       1                                       
-@!/Reserved                                OUTPUT_LOG_EN                           Reserved                                SysCfg                                  PV1_Fro_Bus                             
+@!/Reserved                                OUTPUT_LOG_EN                           Reserved                                SysCfg                                  PV1_Fro                                 
    0                                       0                                       0                                       3                                       334094                                     
-@!/PV1_To_Bus                              CID_PV1                                 PV2_Fro_Bus                             PV2_To_Bus                              CID_PV2                                 
+@!/PV1_To                                  CID_PV1                                 PV2_Fro                                 PV2_To                                  CID_PV2                                 
    334092                                  -1                                      0                                       0                                       -1                                      
-@!/PV3_Fro_Bus                             PV3_To_Bus                              CID_PV3                                 PV4_Fro_Bus                             PV4_To_Bus                              
+@!/PV3_Fro                                 PV3_To                                  CID_PV3                                 PV4_Fro                                 PV4_To                                  
    0                                       0                                       -1                                      0                                       0                                       
-@!/CID_PV4                                 BESS1_Fro_Bus                           BESS1_To_Bus                            CID_BESS1                               BESS2_Fro_Bus                           
+@!/CID_PV4                                 BESS1_Fro                               BESS1_To                                CID_BESS1                               BESS2_Fro                               
    -1                                      334095                                  334093                                  -1                                      0                                       
-@!/BESS2_To_Bus                            CID_BESS2                               BESS3_Fro_Bus                           BESS3_To_Bus                            CID_BESS3                               
+@!/BESS2_To                                CID_BESS2                               BESS3_Fro                               BESS3_To                                CID_BESS3                               
    0                                       -1                                      0                                       0                                       -1                                      
-@!/BESS4_Fro_Bus                           BESS4_To_Bus                            CID_BESS4                               CycleTime                               Poi_freq_flt_tm                         
+@!/BESS4_Fro                               BESS4_To                                CID_BESS4                               CycleTime                               Poi_freq_flt_tm                         
    0                                       0                                       -1                                      40                                      0.02                                    
-@!/Poi_power_flt_tm                        Poi_Base_KV                             HyconToInv_AtPwr_TmDelay                HyconToInv_RtPwr_TmDelay                PvPwrAtMaxTot                           
-   0.02                                    220000                                  0.02                                    0.02                                    151200                                  
-@!/PvPwrRtMaxTot                           PvPwrApMaxTot                           BESSPwrAtMaxTot                         BESSPwrRtMaxTot                         BESSPwrApMaxTot                         
-   90720                                   151200                                  168000                                  100800                                  168000                                  
-@!/Reserved                                ExtPwrApLim                             ExtPwrAtLimHi                           ExtPwrAtLimLo                           PwrAtLimSale                            
-   1                                       151200                                  119000                                  -100000                                 119000                                  
-@!/ExtPwrRtLimHi                           ExtPwrRtLimLo                           QVARScale                               PvPwrAtSpt                              Reserved                                
-   47005                                   -47005                                  0.6                                     151200                                  0                                       
-@!/Reserved                                Reserved                                BatPwrAtCtrl.CtrlKi                     BatPwrAtCtrl.CtrlKp                     BatPwrAtCtrl.DynSpntSwitchHysPc         
-   0                                       0                                       1.25                                    0                                       0                                       
-@!/BatPwrAtCtrl.Ena                        BatPwrAtCtrl.EnaAdapCtrl                BatPwrAtCtrl.EnaDynSpntSwitch           BatPwrAtCtrl.EnaStepReset               BatPwrAtCtrl.FeedForwardOffset          
-   1                                       1                                       0                                       0                                       0                                       
-@!/BatPwrAtCtrl.MeasFilterTm               BatPwrAtCtrl.OvershootResetPc           BatPwrAtCtrl.PiCtrlLimPc                BatPwrAtCtrl.PilotControlGain           BatPwrAtCtrl.SpntDelaySamples           
-   0                                       100                                     100                                     0                                       0                                       
-@!/BatPwrAtCtrl.StepResetThrsldPc          Dispatch.EnaPrioBatPwrAt                Dispatch.PvBatSpntSplitPc               Dispatch.PwrRtDispatchMode              EgyShift.ChrFromPvSpntLimPc             
-   20                                      1                                       50                                      0                                       100                                      
-@!/EgyShift.DisBatSpntLimPc                FCASCont.DelayedActTm                   FCASCont.DelayedDelTm                   FCASCont.Ena                            FCASCont.EnaDelayedLower                
-   10                                      60                                      600                                     0                                       1                                       
-@!/FCASCont.EnaDelayedRaise                FCASCont.EnaFastLower                   FCASCont.EnaFastRaise                   FCASCont.EnaSlowLower                   FCASCont.EnaSlowRaise                   
+@!/Poi_power_flt_tm                        HyconToInv_AtPwr_TmDelay                HyconToInv_RtPwr_TmDelay                PvPwrAtMaxTot                           PvPwrRtMaxTot                           
+   0.02                                    0.02                                    0.02                                    151200                                  90720                                   
+@!/BESSPwrAtMaxTot                         BESSPwrRtMaxTot                         ExtPwrApLim                             ExtPwrAtLimHi                           ExtPwrAtLimLo                           
+   176000                                   105600                                   151200                                  119000                                  -100000                                 
+@!/PwrAtLimSale                            ExtPwrRtLimHi                           ExtPwrRtLimLo                           QVARScale                               PvPwrAtSpt                              
+   119000                                   47005                                   -47005                                  0.6                                     151200                                       
+@!/Reserved                                Reserved                                Reserved                                BatPwrAtCtrl.CtrlKi                     BatPwrAtCtrl.CtrlKp                     
+   0                                       0                                       0                                       1.0                                     0                                       
+@!/BatPwrAtCtrl.DynSpntSwitchHysPc         BatPwrAtCtrl.Ena                        BatPwrAtCtrl.EnaAdapCtrl                BatPwrAtCtrl.EnaDynSpntSwitch           BatPwrAtCtrl.EnaStepReset               
+   0                                       0                                       0                                       0                                       0                                       
+@!/BatPwrAtCtrl.FeedForwardOffset          BatPwrAtCtrl.MeasFilterTm               BatPwrAtCtrl.OvershootResetPc           BatPwrAtCtrl.PiCtrlLimPc                BatPwrAtCtrl.PilotControlGain           
+   0                                       0                                       100                                     100                                     0                                       
+@!/BatPwrAtCtrl.SpntDelaySamples           BatPwrAtCtrl.StepResetThrsldPc          Dispatch.EnaPrioBatPwrAt                Dispatch.PvBatSpntSplitPc               Dispatch.PwrRtDispatchMode              
+   3                                       20                                      1                                       46.21                                      0                                       
+@!/EgyShift.ChrFromPvSpntLimPc             EgyShift.DisBatSpntLimPc                FCASCont.DelayedActTm                   FCASCont.DelayedDelTm                   FCASCont.Ena                            
+   50                                      10                                      60                                      600                                     1                                       
+@!/FCASCont.EnaDelayedLower                FCASCont.EnaDelayedRaise                FCASCont.EnaFastLower                   FCASCont.EnaFastRaise                   FCASCont.EnaSlowLower                   
    1                                       1                                       1                                       1                                       1                                       
-@!/FCASCont.FastDelTm                      FCASCont.FrqOffsets[1]                  FCASCont.FrqOffsets[2]                  FCASCont.FrqOffsets[3]                  FCASCont.FrqOffsets[4]                  
-   60                                      -1                                     -0.15                                    0.15                                    1                                    
-@!/FCASCont.FrqOffsets[5]                  FCASCont.FrqOffsets[6]                  FCASCont.FrqOffsets[7]                  FCASCont.FrqOffsets[8]                  FCASCont.FrqOffsets[9]                  
-   1.1                                     1.2                                     1.3                                     1.4                                     1.5                                     
-@!/FCASCont.FrqOffsets[10]                 FCASCont.FrqRecoverOffsets[1]           FCASCont.FrqRecoverOffsets[2]           FCASCont.PwrAtDataPc[1]                 FCASCont.PwrAtDataPc[2]                 
-   1.6                                     -0.1                                    0.1                                     100                                     0                                    
-@!/FCASCont.PwrAtDataPc[3]                 FCASCont.PwrAtDataPc[4]                 FCASCont.PwrAtDataPc[5]                 FCASCont.PwrAtDataPc[6]                 FCASCont.PwrAtDataPc[7]                 
-   0                                       -100                                    -100                                    -100                                    -100                                    
-@!/FCASCont.PwrAtDataPc[8]                 FCASCont.PwrAtDataPc[9]                 FCASCont.PwrAtDataPc[10]                FCASCont.SlowActTm                      FCASCont.SlowDelTm                      
-   -100                                    -100                                    -100                                    6                                       300                                     
-@!/FixCosPhi.CosPhiExtModExp               FixCosPhi.CosPhiExtModImp               FixCosPhi.CosPhiLimLo                   FixCosPhi.ExtSpntMode                   FixCosPhi.PwrAtFilterTm                 
-   1041                                    1041                                    0.8                                     1                                       0.33                                       
-@!/FrqDroop.ActDelay                       FrqDroop.DroopMode                      FrqDroop.Ena                            FrqDroop.EnaActFrt                      FrqDroop.EnaPrioFrqResp                 
-   0.0                                     3                                       1                                       0                                       0                                       
-@!/FrqDroop.EnaRamp                        FrqDroop.EnaShiftPreFaultVal            FrqDroop.FrqOffsets[1]                  FrqDroop.FrqOffsets[2]                  FrqDroop.FrqOffsets[3]                  
-   0                                       0                                       -2.515                                  -0.015                                  0                                       
-@!/FrqDroop.FrqOffsets[4]                  FrqDroop.FrqOffsets[5]                  FrqDroop.FrqOffsets[6]                  FrqDroop.FrqOffsets[7]                  FrqDroop.FrqOffsets[8]                  
-   0.015                                   2.515                                   3.0                                     3.1                                     3.2                                     
-@!/FrqDroop.FrqOffsets[9]                  FrqDroop.FrqOffsets[10]                 FrqDroop.MaxPwrDecrease                 FrqDroop.MaxRelPwrIncrease              FrqDroop.MinHoldTm                      
-   3.3                                     3.4                                     100                                     100                                     0.5                                     
-@!/FrqDroop.MinPwrSpnt                     FrqDroop.OverFrqMode                    FrqDroop.PwrAtDataPc[1]                 FrqDroop.PwrAtDataPc[2]                 FrqDroop.PwrAtDataPc[3]                 
-   -84.0336                                2                                       200                                     100                                     100                                     
-@!/FrqDroop.PwrAtDataPc[4]                 FrqDroop.PwrAtDataPc[5]                 FrqDroop.PwrAtDataPc[6]                 FrqDroop.PwrAtDataPc[7]                 FrqDroop.PwrAtDataPc[8]                 
+@!/FCASCont.EnaSlowRaise                   FCASCont.FastDelTm                      FCASCont.FrqOffsets[1]                  FCASCont.FrqOffsets[2]                  FCASCont.FrqOffsets[3]                  
+   1                                       60                                      -2.015                                  -0.015                                  0.015                                   
+@!/FCASCont.FrqOffsets[4]                  FCASCont.FrqOffsets[5]                  FCASCont.FrqOffsets[6]                  FCASCont.FrqOffsets[7]                  FCASCont.FrqOffsets[8]                  
+   2.015                                   2.3                                     2.4                                     2.5                                     2.6                                     
+@!/FCASCont.FrqOffsets[9]                  FCASCont.FrqOffsets[10]                 FCASCont.FrqRecoverOffsets[1]           FCASCont.FrqRecoverOffsets[2]           FCASCont.PwrAtDataPc[1]                 
+   2.7                                     2.8                                     -0.015                                  0.015                                   100                                    
+@!/FCASCont.PwrAtDataPc[2]                 FCASCont.PwrAtDataPc[3]                 FCASCont.PwrAtDataPc[4]                 FCASCont.PwrAtDataPc[5]                 FCASCont.PwrAtDataPc[6]                 
+   0                                       0                                       -100                                    -100                                    -100                                    
+@!/FCASCont.PwrAtDataPc[7]                 FCASCont.PwrAtDataPc[8]                 FCASCont.PwrAtDataPc[9]                 FCASCont.PwrAtDataPc[10]                FCASCont.SlowActTm                      
+   -100                                    -100                                    -100                                    -100                                    6                                       
+@!/FCASCont.SlowDelTm                      FixCosPhi.CosPhiExtModExp               FixCosPhi.CosPhiExtModImp               FixCosPhi.CosPhiLimLo                   FixCosPhi.ExtSpntMode                   
+   300                                     1041                                    1041                                    0                                     1                                       
+@!/FixCosPhi.PwrAtFilterTm                 FrqDroop.DroopMode                      FrqDroop.Ena                            FrqDroop.EnaPrioFrqResp                 FrqDroop.EnaRamp                        
+   1                                       3                                       0                                       0                                       0                                       
+@!/FrqDroop.EnaShiftPreFaultVal            FrqDroop.FrqOffsets[1]                  FrqDroop.FrqOffsets[2]                  FrqDroop.FrqOffsets[3]                  FrqDroop.FrqOffsets[4]                  
+   0                                       -1.2                                    -0.015                                  0.0                                     0.015                                   
+@!/FrqDroop.FrqOffsets[5]                  FrqDroop.FrqOffsets[6]                  FrqDroop.FrqOffsets[7]                  FrqDroop.FrqOffsets[8]                  FrqDroop.FrqOffsets[9]                  
+   1.2                                     2.0                                     3.0                                     4.0                                     5.0                                     
+@!/FrqDroop.FrqOffsets[10]                 FrqDroop.MaxPwrDecrease                 FrqDroop.MaxRelPwrIncrease              FrqDroop.MinHoldTm                      FrqDroop.MinPwrSpnt                     
+   6.0                                     200                                     1000000                                 0.5                                     0                                       
+@!/FrqDroop.OverFrqMode                    FrqDroop.PwrAtDataPc[1]                 FrqDroop.PwrAtDataPc[2]                 FrqDroop.PwrAtDataPc[3]                 FrqDroop.PwrAtDataPc[4]                 
+   0                                       0                                       200                                     100                                     100                                     
+@!/FrqDroop.PwrAtDataPc[5]                 FrqDroop.PwrAtDataPc[6]                 FrqDroop.PwrAtDataPc[7]                 FrqDroop.PwrAtDataPc[8]                 FrqDroop.PwrAtDataPc[9]                 
    100                                     0                                       0                                       0                                       0                                       
-@!/FrqDroop.PwrAtDataPc[9]                 FrqDroop.PwrAtDataPc[10]                FrqDroop.PwrAtRateMax                   FrqDroop.ResetFrqOffset[1]              FrqDroop.ResetFrqOffset[2]              
-   0                                       0                                       10                                      -0.015                                  0.015                                   
-@!/FrqDroop.ResetMode                      FrqDroop.ResetTm                        FrqDroop.UnderFrqMode                   FrqDroop.UseBatPwr                      FrtDetection.Ena                        
-   1                                       0                                       2                                       1                                       1                                       
-@!/FrtDetection.FilterTm                   FrtDetection.PreFrtSamples              FrtDetection.RefMode                    FrtDetection.StopDelay                  FrtDetection.ThrsldMode                 
-   20                                      5                                       0                                       0.5                                     1                                       
-@!/FrtDetection.VtgLoLimPc                 FrtDetection.VtgUpLimPc                 GridService.EnaFrqRespForPv             GridService.EnaPrioBatFrqResp           GridService.FrqPoiCompFactor            
-   83                                      117                                     0                                       0                                       0                                       
-@!/GridService.FrqPoiDynMod                GridService.FrqPoiFilterTm              GridService.FrqPoiRateMax               GridService.PoiPwrAtCtrlMode            GridService.PwrApNomPoi                 
-   1                                       0.0                                     0.04                                    3                                       127947                                  
-@!/GridService.PwrApPrioMode               GridService.PwrAtNomPoi                 GridService.PwrAtPoiFilterTm            GridService.PwrRtNomPoi                 GridService.PwrRtPoiFilterTm            
-   2                                       119000                                  0                                       90720                                   0                                       
-@!/GridVtgCtrl.Ena                         GridVtgCtrl.IntGain                     GridVtgCtrl.IntLimAwu                   GridVtgCtrl.PropGain                    GridVtgCtrl.VtgFilterTm                 
-   0                                       5                                       0.5                                     0                                       0                                       
+@!/FrqDroop.PwrAtDataPc[10]                FrqDroop.PwrAtRateMax                   FrqDroop.ResetFrqOffset[1]              FrqDroop.ResetFrqOffset[2]              FrqDroop.ResetMode                      
+   0                                       6000                                    -0.015                                  0.015                                   2                                       
+@!/FrqDroop.ResetTm                        FrqDroop.UnderFrqMode                   FrtDetection.Ena                        FrtDetection.FilterTm                   FrtDetection.PreFrtSamples              
+   0                                       2                                       1                                       20                                      5                                       
+@!/FrtDetection.RefMode                    FrtDetection.StopDelay                  FrtDetection.ThrsldMode                 FrtDetection.VtgLoLimPc                 FrtDetection.VtgUpLimPc                 
+   0                                       0.2                                     1                                       82                                      121                                     
+@!/GridService.EnaFrqRespForPv             GridService.EnaPrioBatFrqResp           GridService.FrqActDelay                 GridService.FrqEnaActFrt                GridService.FrqPoiCompFactor            
+   1                                       0                                       0.25                                    0                                       0                                       
+@!/GridService.FrqPoiDynMod                GridService.FrqPoiFilterTm              GridService.FrqPoiRateMax               GridService.FrqPreFaultValHoldTm        GridService.FrqUseBatPwr                
+   1                                       0.05                                    4.0                                     1                                       1                                       
+@!/GridService.OverFrqRefMode              GridService.PoiPwrAtCtrlMode            GridService.PwrApNomPoi                 GridService.PwrApPrioMode               GridService.PwrAtNomPoi                 
+   0                                       3                                       127947                                  2                                       119000                                  
+@!/GridService.PwrAtPoiFilterTm            GridService.PwrRtNomPoi                 GridService.PwrRtPoiFilterTm            GridService.UnderFrqRefMode             GridVtgCtrl.Ena                         
+   0                                       90720                                   0                                       0                                       0                                       
+@!/GridVtgCtrl.IntGain                     GridVtgCtrl.IntLimAwu                   GridVtgCtrl.PropGain                    GridVtgCtrl.VtgFilterTm                 PoCo.EnaOpenLoopSptDiff                 
+   5                                       0.5                                     0                                       0                                       1                                       
+@!/PoCo.K_I                                PoCo.K_P                                PoCo.OutMax                             PoCo.OutMin                             PoCo.OvershootReInitHystTicks           
+   4                                       0                                       1                                       -1                                      10                                      
+@!/PoCo.OvershootReInitHystWNom            PoCo.WGraMeasTarget                     PoCo.WGraOpenLoop                       PoCo.WGraTarget                         PoCo.WaitTmsDevAtLimit                  
+   1                                       0.2                                     0.2                                     0.02                                    3                                       
 @!/PvPwrAtCtrl.CtrlKi                      PvPwrAtCtrl.CtrlKp                      PvPwrAtCtrl.DynSpntSwitchHysPc          PvPwrAtCtrl.Ena                         PvPwrAtCtrl.EnaAdapCtrl                 
    1.25                                    0                                       0                                       1                                       1                                       
 @!/PvPwrAtCtrl.EnaDynSpntSwitch            PvPwrAtCtrl.EnaStepReset                PvPwrAtCtrl.FeedForwardOffset           PvPwrAtCtrl.MeasFilterTm                PvPwrAtCtrl.OvershootResetPc            
    0                                       0                                       0                                       0                                       100                                     
 @!/PvPwrAtCtrl.PiCtrlLimPc                 PvPwrAtCtrl.PilotControlGain            PvPwrAtCtrl.SpntDelaySamples            PvPwrAtCtrl.StepResetThrsldPc           PwrRt.PwrRtCtrlMode                     
-   100                                     0                                       0                                       100                                     1069                                    
+   100                                     0                                       0                                       1                                       1069                                    
 @!/PwrRtCtrl.CtrlKi                        PwrRtCtrl.CtrlKp                        PwrRtCtrl.DynSpntSwitchHysPc            PwrRtCtrl.Ena                           PwrRtCtrl.EnaAdapCtrl                   
-   1.25                                    0                                       0                                       1                                       1                                       
+   2.50                                    0                                       0                                       1                                       1                                       
 @!/PwrRtCtrl.EnaDynSpntSwitch              PwrRtCtrl.EnaStepReset                  PwrRtCtrl.FeedForwardOffset             PwrRtCtrl.MeasFilterTm                  PwrRtCtrl.OvershootResetPc              
-   0                                       1                                       0                                       0                                       2                                     
+   0                                       0                                       0                                       0                                       100                                     
 @!/PwrRtCtrl.PiCtrlLimPc                   PwrRtCtrl.PilotControlGain              PwrRtCtrl.SpntDelaySamples              PwrRtCtrl.StepResetThrsldPc             PwrRtPwrAtLim.Ena                       
-   100                                     0                                       0                                       20                                      0                                       
+   100                                     1                                       3                                       1                                       0                                       
 @!/PwrRtPwrAtLim.PwrAtFilterTm             PwrRtPwrAtLim.PwrAtLimHiPc[1]           PwrRtPwrAtLim.PwrAtLimHiPc[2]           PwrRtPwrAtLim.PwrAtLimHiPc[3]           PwrRtPwrAtLim.PwrAtLimHiPc[4]           
    0                                       0                                       50                                      70                                      100                                     
 @!/PwrRtPwrAtLim.PwrAtLimHiPc[5]           PwrRtPwrAtLim.PwrAtLimHiPc[6]           PwrRtPwrAtLim.PwrAtLimHiPc[7]           PwrRtPwrAtLim.PwrAtLimHiPc[8]           PwrRtPwrAtLim.PwrAtLimHiPc[9]           
@@ -111,7 +115,7 @@
 @!/PwrRtPwrAtLim.PwrRtLimLoPc[10]          SpntRamp.EnaPwrAtRampTm                 SpntRamp.BatPwrAtRiseRateMax            SpntRamp.PvPwrAtRiseRateMax             SpntRamp.PwrAtRampTm                    
    -60                                     0                                       100                                     100                                     300                                     
 @!/SpntRamp.PwrAtRateMax                   SpntRamp.PwrAtResetThrsldPc             SpntRamp.PwrAtSpntFilterTm              SpntRamp.PwrRtRateMax                   SpntRamp.PwrRtSpntFilterTm              
-   15000                                    5                                       0.1                                    15000                                   0.1                                       
+   15000                                   100                                     0.1                                    15000                                   0.1                                       
 @!/VtgPwrRtDroop.PwrRtDataPcDbHi           VtgPwrRtDroop.PwrRtDataPcDbLo           VtgPwrRtDroop.PwrRtDataPc[1]            VtgPwrRtDroop.PwrRtDataPc[2]            VtgPwrRtDroop.PwrRtDataPc[3]            
    0                                       0                                       200                                     200                                     200                                     
 @!/VtgPwrRtDroop.PwrRtDataPc[4]            VtgPwrRtDroop.PwrRtDataPc[5]            VtgPwrRtDroop.PwrRtDataPc[6]            VtgPwrRtDroop.PwrRtDataPc[7]            VtgPwrRtDroop.PwrRtDataPc[8]            
@@ -139,9 +143,9 @@
 @!/PFWStop                                 WctlHzMod                               PHzStr                                  PhzStop                                 PWGra                                   
    0.9                                     0                                       0.2                                     0.05                                    0.4                                     
 @!/Wgra                                    VarGra                                  FRTMod                                  FRTArGraNom                             FRTArGraNomHi                           
-   1                                       2                                       2                                       2                                       2                                       
+   1                                       2                                       2                                       0                                       6                                       
 @!/FRTArGraNomLo                           FRTDbVolMax                             FRTDbVolMaxHyst                         FRTDbVolMin                             FRTDbVolMinHyst                         
-   2                                       0.24                                    0.22                                    0.15                                    0.13                                    
+   6                                       0.24                                    0.22                                    0.15                                    0.13                                    
 @!/FRT_AmpDGra                             Reserved                                VarCmdFilTm                             FRT_VolFilMod                           FRT_VolDFilTm                           
    10                                      1                                       0.01                                    0                                       20                                    
 @!/FRT_WaitTm                              FRT_AmpQGra                             FRTSpkMtgLo                             FRTSpkMtgHi                             Reserved                                
@@ -187,13 +191,13 @@
 @!/PwrCtl_VolDQFilTm                       Reserved                                Reserved                                Reserved                                Pll_Inv_Tlength                         
    0                                       0                                       0                                       0                                       0.01                                    
 @!/Pll_Inv_Tsample                         Pll_Inv_TimeStep                        Pll_Inv_HzFilOff2On_Vol                 Pll_Inv_HzFilOff2On_NomSum              Pll_Inv_HzFilOn2Off_NomSum              
-   1.67E-04                                0.001                                   0.2                                     0.5                                     80                                      
+   1.67E-04                                0.001                                   0.3                                     0.5                                     80                                      
 @!/Pll_Inv_HzFilOn2Wt_Vol                  Pll_Inv_HzFilWt2On_Vol                  Pll_Inv_SetTm                           Pll_Inv_DmpRto                          Pll_Inv_VolDQFilTm                      
-   0.7                                     0.25                                    0.045                                   2                                       0.005                                    
+   0.75                                    0.65                                    0.045                                    2                                       0.01                                    
 @!/Pll_Inv_VolDQRtg                        Pll_Inv_Fn                              Pll_Inv_HzGraLim                        Pll_Inv_HzFilTm                         Reserved                                
-   314                                     50                                      300                                     0.1                                     0                                       
+   514.392846                              50                                      300                                     0.1                                     0                                       
 @!/Reserved                                Frt_LoGra3                              Frt_LoGra2                              Frt_LoGra1                              Frt_LoVolRef1                           
-   0                                       0                                       6                                       6                                       1                                       
+   0                                       6                                       6                                       0                                       1                                       
 @!/Frt_LoVolRef2                           Frt_LoVolRef3                           Frt_HiGra1                              Frt_HiGra2                              Frt_HiGra3                              
    0.87                                    0                                       0                                       6                                       6                                       
 @!/Frt_HiVolRef1                           Frt_HiVolRef2                           Frt_HiVolRef3                           WFilMod                                 VarFilMod                               
@@ -212,127 +216,98 @@
   0                                       
 
 
-/ SMAGF303
-334095 'USRMDL' 1 'SMAGF303' 1 1 3 174 0 221
-@!/ PlntCtlType                             PCBusNum                                InvType                                 
-     1                                       334081                                  4200                          
-@!/ Rtg.VarRtg
-     0			  
-@!/ Rtg.VADrtPriMod                         Filt.VolDQFilTm                         Filt.AmpDQFilTm                         
-     1                                       0.46                                    0.01                                    
-@!/ Filt.VolPsFilTm                         Filt.ABControlDFilTm                    Filt.ABControlQFilTm                    
-     0.005                                   0.01                                    0.01                                    
-@!/ Filt.AvalPwrFilTm
-     0.1					 
-@!/ AcCtl.WSptScal                          AcCtl.VArSptScal                        AcCtl.DrpHz                             
-     1.15                                    2.25                                    -4                                      
-@!/ AcCtl.DrpVol                            AcCtl.DrpVolH                           AcCtl.DrpVolDmp                         
-     0.2                                     0.1                                     0                                       
-@!/ AcCtl.DrpTheta                          AcCtl.DrpThetaH                         AcCtl.DrpThetaDmp                       
-     -0.12                                   1.5                                     0                                       
-@!/ AcCtl.DrpThetaFilTm                     AcCtl.DrpAmpD                           AcCtl.DrpAmpDFilTm                      
-     0                                       0                                       0                                       
-@!/ AcCtl.DrpAmpDFil2Tm                     AcCtl.DrpAmpQ                           AcCtl.DrpAmpQFilTm                      
-     0                                       0                                       0                                       
-@!/ AcCtl.DrpAmpQFil2Tm                     AcCtl.AmpDLimKp                         AcCtl.AmpDLimKi                         
-     0                                       0.6                                     22.5                                    
-@!/ AcCtl.AmpPsDLim_Ki2Fac                  AcCtl.AmpPsDLim_I2RocofLim              AcCtl.AmpPsDLim_I2CtlDownGain           
-     0.00033333                              6                                       3                                       
-@!/ AcCtl.AmpQLimKp                         AcCtl.AmpQLimKi                         AcCtl.AmpPsQLim_Ki2Fac                  
-     0.6                                     22.5                                    0.00033333                              
-@!/ AcCtl.AmpPsQLim_I2RocofLim              AcCtl.AmpPsQLim_I2CtlDownGain           AcCtl.InertiaThetaMod                   
-     6                                       3                                       1                                       
-@!/ AcCtl.InertiaVolMod                     AcCtl.InertiaThetaWCtlEna               AcCtl.InertiaThetaWCtlVolLim            
-     1                                       0                                       0.5                                     
-@!/ AcCtl.InertiaVolVArCtlEna               AcCtl.InertiaVolVArCtlVolLim            AcCtl.AmpPsDFbEna                       
-     0                                       0.5                                     1                                       
-@!/ AcCtl.AmpPsQFbEna                       AcCtl.AmpDLim_VolPsNomLim               AcCtl.AmpQLim_VolPsNomLim               
-     1                                       1                                       1                                       
-@!/ AcCtl.AmpDQLimEna                       AcCtl.PriModPsRelEna                    AcCtl.VolABKi                           
-     1                                       0                                       60                                    
-@!/ AcCtl.VolABKp                           AcCtl.AmpDQFilTm                        AcCtl.ParamFilTm                        
-     0.01                                    0.02                                    10                                     
-@!/ Frt.Frt_Mod                             Frt.LoVolOnLim                          Frt.LoVolOffLim                         
-     2                                       0.64                                     0.66                                    
-@!/ Frt.HiVolOffLim                         Frt.DynVolOffLimEna                     Frt.VirtImpSwDetLim                     
-     1.15                                     0                                       1.4                                    
-@!/ Frt.VirtImpDlTm                         Frt.VirtImpLockTm                       Frt.VirtImpWaitTm                       
-     2                                       50                                      50                                   
-@!/ Frt.ResetTm                             Frt.AmpCtlEna                           Frt.AMaxNomInit                         
-     30                                      1                                       1.0                                     
-@!/ Frt.AMaxNom                             Frt.AmpCtlFilTm                         Frt.CtlDevLimMax                        
-     1.0                                     0.001                                   0.25                                     
-@!/ Frt.NegCtlDev_Gain                      Frt.AmpCtlKp                            Frt.AmpCtlKi                            
-     1                                       0                                       10                                      
-@!/ Frt.VirtImpReact                        Frt.VirtImpReactMin                     Frt.VirtImpReactFFWEna                  
-     -0.05                                   -0.05                                   1                                       
-@!/ Frt.VirtImpReactFFWFac                  Frt.VirtImpRis                          Frt.VirtImpRisInit                      
-     0.68                                    0                                       0.3                                     
-@!/ Frt.AmpCtlPsQSpt                        Frt.AmpCtlRKp                           Frt.AmpCtlRKi                           
-     -1                                      0                                       0                                       
-@!/ Frt.VirtImpRisFilTm                     Frt.VolPsQFilTm                         Frt.VolPsQCtlKp                         
-     0.008                                   0.005                                   0                                    
-@!/ Frt.VolPsQCtlDZn                        Frt.VolPsQCtlDZnKp                      Frt.VolPsQCtlHzOfsMax                   
-     0.25                                    -10                                     2                                       
-@!/ Frt.VolPsQCtrlEna                       Frt.DrpPreFreezeDetLim                  OvAmp.AmpMaxNomSecFilTm                 
-     0                                       1.1                                     0.02                                    
-@!/ OvAmp.AmpMaxNomSec0Tm                   OvAmp.AmpMaxNomSec1Tm                   OvAmp.AmpMaxNomSec2Tm                   
-     76000                                   100                                     900                                     
-@!/ OvAmp.AmpMaxNomSec3Tm                   OvAmp.AmpMaxNomSec4Tm                   OvAmp.AmpMaxNomSec4TransTm              
-     4000                                    9000                                    13900                                   
-@!/ OvAmp.AmpMaxNomSec4ThmDrtTm             OvAmp.AmpMaxNomSec0                     OvAmp.AmpMaxNomSec1                     
-     2000                                    1                                       1.57                                    
-@!/ OvAmp.AmpMaxNomSec2                     OvAmp.AmpMaxNomSec3                     OvAmp.AmpMaxNomSec4                     
-     1.25                                    1.16                                    0.95                                    
-@!/ OvAmp.AmpMaxNomSec3Obs                  OvAmp.AmpMaxNomSec4Obs                  OvAmp.AmpMaxNomSec4ObsHys               
-     1                                       1                                       0.03                                    
-@!/ OvAmp.AmpPsDMaxNomSec0                  OvAmp.AmpPsDMaxNomSec1                  OvAmp.AmpPsDMaxNomSec2                  
-     1                                       1.57                                    1.25                                    
-@!/ OvAmp.AmpPsDMaxNomSec3                  OvAmp.AmpPsQMaxNomSec0                  OvAmp.AmpPsQMaxNomSec1                  
-     1.16                                    1                                       1.57                                    
-@!/ OvAmp.AmpPsQMaxNomSec2                  OvAmp.AmpPsQMaxNomSec3                  OvAmp.VirtImpEna                        
-     1.25                                    1.16                                    0                                       
-@!/ OvAmp.AcCtlEna                          OvAmp.AmpMaxNomInit                     OvAmp.TmpStkFilTm                       
-     0                                       1.57                                    0.5                                     
-@!/ OvAmp.TmpLimNormal                      OvAmp.TmpLimTrans                       OvAmp.NormalModHysTm                    
-     142                                     147                                     1000                                    
-@!/ OvAmp.TransModHysTm                     OvAmp.ChangeModHysTm                    OvAmp.StkAmpLimOn                       
-     150                                     125                                     100000                                  
-@!/ Ctl.HzOutLim                            HW.OvAmpLimEna                          HW.StkAmpLimOnFac                       
-     5                                       1                                       1.0                                       
-@!/ HzCtl.Hi1Lim                            HzCtl.Hi1LimTm                          HzCtl.Hi2Lim                            
-     52.1                                    60000                                   52.1                                      
-@!/ HzCtl.Hi2LimTm                          HzCtl.Hi3Lim                            HzCtl.Hi3LimTm                          
-     60000                                   52.1                                    60000                                     
-@!/ HzCtl.Hi4Lim                            HzCtl.Hi4LimTm                          HzCtl.Hi5Lim                            
-     52.1                                    60000                                   52.1                                      
-@!/ HzCtl.Hi5LimTm                          HzCtl.Hi6Lim                            HzCtl.Hi6LimTm                          
-     60000                                   55                                      100                                     
-@!/ HzCtl.Lo1Lim                            HzCtl.Lo1LimTm                          HzCtl.Lo2Lim                            
-     47                                      60000                                    47                                      
-@!/ HzCtl.Lo2LimTm                          HzCtl.Lo3Lim                            HzCtl.Lo3LimTm                          
-     60000                                   47                                      60000                                     
-@!/ HzCtl.Lo4Lim                            HzCtl.Lo4LimTm                          HzCtl.Lo5Lim                            
-     47                                      60000                                   47                                      
-@!/ HzCtl.Lo5LimTm                          HzCtl.Lo6Lim                            HzCtl.Lo6LimTm                          
-     60000                                   45                                      100                                     
-@!/ VCtl.Hi1Lim                             VCtl.Hi1LimTm                           VCtl.Hi2Lim                             
-     1.2                                     25000                                   1.25                                     
-@!/ VCtl.Hi2LimTm                           VCtl.Hi3Lim                             VCtl.Hi3LimTm                           
-     2500                                    1.3                                    300                                     
-@!/ VCtl.Hi4Lim                             VCtl.Hi4LimTm                           VCtl.Hi5Lim                             
-     1.3                                     300                                     1.3                                     
-@!/ VCtl.Hi5LimTm                           VCtl.Hi6Lim                             VCtl.Hi6LimTm                           
-     300                                     1.3                                     300                                     
-@!/ VCtl.Lo1Lim                             VCtl.Lo1LimTm                           VCtl.Lo2Lim                             
-     0.8                                     11000                                   0.77                                     
-@!/ VCtl.Lo2LimTm                           VCtl.Lo3Lim                             VCtl.Lo3LimTm                           
-     2500                                     0.4                                     2000                                   
-@!/ VCtl.Lo4Lim                             VCtl.Lo4LimTm                           VCtl.Lo5Lim                             
-     0.4                                      2000                                   0.4                                     
-@!/ VCtl.Lo5LimTm                           VCtl.Lo6Lim                             VCtl.Lo6LimTm                           
-     2000                                    0.4                                      2000                                   
-@!/ Spk.dVol                                Spk.AmpHoldTm                           Spk.AmpHoldFacD                         
-     0.3                                     0.005                                   0                                       
-@!/ Spk.AmpHoldFacQ                                                                                                         
-     0                                                                                                                       
+/ SMAGF306
+@!/BESS_BUSNO                              MODEL                                   MCHID                                   ModelName                               IC                                      
+   334095                                  'USRMDL'                                1                                       'SMAGF306'                              1                                       
+@!/IT                                      NoOfICONS                               NoOfCONS                                NoOfStates                              NoOfVars                                
+   1                                       4                                       221                                     0                                       324                                     
+@!/PlntCtlType                             PlntCtlBus                              InvType                                 SCSOpCmd                                Rtg.VARtg                               
+   1                                       334081                                     4400                                    21521                                   0                                       
+@!/Rtg.WRtg                                Rtg.VarRtg                              Rtg.AmpRtg                              Rtg.VADrtPriMod                         Spt.WGraMod                             
+   0                                       0                                       0                                       0                                       1                                       
+@!/Spt.VArGraMod                           Spt.WGra                                Spt.VArGra                              Spt.WFilMod                             Spt.VArFilMod                           
+   1                                       1                                       1                                       1                                       1                                       
+@!/Spt.WFilTm                              Spt.VArFilTm                            Filt.VolDQFilTm                         Filt.VolPsFilTm                         Filt.AmpDFilTm                          
+   0.04                                     0.04                                     0.46                                    0.005                                   0.01                                    
+@!/Filt.AmpQFilTm                          Filt.ABControlDFilTm                    Filt.ABControlQFilTm                    Filt.AvalPwrFilTm                       Filt.VolSptGra                          
+   0.01                                    0.01                                    0.01                                    0.1                                     5                                       
+@!/AcCtl.WSptScal                          AcCtl.VArSptScal                        AcCtl.DrpHz                             AcCtl.DrpVol                            AcCtl.DrpTheta                          
+   1                                       1                                       -5                                      0.2                                   -0.12                                   
+@!/AcCtl.InertiaVolH                       AcCtl.InertiaThetaH                     AcCtl.DrpThetaFilTm                     AcCtl.InertiaHzFbDmp                    AcCtl.InertiaHzFbFilTm                  
+   1.5                                     2.5                                     0                                       0                                       0                                       
+@!/AcCtl.InertiaHzFbFil2Tm                 AcCtl.InertiaHzFwdDmp                   AcCtl.InertiaVolFwdDmp                  AcCtl.InertiaVolFbDmp                   AcCtl.InertiaVolFbDmpFilTm              
+   0                                       0                                       0                                       0                                       0                                       
+@!/AcCtl.InertiaVolFbDmpFil2Tm             AcCtl.AmpDLimKp                         AcCtl.AmpDLimKi                         AcCtl.InertiaAmpDLimKp                  AcCtl.InertiaAmpDLimKi                  
+   0                                       0.6                                     22.5                                    0.6                                     22.5                                    
+@!/AcCtl.AmpPsDLim_Ki2Fac                  AcCtl.AmpPsDLim_I2RocofLim              AcCtl.AmpPsDLim_I2CtlDownGain           AcCtl.AmpQLimKp                         AcCtl.AmpQLimKi                         
+   0.00033333                              6                                       3                                       2.4                                     90                                      
+@!/AcCtl.InertiaAmpQLimKp                  AcCtl.InertiaAmpQLimKi                  AcCtl.AmpPsQLim_Ki2Fac                  AcCtl.AmpPsQLim_I2RocofLim              AcCtl.AmpPsQLim_I2CtlDownGain           
+   2.4                                     90                                      0.00033333                              6                                       3                                       
+@!/AcCtl.InertiaThetaWCtlEna               AcCtl.InertiaThetaWCtlVolLim            AcCtl.InertiaVolVArCtlEna               AcCtl.InertiaVolVArCtlVolLim            AcCtl.InertiaThetaFwdDmpFilTm           
+   0                                       0.5                                     0                                       0.5                                     0                                       
+@!/AcCtl.InertiaThetaFwdDmp                AcCtl.AmpPsDFbEna                       AcCtl.AmpPsQFbEna                       AcCtl.AmpDLim_VolPsNomLim               AcCtl.AmpQLim_VolPsNomLim               
+   -0.12                                   1                                       1                                       1                                       1                                       
+@!/AcCtl.AmpDQLimEna                       AcCtl.PriModPsRelEna                    AcCtl.VolABKi                           AcCtl.VolABKp                           AcCtl.AmpDQFilTm                        
+   1                                       0                                       60                                      0.01                                    0.02                                    
+@!/AcCtl.ParamFilTm                        AcCtl.PreFreezeDlTm                     AcCtl.PreFreezeFilTm                    AcCtl.InertiaHzDmp                      AcCtl.InertiaVolDmp                     
+   10                                      5                                       0.02                                    -1                                      0.03                                    
+@!/AcCtl.PlantLevelInertia                 Frt.Frt_Mod                             Frt.LoVolOnLim                          Frt.HiVolOnLim                          Frt.LoVolOffLim                         
+   0                                       4                                       0.8                                     1.19                                     0.9                                     
+@!/Frt.HiVolOffLim                         Frt.DynVolOnLimEna                      Frt.DynVolOffLimEna                     Frt.VirtImpSwDetLim                     Frt.VirtImpDlTm                         
+   1.17                                    0                                       0                                       1.4                                     4                                       
+@!/Frt.VirtImpLockTm                       Frt.VirtImpWaitTm                       Frt.ResetTm                             Frt.AmpCtlEna                           Frt.AMaxNomInit                         
+   100                                     200                                     30                                      1                                       1.3                                       
+@!/Frt.AMaxNom                             Frt.AmpCtlFilTm                         Frt.CtlDevLimMax                        Frt.NegCtlDev_Gain                      Frt.AmpCtlKp                            
+   1                                       0.001                                   0.2                                     1                                       0                                       
+@!/Frt.AmpCtlKi                            Frt.VirtImpReact                        Frt.VirtImpReactMin                     Frt.VirtImpReactFFWEna                  Frt.VirtImpReactFFWFac                  
+   10                                      0.166                                   0.166                                   1                                       0.68                                    
+@!/Frt.VirtImpRis                          Frt.VirtImpRisInit                      Frt.VirtImpRisFilTm                     Frt.VolPsQFilTm                         Frt.VolPsQCtlKp                         
+   0                                       0.3                                     0.008                                   0.004                                   -4                                      
+@!/Frt.VolPsQCtlDZn                        Frt.VolPsQCtlDZnKp                      Frt.VolPsQCtlHzOfsMax                   Frt.VolPsQCtrlEna                       Frt.AMaxNomInitTm                       
+   0.25                                    0                                       1                                       1                                       0                                       
+@!/Frt.ArmsMsMaxLim                        Frt.AmpCtlOfsKiFac                      Frt.AmpCtlOfsAMaxSpt                    Frt.VirtImpReactFFWOfs                  Frt.KFacPs                              
+   1.3                                     4                                       1.3                                     0.03                                    6                                       
+@!/Frt.FFWVolFilTm                         Frt.AmpPsQPrioEna                       Frt.PsDCtlRng                           Frt.AmpPsDFFWMin                        Frt.FFWAmpLimOfs                        
+   0.001                                   1                                       0.25                                    0.18                                    0.03                                    
+@!/Frt.EnaAmpPsDSptMan                     Frt.AmpPsDSptMan                        Frt.AmpPsDFilTm                         Frt.AmpPsDMin                           Frt.AmpPsQFilTm                         
+   0                                       0                                       0.3                                     -1                                      0.3                                     
+@!/OvAmp.AmpMaxNomSecFilTm                 OvAmp.AmpMaxNomSec0Tm                   OvAmp.AmpMaxNomSec1Tm                   OvAmp.AmpMaxNomSec2Tm                   OvAmp.AmpMaxNomSec3Tm                   
+   0.02                                    76000                                   100                                     900                                     4000                                    
+@!/OvAmp.AmpMaxNomSec4Tm                   OvAmp.AmpMaxNomSec4TransTm              OvAmp.AmpMaxNomSec4ThmDrtTm             OvAmp.AmpMaxNomSec0                     OvAmp.AmpMaxNomSec1                     
+   9000                                    13900                                   2000                                    1                                       1.57                                    
+@!/OvAmp.AmpMaxNomSec2                     OvAmp.AmpMaxNomSec3                     OvAmp.AmpMaxNomSec4                     OvAmp.AmpMaxNomSec3Obs                  OvAmp.AmpMaxNomSec4Obs                  
+   1.25                                    1.16                                    0.95                                    1                                       1                                       
+@!/OvAmp.AmpMaxNomSec4ObsHys               OvAmp.AmpPsDMaxNomSec0                  OvAmp.AmpPsDMaxNomSec1                  OvAmp.AmpPsDMaxNomSec2                  OvAmp.AmpPsDMaxNomSec3                  
+   0.03                                    1                                       1.57                                    1.25                                    1.16                                    
+@!/OvAmp.AmpPsQMaxNomSec0                  OvAmp.AmpPsQMaxNomSec1                  OvAmp.AmpPsQMaxNomSec2                  OvAmp.AmpPsQMaxNomSec3                  OvAmp.VirtImpEna                        
+   1                                       1.57                                    1.25                                    1.16                                    0                                       
+@!/OvAmp.AcCtlEna                          OvAmp.AmpMaxNomInit                     OvAmp.TmpStkFilTm                       OvAmp.TmpLimNormal                      OvAmp.TmpLimTrans                       
+   0                                       1.57                                    0.5                                     142                                     147                                     
+@!/OvAmp.NormalModHysTm                    OvAmp.TransModHysTm                     OvAmp.ChangeModHysTm                    OvAmp.ChangeModHysTm                    OvAmp.StkAmpLimOn                       
+   1000                                    150                                     125                                     1.62                                    3000                                    
+@!/OvAmp.AmpCtlOfsAMaxSpt                  Ctl.HzOutLim                            Ctl.VolDQLim                            HW.OvAmpLimEna                          HW.StkAmpLimOnFac                       
+   1.62                                    5                                       0.75                                    0                                       10                                      
+@!/HzCtl.Hi1Lim                            HzCtl.Hi1LimTm                          HzCtl.Hi2Lim                            HzCtl.Hi2LimTm                          HzCtl.Hi3Lim                            
+   52.1                                      60000                                 52.1                                      60000                                 52.1                                     
+@!/HzCtl.Hi3LimTm                          HzCtl.Hi4Lim                            HzCtl.Hi4LimTm                          HzCtl.Hi5Lim                            HzCtl.Hi5LimTm                          
+   60000                                 52.1                                      60000                                 52.1                                      60000                                   
+@!/HzCtl.Hi6Lim                            HzCtl.Hi6LimTm                          HzCtl.Lo1Lim                            HzCtl.Lo1LimTm                          HzCtl.Lo2Lim                            
+   55                                      100                                   47                                      60000                                 47                                      
+@!/HzCtl.Lo2LimTm                          HzCtl.Lo3Lim                            HzCtl.Lo3LimTm                          HzCtl.Lo4Lim                            HzCtl.Lo4LimTm                          
+   60000                                 47                                      60000                                 47                                      60000                                   
+@!/HzCtl.Lo5Lim                            HzCtl.Lo5LimTm                          HzCtl.Lo6Lim                            HzCtl.Lo6LimTm                          VCtl.Hi1Lim                             
+   47                                      60000                                 45                                      100                                   1.2                                     
+@!/VCtl.Hi1LimTm                           VCtl.Hi2Lim                             VCtl.Hi2LimTm                           VCtl.Hi3Lim                             VCtl.Hi3LimTm                           
+   25000                                   1.25                                    1000                                    1.3                                     300                                    
+@!/VCtl.Hi4Lim                             VCtl.Hi4LimTm                           VCtl.Hi5Lim                             VCtl.Hi5LimTm                           VCtl.Hi6Lim                             
+   1.3                                     300                                     1.3                                     300                                     1.3                                       
+@!/VCtl.Hi6LimTm                           VCtl.Lo1Lim                             VCtl.Lo1LimTm                           VCtl.Lo2Lim                             VCtl.Lo2LimTm                           
+   300                                     0.8                                     11000                                   0.77                                    2500                                    
+@!/VCtl.Lo3Lim                             VCtl.Lo3LimTm                           VCtl.Lo4Lim                             VCtl.Lo4LimTm                           VCtl.Lo5Lim                             
+   0.4                                     2000                                    0.4                                     2000                                    0.4                                       
+@!/VCtl.Lo5LimTm                           VCtl.Lo6Lim                             VCtl.Lo6LimTm                           Spk.dVol                                Spk.AmpHoldTm                           
+   2000                                    0.4                                     2000                                    0.3                                     0.005                                   
+@!/Spk.AmpHoldFacD                         Spk.AmpHoldFacQ                         SoC.DcVolIni                            SoC.DcVolMax                            SoC.DcVolMin                            
+   0                                       0                                       1.1                                     1.3                                     0.8                                     
+@!/SoC.DcAh                                DcCtl.AmpKp                             DcCtl.AmpKi                             DcCtl.AmpKi2Fac                         DcCtl.AmpI2CtlDownGain                  
+   1e4                                     0.0                                     5.0                                     0.00033                                 3.0                                     

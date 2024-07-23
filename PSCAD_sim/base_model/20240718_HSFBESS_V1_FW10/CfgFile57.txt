@@ -2,9 +2,9 @@
 Version              SCxxxx R10
 
 #Nameplate
-#VARtg                               4200                                    # Apparent power rating in kVA
-#WRtg                                4200                                    # Active power rating in kW
-#VArRtg                              4200                                    # Reactive power rating in kVAr
+#VARtg                               4400                                    # Apparent power rating in kVA
+#WRtg                                4400                                    # Active power rating in kW
+#VArRtg                              4400                                    # Reactive power rating in kVAr
 HzRtg                               50.0                                    # Frequency rating (and Frequency set point HzSpt)
 
 InvCtlMod                           INVCTLMOD_BAT                           # Inverter control mode / INVCTLMOD_GRIFEED_MPP: Grid tie MPP Tracking mode / INVCTLMOD_GRIFEED_DCLVOLCNST: Grid tie constant DC Link voltag / INVCTLMOD_BAT: Battery inverter
