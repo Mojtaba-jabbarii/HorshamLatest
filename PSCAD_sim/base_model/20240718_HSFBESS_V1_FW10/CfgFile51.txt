@@ -29,8 +29,8 @@ VADrtPriMod                         VADRTPRIMOD_VAR                         # Po
 GriMng_InvVArMod                    GRIMNG_INVVARMOD_VARCTLVOL              # Reactive power as a function of voltage / GRIMNG_INVVARMOD_OFF: off / GRIMNG_INVVARMOD_VARCTLVOL: Q/V function
 VArCtlVol_VArSptFilTm               0.01
 
-VArCtlVol_HiGra3                    10.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
-VArCtlVol_HiGra2                    5.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
+VArCtlVol_HiGra3                    2.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
+VArCtlVol_HiGra2                    2.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
 VArCtlVol_HiGra1                    2.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
 VArCtlVol_LoGra1                    0.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
 VArCtlVol_LoGra2                    0.5                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
@@ -124,7 +124,7 @@ Frt_Mod                             SPT_FRT_MOD_FULL                        # FR
 Frt_VolFilMod                       FRTVOLFILMOD_VOLRTG                     # FRT voltage refrence: Frt_VolDFilTm filter time constant mode or voltage rating /  FRTVOLFILMOD_VOLRTG: nominal voltage / #FRTVOLFILMOD_PT1: Voltage filtered 
 FrtStep_Ena                         SWITCH_STT_DISABLE                      # FRT step detection mode / SWITCH_STT_DISABLE: off / SWITCH_STT_ENABLE: on
 FrtPro_VolGra                       10.0
-Frt_WaitTmHi                        0.1                                    # FRT Off time delay - 0.02 is minimum, 2 decimal places only
+Frt_WaitTmHi                        0.02                                    # FRT Off time delay - 0.02 is minimum, 2 decimal places only
 Frt_WaitTmLo                        0.02                                    # FRT Off time delay - 0.02 is minimum, 2 decimal places only
 Frt_HystEna                         SWITCH_STT_DISABLE                      # FRT deadband hysteresis -Only 2 decimal places supported / SWITCH_STT_DISABLE: off / SWITCH_STT_ENABLE: on
 Frt_HiDb                            1.24                                    # FRT deadband high limit -Only 2 decimal places supported
@@ -132,12 +132,12 @@ Frt_HiDbHyst                        1.22                                    # FR
 Frt_LoDbHyst                        0.87                                    # FRT deadband high limit hysteresis - Only 2 decimal places supported
 Frt_LoDb                            0.85                                    # FRT deadband high limit -Only 2 decimal places supported
 
-Frt_HiGra3                          6.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
-Frt_HiGra2                          6.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
+Frt_HiGra3                          0.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
+Frt_HiGra2                          2.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
 Frt_HiGra1                          0.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
 Frt_LoGra1                          0.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
-Frt_LoGra2                          6.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
-Frt_LoGra3                          6.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
+Frt_LoGra2                          2.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
+Frt_LoGra3                          0.0                                     # the "k"- factors (Range: 0.1...2; Range Low SCR: [0.1 ...1.5]) - 2 decimal places only are supported - !!!k factors can be higher than 2 if the SCR is high and PSCAD studies show stable response!!!
 
 Frt_HiVolRef3                       2.0                                     # FRT curve reference voltages - only 2 decimal places supported
 Frt_HiVolRef2                       1.22                                    # FRT curve reference voltages - only 2 decimal places supported

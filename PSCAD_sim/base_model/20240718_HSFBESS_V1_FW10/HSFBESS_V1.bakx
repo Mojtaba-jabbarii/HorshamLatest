@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1721372981" />
+    <param name="revisor" value="SIMULATION, 1721957300" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -291,7 +291,7 @@
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="StationDefn" name="Station" group="" url="" version="" build="" crc="88289015" instances="1" key="" view="false" id="1892424611" date="1721371965">
+    <Definition classid="StationDefn" name="Station" group="" url="" version="" build="" crc="88289015" instances="1" key="" view="false" id="1892424611" date="1721954706">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="114218818" instances="1" key="" view="false" date="1721371965" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="84174435" instances="1" key="" view="false" date="1721954707" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -961,7 +961,7 @@ OX2 Australia - Jul 2024
             <param name="hl_color_adv" value="#FFFFFF00" />
             <param name="bdr_color_adv" value="#FF95918C" />
           </paramlist><![CDATA[PV / Bat]]></Sticky>
-        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="1675394643" x="468" y="1548" w="44" h="54" z="450" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="1675394643" x="468" y="1548" w="44" h="54" z="430" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="27440011">
             <param name="MeasI" value="1" />
             <param name="MeasV" value="0" />
@@ -1026,7 +1026,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="108" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="1543620566" x="1872" y="1692" w="44" h="54" z="550" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="1543620566" x="1872" y="1692" w="44" h="54" z="530" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="27440011">
             <param name="MeasI" value="0" />
             <param name="MeasV" value="1" />
@@ -1087,7 +1087,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="-18" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="2042303879" x="1134" y="1548" w="80" h="41" z="1300" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="2042303879" x="1134" y="1548" w="80" h="41" z="1310" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="72525059">
             <param name="Ctrl" value="0" />
             <param name="OPCUR" value="0" />
@@ -1150,7 +1150,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="No_PCU1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="954405753" x="936" y="1548" w="44" h="54" z="480" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="954405753" x="936" y="1548" w="44" h="54" z="460" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="27440011">
             <param name="MeasI" value="1" />
             <param name="MeasV" value="0" />
@@ -1190,7 +1190,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU1_P_LV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1796068307" x="2466" y="180" w="81" h="40" z="1970" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1796068307" x="2466" y="180" w="81" h="40" z="1980" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_P_LV" />
             <param name="Group" value="" />
@@ -1217,7 +1217,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU1_Q_LV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1067241997" x="2466" y="216" w="83" h="40" z="1940" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1067241997" x="2466" y="216" w="83" h="40" z="1950" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_Q_LV" />
             <param name="Group" value="" />
@@ -1243,7 +1243,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="418842972" x="2466" y="144" w="82" h="40" z="2000" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="418842972" x="2466" y="144" w="82" h="40" z="2010" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_A_LV" />
             <param name="Group" value="" />
@@ -1266,7 +1266,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU1_A_LV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1470801425" x="2466" y="108" w="103" h="40" z="2030" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1470801425" x="2466" y="108" w="103" h="40" z="2040" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_V_LV_pu" />
             <param name="Group" value="" />
@@ -1292,7 +1292,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1622626048" x="2466" y="378" w="86" h="40" z="1730" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1622626048" x="2466" y="378" w="86" h="40" z="1740" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_Q_MV" />
             <param name="Group" value="" />
@@ -1319,7 +1319,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="513960862" x="2466" y="342" w="84" h="40" z="1770" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="513960862" x="2466" y="342" w="84" h="40" z="1780" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_P_MV" />
             <param name="Group" value="" />
@@ -1346,7 +1346,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1984775085" x="2466" y="306" w="85" h="40" z="1820" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1984775085" x="2466" y="306" w="85" h="40" z="1840" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_A_MV" />
             <param name="Group" value="" />
@@ -1361,7 +1361,7 @@ OX2 Australia - Jul 2024
             <param name="enab" value="1" />
           </paramlist>
           <paramlist name="global_address">
-            <param name="gaddress" value="100663341" />
+            <param name="gaddress" value="100663342" />
           </paramlist>
         </User>
         <User classid="UserCmp" name="master:datalabel" defn="master:datalabel" id="765391656" x="2430" y="306" w="74" h="23" z="1" orient="0" link="-1" q="4" disable="false">
@@ -1373,7 +1373,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1656298603" x="2466" y="270" w="106" h="40" z="1880" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1656298603" x="2466" y="270" w="106" h="40" z="1890" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_V_MV_pu" />
             <param name="Group" value="" />
@@ -1404,7 +1404,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="90" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="2104001909" x="3006" y="180" w="93" h="40" z="1920" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="2104001909" x="3006" y="180" w="93" h="40" z="1930" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PLANT_Q_HV" />
             <param name="Group" value="" />
@@ -1431,7 +1431,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="90" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="721831570" x="3006" y="144" w="91" h="40" z="1960" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="721831570" x="3006" y="144" w="91" h="40" z="1970" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PLANT_P_HV" />
             <param name="Group" value="" />
@@ -1481,7 +1481,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PoiVArSpt" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="const" defn="master:const" id="563763234" x="1674" y="72" w="76" h="22" z="70" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="563763234" x="1674" y="72" w="76" h="22" z="80" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="127947.2" />
@@ -1540,7 +1540,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="-108" y="0" />
         </Wire>
-        <User classid="UserCmp" name="const" defn="master:const" id="161057797" x="1674" y="270" w="76" h="22" z="220" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="161057797" x="1674" y="270" w="76" h="22" z="200" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="50" />
@@ -1605,7 +1605,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_Spt" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="71743599" x="954" y="1872" w="44" h="54" z="630" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="71743599" x="954" y="1872" w="44" h="54" z="610" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="27440011">
             <param name="MeasI" value="1" />
             <param name="MeasV" value="0" />
@@ -1653,7 +1653,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="90" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="1701648050" x="1134" y="1872" w="80" h="41" z="640" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="1701648050" x="1134" y="1872" w="80" h="41" z="620" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="72525059">
             <param name="Ctrl" value="0" />
             <param name="OPCUR" value="0" />
@@ -1741,7 +1741,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="54" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="469044665" x="396" y="1872" w="44" h="54" z="580" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="469044665" x="396" y="1872" w="44" h="54" z="560" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="27440011">
             <param name="MeasI" value="1" />
             <param name="MeasV" value="0" />
@@ -1804,7 +1804,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_V_MV_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1603104334" x="2682" y="270" w="106" h="40" z="1860" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1603104334" x="2682" y="270" w="106" h="40" z="1870" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_V_MV_pu" />
             <param name="Group" value="" />
@@ -1831,7 +1831,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_A_MV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1075486167" x="2682" y="306" w="85" h="40" z="1810" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1075486167" x="2682" y="306" w="85" h="40" z="1820" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_A_MV" />
             <param name="Group" value="" />
@@ -1858,7 +1858,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_P_MV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1275825479" x="2682" y="342" w="84" h="40" z="1750" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1275825479" x="2682" y="342" w="84" h="40" z="1760" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_P_MV" />
             <param name="Group" value="" />
@@ -1885,7 +1885,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_Q_MV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1440932216" x="2682" y="378" w="86" h="40" z="1700" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1440932216" x="2682" y="378" w="86" h="40" z="1710" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_Q_MV" />
             <param name="Group" value="" />
@@ -1916,7 +1916,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_V_LV_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1344122389" x="2682" y="108" w="103" h="40" z="2020" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1344122389" x="2682" y="108" w="103" h="40" z="2030" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_V_LV_pu" />
             <param name="Group" value="" />
@@ -1938,7 +1938,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="384549660" x="2682" y="216" w="83" h="40" z="1910" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="384549660" x="2682" y="216" w="83" h="40" z="1920" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_Q_LV" />
             <param name="Group" value="" />
@@ -1965,7 +1965,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1629716426" x="2682" y="180" w="81" h="40" z="1950" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1629716426" x="2682" y="180" w="81" h="40" z="1960" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_P_LV" />
             <param name="Group" value="" />
@@ -1988,7 +1988,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_P_LV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:consti" id="1279062394" x="1836" y="918" w="76" h="35" z="370" orient="0" defn="master:consti" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:consti" id="1279062394" x="1836" y="918" w="76" h="35" z="350" orient="0" defn="master:consti" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74846674">
             <param name="Name" value="PCU2_BRK" />
             <param name="Value" value="0" />
@@ -2004,7 +2004,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="54" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="715073575" x="1782" y="1692" w="80" h="41" z="540" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="715073575" x="1782" y="1692" w="80" h="41" z="520" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="72525059">
             <param name="Ctrl" value="0" />
             <param name="OPCUR" value="0" />
@@ -2045,7 +2045,7 @@ OX2 Australia - Jul 2024
             <param name="Vbr" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:unity" id="552567291" x="612" y="270" w="44" h="21" z="150" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:unity" id="552567291" x="612" y="270" w="44" h="21" z="160" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65785874">
             <param name="IType" value="1" />
             <param name="OType" value="0" />
@@ -2064,13 +2064,13 @@ OX2 Australia - Jul 2024
           <vertex x="-18" y="0" />
           <vertex x="-18" y="-18" />
         </Wire>
-        <User classid="UserCmp" defn="master:inv" id="96308495" x="612" y="270" w="44" h="25" z="160" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:inv" id="96308495" x="612" y="270" w="44" h="25" z="690" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="58931267">
             <param name="INTR" value="0" />
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:unity" id="1644541565" x="756" y="270" w="44" h="21" z="190" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:unity" id="1644541565" x="756" y="270" w="44" h="21" z="710" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65785874">
             <param name="IType" value="0" />
             <param name="OType" value="2" />
@@ -2079,7 +2079,7 @@ OX2 Australia - Jul 2024
             <param name="CmplxParts" value="0" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:consti" id="1215796153" x="504" y="252" w="76" h="35" z="120" orient="0" defn="master:consti" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:consti" id="1215796153" x="504" y="252" w="76" h="35" z="130" orient="0" defn="master:consti" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74846674">
             <param name="Name" value="HV_BRK" />
             <param name="Value" value="0" />
@@ -2091,7 +2091,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU1_Arms_LV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1143081174" x="2484" y="432" w="101" h="40" z="1660" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1143081174" x="2484" y="432" w="101" h="40" z="1670" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_Arms_LV" />
             <param name="Group" value="" />
@@ -2117,7 +2117,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="72" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="224869809" x="2700" y="432" w="101" h="40" z="1650" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="224869809" x="2700" y="432" w="101" h="40" z="1660" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_Arms_LV" />
             <param name="Group" value="" />
@@ -2159,7 +2159,7 @@ OX2 Australia - Jul 2024
             <param name="enab" value="1" />
           </paramlist>
           <paramlist name="global_address">
-            <param name="gaddress" value="100663344" />
+            <param name="gaddress" value="100663341" />
           </paramlist>
         </User>
         <User classid="UserCmp" name="master:datalabel" defn="master:datalabel" id="1092367268" x="2916" y="252" w="46" h="23" z="1" orient="2" link="-1" q="4" disable="false">
@@ -2240,7 +2240,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" defn="master:bin_delay" id="1921376864" x="684" y="270" w="80" h="59" z="180" orient="0" link="-1" layer="" q="4" disable="false">
+        <User classid="UserCmp" defn="master:bin_delay" id="1921376864" x="684" y="270" w="80" h="59" z="700" orient="0" link="-1" layer="" q="4" disable="false">
           <paramlist link="-1" name="" crc="111732689">
             <param name="T" value="0.05 [s]" />
             <param name="Toff" value="0.05 [s]" />
@@ -2249,14 +2249,14 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="const" defn="master:const" id="844968393" x="1674" y="144" w="76" h="22" z="130" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="844968393" x="1674" y="144" w="76" h="22" z="140" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="47005" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="const" defn="master:const" id="400574328" x="1674" y="162" w="76" h="22" z="140" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="400574328" x="1674" y="162" w="76" h="22" z="150" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="-47005" />
@@ -2445,7 +2445,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_Phs" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="684539198" x="2700" y="468" w="72" h="40" z="1600" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="684539198" x="2700" y="468" w="72" h="40" z="1610" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_Phs" />
             <param name="Group" value="" />
@@ -2471,7 +2471,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="72" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1395805829" x="2484" y="468" w="72" h="40" z="1620" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1395805829" x="2484" y="468" w="72" h="40" z="1630" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU1_Phs" />
             <param name="Group" value="" />
@@ -2499,7 +2499,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PLANT_Phs" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="289292808" x="3006" y="216" w="80" h="40" z="1870" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="289292808" x="3006" y="216" w="80" h="40" z="1880" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PLANT_Phs" />
             <param name="Group" value="" />
@@ -2544,7 +2544,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="Vrms_abc_POI" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:consti" id="1775440532" x="1836" y="972" w="76" h="35" z="390" orient="0" defn="master:consti" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:consti" id="1775440532" x="1836" y="972" w="76" h="35" z="370" orient="0" defn="master:consti" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74846674">
             <param name="Name" value="MVBRK" />
             <param name="Value" value="0" />
@@ -2686,7 +2686,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="18" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:photovoltaic_source" id="1473112425" x="126" y="1530" w="81" h="90" z="1320" orient="1" defn="master:photovoltaic_source" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:photovoltaic_source" id="1473112425" x="126" y="1530" w="81" h="90" z="1330" orient="1" defn="master:photovoltaic_source" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="124109687">
             <param name="PVname" value="PCU1_PV" />
             <param name="Nsr" value="24" />
@@ -2715,14 +2715,14 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PVarray1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:const" defn="master:const" id="129300303" x="90" y="1584" w="22" h="76" z="440" orient="3" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:const" defn="master:const" id="129300303" x="90" y="1584" w="22" h="76" z="420" orient="3" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="25" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:InvFbDummy" id="1231646374" x="1548" y="468" w="150" h="50" z="230" orient="0" defn="HyCtl_PSCAD_Lib:InvFbDummy" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:InvFbDummy" id="1231646374" x="1548" y="468" w="150" h="50" z="210" orient="0" defn="HyCtl_PSCAD_Lib:InvFbDummy" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="83256274">
             <param name="Name" value="" />
           </paramlist>
@@ -2798,13 +2798,13 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:nodeloop" defn="master:nodeloop" id="2013406559" x="1242" y="1872" w="14" h="80" z="650" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:nodeloop" defn="master:nodeloop" id="2013406559" x="1242" y="1872" w="14" h="80" z="630" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="27415962">
             <param name="View" value="1" />
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:rms3ph" defn="master:rms3ph" id="1848716377" x="1242" y="1800" w="59" h="80" z="1260" orient="5" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:rms3ph" defn="master:rms3ph" id="1848716377" x="1242" y="1800" w="59" h="80" z="1270" orient="5" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="73810968">
             <param name="Type" value="1" />
             <param name="View" value="1" />
@@ -2908,7 +2908,7 @@ OX2 Australia - Jul 2024
           </paramlist>
           <Control classid="Switch" id="1764641369" name="PV" link="2080782626" />
         </Frame>
-        <User classid="UserCmp" name="master:var_switch" id="2080782626" x="1746" y="774" w="51" h="53" z="280" orient="0" defn="master:var_switch" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:var_switch" id="2080782626" x="1746" y="774" w="51" h="53" z="260" orient="0" defn="master:var_switch" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="86328302">
             <param name="Name" value="PV" />
             <param name="Group" value="" />
@@ -2921,7 +2921,7 @@ OX2 Australia - Jul 2024
             <param name="Toff" value="off" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:unity" id="38550708" x="1818" y="774" w="44" h="21" z="290" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:unity" id="38550708" x="1818" y="774" w="44" h="21" z="270" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65785874">
             <param name="IType" value="2" />
             <param name="OType" value="1" />
@@ -2998,7 +2998,7 @@ OX2 Australia - Jul 2024
             <param name="Meas_Grid" value="Meas_Grid" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:xfmr-3p2w" id="581045017" x="1476" y="1692" w="98" h="64" z="1280" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:xfmr-3p2w" id="581045017" x="1476" y="1692" w="98" h="64" z="1290" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="86463138">
             <param name="Name" value="T2" />
             <param name="Tmva" value="170 [MVA]" />
@@ -3113,7 +3113,7 @@ OX2 Australia - Jul 2024
             <param name="memberof" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:const" id="1374696001" x="1404" y="1512" w="76" h="22" z="490" orient="0" defn="master:const" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:const" id="1374696001" x="1404" y="1512" w="76" h="22" z="470" orient="0" defn="master:const" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="1.03" />
@@ -3129,7 +3129,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="maintap" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="234771314" x="1638" y="1494" w="60" h="40" z="1310" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="234771314" x="1638" y="1494" w="60" h="40" z="1320" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="maintap" />
             <param name="Group" value="" />
@@ -3193,7 +3193,7 @@ OX2 Australia - Jul 2024
             <param name="ymax" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="122835826" x="1422" y="1692" w="44" h="54" z="520" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="122835826" x="1422" y="1692" w="44" h="54" z="500" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="27440011">
             <param name="MeasI" value="1" />
             <param name="MeasV" value="0" />
@@ -3224,7 +3224,7 @@ OX2 Australia - Jul 2024
             <param name="VolILL" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="943764813" x="1350" y="1692" w="80" h="41" z="510" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="943764813" x="1350" y="1692" w="80" h="41" z="490" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="72525059">
             <param name="Ctrl" value="0" />
             <param name="OPCUR" value="0" />
@@ -3269,10 +3269,10 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="18" y="0" />
         </Wire>
-        <User classid="UserCmp" name="HSFBESS_V1:xfmr_2w_scaled" id="160824263" x="540" y="1872" w="116" h="81" z="600" orient="4" defn="HSFBESS_V1:xfmr_2w_scaled" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HSFBESS_V1:xfmr_2w_scaled" id="160824263" x="540" y="1872" w="116" h="81" z="580" orient="4" defn="HSFBESS_V1:xfmr_2w_scaled" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="19039718">
             <param name="Name" value="T1_2" />
-            <param name="Tmva" value="4.2" />
+            <param name="Tmva" value="4.4" />
             <param name="f" value="50.0" />
             <param name="YD1" value="1" />
             <param name="YD2" value="0" />
@@ -3284,7 +3284,7 @@ OX2 Australia - Jul 2024
             <param name="Tap" value="0" />
             <param name="View" value="1" />
             <param name="Dtls" value="0" />
-            <param name="V2" value="0.63" />
+            <param name="V2" value="0.66" />
             <param name="V1" value="33" />
             <param name="Im1" value="0.4" />
             <param name="Txk" value="0.1" />
@@ -3319,7 +3319,7 @@ OX2 Australia - Jul 2024
             <param name="IMAB" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:consti" id="1248158520" x="522" y="1836" w="76" h="22" z="560" orient="6" defn="master:consti" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:consti" id="1248158520" x="522" y="1836" w="76" h="22" z="540" orient="6" defn="master:consti" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74846674">
             <param name="Name" value="" />
             <param name="Value" value="40" />
@@ -3353,7 +3353,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="18" y="0" />
         </Wire>
-        <User classid="UserCmp" name="HSFBESS_V1:GridSource" id="1927070795" x="2268" y="1692" w="130" h="84" z="590" orient="4" defn="HSFBESS_V1:GridSource" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HSFBESS_V1:GridSource" id="1927070795" x="2268" y="1692" w="130" h="84" z="570" orient="4" defn="HSFBESS_V1:GridSource" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65570576">
             <param name="Name" value="GridSource_1" />
             <param name="Vnom" value="132" />
@@ -3473,7 +3473,7 @@ OX2 Australia - Jul 2024
             <param name="OscStartTime" value="5.0" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="HSFBESS_V1:FaultBlock" id="1591544161" x="2142" y="1836" w="84" h="123" z="680" orient="0" defn="HSFBESS_V1:FaultBlock" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HSFBESS_V1:FaultBlock" id="1591544161" x="2142" y="1836" w="84" h="123" z="660" orient="0" defn="HSFBESS_V1:FaultBlock" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="79056238">
             <param name="Name" value="FaultBlock_1" />
             <param name="status" value="1" />
@@ -3591,7 +3591,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="0" y="-90" />
         </Wire>
-        <User classid="UserCmp" name="HSFBESS_V1:xfmr_2w_scaled" id="944246549" x="540" y="1548" w="116" h="81" z="460" orient="4" defn="HSFBESS_V1:xfmr_2w_scaled" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HSFBESS_V1:xfmr_2w_scaled" id="944246549" x="540" y="1548" w="116" h="81" z="440" orient="4" defn="HSFBESS_V1:xfmr_2w_scaled" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="19039718">
             <param name="Name" value="T1_2" />
             <param name="Tmva" value="4.2" />
@@ -3607,7 +3607,7 @@ OX2 Australia - Jul 2024
             <param name="View" value="1" />
             <param name="Dtls" value="0" />
             <param name="V2" value="0.63" />
-            <param name="V1" value="33" />
+            <param name="V1" value="33.825" />
             <param name="Im1" value="0.4" />
             <param name="Txk" value="0.1" />
             <param name="Xknee" value="1.25" />
@@ -3641,7 +3641,7 @@ OX2 Australia - Jul 2024
             <param name="IMAB" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:consti" id="1669127423" x="522" y="1512" w="76" h="22" z="430" orient="6" defn="master:consti" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:consti" id="1669127423" x="522" y="1512" w="76" h="22" z="410" orient="6" defn="master:consti" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74846674">
             <param name="Name" value="" />
             <param name="Value" value="36" />
@@ -3676,7 +3676,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="SC_Fb" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:unity" id="581491248" x="1818" y="828" w="44" h="21" z="310" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:unity" id="581491248" x="1818" y="828" w="44" h="21" z="290" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65785874">
             <param name="IType" value="2" />
             <param name="OType" value="1" />
@@ -3713,13 +3713,13 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:inv" id="318340400" x="1782" y="864" w="44" h="25" z="340" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:inv" id="318340400" x="1782" y="864" w="44" h="25" z="320" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="58931267">
             <param name="INTR" value="0" />
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:consti" id="1857394408" x="1746" y="864" w="76" h="35" z="330" orient="0" defn="master:consti" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:consti" id="1857394408" x="1746" y="864" w="76" h="35" z="310" orient="0" defn="master:consti" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74846674">
             <param name="Name" value="PCU1_BRK" />
             <param name="Value" value="0" />
@@ -3771,7 +3771,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="162" y="0" />
         </Wire>
-        <User classid="UserCmp" defn="master:var" id="1848744033" x="108" y="936" w="76" h="53" z="270" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:var" id="1848744033" x="108" y="936" w="76" h="53" z="250" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="26191013">
             <param name="Name" value="Qstp_manual" />
             <param name="Group" value="" />
@@ -3783,7 +3783,7 @@ OX2 Australia - Jul 2024
             <param name="Collect" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:var" id="1318337119" x="108" y="1008" w="80" h="53" z="320" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:var" id="1318337119" x="108" y="1008" w="80" h="53" z="300" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="26191013">
             <param name="Name" value="PFstp_manual" />
             <param name="Group" value="" />
@@ -3795,7 +3795,7 @@ OX2 Australia - Jul 2024
             <param name="Collect" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:var" id="2086338592" x="198" y="972" w="74" h="53" z="300" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:var" id="2086338592" x="198" y="972" w="74" h="53" z="280" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="26191013">
             <param name="Name" value="Pstp_manual" />
             <param name="Group" value="" />
@@ -3823,7 +3823,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="72" y="0" />
         </Wire>
-        <User classid="UserCmp" defn="master:var" id="871555513" x="198" y="900" w="76" h="53" z="250" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:var" id="871555513" x="198" y="900" w="76" h="53" z="230" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="26191013">
             <param name="Name" value="Vstp_manual" />
             <param name="Group" value="" />
@@ -3835,7 +3835,7 @@ OX2 Australia - Jul 2024
             <param name="Collect" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:var" id="185081272" x="198" y="1080" w="82" h="53" z="360" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:var" id="185081272" x="198" y="1080" w="82" h="53" z="340" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="26191013">
             <param name="Name" value="P1stp_manual" />
             <param name="Group" value="" />
@@ -4146,7 +4146,7 @@ OX2 Australia - Jul 2024
             <param name="PF1stpDefault" value="1.0" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:var" id="1636021188" x="108" y="1152" w="58" h="53" z="400" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:var" id="1636021188" x="108" y="1152" w="58" h="53" z="380" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="26191013">
             <param name="Name" value="Irradiance" />
             <param name="Group" value="" />
@@ -4254,7 +4254,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="GcbStt" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="const" defn="master:const" id="925463291" x="828" y="270" w="76" h="35" z="200" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="925463291" x="828" y="270" w="76" h="35" z="180" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="Gcb" />
             <param name="Value" value="0" />
@@ -4400,7 +4400,7 @@ OX2 Australia - Jul 2024
             <param name="hl_color_adv" value="#FFFFFF00" />
             <param name="bdr_color_adv" value="#FF95918C" />
           </paramlist><![CDATA[HV transformer]]></Sticky>
-        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="1251734031" x="720" y="1548" w="44" h="54" z="470" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="1251734031" x="720" y="1548" w="44" h="54" z="450" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="27440011">
             <param name="MeasI" value="0" />
             <param name="MeasV" value="0" />
@@ -4439,7 +4439,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="306794587" x="738" y="1872" w="44" h="54" z="620" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:multimeter" defn="master:multimeter" id="306794587" x="738" y="1872" w="44" h="54" z="600" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="27440011">
             <param name="MeasI" value="0" />
             <param name="MeasV" value="0" />
@@ -4588,7 +4588,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="90" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1825491331" x="3006" y="108" w="113" h="40" z="1990" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1825491331" x="3006" y="108" w="113" h="40" z="2000" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PLANT_V_HV_pu" />
             <param name="Group" value="" />
@@ -4610,7 +4610,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="54" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="809589327" x="3096" y="396" w="79" h="40" z="1640" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="809589327" x="3096" y="396" w="79" h="40" z="1650" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Qspt_MVAr" />
             <param name="Group" value="" />
@@ -4637,7 +4637,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="198" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="636344" x="3096" y="324" w="63" h="40" z="1720" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="636344" x="3096" y="324" w="63" h="40" z="1730" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PoiPfSpt" />
             <param name="Group" value="" />
@@ -4692,7 +4692,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="54" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1450197031" x="3096" y="360" w="69" h="40" z="1690" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1450197031" x="3096" y="360" w="69" h="40" z="1700" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Pspt_MW" />
             <param name="Group" value="" />
@@ -4791,7 +4791,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU1_V_LV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="1465156214" x="2466" y="630" w="80" h="59" z="1480" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="1465156214" x="2466" y="630" w="80" h="59" z="1490" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -4812,7 +4812,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU1_V_MV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="1639115647" x="2466" y="702" w="80" h="59" z="1430" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="1639115647" x="2466" y="702" w="80" h="59" z="1440" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -4828,7 +4828,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_V_MV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="922511020" x="2700" y="702" w="80" h="59" z="1410" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="922511020" x="2700" y="702" w="80" h="59" z="1420" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -4849,7 +4849,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU1_V_MV_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="371043801" x="2178" y="1692" w="80" h="41" z="1270" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="371043801" x="2178" y="1692" w="80" h="41" z="1280" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="72525059">
             <param name="Ctrl" value="0" />
             <param name="OPCUR" value="0" />
@@ -4908,14 +4908,14 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:time-sig" id="1799601357" x="1710" y="1062" w="76" h="22" z="410" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:time-sig" id="1799601357" x="1710" y="1062" w="76" h="22" z="390" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="20913136" />
         </User>
         <Wire classid="WireOrthogonal" id="1664389780" name="" x="1818" y="1062" w="118" h="10" orient="0" disable="false">
           <vertex x="0" y="0" />
           <vertex x="108" y="0" />
         </Wire>
-        <User classid="UserCmp" defn="master:const" id="1406746118" x="1710" y="1098" w="78" h="35" z="420" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:const" id="1406746118" x="1710" y="1098" w="78" h="35" z="400" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="inf_BRK_time" />
             <param name="Value" value="1000" />
@@ -4936,7 +4936,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="Qcmd_PPC_to_INV_PV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="1444261337" x="3294" y="162" w="28" h="26" z="1240" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="1444261337" x="3294" y="162" w="28" h="26" z="1250" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="2" />
             <param name="Dim" value="1" />
@@ -4946,7 +4946,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="415654518" x="3294" y="126" w="28" h="26" z="1250" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="415654518" x="3294" y="126" w="28" h="26" z="1260" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="1" />
             <param name="Dim" value="1" />
@@ -4987,7 +4987,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="Qcmd_PPC_to_INV_BESS" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="1613229167" x="3294" y="234" w="28" h="26" z="1220" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="1613229167" x="3294" y="234" w="28" h="26" z="1230" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="2" />
             <param name="Dim" value="1" />
@@ -4997,7 +4997,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="738998506" x="3294" y="198" w="28" h="26" z="1230" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="738998506" x="3294" y="198" w="28" h="26" z="1240" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="1" />
             <param name="Dim" value="1" />
@@ -5024,7 +5024,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="0" y="54" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1621440925" x="3492" y="126" w="143" h="40" z="1930" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1621440925" x="3492" y="126" w="143" h="40" z="1940" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Pcmd_PPC_to_INV_PV" />
             <param name="Group" value="" />
@@ -5046,7 +5046,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="126" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="461444729" x="3492" y="162" w="145" h="40" z="1890" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="461444729" x="3492" y="162" w="145" h="40" z="1900" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Qcmd_PPC_to_INV_PV" />
             <param name="Group" value="" />
@@ -5068,7 +5068,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="126" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="2065048840" x="3492" y="198" w="156" h="40" z="1840" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="2065048840" x="3492" y="198" w="156" h="40" z="1850" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Pcmd_PPC_to_INV_BESS" />
             <param name="Group" value="" />
@@ -5090,7 +5090,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="126" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="760618102" x="3492" y="234" w="158" h="40" z="1780" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="760618102" x="3492" y="234" w="158" h="40" z="1790" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Qcmd_PPC_to_INV_BESS" />
             <param name="Group" value="" />
@@ -5198,7 +5198,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="0" y="72" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1057224702" x="3492" y="288" w="92" h="40" z="1710" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1057224702" x="3492" y="288" w="92" h="40" z="1720" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Pout_INV_PV" />
             <param name="Group" value="" />
@@ -5220,7 +5220,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="99931441" x="3492" y="324" w="94" h="40" z="1680" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="99931441" x="3492" y="324" w="94" h="40" z="1690" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Qout_INV_PV" />
             <param name="Group" value="" />
@@ -5242,7 +5242,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="150012431" x="3492" y="360" w="105" h="40" z="1630" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="150012431" x="3492" y="360" w="105" h="40" z="1640" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Pout_INV_BESS" />
             <param name="Group" value="" />
@@ -5264,7 +5264,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1544924367" x="3492" y="396" w="107" h="40" z="1580" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1544924367" x="3492" y="396" w="107" h="40" z="1590" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Qout_INV_BESS" />
             <param name="Group" value="" />
@@ -5463,28 +5463,28 @@ OX2 Australia - Jul 2024
             </Curve>
           </Graph>
         </Frame>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="385007245" x="3276" y="630" w="80" h="59" z="1420" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="385007245" x="3276" y="630" w="80" h="59" z="1430" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
             <param name="DPath" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="710910315" x="3276" y="702" w="80" h="59" z="1380" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="710910315" x="3276" y="702" w="80" h="59" z="1390" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
             <param name="DPath" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="2046972644" x="3528" y="630" w="80" h="59" z="1390" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="2046972644" x="3528" y="630" w="80" h="59" z="1400" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
             <param name="DPath" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="148095416" x="3528" y="702" w="80" h="59" z="1360" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="148095416" x="3528" y="702" w="80" h="59" z="1370" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -5496,9 +5496,9 @@ OX2 Australia - Jul 2024
             <param name="Name" value="MV_Vol_base" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="46018860" x="810" y="126" w="76" h="23" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="46018860" x="810" y="126" w="82" h="23" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="127230955">
-            <param name="Name" value="LV_Vol_base" />
+            <param name="Name" value="LV_Vol_base1" />
           </paramlist>
         </User>
         <Wire classid="WireOrthogonal" id="424696146" name="" x="738" y="90" w="82" h="10" orient="0" disable="false">
@@ -5523,9 +5523,9 @@ OX2 Australia - Jul 2024
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="277006334" x="2466" y="666" w="76" h="23" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="277006334" x="2466" y="666" w="82" h="23" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="127230955">
-            <param name="Name" value="LV_Vol_base" />
+            <param name="Name" value="LV_Vol_base1" />
           </paramlist>
         </User>
         <User classid="UserCmp" name="master:datalabel" defn="master:datalabel" id="2044898330" x="2430" y="108" w="92" h="23" z="1" orient="4" link="-1" q="4" disable="false">
@@ -5538,7 +5538,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_V_LV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:div" defn="master:div" id="33150007" x="2700" y="630" w="80" h="59" z="1470" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:div" defn="master:div" id="33150007" x="2700" y="630" w="80" h="59" z="1480" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
@@ -5554,16 +5554,16 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PCU2_V_LV_pu" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="437679647" x="2700" y="666" w="76" h="23" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="437679647" x="2700" y="666" w="82" h="23" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="127230955">
-            <param name="Name" value="LV_Vol_base" />
+            <param name="Name" value="LV_Vol_base2" />
           </paramlist>
         </User>
         <Wire classid="WireOrthogonal" name="" x="2646" y="144" w="46" h="10" orient="0" id="2034773748" disable="false">
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="337211598" x="2682" y="144" w="82" h="40" z="1980" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="337211598" x="2682" y="144" w="82" h="40" z="1990" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PCU2_A_LV" />
             <param name="Group" value="" />
@@ -5621,7 +5621,7 @@ OX2 Australia - Jul 2024
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="const" defn="master:const" id="721823790" x="702" y="162" w="80" h="35" z="60" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="721823790" x="702" y="162" w="80" h="35" z="70" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="P_Base_BESS" />
             <param name="Value" value="4400" />
@@ -5683,7 +5683,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="54" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="448778405" x="3096" y="432" w="90" h="40" z="1590" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="448778405" x="3096" y="432" w="90" h="40" z="1600" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="BESSspt_MW" />
             <param name="Group" value="" />
@@ -5728,7 +5728,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="198" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="324557867" x="3096" y="288" w="90" h="40" z="1760" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="324557867" x="3096" y="288" w="90" h="40" z="1770" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PoiVolSpt_pu" />
             <param name="Group" value="" />
@@ -5769,14 +5769,14 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="72" y="0" />
         </Wire>
-        <User classid="UserCmp" name="const" defn="master:const" id="978032966" x="504" y="198" w="76" h="35" z="80" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="978032966" x="504" y="198" w="76" h="35" z="90" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="Q_Base_PV" />
             <param name="Value" value="2520" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="const" defn="master:const" id="1191305633" x="702" y="198" w="82" h="35" z="100" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="1191305633" x="702" y="198" w="82" h="35" z="110" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="Q_Base_BESS" />
             <param name="Value" value="2640" />
@@ -5819,7 +5819,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="90" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" id="751113735" x="3996" y="396" w="74" h="40" z="1540" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="751113735" x="3996" y="396" w="74" h="40" z="1550" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Vneg_PoC" />
             <param name="Group" value="" />
@@ -5837,7 +5837,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663312" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="1061496843" x="3996" y="360" w="72" h="40" z="1570" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="1061496843" x="3996" y="360" w="72" h="40" z="1580" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Vpos_PoC" />
             <param name="Group" value="" />
@@ -5855,7 +5855,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663315" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="2037999191" x="3996" y="324" w="76" h="40" z="1610" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="2037999191" x="3996" y="324" w="76" h="40" z="1620" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Vzero_PoC" />
             <param name="Group" value="" />
@@ -5957,7 +5957,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="Ineg_PoC" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="424721341" x="3996" y="504" w="72" h="40" z="1460" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="424721341" x="3996" y="504" w="72" h="40" z="1470" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Izero_PoC" />
             <param name="Group" value="" />
@@ -5975,7 +5975,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663306" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="1761542537" x="3996" y="540" w="68" h="40" z="1440" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="1761542537" x="3996" y="540" w="68" h="40" z="1450" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Ipos_PoC" />
             <param name="Group" value="" />
@@ -5993,7 +5993,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663304" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="1526379897" x="3996" y="576" w="70" h="40" z="1400" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="1526379897" x="3996" y="576" w="70" h="40" z="1410" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Ineg_PoC" />
             <param name="Group" value="" />
@@ -6036,7 +6036,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="0" y="36" />
         </Wire>
-        <User classid="UserCmp" name="master:datatap" id="2051218818" x="3744" y="126" w="28" h="26" z="720" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="2051218818" x="3744" y="126" w="28" h="26" z="730" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="1" />
             <param name="Dim" value="1" />
@@ -6046,7 +6046,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="173722533" x="3744" y="144" w="28" h="26" z="730" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="173722533" x="3744" y="144" w="28" h="26" z="740" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="2" />
             <param name="Dim" value="1" />
@@ -6056,7 +6056,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:datatap" id="1711425827" x="3744" y="162" w="28" h="26" z="740" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:datatap" id="1711425827" x="3744" y="162" w="28" h="26" z="750" orient="0" defn="master:datatap" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="38224701">
             <param name="Index" value="3" />
             <param name="Dim" value="1" />
@@ -6105,7 +6105,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" id="680078081" x="3996" y="144" w="79" h="40" z="1850" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="680078081" x="3996" y="144" w="79" h="40" z="1860" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Iqzero_PoC" />
             <param name="Group" value="" />
@@ -6123,7 +6123,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663346" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="709309017" x="3996" y="180" w="75" h="40" z="1790" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="709309017" x="3996" y="180" w="75" h="40" z="1800" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Iqpos_PoC" />
             <param name="Group" value="" />
@@ -6141,7 +6141,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663336" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="1350230624" x="3996" y="216" w="77" h="40" z="1740" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="1350230624" x="3996" y="216" w="77" h="40" z="1750" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Iqneg_PoC" />
             <param name="Group" value="" />
@@ -6190,7 +6190,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="Iqneg_PoC" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="HSFBESS_V1:SymmetricalComponentsCalc_1_1" id="1657109207" x="3852" y="180" w="139" h="136" z="750" orient="0" defn="HSFBESS_V1:SymmetricalComponentsCalc_1_1" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HSFBESS_V1:SymmetricalComponentsCalc_1_1" id="1657109207" x="3852" y="180" w="139" h="136" z="760" orient="0" defn="HSFBESS_V1:SymmetricalComponentsCalc_1_1" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="121216989">
             <param name="Name" value="SymmetricalComponentsCalc_1_1" />
             <param name="Frequency" value="50" />
@@ -6218,14 +6218,14 @@ OX2 Australia - Jul 2024
             <param name="Name" value="Iqpos_PoC" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:div" id="399860630" x="4212" y="144" w="80" h="59" z="760" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:div" id="399860630" x="4212" y="144" w="80" h="59" z="1220" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74852640">
             <param name="Dim" value="1" />
             <param name="Name" value="" />
             <param name="DPath" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="98708744" x="4338" y="144" w="113" h="40" z="1800" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="98708744" x="4338" y="144" w="113" h="40" z="1810" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Iq_neg_pos_ratio" />
             <param name="Group" value="" />
@@ -6256,7 +6256,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="54" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" id="818901818" x="4464" y="612" w="66" h="40" z="1350" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="818901818" x="4464" y="612" w="66" h="40" z="1360" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Itot_PoC" />
             <param name="Group" value="" />
@@ -6340,7 +6340,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="36" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" id="2057990663" x="4374" y="468" w="56" h="40" z="1450" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="2057990663" x="4374" y="468" w="56" h="40" z="1460" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Iq_PoC" />
             <param name="Group" value="" />
@@ -6358,7 +6358,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663305" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="272528699" x="4374" y="324" w="56" h="40" z="1560" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="272528699" x="4374" y="324" w="56" h="40" z="1570" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Id_PoC" />
             <param name="Group" value="" />
@@ -6388,7 +6388,7 @@ OX2 Australia - Jul 2024
             <param name="DPath" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:const" id="743520786" x="4194" y="504" w="76" h="22" z="260" orient="0" defn="master:const" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:const" id="743520786" x="4194" y="504" w="76" h="22" z="240" orient="0" defn="master:const" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="127.947" />
@@ -6424,7 +6424,7 @@ OX2 Australia - Jul 2024
             <param name="DPath" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:const" id="585412574" x="4194" y="360" w="76" h="22" z="240" orient="0" defn="master:const" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:const" id="585412574" x="4194" y="360" w="76" h="22" z="220" orient="0" defn="master:const" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="127.947" />
@@ -6449,7 +6449,7 @@ OX2 Australia - Jul 2024
             <param name="AL2" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="1937731292" x="3870" y="666" w="55" h="40" z="1370" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="1937731292" x="3870" y="666" w="55" h="40" z="1380" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Ia_PoC" />
             <param name="Group" value="" />
@@ -6467,7 +6467,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663302" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="303081001" x="3870" y="702" w="56" h="40" z="1340" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="303081001" x="3870" y="702" w="56" h="40" z="1350" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Ib_PoC" />
             <param name="Group" value="" />
@@ -6485,7 +6485,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663300" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="1340994827" x="3870" y="738" w="55" h="40" z="1330" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="1340994827" x="3870" y="738" w="55" h="40" z="1340" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Ic_PoC" />
             <param name="Group" value="" />
@@ -6550,17 +6550,17 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="54" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:voltmeter" defn="master:voltmeter" id="1741228870" x="1764" y="1890" w="54" h="44" z="690" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:voltmeter" defn="master:voltmeter" id="1741228870" x="1764" y="1890" w="54" h="44" z="670" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="26842314">
             <param name="Name" value="Vbc_PPC" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:voltmeter" defn="master:voltmeter" id="598935445" x="1764" y="1854" w="54" h="44" z="670" orient="4" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:voltmeter" defn="master:voltmeter" id="598935445" x="1764" y="1854" w="54" h="44" z="650" orient="4" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="26842314">
             <param name="Name" value="Vab_PPC" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:voltmeter" defn="master:voltmeter" id="1632694347" x="1800" y="1908" w="54" h="44" z="700" orient="2" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:voltmeter" defn="master:voltmeter" id="1632694347" x="1800" y="1908" w="54" h="44" z="680" orient="2" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="26842314">
             <param name="Name" value="Vca_PPC" />
           </paramlist>
@@ -6587,17 +6587,17 @@ OX2 Australia - Jul 2024
             <param name="Com" value="0" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:ammeter" id="691826292" x="2052" y="1656" w="44" h="28" z="530" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:ammeter" id="691826292" x="2052" y="1656" w="44" h="28" z="510" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="119030036">
             <param name="Name" value="Ia_Poc" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:ammeter" id="1174382313" x="2052" y="1692" w="44" h="28" z="570" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:ammeter" id="1174382313" x="2052" y="1692" w="44" h="28" z="550" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="119030036">
             <param name="Name" value="Ib_PoC" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:ammeter" id="26409153" x="2052" y="1728" w="44" h="28" z="610" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:ammeter" id="26409153" x="2052" y="1728" w="44" h="28" z="590" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="119030036">
             <param name="Name" value="Ic_PoC" />
           </paramlist>
@@ -6858,28 +6858,28 @@ OX2 Australia - Jul 2024
           <vertex x="972" y="0" />
           <vertex x="0" y="0" />
         </Wire>
-        <User classid="UserCmp" name="const" defn="master:const" id="1422360691" x="1674" y="90" w="76" h="22" z="90" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="1422360691" x="1674" y="90" w="76" h="22" z="100" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="119000" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="const" defn="master:const" id="1861638761" x="1674" y="126" w="76" h="22" z="110" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="1861638761" x="1674" y="126" w="76" h="22" z="120" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="-100000" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" id="1747973475" name="master:const" x="270" y="1044" w="76" h="22" z="350" orient="0" defn="master:const" link="-1" q="4" disable="false">
+        <User classid="UserCmp" id="1747973475" name="master:const" x="270" y="1044" w="76" h="22" z="330" orient="0" defn="master:const" link="-1" q="4" disable="false">
           <paramlist name="" link="-1" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="0" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" id="2104358538" name="master:const" x="270" y="1116" w="76" h="22" z="380" orient="0" defn="master:const" link="-1" q="4" disable="false">
+        <User classid="UserCmp" id="2104358538" name="master:const" x="270" y="1116" w="76" h="22" z="360" orient="0" defn="master:const" link="-1" q="4" disable="false">
           <paramlist name="" link="-1" crc="10628662">
             <param name="Name" value="" />
             <param name="Value" value="0" />
@@ -6916,7 +6916,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="Poi_Ms" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:sumjct" id="451503285" x="1134" y="234" w="80" h="63" z="710" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:sumjct" id="451503285" x="1134" y="234" w="80" h="63" z="720" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="16672553">
             <param name="DPath" value="1" />
             <param name="A" value="0" />
@@ -6924,7 +6924,7 @@ OX2 Australia - Jul 2024
             <param name="C" value="0" />
             <param name="D" value="1" />
             <param name="E" value="0" />
-            <param name="F" value="-1" />
+            <param name="F" value="1" />
             <param name="G" value="0" />
             <param name="Name" value="" />
             <param name="Dim" value="1" />
@@ -6975,7 +6975,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="72" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1970086749" x="2538" y="558" w="86" h="40" z="1530" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1970086749" x="2538" y="558" w="86" h="40" z="1540" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="FRT_flag_PV" />
             <param name="Group" value="" />
@@ -7025,7 +7025,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="72" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1797797615" x="2808" y="558" w="99" h="40" z="1510" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1797797615" x="2808" y="558" w="99" h="40" z="1520" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="FRT_flag_BESS" />
             <param name="Group" value="" />
@@ -7075,7 +7075,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="72" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1622624242" x="3078" y="558" w="94" h="40" z="1490" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1622624242" x="3078" y="558" w="94" h="40" z="1500" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="FRT_flag_POC" />
             <param name="Group" value="" />
@@ -7113,7 +7113,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="90" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="681669795" x="3420" y="522" w="94" h="40" z="1500" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="681669795" x="3420" y="522" w="94" h="40" z="1510" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PLANT_Q_MV" />
             <param name="Group" value="" />
@@ -7140,7 +7140,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="0" />
           <vertex x="90" y="0" />
         </Wire>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1228441349" x="3420" y="486" w="92" h="40" z="1520" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1228441349" x="3420" y="486" w="92" h="40" z="1530" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PLANT_P_MV" />
             <param name="Group" value="" />
@@ -7172,7 +7172,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="PLANT_V_MV" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1600459293" x="3420" y="450" w="93" h="40" z="1550" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" defn="master:pgb" id="1600459293" x="3420" y="450" w="93" h="40" z="1560" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="PLANT_V_MV" />
             <param name="Group" value="" />
@@ -7190,7 +7190,7 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663313" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="master:pgb" id="2045178197" x="1638" y="1530" w="87" h="40" z="1290" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="master:pgb" id="2045178197" x="1638" y="1530" w="87" h="40" z="1300" orient="0" defn="master:pgb" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="65740200">
             <param name="Name" value="Tap_position" />
             <param name="Group" value="" />
@@ -7291,7 +7291,7 @@ OX2 Australia - Jul 2024
             <param name="ymax" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" id="2021979924" name="SCAvg_Lib:SC_Scope" x="2232" y="162" w="99" h="102" z="2010" orient="0" defn="SCAvg_Lib:SC_Scope" link="-1" q="4" disable="false">
+        <User classid="UserCmp" id="2021979924" name="SCAvg_Lib:SC_Scope" x="2232" y="162" w="99" h="102" z="2020" orient="0" defn="SCAvg_Lib:SC_Scope" link="-1" q="4" disable="false">
           <paramlist name="" link="-1" crc="85637438">
             <param name="Name" value="" />
           </paramlist>
@@ -7352,7 +7352,7 @@ OX2 Australia - Jul 2024
             <param name="ymax" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" id="467862457" name="SCAvg_Lib:SC_Scope" x="2232" y="270" w="99" h="102" z="1900" orient="0" defn="SCAvg_Lib:SC_Scope" link="-1" q="4" disable="false">
+        <User classid="UserCmp" id="467862457" name="SCAvg_Lib:SC_Scope" x="2232" y="270" w="99" h="102" z="1910" orient="0" defn="SCAvg_Lib:SC_Scope" link="-1" q="4" disable="false">
           <paramlist name="" link="-1" crc="85637438">
             <param name="Name" value="" />
           </paramlist>
@@ -7413,7 +7413,7 @@ OX2 Australia - Jul 2024
             <param name="ymax" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" id="347199097" x="2232" y="450" w="100" h="58" z="1670" orient="0" defn="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" id="347199097" x="2232" y="450" w="100" h="58" z="1680" orient="0" defn="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="83256274">
             <param name="Name" value="" />
           </paramlist>
@@ -7584,12 +7584,12 @@ OX2 Australia - Jul 2024
             <param name="ymax" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" id="1286594197" name="SCAvg_Lib:DPS_Dummy" x="270" y="1656" w="100" h="38" z="500" orient="0" defn="SCAvg_Lib:DPS_Dummy" link="-1" q="4" disable="false">
+        <User classid="UserCmp" id="1286594197" name="SCAvg_Lib:DPS_Dummy" x="270" y="1656" w="100" h="38" z="480" orient="0" defn="SCAvg_Lib:DPS_Dummy" link="-1" q="4" disable="false">
           <paramlist name="" link="-1" crc="63023770">
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" id="584855314" name="SCAvg_Lib:DPS_Dummy" x="270" y="1998" w="100" h="38" z="660" orient="0" defn="SCAvg_Lib:DPS_Dummy" link="-1" q="4" disable="false">
+        <User classid="UserCmp" id="584855314" name="SCAvg_Lib:DPS_Dummy" x="270" y="1998" w="100" h="38" z="640" orient="0" defn="SCAvg_Lib:DPS_Dummy" link="-1" q="4" disable="false">
           <paramlist name="" link="-1" crc="63023770">
             <param name="Name" value="" />
           </paramlist>
@@ -7620,10 +7620,26 @@ OX2 Australia - Jul 2024
             <param name="Dim" value="1" />
           </paramlist>
         </User>
-        <User classid="UserCmp" name="const" defn="master:const" id="1267418214" x="1098" y="270" w="76" h="22" z="210" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" name="const" defn="master:const" id="1267418214" x="1098" y="270" w="76" h="22" z="190" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
-            <param name="Value" value="1500" />
+            <param name="Value" value="1785" />
+            <param name="Dim" value="1" />
+          </paramlist>
+        </User>
+        <User classid="UserCmp" name="datalabel" defn="master:datalabel" id="560782124" x="1008" y="126" w="82" h="23" z="1" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="127230955">
+            <param name="Name" value="LV_Vol_base2" />
+          </paramlist>
+        </User>
+        <Wire classid="WireOrthogonal" id="1552110107" name="" x="936" y="126" w="82" h="10" orient="0" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="72" y="0" />
+        </Wire>
+        <User classid="UserCmp" name="const" defn="master:const" id="782344150" x="900" y="126" w="76" h="35" z="60" orient="0" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="10628662">
+            <param name="Name" value="LV Vol base" />
+            <param name="Value" value="0.66" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
@@ -7734,7 +7750,7 @@ OX2 Australia - Jul 2024
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="TapCtrl_1" group="" url="" version="" build="" crc="29572768" instances="0" key="" view="false" date="1721371971" id="1458678648">
+    <Definition classid="UserCmpDefn" name="TapCtrl_1" group="" url="" version="" build="" crc="29572768" instances="0" key="" view="false" date="1721954710" id="1458678648">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -12237,7 +12253,7 @@ Winding 2 terminals
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="SignalTruncator" group="" url="" version="" build="" crc="86898809" instances="0" key="" view="false" date="1721371969" id="1045815344">
+    <Definition classid="UserCmpDefn" name="SignalTruncator" group="" url="" version="" build="" crc="86898809" instances="0" key="" view="false" date="1721954708" id="1045815344">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -16088,7 +16104,7 @@ Winding 2 terminals
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="XY_profile" group="" url="" version="" build="" crc="11292503" instances="0" key="" view="false" date="1721371969" id="363993461">
+    <Definition classid="UserCmpDefn" name="XY_profile" group="" url="" version="" build="" crc="11292503" instances="0" key="" view="false" date="1721954708" id="363993461">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -18584,7 +18600,7 @@ Winding 2 terminals
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="GridSource" group="" url="" version="" build="" crc="85245366" instances="0" key="" view="false" date="1721371966" id="1187396917">
+    <Definition classid="UserCmpDefn" name="GridSource" group="" url="" version="" build="" crc="85245366" instances="0" key="" view="false" date="1721954708" id="1187396917">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -22221,7 +22237,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="FaultBlock" group="" url="" version="" build="" crc="17675155" instances="0" key="" view="false" date="1721371969" id="1199669380">
+    <Definition classid="UserCmpDefn" name="FaultBlock" group="" url="" version="" build="" crc="17675155" instances="0" key="" view="false" date="1721954708" id="1199669380">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -44819,7 +44835,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="SignalTruncator_2_3" group="" url="" version="" build="" crc="64779444" instances="0" key="" view="false" date="1721371971" id="1275551689">
+    <Definition classid="UserCmpDefn" name="SignalTruncator_2_3" group="" url="" version="" build="" crc="64779444" instances="0" key="" view="false" date="1721954710" id="1275551689">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -48670,7 +48686,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="XY_profile_2" group="" url="" version="" build="" crc="118678976" instances="0" key="" view="false" date="1721371970" id="1622315816">
+    <Definition classid="UserCmpDefn" name="XY_profile_2" group="" url="" version="" build="" crc="118678976" instances="0" key="" view="false" date="1721954709" id="1622315816">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -51164,7 +51180,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="setpointProfiles" group="" url="" version="" build="" crc="4218595" instances="0" key="" view="false" date="1721371970" id="866531298">
+    <Definition classid="UserCmpDefn" name="setpointProfiles" group="" url="" version="" build="" crc="4218595" instances="0" key="" view="false" date="1721954709" id="866531298">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -61909,7 +61925,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="SymmetricalComponentsCalc_1_1" group="" url="" version="" build="" crc="100785382" instances="0" key="" view="false" date="1721371970" id="1091983025">
+    <Definition classid="UserCmpDefn" name="SymmetricalComponentsCalc_1_1" group="" url="" version="" build="" crc="100785382" instances="0" key="" view="false" date="1721954709" id="1091983025">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -64702,7 +64718,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         </Gfx>
       </graphics>
     </Definition>
-    <Definition classid="UserCmpDefn" name="SymmetricalComponentsCalc" group="" url="" version="" build="" crc="121830775" instances="0" key="" view="false" date="1721371970" id="2110966472">
+    <Definition classid="UserCmpDefn" name="SymmetricalComponentsCalc" group="" url="" version="" build="" crc="121830775" instances="0" key="" view="false" date="1721954709" id="2110966472">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -74973,11 +74989,11 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
     </paramlist>
   </GlobalSubstitutions>
   <hierarchy>
-    <call link="1832204657" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
+    <call link="1879421105" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
       <call link="1089318121" name="HSFBESS_V1:Main" z="-1" view="true" instance="0">
-        <call link="1231646374" name="HyCtl_PSCAD_Lib:InvFbDummy" z="230" view="false" instance="0" />
-        <call link="1286594197" name="SCAvg_Lib:DPS_Dummy" z="500" view="false" instance="0" />
-        <call link="1927070795" name="HSFBESS_V1:GridSource" z="590" view="false" instance="0">
+        <call link="1231646374" name="HyCtl_PSCAD_Lib:InvFbDummy" z="210" view="false" instance="0" />
+        <call link="1286594197" name="SCAvg_Lib:DPS_Dummy" z="480" view="false" instance="0" />
+        <call link="1927070795" name="HSFBESS_V1:GridSource" z="570" view="false" instance="0">
           <call link="1547757956" name="HSFBESS_V1:XY_profile" z="1300" view="false" instance="0">
             <call link="2000644853" name="HSFBESS_V1:SignalTruncator" z="240" view="false" instance="0" />
           </call>
@@ -74988,9 +75004,9 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
             <call link="2000644853" name="HSFBESS_V1:SignalTruncator" z="240" view="false" instance="2" />
           </call>
         </call>
-        <call link="584855314" name="SCAvg_Lib:DPS_Dummy" z="660" view="false" instance="1" />
-        <call link="1591544161" name="HSFBESS_V1:FaultBlock" z="680" view="false" instance="0" />
-        <call link="1657109207" name="HSFBESS_V1:SymmetricalComponentsCalc_1_1" z="750" view="false" instance="0" />
+        <call link="584855314" name="SCAvg_Lib:DPS_Dummy" z="640" view="false" instance="1" />
+        <call link="1591544161" name="HSFBESS_V1:FaultBlock" z="660" view="false" instance="0" />
+        <call link="1657109207" name="HSFBESS_V1:SymmetricalComponentsCalc_1_1" z="760" view="false" instance="0" />
         <call link="797565769" name="HSFBESS_V1:SymmetricalComponentsCalc" z="770" view="false" instance="0" />
         <call link="1345416761" name="HSFBESS_V1:SymmetricalComponentsCalc" z="800" view="false" instance="1" />
         <call link="163769877" name="HSFBESS_V1:setpointProfiles" z="810" view="false" instance="0">
@@ -75036,9 +75052,9 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
         <call link="1560142746" name="SCAvg_Lib:SCxxxx" z="1020" view="false" instance="1">
           <call link="1833952494" name="SCAvg_Lib:AvgBridge" z="1170" view="false" instance="1" />
         </call>
-        <call link="347199097" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" z="1670" view="false" instance="0" />
-        <call link="467862457" name="SCAvg_Lib:SC_Scope" z="1900" view="false" instance="0" />
-        <call link="2021979924" name="SCAvg_Lib:SC_Scope" z="2010" view="false" instance="1" />
+        <call link="347199097" name="HyCtl_PSCAD_Lib:DEBUG_HyCon_Scope" z="1680" view="false" instance="0" />
+        <call link="467862457" name="SCAvg_Lib:SC_Scope" z="1910" view="false" instance="0" />
+        <call link="2021979924" name="SCAvg_Lib:SC_Scope" z="2020" view="false" instance="1" />
       </call>
     </call>
   </hierarchy>
