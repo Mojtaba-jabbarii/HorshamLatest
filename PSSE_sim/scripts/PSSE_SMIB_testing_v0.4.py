@@ -53,9 +53,9 @@ TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 #simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl', 'DMATsl1_db','DMATsl2_db','DMATsl3_db','DMATsl4_db','DMATsl5_db','DMATsl6_db','DMATsl_db']
 #simulation_batches=['DMATsl1_db','DMATsl2_db','DMATsl3_db','DMATsl4_db','DMATsl5_db','DMATsl6_db','DMATsl_db', 'Benchmarking_db']
 #simulation_batches=['Benchmarking' ]
-#simulation_batches=['DMATsl1_db']
+simulation_batches=['DMATsl1dbg']
 #simulation_batches=['S5258']#,'S5257','S52511','S52513','S52514', 'S52516']
-simulation_batches=['S5258']
+#simulation_batches=['DMATsl1dbg']
 #simulation_batches=['S52514dbg']
 #The below can alternatively be defined in the Excel sheet
 

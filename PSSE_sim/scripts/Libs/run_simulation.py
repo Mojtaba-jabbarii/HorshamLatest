@@ -490,7 +490,23 @@ def set_channels(PSSEmodelDict, OutChansDict):
 
 
     for inst in OutChansDict.keys():
-        if OutChansDict[inst]['Type'] == "VAR":
+        if OutChansDict[inst]['Type'] == "voltage":
+            Bus_i_num = int(OutChansDict[inst]['BusNum'])
+            Bus_i = str(Bus_i_num)
+            psspy.voltage_and_angle_channel([chn_idx,-1,-1,Bus_i_num], ['U_'+Bus_i, 'ANG_'+Bus_i])
+            plot_channels['U_'+Bus_i]=chn_idx
+            plot_channels['ANG_'+Bus_i]=chn_idx+1
+            chn_idx+=2
+        elif OutChansDict[inst]['Type'] == "powerflow":
+            Bus_i_num = int(OutChansDict[inst]['BusNum'])
+            Bus_j_num = int(OutChansDict[inst]['Location'])
+            Bus_i = str(Bus_i_num)
+            Bus_j = str(Bus_j_num)
+            psspy.branch_p_and_q_channel([chn_idx,-1,-1,Bus_i_num, Bus_j_num], r"""1""", ['P_'+Bus_i, 'Q_'+Bus_i])
+            plot_channels['P_'+Bus_i + '_'+Bus_j]=chn_idx
+            plot_channels['Q_'+Bus_i + '_'+Bus_j]=chn_idx+1
+            chn_idx+=2
+        elif OutChansDict[inst]['Type'] == "VAR":
             if OutChansDict[inst]['Model'] == 'MachineArray':
                 ierr = psspy.machine_array_channel([-1, OutChansDict[inst]['Position'], OutChansDict[inst]['BusNum']], str(OutChansDict[inst]['ID']), OutChansDict[inst]['Name'])
             else:

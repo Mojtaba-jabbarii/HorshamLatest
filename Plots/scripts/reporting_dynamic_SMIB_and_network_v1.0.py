@@ -47,20 +47,20 @@ TestDefinitionSheet=r'20240403_HSFBESS_TESTINFO_V1.xlsx'
     """
 
 # different datasets for SMIB and Network tests
-datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\Final Results GPS SMIB", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
-                  'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.00840336, }, # #negative due to the reversed Q measurement
+datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240729-2249_DMATsl1dbg", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
+                  'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.007815126, }, # #negative due to the reversed Q measurement
                                   {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.00661375661, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
-                                  {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.00595238, },],  
+                                  {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.0056818, },],  
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":-1.0, } ], } #calculate power factor from P and Q results scaling -1 due to reversed power measure
-datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\Final Results GPS SMIB", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
-                  'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.00840336, }, 
+datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20240729-1315_DMATsl1dbg", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
+                  'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.007815126, }, 
                                   {"P":"PCU1_P_LV", "Q":"PCU1_Q_LV", "V":"PCU1_V_LV_pu", "nameLabel":"PV", "scaling":36.0, },
                                    {"P":"PCU2_P_LV", "Q":"PCU2_Q_LV", "V":"PCU2_V_LV_pu", "nameLabel":"BESS", "scaling":40.0, }],
                   'calPFs':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "nameLabel":"PLANT", "scaling":1.0, } ],} #inverter apaprent power rating
 datasets_nw_genon = {'label':'PSSE_genon', 'path':r"PSSE_sim\result_data\dynamic_network\Final Results GPS NEM genon", 'ID': 2, 'timeID':'Time(s)', 'timeoffset':-2.0, #20240305-101744_S5255_NW\HighLoad_genon
-                  'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.00840336, }, # #negative due to the reversed Q measurement
+                  'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.007815126, }, # #negative due to the reversed Q measurement
                                   {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.00661375661, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
-                                  {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.00595238, },], }
+                                  {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.0056818, },], }
 datasets_nw_genoff = {'label':'PSSE_genoff', 'path':r"PSSE_sim\result_data\dynamic_network\Final Results GPS NEM genoff", 'ID': 1, 'timeID':'Time(s)', 'timeoffset':-2.0,
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":1.0, } ],}
 
@@ -69,9 +69,9 @@ data_PSCAD_Flatrun2 = {'label':'PSCAD_Data2', 'path':r"PSCAD_sim\result_data\dyn
 data_PSCAD_Flatrun3 = {'label':'PSCAD_Data3', 'path':r"PSCAD_sim\result_data\dynamic_smib\Final Results DMAT SMIB\01_FlatRun3", 'ID': 7, 'timeID':'time(s)', 'timeoffset':-3.0, }
 
 # selected datasets for the corresponding report
-datasets = [datasets_PSCAD]#, datasets_PSCAD, data_PSCAD_Flatrun1, data_PSCAD_Flatrun2, data_PSCAD_Flatrun3] # [datasets_PSSE, datasets_PSCAD,datasets_nw_genon,datasets_nw_genoff]
-report_types = ["GPS"] #["GPS", "BENCH", "DMAT", 'NetworkEvent']
-chapter_types = ["S5258"]#["01_FlatRun","02_UFault","03_MFRT","04_TOV","05_SptChange","06_FreqChange","07_VolChange","08_ORT","09_AngChange","10_SCR1","11_FRT","12_IrrChange"]
+datasets = [datasets_PSSE,datasets_PSCAD]#, datasets_PSCAD, data_PSCAD_Flatrun1, data_PSCAD_Flatrun2, data_PSCAD_Flatrun3] # [datasets_PSSE, datasets_PSCAD,datasets_nw_genon,datasets_nw_genoff]
+report_types = ["BENCH"] #["GPS", "BENCH", "DMAT", 'NetworkEvent']
+chapter_types = ["general"]#["01_FlatRun","02_UFault","03_MFRT","04_TOV","05_SptChange","06_FreqChange","07_VolChange","08_ORT","09_AngChange","10_SCR1","11_FRT","12_IrrChange"]
  #"S5257", "S52511",GPS["general","S5253","S5254","S5255","S5255_HighLoad","S5255_LowLoad","S52512_HighLoad","S52512_LowLoad","S52513_HighLoad","S52513_LowLoad",] if chapter_types == [], then include all chapters into the report
                             #DMAT["general","01_FlatRun","02_UFault","03_MFRT","04_TOV","05_SptChange","06_FreqChange","07_VolChange","08_ORT","09_AngChange","10_SCR1","11_FRT","12_IrrChange"] following Table 22, Appendix A2 DMAT guideline 2021
 
@@ -105,9 +105,13 @@ channels_lib = { #to be used in the ploting each graph below
                              'Pcmd_PPC_INV2':{'dataset':4, 'name':"Pcmd_PPC_to_INV_BESS", 'leg':'P_cmd to BESS', 'offset':0.0, 'scale':168}, #S_BESS
                              'Qcmd_PPC_INV1':{'dataset':4, 'name':"Qcmd_PPC_to_INV_PV", 'leg':'Q_cmd to PV', 'offset':0.0, 'scale':90.72}, #S_PV*0.6
                              'Qcmd_PPC_INV2':{'dataset':4, 'name':"Qcmd_PPC_to_INV_BESS", 'leg':'Q_cmd to BESS', 'offset':0.0, 'scale':100.8}, #S_BESS*0.6 
-                             'V_MV':{'dataset':4, 'name':"PLANT_V_MV", 'leg':'Voltage MV', 'offset':0.0, 'scale':1.0},
+#                             'V_MV':{'dataset':4, 'name':"PLANT_V_MV", 'leg':'Voltage MV', 'offset':0.0, 'scale':1.0},
                              'tap position':{'dataset':4, 'name':"Tap_position", 'leg':'Tap position', 'offset':0.0, 'scale':1.0},
                              'tap ratio':{'dataset':4, 'name':"maintap", 'leg':'tap ratio', 'offset':0.0, 'scale':1.0},
+                             
+                             'V_MV':{'dataset':4, 'name':"PLANT_V_MV", 'leg':'Voltage MV', 'offset':0.0, 'scale':1.0},
+                             'P_MV':{'dataset':4, 'name':"PLANT_P_MV", 'leg':'PLANT_P_MV', 'offset':0.0, 'scale':1.0},
+                             'Q_MV':{'dataset':4, 'name':"PLANT_Q_MV", 'leg':'PLANT_Q_MV', 'offset':0.0, 'scale':1.0},
                              
                              },
                 'PSSE':     {'V_POC':{'dataset':0, 'name':"U_POC1", 'leg':'Voltage HV', 'offset':0.0, 'scale':1.0},
@@ -134,6 +138,11 @@ channels_lib = { #to be used in the ploting each graph below
                              'Pcmd_PPC_INV2':{'dataset':0, 'name':"P_CMD_BESS", 'leg':'P_cmd to BESS', 'offset':0.0, 'scale':168}, #S_BESS
                              'Qcmd_PPC_INV1':{'dataset':0, 'name':"Q_CMD_PV", 'leg':'Q_cmd to PV', 'offset':0.0, 'scale':90.72}, #S_PV*0.6
                              'Qcmd_PPC_INV2':{'dataset':0, 'name':"Q_CMD_BESS", 'leg':'Q_cmd to BESS', 'offset':0.0, 'scale':100.8}, #S_BESS*0.6
+                             
+                             'V_MV':{'dataset':0, 'name':"U_334091", 'leg':'Voltage MV', 'offset':0.0, 'scale':1.0},
+                             'P_MV':{'dataset':0, 'name':"P_334091", 'leg':'PLANT_P_MV', 'offset':0.0, 'scale':1.0},
+                             'Q_MV':{'dataset':0, 'name':"Q_334091", 'leg':'PLANT_Q_MV', 'offset':0.0, 'scale':1.0},
+                             
                              },
                 'NW_post':   {'V_POC':{'dataset':2, 'name':"U_POC1", 'leg':'after-SUMSF', 'offset':0.0, 'scale':1.0},
                              'P_POC':{'dataset':2, 'name':"P_POC1", 'leg':'PLANT_P_HV', 'offset':0.0, 'scale':-1.0},
@@ -290,29 +299,38 @@ reports = {
 
 
                                                         'Overlays':             {
-                                                                                        'Voltage':                  {'channels':[dict(channels_lib['PSCAD']['V_POC'], **{'leg':'PSCAD'}),
+                                                                                        'Voltage - POC':                  {'channels':[dict(channels_lib['PSCAD']['V_POC'], **{'leg':'PSCAD'}),
                                                                                                                                  dict(channels_lib['PSSE']['V_POC'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},#'GSMG':0, }, #first channel in array links to file in first result location
-                                                                                        'Active Power':             {'channels':[dict(channels_lib['PSCAD']['P_POC'], **{'leg':'PSCAD'}),
+                                                                                        'Active Power - POC':             {'channels':[dict(channels_lib['PSCAD']['P_POC'], **{'leg':'PSCAD'}),
                                                                                                                                  dict(channels_lib['PSSE']['P_POC'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MW', 'rank':2, 'yminspan':50, 'yminlim':-200.0, 'ymaxlim':200.0},#'GSMG':0},
-                                                                                        'Reactive Power':           {'channels':[dict(channels_lib['PSCAD']['Q_POC'], **{'leg':'PSCAD'}),
+                                                                                        'Reactive Power - POC':           {'channels':[dict(channels_lib['PSCAD']['Q_POC'], **{'leg':'PSCAD'}),
                                                                                                                                  dict(channels_lib['PSSE']['Q_POC'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MVAr', 'rank':3, 'yminspan':10.0, 'yminlim':-200.0, 'ymaxlim':200.0},  
                                                                                 },
 
+                                                        'Overlays 33kV':        {
+                                                                                        'Voltage - 33kV':                  {'channels':[dict(channels_lib['PSCAD']['V_MV'], **{'leg':'PSCAD'}),
+                                                                                                                                 dict(channels_lib['PSSE']['V_MV'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},#'GSMG':0, }, #first channel in array links to file in first result location
+                                                                                        'Active Power - 33kV':             {'channels':[dict(channels_lib['PSCAD']['P_MV'], **{'leg':'PSCAD'}),
+                                                                                                                                 dict(channels_lib['PSSE']['P_MV'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MW', 'rank':2, 'yminspan':50, 'yminlim':-200.0, 'ymaxlim':200.0},#'GSMG':0},
+                                                                                        'Reactive Power - 33kV':           {'channels':[dict(channels_lib['PSCAD']['Q_MV'], **{'leg':'PSCAD'}),
+                                                                                                                                 dict(channels_lib['PSSE']['Q_MV'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MVAr', 'rank':3, 'yminspan':10.0, 'yminlim':-200.0, 'ymaxlim':200.0},  
+                                                                                },
+
                                                         'Overlays INV1':        {
-                                                                                        'Voltage':                  {'channels':[dict(channels_lib['PSCAD']['V_INV1'], **{'leg':'PSCAD'}),
+                                                                                        'Voltage - INV1':                  {'channels':[dict(channels_lib['PSCAD']['V_INV1'], **{'leg':'PSCAD'}),
                                                                                                                                  dict(channels_lib['PSSE']['V_INV1'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},#'GSMG':0, }, #first channel in array links to file in first result location
-                                                                                        'Active Power':             {'channels':[dict(channels_lib['PSCAD']['P_INV1'], **{'leg':'PSCAD'}),
+                                                                                        'Active Power - INV1':             {'channels':[dict(channels_lib['PSCAD']['P_INV1'], **{'leg':'PSCAD'}),
                                                                                                                                  dict(channels_lib['PSSE']['P_INV1'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MW', 'rank':2, 'yminspan':50, 'yminlim':-200.0, 'ymaxlim':200.0},#'GSMG':0},
-                                                                                        'Reactive Power':           {'channels':[dict(channels_lib['PSCAD']['Q_INV1'], **{'leg':'PSCAD'}),
+                                                                                        'Reactive Power - INV1':           {'channels':[dict(channels_lib['PSCAD']['Q_INV1'], **{'leg':'PSCAD'}),
                                                                                                                                  dict(channels_lib['PSSE']['Q_INV1'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MVAr', 'rank':3, 'yminspan':10.0, 'yminlim':-200.0, 'ymaxlim':200.0},  
                                                                                 },
 
                                                         'Overlays INV2':        {
-                                                                                        'Voltage':                  {'channels':[dict(channels_lib['PSCAD']['V_INV2'], **{'leg':'PSCAD'}),
+                                                                                        'Voltage - INV2':                  {'channels':[dict(channels_lib['PSCAD']['V_INV2'], **{'leg':'PSCAD'}),
                                                                                                                                  dict(channels_lib['PSSE']['V_INV2'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},#'GSMG':0, }, #first channel in array links to file in first result location
-                                                                                        'Active Power':             {'channels':[dict(channels_lib['PSCAD']['P_INV2'], **{'leg':'PSCAD'}),
+                                                                                        'Active Power - INV2':             {'channels':[dict(channels_lib['PSCAD']['P_INV2'], **{'leg':'PSCAD'}),
                                                                                                                                  dict(channels_lib['PSSE']['P_INV2'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MW', 'rank':2, 'yminspan':50, 'yminlim':-200.0, 'ymaxlim':200.0},#'GSMG':0},
-                                                                                        'Reactive Power':           {'channels':[dict(channels_lib['PSCAD']['Q_INV2'], **{'leg':'PSCAD'}),
+                                                                                        'Reactive Power - INV2':           {'channels':[dict(channels_lib['PSCAD']['Q_INV2'], **{'leg':'PSCAD'}),
                                                                                                                                  dict(channels_lib['PSSE']['Q_INV2'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MVAr', 'rank':3, 'yminspan':10.0, 'yminlim':-200.0, 'ymaxlim':200.0},  
                                                                                 },
                                                     },# end of plots
