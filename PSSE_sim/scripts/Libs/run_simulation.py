@@ -759,7 +759,7 @@ def set_channels(PSSEmodelDict, OutChansDict):
 
 def share_Q(gens_with_vdc, err_code = 0, auto_script = ''): 
     if len(gens_with_vdc['gens']) != 0 or len(gens_with_vdc['gens2']) != 0:
-        tol_q = 0.0001 #MVAr
+        tol_q = 0.1 #MVAr
         k_factor = 0.20 # regression factor
         iter_num = 20
         delta_q_loop = 2.0
@@ -767,8 +767,10 @@ def share_Q(gens_with_vdc, err_code = 0, auto_script = ''):
         while abs(delta_q_loop) > tol_q and iter_num > 0:
             delta_q_loop = 0
 
-            if len(gens_with_vdc['gens2']) != 0:
-                for gen in gens_with_vdc['gens2']: # Two generators controlling voltage at same POC point
+            if len(gens_with_vdc['gens']) != 0: # One generator controlling voltage POC
+                pass
+            if len(gens_with_vdc['gens2']) != 0: # Two generators controlling voltage at same POC point
+                for gen in gens_with_vdc['gens2']: 
                     ierr,ival = psspy.macint(gen['gen_bus'][0],gen['gen_id'][0],'STATUS')
                     ierr,ival2 = psspy.busint(gen['gen_bus'][0],'TYPE')
                     if ival == 0 or ival2 == 4:
@@ -780,7 +782,7 @@ def share_Q(gens_with_vdc, err_code = 0, auto_script = ''):
 #                        if q_poc_req < -gen['poc_q_max']: 
 #                            q_poc_req = -gen['poc_q_max']
                         s_poc = psspy.brnflo(gen['poc_bus'],gen['ibus'],'1')[1]
-                        q_poc = -s_poc.imag # poc q MVAr
+                        q_poc = -s_poc.imag # poc q MVAr # May need to include a direction factor here representing the direction of Q flow.
                         delta_q = q_poc_req - q_poc
                         if delta_q_loop < abs(delta_q): delta_q_loop = abs(delta_q)
                          
@@ -802,9 +804,9 @@ def share_Q(gens_with_vdc, err_code = 0, auto_script = ''):
                     
             iter_num -=1
 
-def share_P(gens_with_vdc, err_code = 0, auto_script = ''): 
-    if len(gens_with_vdc['gens']) != 0 or len(gens_with_vdc['gens2']) != 0:
-        tol_p = 0.0001 #MVAr
+def share_P(gens_losses, err_code = 0, auto_script = ''): 
+    if len(gens_losses['gens']) != 0 or len(gens_losses['gens2']) != 0:
+        tol_p = 0.1 #MVAr
         k_factor = 0.50 # regression factor
         iter_num = 20
         delta_p_loop = 2.0
@@ -812,8 +814,8 @@ def share_P(gens_with_vdc, err_code = 0, auto_script = ''):
         while abs(delta_p_loop) > tol_p and iter_num > 0:
             delta_p_loop = 0
 
-            if len(gens_with_vdc['gens2']) != 0:
-                for gen in gens_with_vdc['gens2']: # Two generators controlling voltage at same POC point
+            if len(gens_losses['gens']) != 0:
+                for gen in gens_losses['gens']: # Two generators controlling voltage at same POC point
                     ierr,ival = psspy.macint(gen['gen_bus'][0],gen['gen_id'][0],'STATUS')
                     ierr,ival2 = psspy.busint(gen['gen_bus'][0],'TYPE')
                     if ival == 0 or ival2 == 4:
@@ -827,20 +829,20 @@ def share_P(gens_with_vdc, err_code = 0, auto_script = ''):
                          
                     
                         ierr,p_gen1 = psspy.macdat(gen['gen_bus'][0],gen['gen_id'][0],'P') # gen q MVAr
-                        ierr,p_gen2 = psspy.macdat(gen['gen_bus'][1],gen['gen_id'][1],'P') # gen q MVAr
+#                        ierr,p_gen2 = psspy.macdat(gen['gen_bus'][1],gen['gen_id'][1],'P') # gen q MVAr
     
-                        p_gen1_new = p_gen1 + delta_p*k_factor*0.5
-                        p_gen2_new = p_gen2 + delta_p*k_factor*0.5
+                        p_gen1_new = p_gen1 + delta_p*k_factor
+#                        p_gen2_new = p_gen2 + delta_p*k_factor*0.5
                         PMAX=psspy.macdat(gen['gen_bus'][0], '1', 'PMAX')[1]
                         PMIN=psspy.macdat(gen['gen_bus'][0], '1', 'PMIN')[1]
                         if p_gen1_new > PMAX: p_gen1_new = PMAX
                         if p_gen1_new < PMIN: p_gen1_new = PMIN
-                        PMAX=psspy.macdat(gen['gen_bus'][1], '1', 'PMAX')[1]
-                        PMIN=psspy.macdat(gen['gen_bus'][1], '1', 'PMIN')[1]
-                        if p_gen2_new > PMAX: p_gen2_new = PMAX
-                        if p_gen2_new < PMIN: p_gen2_new = PMIN
+#                        PMAX=psspy.macdat(gen['gen_bus'][1], '1', 'PMAX')[1]
+#                        PMIN=psspy.macdat(gen['gen_bus'][1], '1', 'PMIN')[1]
+#                        if p_gen2_new > PMAX: p_gen2_new = PMAX
+#                        if p_gen2_new < PMIN: p_gen2_new = PMIN
                         psspy.machine_chng_2(gen['gen_bus'][0],r"""1""",[_i,_i,_i,_i,_i,_i],[p_gen1_new,_f, _f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
-                        psspy.machine_chng_2(gen['gen_bus'][1],r"""1""",[_i,_i,_i,_i,_i,_i],[p_gen2_new,_f, _f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+#                        psspy.machine_chng_2(gen['gen_bus'][1],r"""1""",[_i,_i,_i,_i,_i,_i],[p_gen2_new,_f, _f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
                         psspy.fnsl([1,0,0,1,1,0,0,0])
                         psspy.fnsl([1,0,0,1,1,0,0,0])
                         mismatch=psspy.sysmsm()
@@ -880,7 +882,7 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
     GRID_X2=(F_dist)*GRID_X
     #make grid infinite for initialisation and set to correct POC voltage
     #psspy.plant_data_3(InfiniteBus,0,_i,[setpoint['V_POC'],_f])
-    psspy.plant_data_4(InfiniteBus,0,[_i,_i],[ setpoint['V_POC'],_f])  # set the inf bus voltage spt to 1.0pu so the case is more stable at initialisation with low SCR conditions
+    psspy.plant_data_4(InfiniteBus,0,[_i,_i],[ 1.0,_f])  # set the inf bus voltage spt to 1.0pu so the case is more stable at initialisation with low SCR conditions
     test_convergence()
 
     #iteratively initialise loadflow
@@ -970,7 +972,7 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
             P_meas=powers[1].real
             Q_meas=powers[1].imag
             P_target = gen_list[gen]['P']
-            Q_target = gen_list[gen]['Q']
+            Q_target = gen_list[gen]['Q']/2 # first loop just targeting half of Q for higher conversion.
             P_err=P_target-P_meas
             Q_err=Q_target-Q_meas
             P_set = 0
@@ -996,76 +998,64 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
                 iter_cnt+=1
 
     Vinf_target = Vth #1+ (Vth-1)/2
-    psspy.plant_data_3(InfiniteBus,0,_i,[ Vinf_target,_f]) #gradually increase the inf voltage setpoint -> avoid non-convergence in low SCR condition
-    for gen in  gen_list.keys():
-        if(not (gen_list[gen]['genBus'] in offline_machines)):
-            conv_coeff=0.15     # Update 14/2/2024: update the coefficient to reduce non-convergence
-            iter_cnt=0
-            powers=psspy.brnflo(gen_list[gen]['fromBus'], gen_list[gen]['toBus'], '1')
-#            P_meas=powers[1].real
-            Q_meas=powers[1].imag
-#            P_target = gen_list[gen]['P']
-            Q_target = gen_list[gen]['Q']
-#            P_err=P_target-P_meas
-            Q_err=Q_target-Q_meas
-#            PMAX=psspy.macdat(gen_list[gen]['genBus'], '1', 'PMAX')[1]
-#            PMIN=psspy.macdat(gen_list[gen]['genBus'], '1', 'PMIN')[1]
-                
-            while ( ( (abs(P_err) > max_err) or (abs(Q_err) > max_err) ) and (iter_cnt<50) ) :
-#                P_set=P_set+conv_coeff*(P_err)
-                Q_set=Q_set+conv_coeff*(Q_err)
+#    psspy.plant_data_3(InfiniteBus,0,_i,[ Vinf_target,_f]) #gradually increase the inf voltage setpoint -> avoid non-convergence in low SCR condition
+    psspy.plant_data_4(InfiniteBus,0,[_i,_i],[ Vinf_target,_f]) #gradually increase the inf voltage setpoint -> avoid non-convergence in low SCR condition
 
-#                if(P_set>PMAX): P_set=PMAX
-#                elif(P_set<PMIN):P_set=PMIN                
-                if(Q_set>QMAX): Q_set=QMAX
-                elif(Q_set<QMIN):Q_set=QMIN            
-                
-                psspy.machine_chng_2(gen_list[gen]['genBus'],r"""1""",[_i,_i,_i,_i,_i,_i],[ _f,_f, Q_set,Q_set,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
-                test_convergence()
-                powers=psspy.brnflo(gen_list[gen]['fromBus'], gen_list[gen]['toBus'], '1')
-#                P_meas=powers[1].real
-                Q_meas=powers[1].imag
-#                P_err=P_target-P_meas
-                Q_err=Q_target-Q_meas
-                iter_cnt+=1                
-                #run load flow
-                #measure power flow 
-                #adjust gen_ouput (P and Q simultaneously but independently)
+##    for k_conv in [0.6,0.7,0.8,0.9,1.0]:
+#    k_conv = 0.6
+#    for gen in  gen_list.keys():
+#        if(not (gen_list[gen]['genBus'] in offline_machines)):
+#            conv_coeff=0.15     # Update 14/2/2024: update the coefficient to reduce non-convergence
+#            iter_cnt=0
+#            powers=psspy.brnflo(gen_list[gen]['fromBus'], gen_list[gen]['toBus'], '1')
+#            Q_meas=powers[1].imag
+#            Q_target = gen_list[gen]['Q']*k_conv #Increase Q slowly to avoid conversion issue
+#            Q_err=Q_target-Q_meas
+#            while ( ( (abs(P_err) > max_err) or (abs(Q_err) > max_err) ) and (iter_cnt<50) ) :
+#                Q_set=Q_set+conv_coeff*(Q_err)
+#                if(Q_set>QMAX): Q_set=QMAX
+#                elif(Q_set<QMIN):Q_set=QMIN            
+#                psspy.machine_chng_2(gen_list[gen]['genBus'],r"""1""",[_i,_i,_i,_i,_i,_i],[ _f,_f, Q_set,Q_set,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+#                test_convergence()
+#                powers=psspy.brnflo(gen_list[gen]['fromBus'], gen_list[gen]['toBus'], '1')
+#                Q_meas=powers[1].imag
+#                Q_err=Q_target-Q_meas
+#                iter_cnt+=1                
+#                #run load flow
+#                #measure power flow 
+#                #adjust gen_ouput (P and Q simultaneously but independently)
 
-    # ajust the P to match P required at POC
-    gen_buses = [PSSEmodelDict['Generator1'], PSSEmodelDict['Generator2']]
-    gens_with_vdc = {
-                    'gens':[ # One generator controlling POC voltage
-   
-                            ],
-        
-                    'gens2':[ # Two generators controlling voltage at same POC point
-#                                {'gen_bus':[[gen_list[gen_list.keys()[0]]['genBus'], gen_list[gen_list.keys()[1]]['genBus']],'gen_id':['1','1'],'poc_bus':POC,'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'poc_q_max':35.55,'gen_q_max':[60.48,45.36],'gen_q_pct':[0.5,0.5]},
-                                {'gen_bus':gen_buses,'gen_id':['1','1'],'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'p_poc_req':setpoint['P']},
-                                
-                            ]
-                    }
-    
-    share_P(gens_with_vdc, err_code = 0, auto_script = '')
         
     # In case generator sharing the Q at terminal
     if setpoint['Q1ini'] != "":
         gen1_q_pct = setpoint['Q1ini'] #setpoint['Q1ini']/setpoint['Qini']
         gen_buses = [PSSEmodelDict['Generator1'], PSSEmodelDict['Generator2']]
+        gen_id = ['1','1']
         gens_with_vdc = {
                         'gens':[ # One generator controlling POC voltage
-       
                                 ],
             
                         'gens2':[ # Two generators controlling voltage at same POC point
     #                                {'gen_bus':[[gen_list[gen_list.keys()[0]]['genBus'], gen_list[gen_list.keys()[1]]['genBus']],'gen_id':['1','1'],'poc_bus':POC,'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'poc_q_max':35.55,'gen_q_max':[60.48,45.36],'gen_q_pct':[0.5,0.5]},
-                                    {'gen_bus':gen_buses,'gen_id':['1','1'],'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'gen_q_pct':[1-gen1_q_pct,gen1_q_pct]},
-                                    
+                                    {'gen_bus':gen_buses,'gen_id':gen_id,'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'gen_q_pct':[1-gen1_q_pct,gen1_q_pct]},
                                 ]
                         }
-        
         share_Q(gens_with_vdc, err_code = 0, auto_script = '')
 
+    # ajust the P to match P required at POC
+    gen_buses = [PSSEmodelDict['Generator1']]
+    gen_id = ['1']
+    gens_losses = {
+                    'gens':[ # One generator compensate for the loses
+                                {'gen_bus':gen_buses,'gen_id':gen_id,'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'p_poc_req':setpoint['P']},
+                            ],
+        
+                    'gens2':[ # Two generators compensate for the loses from terminal to POC
+#                                {'gen_bus':[[gen_list[gen_list.keys()[0]]['genBus'], gen_list[gen_list.keys()[1]]['genBus']],'gen_id':['1','1'],'poc_bus':POC,'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'poc_q_max':35.55,'gen_q_max':[60.48,45.36],'gen_q_pct':[0.5,0.5]},
+#                                {'gen_bus':gen_buses,'gen_id':gen_id,'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'p_poc_req':setpoint['P']},
+                            ]
+                    }
+    share_P(gens_losses, err_code = 0, auto_script = '')
 
 #    implement_droop_LF(gen_bus=[gen_list[gen_list.keys()[0]]['genBus'], gen_list[gen_list.keys()[1]]['genBus']],gen_id=['1','1'],poc_bus=POC,ibus=PSSEmodelDict['POC_to'],poc_v_spt=1.03,poc_v_dbn=0.0,poc_q_max=35.55,poc_drp_pct=5.0165,gen_q_max=[60.48,45.36],gen_q_pct=[0.5,0.5])
 #########################                      
@@ -1083,7 +1073,8 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
     else: # Note that transformer is inserted between infbus and faultbus -> grid impedance will be from InfiniteBus to DummyTxBus
         psspy.branch_chng_3(InfiniteBus,DummyTxBus,r"""1""",[_i,_i,_i,_i,_i,_i],[ GRID_R1, GRID_X1,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)
         psspy.two_winding_chng_6(DummyTxBus,POC,r"""1""",[_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[ GRID_R2, GRID_X2,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
-    psspy.plant_data_3(InfiniteBus,0,_i,[ Vth,_f])
+#    psspy.plant_data_3(InfiniteBus,0,_i,[ Vth,_f])
+    psspy.plant_data_4(InfiniteBus,0,[_i,_i],[ Vth,_f])
     psspy.bus_chng_4(InfiniteBus,0,[_i,_i,_i,_i],[_f,_f,ang+ANG_POC,_f,_f,_f,_f],_s)
     
     test_convergence()
@@ -1101,20 +1092,21 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
                                 ],
                         'gens2':[ # Two generators controlling voltage at same POC point
     #                                {'gen_bus':[[gen_list[gen_list.keys()[0]]['genBus'], gen_list[gen_list.keys()[1]]['genBus']],'gen_id':['1','1'],'poc_bus':POC,'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'poc_q_max':35.55,'gen_q_max':[60.48,45.36],'gen_q_pct':[0.5,0.5]},
-                                    {'gen_bus':gen_buses,'gen_id':gen_id,'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'gen_q_pct':[1-gen1_q_pct,gen1_q_pct]},
+                                    {'gen_bus':gen_buses,'gen_id':gen_id,'poc_bus':PSSEmodelDict['POC'],'ibus':PSSEmodelDict['POC_to'],'q_poc_req':setpoint['Q'],'gen_q_pct':[gen1_q_pct,1-gen1_q_pct]},
                                 ]
                         }
         share_Q(gens_with_vdc, err_code = 0, auto_script = '')
 #########################      
     #check voltage at POC. if target is not hit, reiterate infinite bus voltage to hit. 
-    v_poc_check=get_bus_info(POC, 'PU')[POC]['PU']
-#    while abs(setpoint['V_POC']-v_poc_check)>0.001:
-    while abs(setpoint['V_POC']-v_poc_check)>0.000002:
-        delta_v=setpoint['V_POC']-v_poc_check
-        Vth=Vth+delta_v
-        psspy.plant_data_3(InfiniteBus,0,_i,[ Vth,_f])
-        test_convergence()
-        v_poc_check=get_bus_info(POC, 'PU')[POC]['PU']
+#    v_poc_check=get_bus_info(POC, 'PU')[POC]['PU']
+##    while abs(setpoint['V_POC']-v_poc_check)>0.001:
+#    while abs(setpoint['V_POC']-v_poc_check)>0.000002:
+#        delta_v=setpoint['V_POC']-v_poc_check
+#        Vth=Vth+delta_v
+##        psspy.plant_data_3(InfiniteBus,0,_i,[ Vth,_f])
+#        psspy.plant_data_4(InfiniteBus,0,[_i,_i],[ Vth,_f])
+#        test_convergence()
+#        v_poc_check=get_bus_info(POC, 'PU')[POC]['PU']
                 
 ##############################
                 

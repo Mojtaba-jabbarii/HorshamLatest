@@ -47,12 +47,12 @@ TestDefinitionSheet=r'20240403_HSFBESS_TESTINFO_V1.xlsx'
     """
 
 # different datasets for SMIB and Network tests
-datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240729-2332_DMATsl1dbg", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
+datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240731-0843_Benchmarking2", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
                   'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.007815126, }, # #negative due to the reversed Q measurement
                                   {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.00661375661, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
                                   {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.0056818, },],  
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":-1.0, } ], } #calculate power factor from P and Q results scaling -1 due to reversed power measure
-datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20240729-1315_DMATsl1dbg", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
+datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20240730-2230_Benchmarking2", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
                   'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.007815126, }, 
                                   {"P":"PCU1_P_LV", "Q":"PCU1_Q_LV", "V":"PCU1_V_LV_pu", "nameLabel":"PV", "scaling":36.0, },
                                    {"P":"PCU2_P_LV", "Q":"PCU2_Q_LV", "V":"PCU2_V_LV_pu", "nameLabel":"BESS", "scaling":40.0, }],
@@ -307,14 +307,14 @@ reports = {
                                                                                                                                  dict(channels_lib['PSSE']['Q_POC'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MVAr', 'rank':3, 'yminspan':10.0, 'yminlim':-200.0, 'ymaxlim':200.0},  
                                                                                 },
 
-                                                        'Overlays 33kV':        {
-                                                                                        'Voltage - 33kV':                  {'channels':[dict(channels_lib['PSCAD']['V_MV'], **{'leg':'PSCAD'}),
-                                                                                                                                 dict(channels_lib['PSSE']['V_MV'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},#'GSMG':0, }, #first channel in array links to file in first result location
-                                                                                        'Active Power - 33kV':             {'channels':[dict(channels_lib['PSCAD']['P_MV'], **{'leg':'PSCAD'}),
-                                                                                                                                 dict(channels_lib['PSSE']['P_MV'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MW', 'rank':2, 'yminspan':50, 'yminlim':-200.0, 'ymaxlim':200.0},#'GSMG':0},
-                                                                                        'Reactive Power - 33kV':           {'channels':[dict(channels_lib['PSCAD']['Q_MV'], **{'leg':'PSCAD'}),
-                                                                                                                                 dict(channels_lib['PSSE']['Q_MV'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MVAr', 'rank':3, 'yminspan':10.0, 'yminlim':-200.0, 'ymaxlim':200.0},  
-                                                                                },
+#                                                        'Overlays 33kV':        {
+#                                                                                        'Voltage - 33kV':                  {'channels':[dict(channels_lib['PSCAD']['V_MV'], **{'leg':'PSCAD'}),
+#                                                                                                                                 dict(channels_lib['PSSE']['V_MV'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'p.u.', 'rank':1, 'yminspan':0.1},#'GSMG':0, }, #first channel in array links to file in first result location
+#                                                                                        'Active Power - 33kV':             {'channels':[dict(channels_lib['PSCAD']['P_MV'], **{'leg':'PSCAD'}),
+#                                                                                                                                 dict(channels_lib['PSSE']['P_MV'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MW', 'rank':2, 'yminspan':50, 'yminlim':-200.0, 'ymaxlim':200.0},#'GSMG':0},
+#                                                                                        'Reactive Power - 33kV':           {'channels':[dict(channels_lib['PSCAD']['Q_MV'], **{'leg':'PSCAD'}),
+#                                                                                                                                 dict(channels_lib['PSSE']['Q_MV'], **{'leg':'PSSE','markers':['GSMG']}),], 'unit':'MVAr', 'rank':3, 'yminspan':10.0, 'yminlim':-200.0, 'ymaxlim':200.0},  
+#                                                                                },
 
                                                         'Overlays INV1':        {
                                                                                         'Voltage - INV1':                  {'channels':[dict(channels_lib['PSCAD']['V_INV1'], **{'leg':'PSCAD'}),
