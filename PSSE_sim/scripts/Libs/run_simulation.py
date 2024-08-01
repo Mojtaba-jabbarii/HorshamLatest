@@ -1715,6 +1715,57 @@ def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, Projec
         event_queue=order_event_queue(event_queue)
         total_duration=event_queue[-1]['time']+5        
         pass
+
+    elif(scenario_params['Test Type']== 'P1_stp_profile'):
+        #scaling_factor=float(ProjectDetailsDict['PlantMW'])/(ProjectDetailsDict['genPerSite1']*ProjectDetailsDict['genMVA1'])# setpoint is defined in p.u. on Pltn MW base. However, the PSS/E model takes as input a p.u. setpoint expressed on MVA base.
+        #'Total_MVA in the test definition sheet shoudl be udpapted to list total inver rating instead. 
+        #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
+        #for SMA: change variable in HyCon per entry in spreadsheet. Interpolate profile based on points provided in profiles dict.
+        profile=(ProfilesDict[scenario_params['Test profile']])
+        scaling_factor=profile['scaling_factor_PSSE']
+        if(not is_number(scaling_factor)):
+            scaling_factor=1.0
+        offset=profile['offset_PSSE']
+        if(not is_number(offset)):
+            offset=0.0      
+        profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )          
+        Pset_params=[]
+        for key in PSSEmodelDict.keys():
+            if('P1set' in key):
+                Pset_params.append(key)
+        P1set_cnt=1
+        P1set_dict={}
+        while ( any( 'P1set'+str(P1set_cnt) in key for key in Pset_params)):
+            P1set_dict[P1set_cnt]={}
+            for param_cnt in range(0, len(Pset_params)):                
+                param=Pset_params[param_cnt]
+                if('P1set'+str(P1set_cnt) in param):
+                    P1set_dict[P1set_cnt][param.replace('P1set'+str(P1set_cnt)+'_', '')]=PSSEmodelDict[param]                     
+            P1set_cnt+=1
+        for Pset_inst in P1set_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
+            
+            if('var' in P1set_dict[Pset_inst].keys()): #It means the setpoint that needs to be changes is a variable
+                #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
+                #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
+                
+                if(profile['scaling']=='relative'):
+                    for cnt in range(0, len(profile['x_data'])):
+                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': P1set_dict[Pset_inst]['var'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                elif(profile['scaling']=='absolute'):
+                    for cnt in range(0, len(profile['x_data'])):
+                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': P1set_dict[Pset_inst]['var'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                       
+            elif('con' in P1set_dict[Pset_inst].keys()):    
+                if(profile['scaling']=='relative'):
+                    for cnt in range(0, len(profile['x_data'])):
+                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': P1set_dict[Pset_inst]['con'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                elif(profile['scaling']=='absolute'):
+                    for cnt in range(0, len(profile['x_data'])):
+                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': P1set_dict[Pset_inst]['con'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+        
+        event_queue=order_event_queue(event_queue)
+        total_duration=event_queue[-1]['time']+5        
+        pass
     
     #Auxiliary profile used to alter Pprim
     elif(scenario_params['Test Type']== 'Auxiliary_profile'):

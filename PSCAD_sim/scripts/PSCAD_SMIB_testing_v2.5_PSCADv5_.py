@@ -184,11 +184,11 @@ TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 #simulation_batches=['DMATsl1_db','DMATsl2_db','DMATsl3_db','DMATsl4_db','DMATsl5_db','DMATsl6_db','DMATsl_db', 'Benchmarking_db']
 #simulation_batches=['Benchmarking', 'Benchmarking_db']
 # simulation_batches=['S52514']
-simulation_batches=['Benchmarking3']
+simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl','Benchmarking','Benchmarking2','Benchmarking3']
 
 
 # simulation_batches=['S52511','S52513','S52514','S5255Iq1','S5255Iq2','S5255Iq3']
-#simulation_batches=['S5253_T']
+# simulation_batches=['Benchmarking2dbg']
 #The below can alternatively be defined in the Excel sheet
 
 overwrite = False # 
