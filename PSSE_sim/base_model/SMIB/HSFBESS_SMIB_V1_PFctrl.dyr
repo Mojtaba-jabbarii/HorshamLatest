@@ -149,7 +149,7 @@
 @!/FRT_AmpDGra                             Reserved                                VarCmdFilTm                             FRT_VolFilMod                           FRT_VolDFilTm                           
    10                                      1                                       0.01                                    0                                       20                                    
 @!/FRT_WaitTm                              FRT_AmpQGra                             FRTSpkMtgLo                             FRTSpkMtgHi                             Reserved                                
-   0.1                                     1.4142                                  0.0                                     0.0                                     0                                       
+   0.02                                    1.4142                                  0.0                                     0.0                                     0                                       
 @!/Reserved                                Reserved                                VCtl_Hi5Lim                             VCtl_Hi5LimTm                           VCtl_Hi4Lim                             
    0.125                                   0.1                                     1.3                                     0.3                                     1.3                                    
 @!/VCtl_Hi4LimTm                           VCtl_Hi3Lim                             VCtl_Hi3LimTm                           VCtl_Hi2Lim                             VCtl_Hi2LimTm                           

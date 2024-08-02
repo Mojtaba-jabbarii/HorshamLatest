@@ -25,7 +25,7 @@
 @!/Poi_power_flt_tm                        HyconToInv_AtPwr_TmDelay                HyconToInv_RtPwr_TmDelay                PvPwrAtMaxTot                           PvPwrRtMaxTot                           
    0.02                                    0.02                                    0.02                                    151200                                  90720                                   
 @!/BESSPwrAtMaxTot                         BESSPwrRtMaxTot                         ExtPwrApLim                             ExtPwrAtLimHi                           ExtPwrAtLimLo                           
-   176000                                   105600                                   327200                                  119000                                  -100000                                 
+   176000                                   176000                                   327200                                  119000                                  -100000                                 
 @!/PwrAtLimSale                            ExtPwrRtLimHi                           ExtPwrRtLimLo                           QVARScale                               PvPwrAtSpt                              
    119000                                   47005                                   -47005                                  0.6                                     151200                                       
 @!/Reserved                                Reserved                                Reserved                                BatPwrAtCtrl.CtrlKi                     BatPwrAtCtrl.CtrlKp                     
@@ -149,7 +149,7 @@
 @!/FRT_AmpDGra                             Reserved                                VarCmdFilTm                             FRT_VolFilMod                           FRT_VolDFilTm                           
    10                                      1                                       0.01                                    0                                       20                                    
 @!/FRT_WaitTm                              FRT_AmpQGra                             FRTSpkMtgLo                             FRTSpkMtgHi                             Reserved                                
-   0.1                                     1.4142                                  0.0                                     0.0                                     0                                       
+   0.02                                    1.4142                                  0.0                                     0.0                                     0                                       
 @!/Reserved                                Reserved                                VCtl_Hi5Lim                             VCtl_Hi5LimTm                           VCtl_Hi4Lim                             
    0.125                                   0.1                                     1.3                                     0.3                                     1.3                                    
 @!/VCtl_Hi4LimTm                           VCtl_Hi3Lim                             VCtl_Hi3LimTm                           VCtl_Hi2Lim                             VCtl_Hi2LimTm                           
