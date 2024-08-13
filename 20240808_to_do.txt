@@ -1,0 +1,46 @@
+HOR 5.3.9
+	BEnchmarking and models
+		RE-run Benchmarking
+		Observations:
+		Hybrid:
+			large416 , misalignment with FRT oscillation --> test slightly differnt voltage to fix.
+		BESS only - PV on
+			large707, misalignment due to BESS entering FRT in PSCAd and not in PSSE
+			large710,  slight discrepancy
+			large719 PSCAD oscillation
+		BESS only - PV off: All cases quite shitty!
+			723 Reactive power initialisation misaligned
+			727 completely bonkers.
+			728 bad misalignment.
+			
+		
+		
+			SMALL978 and small 979 --> change available power by more.
+			1178, 1179 --> alignment issue on active and reactive power slope in frequency test, PSCAD much more aggressive.
+			1188, 1189 --> Power factor steps yield no results.
+			1192, 1193 --> not active power change steps happening. Just flat run essentially.,
+			-->RERUN with lots of updates in 1184-1199			
+			
+			1200-1201 --> horrible alignment in BESS only case. It seems that PSCAD only issues commands to BESS, whereas PSS/E still tries to use PV. Setting change may be reuqired. Also alignment mismatch.
+			1210 PSS/E instability.
+			1224 --> Nothing seems right. Misaligned in all signals.
+			
+			PSS/E seems off.			
+			
+		check BESS-only cases alignment
+		raise with SMA if required.	
+		add BESS-only cases to GPS testing.
+		
+	DMAT:
+		(re-run existing scope and reproduce report to see if model is still set up to achieve results from Dao.)
+		check if any DMAT cases need to be added to to the test list as per issues tracker (e.g. BESS only case)
+		adjust x-axis in plot script and reproduce final report.
+		add BESS-only cases 
+		
+	Tuesday: raise all issues with Rosalie AND APPLY MAXIMUM PRESSURE!
+	
+		
+	models:
+		All items from issues tracker
+		correct PSCAD label
+	

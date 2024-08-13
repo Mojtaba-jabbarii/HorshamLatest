@@ -47,12 +47,12 @@ TestDefinitionSheet=r'20240403_HSFBESS_TESTINFO_V1.xlsx'
     """
 
 # different datasets for SMIB and Network tests
-datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240802-1203_S5255Iq3", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
+datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20240809-1543_Benchmarking", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
                   'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.007815126, }, # #negative due to the reversed Q measurement
                                   {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.00661375661, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
                                   {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.0056818, },],  
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":-1.0, } ], } #calculate power factor from P and Q results scaling -1 due to reversed power measure
-datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\Final Results GPS SMIB", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
+datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20240809-1532_Benchmarking", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
                   'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.007815126, }, 
                                   {"P":"PCU1_P_LV", "Q":"PCU1_Q_LV", "V":"PCU1_V_LV_pu", "nameLabel":"PV", "scaling":36.0, },
                                    {"P":"PCU2_P_LV", "Q":"PCU2_Q_LV", "V":"PCU2_V_LV_pu", "nameLabel":"BESS", "scaling":40.0, }],
@@ -69,9 +69,9 @@ data_PSCAD_Flatrun2 = {'label':'PSCAD_Data2', 'path':r"PSCAD_sim\result_data\dyn
 data_PSCAD_Flatrun3 = {'label':'PSCAD_Data3', 'path':r"PSCAD_sim\result_data\dynamic_smib\Final Results DMAT SMIB\01_FlatRun3", 'ID': 7, 'timeID':'time(s)', 'timeoffset':-3.0, }
 
 # selected datasets for the corresponding report
-datasets = [datasets_PSCAD]#, datasets_PSCAD, data_PSCAD_Flatrun1, data_PSCAD_Flatrun2, data_PSCAD_Flatrun3] # [datasets_PSSE, datasets_PSCAD,datasets_nw_genon,datasets_nw_genoff]
-report_types = ["GPS"] #["GPS", "BENCH", "DMAT", 'NetworkEvent']
-chapter_types = ["S5255"]#["01_FlatRun","02_UFault","03_MFRT","04_TOV","05_SptChange","06_FreqChange","07_VolChange","08_ORT","09_AngChange","10_SCR1","11_FRT","12_IrrChange"]
+datasets = [datasets_PSCAD, datasets_PSSE]#, datasets_PSCAD, data_PSCAD_Flatrun1, data_PSCAD_Flatrun2, data_PSCAD_Flatrun3] # [datasets_PSSE, datasets_PSCAD,datasets_nw_genon,datasets_nw_genoff]
+report_types = ["DMAT"] #["GPS", "BENCH", "DMAT", 'NetworkEvent']
+chapter_types = ["general"]#["01_FlatRun","02_UFault","03_MFRT","04_TOV","05_SptChange","06_FreqChange","07_VolChange","08_ORT","09_AngChange","10_SCR1","11_FRT","12_IrrChange"]
  #"S5257", "S52511",GPS["general","S5253","S5254","S5255","S5255_HighLoad","S5255_LowLoad","S52512_HighLoad","S52512_LowLoad","S52513_HighLoad","S52513_LowLoad",] if chapter_types == [], then include all chapters into the report
                             #DMAT["general","01_FlatRun","02_UFault","03_MFRT","04_TOV","05_SptChange","06_FreqChange","07_VolChange","08_ORT","09_AngChange","10_SCR1","11_FRT","12_IrrChange"] following Table 22, Appendix A2 DMAT guideline 2021
 

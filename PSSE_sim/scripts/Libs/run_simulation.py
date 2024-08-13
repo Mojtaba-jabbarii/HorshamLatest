@@ -933,6 +933,15 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
 
         test_convergence(tree=1)
         
+    #disconnect filters if applicable.
+    offline_shunts=[]
+    if ('disconnect_shunts' in setpoint.keys()):
+        if( (setpoint['disconnect_shunts']!=None) and (setpoint['disconnect_shunts']!='') ):
+            offline_shunts=ast.literal_eval(setpoint['disconnect_shunts'])
+        for shunt in offline_shunts:
+            for shunt_id in shunt[1:]:
+                psspy.shunt_chng(shunt[0],shunt_id,0,[_f,_f]) 
+        
     #enforce transformer tap if provided in config file, otherwise just let it adjust automatically
     
     tr_tap_info={}

@@ -1,0 +1,9 @@
+<Meta name="HSFBESS_V1">
+  <messagelist />
+  <ViewContext>
+    <Window defn="HSFBESS_V1:Main" call="0" />
+  </ViewContext>
+  <List classid="View">
+    <View name="Main" zoomscale="1.5" scrollx="596" scrolly="1440" />
+  </List>
+</Meta>
