@@ -22,6 +22,8 @@ HOR 5.3.9
 			-->RERUN with lots of updates in 1184-1199			
 			
 			1200-1201 --> horrible alignment in BESS only case. It seems that PSCAD only issues commands to BESS, whereas PSS/E still tries to use PV. Setting change may be reuqired. Also alignment mismatch.
+				PSSE initialises at -5 MVAr where it shoudl be -0 MVAr. Maybe PV being off impacts the power base or something? 
+				There still appear to be a ""Qcmd to PV"" despite Operating mode set to 2.
 			1210 PSS/E instability.
 			1224 --> Nothing seems right. Misaligned in all signals.
 			
@@ -29,7 +31,22 @@ HOR 5.3.9
 			
 		check BESS-only cases alignment
 		raise with SMA if required.	
+		
+		work through Model remarks tab and make 100% sure there are no lingering issues in models.
+		
 		add BESS-only cases to GPS testing.
+			double-check if Dao's current injection was from PSSE or PSCAD
+			run S5.2.5.5 current injection assessment for S5.2.5.5 only cases.
+			all other cases
+			add selection of S5.2.5.5 cases in PSSE as well.
+			
+		update documentation
+			Finalis BM report update incl. all formatting an
+			Finalise DMAT report (incl. improved graph formatting)
+			Appendices for CS report
+			
+		
+		
 		
 	DMAT:
 		(re-run existing scope and reproduce report to see if model is still set up to achieve results from Dao.)

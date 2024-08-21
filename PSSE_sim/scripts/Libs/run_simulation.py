@@ -981,7 +981,7 @@ def initialise_loadflow(workspace_folder, ProjectDetailsDict, PSSEmodelDict, set
             P_meas=powers[1].real
             Q_meas=powers[1].imag
             P_target = gen_list[gen]['P']
-            Q_target = gen_list[gen]['Q']/2 # first loop just targeting half of Q for higher conversion.
+            Q_target = gen_list[gen]['Q'] # first loop just targeting half of Q for higher conversion.
             P_err=P_target-P_meas
             Q_err=Q_target-Q_meas
             P_set = 0
