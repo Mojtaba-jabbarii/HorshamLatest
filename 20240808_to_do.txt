@@ -1,3 +1,21 @@
+missing signals to add to SMA debugging request:
+	Inverter level: 
+		Id measure
+		Id setpoints
+		Iq measured
+		Iq setpoint
+		Cpu2SubStt
+		ErrBits
+		GriErr1
+		Vq
+		Vd
+		Angle
+		
+	PPC level:
+		FRQ droop flag
+		Angle
+
+
 HOR 5.3.9
 	BEnchmarking and models
 		RE-run Benchmarking
@@ -27,7 +45,16 @@ HOR 5.3.9
 			1210 PSS/E instability.
 			1224 --> Nothing seems right. Misaligned in all signals.
 			
-			PSS/E seems off.			
+			PSS/E seems off.	
+
+		PRIORITY CASES: 
+			large727: BESS only FRT, with trip in PSSE, completely different current injection etc.
+			large728: BESS only FRT, significant discrepancy in fault response.
+			small 1224: Plant not following POC level setpoints. Also 1 MVAr deviation.
+			small 1210: vastly differnt frequency control response. Leading to Q deviation as well
+			
+		NOTES:
+			WHY THE FUCK is FRT gradient in PV inverter set to 6 in PSSE but 2.0 in PSCAD? This seems to be a change from previous submission. --> are there any other differences? --> Dao said this was needed for stability. 
 			
 		check BESS-only cases alignment
 		raise with SMA if required.	

@@ -31,13 +31,13 @@
 @!/Reserved                                Reserved                                Reserved                                BatPwrAtCtrl.CtrlKi                     BatPwrAtCtrl.CtrlKp                     
    0                                       0                                       0                                       1.0                                     0                                       
 @!/BatPwrAtCtrl.DynSpntSwitchHysPc         BatPwrAtCtrl.Ena                        BatPwrAtCtrl.EnaAdapCtrl                BatPwrAtCtrl.EnaDynSpntSwitch           BatPwrAtCtrl.EnaStepReset               
-   0                                       0                                       0                                       0                                       0                                       
+   0                                       1                                       0                                       0                                       0                                       
 @!/BatPwrAtCtrl.FeedForwardOffset          BatPwrAtCtrl.MeasFilterTm               BatPwrAtCtrl.OvershootResetPc           BatPwrAtCtrl.PiCtrlLimPc                BatPwrAtCtrl.PilotControlGain           
    0                                       0                                       100                                     100                                     0                                       
 @!/BatPwrAtCtrl.SpntDelaySamples           BatPwrAtCtrl.StepResetThrsldPc          Dispatch.EnaPrioBatPwrAt                Dispatch.PvBatSpntSplitPc               Dispatch.PwrRtDispatchMode              
    3                                       20                                      1                                       0                                       0                                       
 @!/EgyShift.ChrFromPvSpntLimPc             EgyShift.DisBatSpntLimPc                FCASCont.DelayedActTm                   FCASCont.DelayedDelTm                   FCASCont.Ena                            
-   50                                      10                                      60                                      600                                     1                                       
+   50                                      10                                      60                                      600                                     0                                       
 @!/FCASCont.EnaDelayedLower                FCASCont.EnaDelayedRaise                FCASCont.EnaFastLower                   FCASCont.EnaFastRaise                   FCASCont.EnaSlowLower                   
    1                                       1                                       1                                       1                                       1                                       
 @!/FCASCont.EnaSlowRaise                   FCASCont.FastDelTm                      FCASCont.FrqOffsets[1]                  FCASCont.FrqOffsets[2]                  FCASCont.FrqOffsets[3]                  
