@@ -11,7 +11,7 @@
 @!/Frobus                                  ToBus                                   CID                                     FrtBusNumber                            PowerFlowReverse                        
    334081                                  334090                                  -1                                      0                                       1                                       
 @!/Reserved                                OUTPUT_LOG_EN                           Reserved                                SysCfg                                  PV1_Fro                                 
-   0                                       0                                       0                                       3                                       334094                                     
+   0                                       0                                       0                                       2                                       334094                                     
 @!/PV1_To                                  CID_PV1                                 PV2_Fro                                 PV2_To                                  CID_PV2                                 
    334092                                  -1                                      0                                       0                                       -1                                      
 @!/PV3_Fro                                 PV3_To                                  CID_PV3                                 PV4_Fro                                 PV4_To                                  
@@ -31,11 +31,11 @@
 @!/Reserved                                Reserved                                Reserved                                BatPwrAtCtrl.CtrlKi                     BatPwrAtCtrl.CtrlKp                     
    0                                       0                                       0                                       1.0                                     0                                       
 @!/BatPwrAtCtrl.DynSpntSwitchHysPc         BatPwrAtCtrl.Ena                        BatPwrAtCtrl.EnaAdapCtrl                BatPwrAtCtrl.EnaDynSpntSwitch           BatPwrAtCtrl.EnaStepReset               
-   0                                       0                                       0                                       0                                       0                                       
+   0                                       1                                       0                                       0                                       0                                       
 @!/BatPwrAtCtrl.FeedForwardOffset          BatPwrAtCtrl.MeasFilterTm               BatPwrAtCtrl.OvershootResetPc           BatPwrAtCtrl.PiCtrlLimPc                BatPwrAtCtrl.PilotControlGain           
    0                                       0                                       100                                     100                                     0                                       
 @!/BatPwrAtCtrl.SpntDelaySamples           BatPwrAtCtrl.StepResetThrsldPc          Dispatch.EnaPrioBatPwrAt                Dispatch.PvBatSpntSplitPc               Dispatch.PwrRtDispatchMode              
-   3                                       20                                      0                                       46.21                                       0                                       
+   3                                       20                                      1                                       0                                       0                                       
 @!/EgyShift.ChrFromPvSpntLimPc             EgyShift.DisBatSpntLimPc                FCASCont.DelayedActTm                   FCASCont.DelayedDelTm                   FCASCont.Ena                            
    50                                      10                                      60                                      600                                     1                                       
 @!/FCASCont.EnaDelayedLower                FCASCont.EnaDelayedRaise                FCASCont.EnaFastLower                   FCASCont.EnaFastRaise                   FCASCont.EnaSlowLower                   
@@ -75,7 +75,7 @@
 @!/GridService.FrqPoiDynMod                GridService.FrqPoiFilterTm              GridService.FrqPoiRateMax               GridService.FrqPreFaultValHoldTm        GridService.FrqUseBatPwr                
    1                                       0.05                                    4.0                                     1                                       1                                       
 @!/GridService.OverFrqRefMode              GridService.PoiPwrAtCtrlMode            GridService.PwrApNomPoi                 GridService.PwrApPrioMode               GridService.PwrAtNomPoi                 
-   0                                       3                                       127947                                  2                                       119000                                  
+   0                                       2                                       127947                                  2                                       119000                                  
 @!/GridService.PwrAtPoiFilterTm            GridService.PwrRtNomPoi                 GridService.PwrRtPoiFilterTm            GridService.UnderFrqRefMode             GridVtgCtrl.Ena                         
    0                                       90720                                   0                                       0                                       0                                       
 @!/GridVtgCtrl.IntGain                     GridVtgCtrl.IntLimAwu                   GridVtgCtrl.PropGain                    GridVtgCtrl.VtgFilterTm                 PoCo.EnaOpenLoopSptDiff                 
@@ -83,7 +83,7 @@
 @!/PoCo.K_I                                PoCo.K_P                                PoCo.OutMax                             PoCo.OutMin                             PoCo.OvershootReInitHystTicks           
    4                                       0                                       1                                       -1                                      10                                      
 @!/PoCo.OvershootReInitHystWNom            PoCo.WGraMeasTarget                     PoCo.WGraOpenLoop                       PoCo.WGraTarget                         PoCo.WaitTmsDevAtLimit                  
-   1                                       0.2                                     0.2                                     1.0                                     3                                       
+   1                                       0.2                                     0.2                                     1.0                                    3                                       
 @!/PvPwrAtCtrl.CtrlKi                      PvPwrAtCtrl.CtrlKp                      PvPwrAtCtrl.DynSpntSwitchHysPc          PvPwrAtCtrl.Ena                         PvPwrAtCtrl.EnaAdapCtrl                 
    1                                       0                                       0                                       0                                       0                                       
 @!/PvPwrAtCtrl.EnaDynSpntSwitch            PvPwrAtCtrl.EnaStepReset                PvPwrAtCtrl.FeedForwardOffset           PvPwrAtCtrl.MeasFilterTm                PvPwrAtCtrl.OvershootResetPc            
