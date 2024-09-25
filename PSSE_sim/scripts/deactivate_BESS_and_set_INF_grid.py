@@ -1,0 +1,12 @@
+# File:"C:\GitHub\SF_BESS_Horsham\PSSE_sim\scripts\deactivate_BESS_and_set_INF_grid.py", generated on THU, SEP 19 2024  16:07, PSS(R)E release 34.05.01
+psspy.branch_chng_3(10000,334081,r"""1""",[_i,_i,_i,_i,_i,_i],[0.0, 0.0001,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)
+psspy.plant_data_4(10000,0,[_i,_i],[ 1.02,_f])
+psspy.bus_chng_4(334093,0,[4,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f],_s)
+psspy.branch_chng_3(334091,334093,r"""1""",[0,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s)
+psspy.two_winding_chng_6(334093,334095,r"""1""",[0,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f],_s,_s)
+psspy.machine_chng_2(334095,r"""1""",[0,_i,_i,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f,_f])
+psspy.bus_chng_4(334095,0,[4,_i,_i,_i],[_f,_f,_f,_f,_f,_f,_f],_s)
+psspy.shunt_chng(334091,r"""1""",0,[_f,_f])
+psspy.shunt_chng(334091,r"""2""",0,[_f,_f])
+psspy.fnsl([1,0,0,1,1,0,99,0])
+psspy.fnsl([1,0,0,1,1,0,99,0])

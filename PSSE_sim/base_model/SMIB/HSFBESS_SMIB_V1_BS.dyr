@@ -3,11 +3,11 @@
 / Transformer OLTC Model
 334081,'OLTC1T',334091,1,60,0.5,5 /
 
-/ SMAHYCF-G21
+/ SMAHYCF-G23
 @!/BUSNO                                   MODEL                                   ModelName                               IC                                      IT                                      
-   334081                                  'USRBUS'                                'SMAHYCF21'                             504                                     0                                       
+   334081                                  'USRBUS'                                'SMAHYCF23'                             504                                     0                                       
 @!/NoOfICONS                               NoOfCONS                                NoOfStates                              NoOfVars                                RBus                                    
-   34                                      262                                     10                                      453                                     334081                                     
+   34                                      271                                     10                                      458                                     334081                                     
 @!/Frobus                                  ToBus                                   CID                                     FrtBusNumber                            PowerFlowReverse                        
    334081                                  334090                                  -1                                      0                                       1                                       
 @!/Reserved                                OUTPUT_LOG_EN                           Reserved                                SysCfg                                  PV1_Fro                                 
@@ -23,7 +23,7 @@
 @!/BESS4_Fro                               BESS4_To                                CID_BESS4                               CycleTime                               Poi_freq_flt_tm                         
    0                                       0                                       -1                                      40                                      0.02                                    
 @!/Poi_power_flt_tm                        HyconToInv_AtPwr_TmDelay                HyconToInv_RtPwr_TmDelay                PvPwrAtMaxTot                           PvPwrRtMaxTot                           
-   0.02                                    0.02                                    0.02                                    151200                                  90720                                   
+   0.02                                    0.02                                    0.02                                    0                                  	   0                                   
 @!/BESSPwrAtMaxTot                         BESSPwrRtMaxTot                         ExtPwrApLim                             ExtPwrAtLimHi                           ExtPwrAtLimLo                           
    176000                                   176000                                   327200                                  119000                                  -100000                                 
 @!/PwrAtLimSale                            ExtPwrRtLimHi                           ExtPwrRtLimLo                           QVARScale                               PvPwrAtSpt                              
@@ -112,24 +112,28 @@
    40                                      -60                                     -60                                     -60                                     -60                                     
 @!/PwrRtPwrAtLim.PwrRtLimLoPc[5]           PwrRtPwrAtLim.PwrRtLimLoPc[6]           PwrRtPwrAtLim.PwrRtLimLoPc[7]           PwrRtPwrAtLim.PwrRtLimLoPc[8]           PwrRtPwrAtLim.PwrRtLimLoPc[9]           
    -60                                     -60                                     -60                                     -60                                     -60                                     
-@!/PwrRtPwrAtLim.PwrRtLimLoPc[10]          SpntRamp.EnaPwrAtRampTm                 SpntRamp.BatPwrAtRiseRateMax            SpntRamp.PvPwrAtRiseRateMax             SpntRamp.PwrAtRampTm                    
-   -60                                     0                                       100                                     100                                     300                                     
-@!/SpntRamp.PwrAtRateMax                   SpntRamp.PwrAtResetThrsldPc             SpntRamp.PwrAtSpntFilterTm              SpntRamp.PwrRtRateMax                   SpntRamp.PwrRtSpntFilterTm              
-   15000                                   100                                     0.1                                    15000                                   0.1                                       
-@!/VtgPwrRtDroop.PwrRtDataPcDbHi           VtgPwrRtDroop.PwrRtDataPcDbLo           VtgPwrRtDroop.PwrRtDataPc[1]            VtgPwrRtDroop.PwrRtDataPc[2]            VtgPwrRtDroop.PwrRtDataPc[3]            
-   0                                       0                                       200                                     200                                     200                                     
-@!/VtgPwrRtDroop.PwrRtDataPc[4]            VtgPwrRtDroop.PwrRtDataPc[5]            VtgPwrRtDroop.PwrRtDataPc[6]            VtgPwrRtDroop.PwrRtDataPc[7]            VtgPwrRtDroop.PwrRtDataPc[8]            
-   200                                     100                                     -100                                    -200                                    -200                                    
-@!/VtgPwrRtDroop.PwrRtDataPc[9]            VtgPwrRtDroop.PwrRtDataPc[10]           VtgPwrRtDroop.SpntSrc                   VtgPwrRtDroop.VtgBreakpoints[1]         VtgPwrRtDroop.VtgBreakpoints[2]         
-   -200                                    -200                                    2                                       -12                                      -11                                      
-@!/VtgPwrRtDroop.VtgBreakpoints[3]         VtgPwrRtDroop.VtgBreakpoints[4]         VtgPwrRtDroop.VtgBreakpoints[5]         VtgPwrRtDroop.VtgBreakpoints[6]         VtgPwrRtDroop.VtgBreakpoints[7]         
-   -10                                     -8                                     -4                                       4                                       8                                       
-@!/VtgPwrRtDroop.VtgBreakpoints[8]         VtgPwrRtDroop.VtgBreakpoints[9]         VtgPwrRtDroop.VtgBreakpoints[10]        VtgPwrRtDroop.VtgFilterTm               VtgPwrRtDroop.VtgSpntFilterTm           
-   10                                      11                                      12                                       0                                       0                                       
+@!/PwrRtPwrAtLim.PwrRtLimLoPc[10]          PwrRtVtgLim.PwrRtDataPcLoLim1           PwrRtVtgLim.PwrRtDataPcLoLim2           PwrRtVtgLim.PwrRtDataPcUpLim1           PwrRtVtgLim.PwrRtDataPcUpLim2           
+   -60                                     0                                       33                                      -33                                     0                                       
+@!/PwrRtVtgLim.VtgFilterTm                 PwrRtVtgLim.VtgOffsetsLoLim1            PwrRtVtgLim.VtgOffsetsLoLim2            PwrRtVtgLim.VtgOffsetsUpLim1            PwrRtVtgLim.VtgOffsetsUpLim2            
+   0                                       -4                                      -6                                      6                                       4                                       
+@!/SpntRamp.EnaPwrAtRampTm                 SpntRamp.BatPwrAtRiseRateMax            SpntRamp.PvPwrAtRiseRateMax             SpntRamp.PwrAtRampTm                    SpntRamp.PwrAtRateMax                   
+   0                                       100                                     100                                     300                                     15000                                   
+@!SpntRamp.PwrAtResetThrsldPc              SpntRamp.PwrAtSpntFilterTm              SpntRamp.PwrRtRateMax                   SpntRamp.PwrRtSpntFilterTm              VtgPwrRtDroop.PwrRtDataPcDbHi           
+   100                                      0.1                                    15000                                   0.1                                     0                                         
+@!/VtgPwrRtDroop.PwrRtDataPcDbLo           VtgPwrRtDroop.PwrRtDataPc[1]            VtgPwrRtDroop.PwrRtDataPc[2]            VtgPwrRtDroop.PwrRtDataPc[3]            VtgPwrRtDroop.PwrRtDataPc[4]            
+   0                                       200                                     200                                     200                                     200                                     
+@!/VtgPwrRtDroop.PwrRtDataPc[5]            VtgPwrRtDroop.PwrRtDataPc[6]            VtgPwrRtDroop.PwrRtDataPc[7]            VtgPwrRtDroop.PwrRtDataPc[8]            VtgPwrRtDroop.PwrRtDataPc[9]            
+   100                                     -100                                    -200                                    -200                                    -200                                    
+@!/VtgPwrRtDroop.PwrRtDataPc[10]           VtgPwrRtDroop.SpntSrc                   VtgPwrRtDroop.VtgBreakpoints[1]         VtgPwrRtDroop.VtgBreakpoints[2]         VtgPwrRtDroop.VtgBreakpoints[3]         
+   -200                                    2                                       -12                                      -11                                    -10                                       
+@!/VtgPwrRtDroop.VtgBreakpoints[4]         VtgPwrRtDroop.VtgBreakpoints[5]         VtgPwrRtDroop.VtgBreakpoints[6]         VtgPwrRtDroop.VtgBreakpoints[7]         VtgPwrRtDroop.VtgBreakpoints[8]         
+   -8                                     -4                                       4                                       8                                       10                                      
+@!/VtgPwrRtDroop.VtgBreakpoints[9]         VtgPwrRtDroop.VtgBreakpoints[10]        VtgPwrRtDroop.VtgFilterTm               VtgPwrRtDroop.VtgSpntFilterTm           
+   11                                      12                                       0                                       0                                               
  
-/ SMASC_G190
+/ SMASC_G191
 @!/PV_BUSNO                                MODEL                                   MCHID                                   ModelName                               IC                                      
-   334094                                  'USRMDL'                                1                                       'SMASC190'                              1                                       
+   334094                                  'USRMDL'                                1                                       'SMASC191'                              1                                       
 @!/IT                                      NoOfICONS                               NoOfCONS                                NoOfStates                              NoOfVars                                
    1                                       1                                       200                                     60                                      300                                     
 @!/SlackBusNumber                          Pprim                                   PWNom                                   QVArNom                                 PFLim                                   
@@ -216,15 +220,15 @@
   0                                       
 
 
-/ SMAGF306
+/ SMAGF307
 @!/BESS_BUSNO                              MODEL                                   MCHID                                   ModelName                               IC                                      
    334095                                  'USRMDL'                                1                                       'SMAGF306'                              1                                       
 @!/IT                                      NoOfICONS                               NoOfCONS                                NoOfStates                              NoOfVars                                
-   1                                       4                                       221                                     0                                       324                                     
+   1                                       4                                       222                                     0                                       324                                     
 @!/PlntCtlType                             PlntCtlBus                              InvType                                 SCSOpCmd                                Rtg.VARtg                               
    1                                       334081                                  4400                                    21521                                   0                                       
-@!/Rtg.WRtg                                Rtg.VarRtg                              Rtg.AmpRtg                              Rtg.VADrtPriMod                         Spt.WGraMod                             
-   0                                       0                                       0                                       0                                       1                                       
+@!/Rtg.WRtg                                Rtg.VarRtg                              Rtg.AmpRtg                              Rtg.VADrtPriMod                         Rtg.DrtFac   					Spt.WGraMod                             
+   0                                       0                                       0                                       0                                       1								1                                       
 @!/Spt.VArGraMod                           Spt.WGra                                Spt.VArGra                              Spt.WFilMod                             Spt.VArFilMod                           
    1                                       1                                       1                                       0                                       0                                       
 @!/Spt.WFilTm                              Spt.VArFilTm                            Filt.VolDQFilTm                         Filt.VolPsFilTm                         Filt.AmpDFilTm                          

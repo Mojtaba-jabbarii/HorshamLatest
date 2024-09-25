@@ -180,4 +180,9 @@ GriForm_AcCtl_HarmCtlEna            SWITCH_STT_ENABLE                       # Mi
 
 GriForm_AcCtl_DrpHz            		-5                       				# Recommended by SMA
 
+AcCtl_AmpAB0FilTm                   0.0                                     # ab control for DC/AC component damping
+AcCtl_AmpAB0kp                      0.01                                    # ab control for DC/AC component damping
+DcCtl_DclVolFFwFilEna               SWITCH_STT_ENABLE                       # dc control - DO NOT change without permission from SMA
+DcCtl_DclVolActDmp                  0.0                                     # dc control - DO NOT change without permission from SMA
+
 #End of SC configuration file

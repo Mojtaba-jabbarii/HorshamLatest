@@ -4,20 +4,39 @@ Debugging notes:
 -intersting parameters: FrqUseBatPwr
 
 For submission:
--Update standalone BESS dyr files with SMA's latest fix
--re-run updated Benchmarking for Hybrid and BESS standalone
+1) Update standalone BESS dyr files with SMA's latest fix
+2) re-run dbg BM cases
+	small 1200, reactive power control response misalignment (small 1210 slight misalignment remaining as well)
+	small 1224, no active power response at all. Misalignment of 2 MVAr at initialisation. --> test this case with adjusting BESS setpoint instead of POC setpoint. Look at AutoMode as well and SMA explanation to see if this helps.
+	
+	large 707, Hybrid case, BESS not entering FRT.. --> LVRT entry woudl need to be slightly higher.. Would need to check that this does not affect alignment in other cases..
+	large719 Hybrid case, slight instability in PSCAD response.
+	
+	large 727, BESS standalone case. BESS getting stuck in FRT in PSSE 
+		--> check if decreasing hysteresis of FRT settings in BESS inverters fixes issue 
+		--> 20% hysteresis is quite large. If changing settings, verify that no impact on Hybrid cases in Benchmarking and DMAT.
+	large728, misalingmnet in FRT behaviour
+	
+	large 731, large 732 significant (!) misalignment in BESS inverter performance during FRT (BESS not in FRT, neither PSSE nor PSCAD)
+	
+	--> test if voltage control response difference is only in BESS standalone mode. Check if only during export or import or both
+	--> test if FRT difference only in BESS or in Hybrid mode --> run batch with all BM FRT scenarios for comparison.
+	
+	
+	
+3) re-run updated Benchmarking for Hybrid and BESS standalone (full)
 
--re-run DMAT for Hybrid case (add BESS only cases?)
+4) re-run DMAT for Hybrid case (add BESS only cases?)
 
--re-scale and run BM again
--run DMAT again
+5) re-scale and run BM again
+6) run DMAT again
 
--look at optimising S5.2.5.5 performance? --. Damo mentioned S5.2.5.4 problematic with more aggressive Iq gains...
+7) look at optimising S5.2.5.5 performance? --. Damo mentioned S5.2.5.4 problematic with more aggressive Iq gains...
 	-double-check if PV inverters case problematic (re-test S5.2.5.5 PV-only cases for S5.2.5.4 and S5.2.5.5
 
--update rest of GPS compliance scenarios
+8) update rest of GPS compliance scenarios
 
--resctructure GPS to separate out BESS/Solar/Hybrid where applicable (clauses S5.2.5.1 and S5.2.5.5, maybe S5.2.5.11, as well as fault currents)
+9) resctructure GPS to separate out BESS/Solar/Hybrid where applicable (clauses S5.2.5.1 and S5.2.5.5, maybe S5.2.5.11, as well as fault currents)
 
 -
 
