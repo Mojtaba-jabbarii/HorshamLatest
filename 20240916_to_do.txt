@@ -22,21 +22,50 @@ For submission:
 	--> test if voltage control response difference is only in BESS standalone mode. Check if only during export or import or both
 	--> test if FRT difference only in BESS or in Hybrid mode --> run batch with all BM FRT scenarios for comparison.
 	
+
+20240930:
+-re-run update BM for Hybrid and BESS standalone with original VarCtlVol settings
+	727 and 737 look most problematic.732 still shows misalignment although quite improved.
 	
+-try with starting values from SMA guide for VarCtlVol settings instead. 
+	often misalignment in terms of invertrs being in FRT in one software and not the other.
 	
-3) re-run updated Benchmarking for Hybrid and BESS standalone (full)
+-re-run with settings in between previous varCtlVol settings and SMA starting values.
 
-4) re-run DMAT for Hybrid case (add BESS only cases?)
+-re-run with slighly lowered LVRT exit setting for BESS inverter, allowing for 5% deadband
+--> thought it looked good, however upon re-running, performance of PSS/E model seems to deteriorate without setting changes (large 763 looks bad although 726 is the same case)
+	--> resetting compiler and re-running
+	--> If still problematic, try with LVRT exit raised again.
 
-5) re-scale and run BM again
-6) run DMAT again
+-stil lproblematic. raise LVRT exit back.	
+-large 765 - 776 looks extremely shit. 0.32 - 0.5 residual looks shit in both with higher and lower LVRT exxit., 
 
+
+-If improved, run full DMAT with it in hybrid mode
+
+-try and tackle remaining problematic cases by adjusting BESS FRT in PSSE
+
+-re-scale
+	-flag latest issues with SMA
+	-test SUM corrected params
+	-update inv numbers and TR rating
+	-update test scenarios
+	-run DMAT and BM over weekend in new config
+
+-check Benchmarking to verify it still looks similar.
+
+-run S5.2.5.5 and S5.2.5.4 
 7) look at optimising S5.2.5.5 performance? --. Damo mentioned S5.2.5.4 problematic with more aggressive Iq gains...
 	-double-check if PV inverters case problematic (re-test S5.2.5.5 PV-only cases for S5.2.5.4 and S5.2.5.5
 
-8) update rest of GPS compliance scenarios
+-add missing scenarios
+	DMAT
+	GPS resctructure GPS to separate out BESS/Solar/Hybrid where applicable (clauses S5.2.5.1 and S5.2.5.5, maybe S5.2.5.11, as well as fault currents)
+		Arguably S5.2.5.13, S5.2.5.2, S5.2.5.3, S5.2.5.8, and maybe S5.2.5.14  don't require separation.
+	
+-final run
 
-9) resctructure GPS to separate out BESS/Solar/Hybrid where applicable (clauses S5.2.5.1 and S5.2.5.5, maybe S5.2.5.11, as well as fault currents)
+-FRT tuning memo: If choosing oto aggressive VarCtlVol then misalignments PSSE PSCAD. If choosing too aggressive gains in PV inverters: Instability in S5.2.5.4. 
 
--
+
 

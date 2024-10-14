@@ -33,13 +33,13 @@ VArCtlVol_HiGra3                    2.0                                     # 2 
 VArCtlVol_HiGra2                    2.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
 VArCtlVol_HiGra1                    2.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
 VArCtlVol_LoGra1                    0.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
-VArCtlVol_LoGra2                    2.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
+VArCtlVol_LoGra2                    0.5                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
 VArCtlVol_LoGra3                    2.0                                     # 2 decimal places possible for gradients (Range: [0.0 ...10.0])
 
-VArCtlVol_HiVolRef3                 2.0                                     # 3 decimal places possible for gradients (Range: [0.0 ...10.0])
-VArCtlVol_HiVolRef2                 1.055                                    # 3 decimal places possible for gradients (Range: [0.0 ...10.0])
+VArCtlVol_HiVolRef3                 1.15                                     # 3 decimal places possible for gradients (Range: [0.0 ...10.0])
+VArCtlVol_HiVolRef2                 1.10                                    # 3 decimal places possible for gradients (Range: [0.0 ...10.0])
 VArCtlVol_LoVolRef1HiVolRef1        1.0                                     # 3 decimal places possible for gradients (Range: [0.0 ...10.0])
-VArCtlVol_LoVolRef2                 0.945                                    # 3 decimal places possible for gradients (Range: [0.0 ...10.0])
+VArCtlVol_LoVolRef2                 0.90                                    # 3 decimal places possible for gradients (Range: [0.0 ...10.0])
 VArCtlVol_LoVolRef3                 0.0                                     # 3 decimal places possible for gradients (Range: [0.0 ...10.0])
 
 VArCtlVol_VolNomSptMod              VOLNOMSPTMOD_INVMS_VOLPSNOM             # Selector for the voltage setpoint / #VOLNOMSPTMOD_VOLNOMSPT: Set-point / #VOLNOMSPTMOD_INVMS_VOLPSNOM: Filtered measurement value

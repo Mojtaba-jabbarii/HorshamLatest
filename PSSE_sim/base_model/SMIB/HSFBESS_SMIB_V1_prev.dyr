@@ -89,7 +89,7 @@
 @!/PvPwrAtCtrl.EnaDynSpntSwitch            PvPwrAtCtrl.EnaStepReset                PvPwrAtCtrl.FeedForwardOffset           PvPwrAtCtrl.MeasFilterTm                PvPwrAtCtrl.OvershootResetPc            
    0                                       0                                       0                                       0                                       100                                     
 @!/PvPwrAtCtrl.PiCtrlLimPc                 PvPwrAtCtrl.PilotControlGain            PvPwrAtCtrl.SpntDelaySamples            PvPwrAtCtrl.StepResetThrsldPc           PwrRt.PwrRtCtrlMode                     
-   100                                     0                                       2                                       1                                       303                                    
+   100                                     0                                       2                                       1                                       1069                                    
 @!/PwrRtCtrl.CtrlKi                        PwrRtCtrl.CtrlKp                        PwrRtCtrl.DynSpntSwitchHysPc            PwrRtCtrl.Ena                           PwrRtCtrl.EnaAdapCtrl                   
    2.5                                     0                                       0                                       1                                       1                                       
 @!/PwrRtCtrl.EnaDynSpntSwitch              PwrRtCtrl.EnaStepReset                  PwrRtCtrl.FeedForwardOffset             PwrRtCtrl.MeasFilterTm                  PwrRtCtrl.OvershootResetPc              
@@ -129,7 +129,7 @@
 @!/VtgPwrRtDroop.VtgBreakpoints[4]         VtgPwrRtDroop.VtgBreakpoints[5]         VtgPwrRtDroop.VtgBreakpoints[6]         VtgPwrRtDroop.VtgBreakpoints[7]         VtgPwrRtDroop.VtgBreakpoints[8]         
    -8                                     -4                                       4                                       8                                       10                                      
 @!/VtgPwrRtDroop.VtgBreakpoints[9]         VtgPwrRtDroop.VtgBreakpoints[10]        VtgPwrRtDroop.VtgFilterTm               VtgPwrRtDroop.VtgSpntFilterTm           
-   11                                      12                                       0                                       0                                                                          
+   11                                      12                                       0                                       0                                       
  
 / SMASC_G191
 @!/PV_BUSNO                                MODEL                                   MCHID                                   ModelName                               IC                                      
@@ -185,11 +185,11 @@
 @!/VREps                                   FRT_AmpDLim                             FRT_AmpQLim                             Reserved                                Reserved                                
    0.1                                     2                                       2                                       0                                       0                                       
 @!/GriMngInvVArMod                         VarCtlVolLoVolRef3                      VarCtlVolLoVolRef2                      VarCtlVolLoVolRef1HiVolRef1             VarCtlVolHiVolRef2                      
-   1                                       0                                       0.945                                   1                                       1.055                                    
+   1                                       0                                       0.9                                     1                                       1.1                                    
 @!/VarCtlVolHiVolRef3                      VarCtlVolLoGra3                         VarCtlVolLoGra2                         VarCtlVolLoGra1                         VarCtlVolHiGra1                         
-   2                                       2                                       2                                       0                                       2                                     
+   1.15                                    2                                       0.5                                     0                                       2.0                                     
 @!/VarCtlVolHiGra2                         VarCtlVolHiGra3                         VarCtlVolVArSptFilTm                    VolNomSpt                               Frt_AmpQFilTm                           
-   2                                       2                                       0.01                                    1                                       1                                           
+   2                                       2                                      0.01                                    1                                       1                                      
 @!/IniSchemeFlag                           VArCtlVolVolNomSptMod                   VarCtlVolVolFilTm                       VarCtlVolVolMin                         VarCtlVolVolMax                         
    1                                       1                                       0.5                                     0.9                                     1.1                                     
 @!/PwrCtl_VolDQFilTm                       Reserved                                Reserved                                Reserved                                Pll_Inv_Tlength                         
@@ -228,7 +228,7 @@
 @!/PlntCtlType                             PlntCtlBus                              InvType                                 SCSOpCmd                                Rtg.VARtg                               
    1                                       334081                                  4400                                    21521                                   0                                       
 @!/Rtg.WRtg                                Rtg.VarRtg                              Rtg.AmpRtg                              Rtg.VADrtPriMod                         Rtg.DrtFac   					Spt.WGraMod                             
-   0                                       0                                       0                                       0                                       1                                1                                       
+   0                                       0                                       0                                       0                                       1                                1       
 @!/Spt.VArGraMod                           Spt.WGra                                Spt.VArGra                              Spt.WFilMod                             Spt.VArFilMod                           
    1                                       1                                       1                                       0                                       0                                       
 @!/Spt.WFilTm                              Spt.VArFilTm                            Filt.VolDQFilTm                         Filt.VolPsFilTm                         Filt.AmpDFilTm                          
@@ -256,7 +256,7 @@
 @!/AcCtl.ParamFilTm                        AcCtl.PreFreezeDlTm                     AcCtl.PreFreezeFilTm                    AcCtl.InertiaHzDmp                      AcCtl.InertiaVolDmp                     
    10                                      5                                       0.02                                    -1                                      0.03                                    
 @!/AcCtl.PlantLevelInertia                 Frt.Frt_Mod                             Frt.LoVolOnLim                          Frt.HiVolOnLim                          Frt.LoVolOffLim                         
-   0                                       4                                       0.68                                     1.19                                     0.8                                     
+   0                                       4                                       0.70                                     1.19                                     0.9                                     
 @!/Frt.HiVolOffLim                         Frt.DynVolOnLimEna                      Frt.DynVolOffLimEna                     Frt.VirtImpSwDetLim                     Frt.VirtImpDlTm                         
    1.17                                    0                                       0                                       1.4                                     4                                       
 @!/Frt.VirtImpLockTm                       Frt.VirtImpWaitTm                       Frt.ResetTm                             Frt.AmpCtlEna                           Frt.AMaxNomInit                         
