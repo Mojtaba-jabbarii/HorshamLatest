@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1723527136" />
+    <param name="revisor" value="SIMULATION, 1728961393" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="117593793" instances="1" key="" view="false" date="1721954707" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="13248678" instances="1" key="" view="false" date="1721954707" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -3322,7 +3322,7 @@ OX2 Australia - Jul 2024
         <User classid="UserCmp" name="master:consti" id="1248158520" x="522" y="1836" w="76" h="22" z="540" orient="6" defn="master:consti" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="74846674">
             <param name="Name" value="" />
-            <param name="Value" value="40" />
+            <param name="Value" value="41" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>
@@ -75065,7 +75065,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
     </paramlist>
   </GlobalSubstitutions>
   <hierarchy>
-    <call link="1929564042" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
+    <call link="1837799505" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
       <call link="1089318121" name="HSFBESS_V1:Main" z="-1" view="true" instance="0">
         <call link="1231646374" name="HyCtl_PSCAD_Lib:InvFbDummy" z="210" view="false" instance="0" />
         <call link="1286594197" name="SCAvg_Lib:DPS_Dummy" z="480" view="false" instance="0" />

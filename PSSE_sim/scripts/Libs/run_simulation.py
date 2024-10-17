@@ -1471,457 +1471,462 @@ def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, Projec
             event_queue.append({'time': switchTime, 'type':'imp_change', 'fromBus':FaultBus, 'toBus':DummyTxBus, 'branchID':'1', 'X':secGRID_X2, 'R':secGRID_R2 }) #impedance change of branch between grid and 
             event_queue.append({'time': switchTime, 'type':'angle_change', 'POC':POC, 'angle':ang-ang_new})
     
-    if (scenario_params['Test Type']=='F_profile'):        
-        # write profile to zingen file
-        zingen_profile=[[-0.004,	50.0000,	Vzin],
-                     [-0.002,	50.0000,	Vzin],
-                     ]
-        profile=ProfilesDict[scenario_params['Test profile']]
-        if(profile['scaling']=='relative'):
-            for cnt in range(0, len(profile['x_data'])):
-                zingen_profile.append([profile['x_data'][cnt], 50.0*float(profile['y_data'][cnt]), float(Vzin)*(float(profile['y_data'][cnt]))])
-        else:
-            for cnt in range(0, len(profile['x_data'])):
-                zingen_profile.append([profile['x_data'][cnt], float(profile['y_data'][cnt]), float(Vzin)*(float(profile['y_data'][cnt])/50.0)])
-        set_profile(workspace_folder+"\\ZINGEN1", zingen_profile)
-        total_duration=profile['x_data'][-1]-0.1
-        pass
-        
-    elif(scenario_params['Test Type']=='V_profile'):
-        # write profile to zingen file 
-        zingen_profile=[[-0.004,	50.0000,	Vzin],
-                     [-0.002,	50.0000,	Vzin],
-                     ]
-        profile=ProfilesDict[scenario_params['Test profile']]
-        if(profile['scaling']=='relative'):
-            for cnt in range(0, len(profile['x_data'])):
-                zingen_profile.append([profile['x_data'][cnt], 50.0, float(Vzin)*float(profile['y_data'][cnt])])
-        else:
-            for cnt in range(0, len(profile['x_data'])):
-                zingen_profile.append([profile['x_data'][cnt], 50.0, float(Vbase_POC/math.sqrt(3))*float(profile['y_data'][cnt])])
-        set_profile(workspace_folder+"\\ZINGEN1", zingen_profile)
-        total_duration=profile['x_data'][-1]-0.1
-        
-    elif(scenario_params['Test Type']=='ANG_profile'):
-        profile=ProfilesDict[scenario_params['Test profile']]
-        for cnt in range(0, len(profile['x_data'])):            
-            event_queue.append({'time':profile['x_data'][cnt], 'type':'angle_change', 'POC':POC, 'angle':profile['y_data'][cnt]})
-        #write angle changes to event queue (change of transformer angle)
-        #setpoint changes are internal events. The specifics of this can depend on the model used. Best would be to have compatibility with various models built in and just specify model type in scenario spreadsheet
-        total_duration=event_queue[-1]['time']+5
     
-    #---------------------SETPOINT CHANGE PROFILES (CAN BE MODEL-SPECIFIC)-----
+    for test_type_id in range (0, len(scenario_params['Test Type'])):
+        test_type=scenario_params['Test Type'][test_type_id]
+        test_profile_name=scenario_params['Test profile'][test_type_id]  
     
-    elif(scenario_params['Test Type']== 'V_stp_profile'):
-        profile=ProfilesDict[scenario_params['Test profile']]
-        scaling_factor=profile['scaling_factor_PSSE']
-        if(not is_number(scaling_factor)):
-            scaling_factor=1.0
-        offset=profile['offset_PSSE']
-        if(not is_number(offset)):
-            offset=0.0   
-        profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )         
-        #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
-#        L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
-#        event_queue.append({'time':5.0, 'type':'var_change_abs', 'rel_id': 0,'model':'SMAHYC25', ' bus':322813, 'mac':'1', 'value':1.07})
- #       event_queue.append({'time':5.0, 'type':'var_change_abs', 'rel_id': 0,'abs_id':L+16, 'model':'SMAHYC25', ' bus':322813, 'mac':'1', 'value':1.07}) #adjust PPC voltage setpoint
-#        event_queue.append({'time':5.0, 'type':'change_VREF', 'bus':32280, 'mac':'1', 'value':1.07}) #adjust SynCon voltage setpoint.
-        Vset_params=[]
-        for key in PSSEmodelDict.keys():
-            if('Vset' in key):
-                Vset_params.append(key)
-        Vset_cnt=1
-        Vset_dict={}
-        while ( any( 'Vset'+str(Vset_cnt) in key for key in Vset_params)):
-            Vset_dict[Vset_cnt]={}
-            for param_cnt in range(0, len(Vset_params)):                
-                param=Vset_params[param_cnt]
-                if('Vset'+str(Vset_cnt) in param):
-                    Vset_dict[Vset_cnt][param.replace('Vset'+str(Vset_cnt)+'_', '')]=PSSEmodelDict[param]
-                     
-            Vset_cnt+=1
-        for Vset_inst in Vset_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changes (e.g. across different machines/control systems)
+        if (test_type=='F_profile'):        
+            # write profile to zingen file
+            zingen_profile=[[-0.004,	50.0000,	Vzin],
+                         [-0.002,	50.0000,	Vzin],
+                         ]
+            profile=ProfilesDict[test_profile_name]
+            if(profile['scaling']=='relative'):
+                for cnt in range(0, len(profile['x_data'])):
+                    zingen_profile.append([profile['x_data'][cnt], 50.0*float(profile['y_data'][cnt]), float(Vzin)*(float(profile['y_data'][cnt]))])
+            else:
+                for cnt in range(0, len(profile['x_data'])):
+                    zingen_profile.append([profile['x_data'][cnt], float(profile['y_data'][cnt]), float(Vzin)*(float(profile['y_data'][cnt])/50.0)])
+            set_profile(workspace_folder+"\\ZINGEN1", zingen_profile)
+            total_duration=profile['x_data'][-1]-0.1
+            pass
             
-            if('model' in Vset_dict[Vset_inst].keys()): #It means the setpoint that needs to be changes is a variable or constant
-                #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
-                #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
-                if('var' in Vset_dict[Vset_inst].keys()):
-                    if(profile['scaling']=='relative'):
-                        for cnt in range(0, len(profile['x_data'])):
-                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': Vset_dict[Vset_inst]['var'], 'model_type':Vset_dict[Vset_inst]['type'], 'model':Vset_dict[Vset_inst]['model'], 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                    elif(profile['scaling']=='absolute'):
-                        for cnt in range(0, len(profile['x_data'])):
-                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': Vset_dict[Vset_inst]['var'], 'model_type':Vset_dict[Vset_inst]['type'], 'model':Vset_dict[Vset_inst]['model'], 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif('con' in Vset_dict[Vset_inst].keys()): 
-                    if(profile['scaling']=='relative'):
-                        for cnt in range(0, len(profile['x_data'])):
-                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': Vset_dict[Vset_inst]['con'], 'model_type':Vset_dict[Vset_inst]['type'], 'model':Vset_dict[Vset_inst]['model'], 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                    elif(profile['scaling']=='absolute'):
-                        for cnt in range(0, len(profile['x_data'])):
-                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': Vset_dict[Vset_inst]['con'], 'model_type':Vset_dict[Vset_inst]['type'], 'model':Vset_dict[Vset_inst]['model'], 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                    
-                #write every point from the profile vector into the event queue as a variable change
-                pass
-            else: #It means the setpoint that needs to be changed is in the PSS/E Vref vector
-                #write ever point from the profile vector into the event queue as a Vred change
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'VREF_change_rel', 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'chn':Vset_dict[Vset_inst]['chn'],'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'VREF_change_abs', 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})                    
-        event_queue=order_event_queue(event_queue)
-        total_duration=event_queue[-1]['time']+5
+        elif(test_type=='V_profile'):
+            # write profile to zingen file 
+            zingen_profile=[[-0.004,	50.0000,	Vzin],
+                         [-0.002,	50.0000,	Vzin],
+                         ]
+            profile=ProfilesDict[test_profile_name]
+            if(profile['scaling']=='relative'):
+                for cnt in range(0, len(profile['x_data'])):
+                    zingen_profile.append([profile['x_data'][cnt], 50.0, float(Vzin)*float(profile['y_data'][cnt])])
+            else:
+                for cnt in range(0, len(profile['x_data'])):
+                    zingen_profile.append([profile['x_data'][cnt], 50.0, float(Vbase_POC/math.sqrt(3))*float(profile['y_data'][cnt])])
+            set_profile(workspace_folder+"\\ZINGEN1", zingen_profile)
+            total_duration=profile['x_data'][-1]-0.1
+            
+        elif(test_type=='ANG_profile'):
+            profile=ProfilesDict[test_profile_name]
+            for cnt in range(0, len(profile['x_data'])):            
+                event_queue.append({'time':profile['x_data'][cnt], 'type':'angle_change', 'POC':POC, 'angle':profile['y_data'][cnt]})
+            #write angle changes to event queue (change of transformer angle)
+            #setpoint changes are internal events. The specifics of this can depend on the model used. Best would be to have compatibility with various models built in and just specify model type in scenario spreadsheet
+            total_duration=event_queue[-1]['time']+5
         
-    elif(scenario_params['Test Type']== 'Q_stp_profile'):   
-        #scaling_factor=140.0/98.4# setpoint is defined in p.u. on Pltn MW base. However, the PSS/E model takes as input a p.u. setpoint expressed on MVA base.
-        #'Total_MVA in the test definition sheet shoudl be udpapted to list total inver rating instead. 
-        #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
-        #for SMA: change variable in HyCon per entry in spreadsheet. Interpolate profile based on points provided in profiles dict.
-        profile=(ProfilesDict[scenario_params['Test profile']])
-        scaling_factor=profile['scaling_factor_PSSE']
-        if(not is_number(scaling_factor)):
-            scaling_factor=1.0
-        offset=profile['offset_PSSE']
-        if(not is_number(offset)):
-            offset=0.0      
-        profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )          
-        Qset_params=[]
-        for key in PSSEmodelDict.keys():
-            if('Qset' in key):
-                Qset_params.append(key)
-        Qset_cnt=1
-        Qset_dict={}
-        while ( any( 'Qset'+str(Qset_cnt) in key for key in Qset_params)):
-            Qset_dict[Qset_cnt]={}
-            for param_cnt in range(0, len(Qset_params)):                
-                param=Qset_params[param_cnt]
-                if('Qset'+str(Qset_cnt) in param):
-                    Qset_dict[Qset_cnt][param.replace('Qset'+str(Qset_cnt)+'_', '')]=PSSEmodelDict[param]                     
-            Qset_cnt+=1
-        for Qset_inst in Qset_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
-            
-            if('var' in Qset_dict[Qset_inst].keys()): #It means the setpoint that needs to be changes is a variable
-                #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
-                #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
+        #---------------------SETPOINT CHANGE PROFILES (CAN BE MODEL-SPECIFIC)-----
+        
+        elif(test_type== 'V_stp_profile'):
+            profile=ProfilesDict[test_profile_name]
+            scaling_factor=profile['scaling_factor_PSSE']
+            if(not is_number(scaling_factor)):
+                scaling_factor=1.0
+            offset=profile['offset_PSSE']
+            if(not is_number(offset)):
+                offset=0.0   
+            profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )         
+            #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
+    #        L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
+    #        event_queue.append({'time':5.0, 'type':'var_change_abs', 'rel_id': 0,'model':'SMAHYC25', ' bus':322813, 'mac':'1', 'value':1.07})
+     #       event_queue.append({'time':5.0, 'type':'var_change_abs', 'rel_id': 0,'abs_id':L+16, 'model':'SMAHYC25', ' bus':322813, 'mac':'1', 'value':1.07}) #adjust PPC voltage setpoint
+    #        event_queue.append({'time':5.0, 'type':'change_VREF', 'bus':32280, 'mac':'1', 'value':1.07}) #adjust SynCon voltage setpoint.
+            Vset_params=[]
+            for key in PSSEmodelDict.keys():
+                if('Vset' in key):
+                    Vset_params.append(key)
+            Vset_cnt=1
+            Vset_dict={}
+            while ( any( 'Vset'+str(Vset_cnt) in key for key in Vset_params)):
+                Vset_dict[Vset_cnt]={}
+                for param_cnt in range(0, len(Vset_params)):                
+                    param=Vset_params[param_cnt]
+                    if('Vset'+str(Vset_cnt) in param):
+                        Vset_dict[Vset_cnt][param.replace('Vset'+str(Vset_cnt)+'_', '')]=PSSEmodelDict[param]
+                         
+                Vset_cnt+=1
+            for Vset_inst in Vset_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changes (e.g. across different machines/control systems)
                 
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': Qset_dict[Qset_inst]['var'], 'model_type':Qset_dict[Qset_inst]['type'], 'model':Qset_dict[Qset_inst]['model'], 'bus':Qset_dict[Qset_inst]['bus'], 'mac':str(Qset_dict[Qset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': Qset_dict[Qset_inst]['var'], 'model_type':Qset_dict[Qset_inst]['type'], 'model':Qset_dict[Qset_inst]['model'], 'bus':Qset_dict[Qset_inst]['bus'], 'mac':str(Qset_dict[Qset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                       
-            elif('con' in Qset_dict[Qset_inst].keys()):    
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': Qset_dict[Qset_inst]['con'], 'model_type':Qset_dict[Qset_inst]['type'], 'model':Qset_dict[Qset_inst]['model'], 'bus':Qset_dict[Qset_inst]['bus'], 'mac':str(Qset_dict[Qset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': Qset_dict[Qset_inst]['con'], 'model_type':Qset_dict[Qset_inst]['type'], 'model':Qset_dict[Qset_inst]['model'], 'bus':Qset_dict[Qset_inst]['bus'], 'mac':str(Qset_dict[Qset_inst]['mac']), 'value':profile['y_data'][cnt]})
-        
-        event_queue=order_event_queue(event_queue)
-        total_duration=event_queue[-1]['time']+5        
-        pass
-        
-        pass
-        
-    elif(scenario_params['Test Type']==  'PF_stp_profile'):
-        #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
-        profile=(ProfilesDict[scenario_params['Test profile']])
-        scaling_factor=profile['scaling_factor_PSSE']
-        if(not is_number(scaling_factor)):
-            scaling_factor=1.0
-        offset=profile['offset_PSSE']
-        if(not is_number(offset)):
-            offset=0.0      
-        profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )          
-        PFsetset_params=[]
-        for key in PSSEmodelDict.keys():
-            if('PFset' in key):
-                PFsetset_params.append(key)
-        PFset_cnt=1
-        PFset_dict={}
-        while ( any( 'PFset'+str(PFset_cnt) in key for key in PFsetset_params)):
-            PFset_dict[PFset_cnt]={}
-            for param_cnt in range(0, len(PFsetset_params)):                
-                param=PFsetset_params[param_cnt]
-                if('PFset'+str(PFset_cnt) in param):
-                    PFset_dict[PFset_cnt][param.replace('PFset'+str(PFset_cnt)+'_', '')]=PSSEmodelDict[param]                     
-            PFset_cnt+=1
-        for PFset_inst in PFset_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
-            
-            if('var' in PFset_dict[PFset_inst].keys()): #It means the setpoint that needs to be changes is a variable
-                #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
-                #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
-                
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': PFset_dict[PFset_inst]['var'], 'model_type':PFset_dict[PFset_inst]['type'], 'model':PFset_dict[PFset_inst]['model'], 'bus':PFset_dict[PFset_inst]['bus'], 'mac':str(PFset_dict[PFset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': PFset_dict[PFset_inst]['var'], 'model_type':PFset_dict[PFset_inst]['type'], 'model':PFset_dict[PFset_inst]['model'], 'bus':PFset_dict[PFset_inst]['bus'], 'mac':str(PFset_dict[PFset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                       
-            elif('con' in PFset_dict[PFset_inst].keys()):    
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': PFset_dict[PFset_inst]['con'], 'model_type':PFset_dict[PFset_inst]['type'], 'model':PFset_dict[PFset_inst]['model'], 'bus':PFset_dict[PFset_inst]['bus'], 'mac':str(PFset_dict[PFset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': PFset_dict[PFset_inst]['con'], 'model_type':PFset_dict[PFset_inst]['type'], 'model':PFset_dict[PFset_inst]['model'], 'bus':PFset_dict[PFset_inst]['bus'], 'mac':str(PFset_dict[PFset_inst]['mac']), 'value':profile['y_data'][cnt]})
-        
-        event_queue=order_event_queue(event_queue)
-        total_duration=event_queue[-1]['time']+5            
-        pass
-        
-    elif(scenario_params['Test Type']== 'P_stp_profile'):
-        #scaling_factor=float(ProjectDetailsDict['PlantMW'])/(ProjectDetailsDict['genPerSite1']*ProjectDetailsDict['genMVA1'])# setpoint is defined in p.u. on Pltn MW base. However, the PSS/E model takes as input a p.u. setpoint expressed on MVA base.
-        #'Total_MVA in the test definition sheet shoudl be udpapted to list total inver rating instead. 
-        #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
-        #for SMA: change variable in HyCon per entry in spreadsheet. Interpolate profile based on points provided in profiles dict.
-        profile=(ProfilesDict[scenario_params['Test profile']])
-        scaling_factor=profile['scaling_factor_PSSE']
-        if(not is_number(scaling_factor)):
-            scaling_factor=1.0
-        offset=profile['offset_PSSE']
-        if(not is_number(offset)):
-            offset=0.0      
-        profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )          
-        Pset_params=[]
-        for key in PSSEmodelDict.keys():
-            if('Pset' in key):
-                Pset_params.append(key)
-        Pset_cnt=1
-        Pset_dict={}
-        while ( any( 'Pset'+str(Pset_cnt) in key for key in Pset_params)):
-            Pset_dict[Pset_cnt]={}
-            for param_cnt in range(0, len(Pset_params)):                
-                param=Pset_params[param_cnt]
-                if('Pset'+str(Pset_cnt) in param):
-                    Pset_dict[Pset_cnt][param.replace('Pset'+str(Pset_cnt)+'_', '')]=PSSEmodelDict[param]                     
-            Pset_cnt+=1
-        for Pset_inst in Pset_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
-            
-            if('var' in Pset_dict[Pset_inst].keys()): #It means the setpoint that needs to be changes is a variable
-                #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
-                #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
-                
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': Pset_dict[Pset_inst]['var'], 'model_type':Pset_dict[Pset_inst]['type'], 'model':Pset_dict[Pset_inst]['model'], 'bus':Pset_dict[Pset_inst]['bus'], 'mac':str(Pset_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': Pset_dict[Pset_inst]['var'], 'model_type':Pset_dict[Pset_inst]['type'], 'model':Pset_dict[Pset_inst]['model'], 'bus':Pset_dict[Pset_inst]['bus'], 'mac':str(Pset_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                       
-            elif('con' in Pset_dict[Pset_inst].keys()):    
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': Pset_dict[Pset_inst]['con'], 'model_type':Pset_dict[Pset_inst]['type'], 'model':Pset_dict[Pset_inst]['model'], 'bus':Pset_dict[Pset_inst]['bus'], 'mac':str(Pset_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': Pset_dict[Pset_inst]['con'], 'model_type':Pset_dict[Pset_inst]['type'], 'model':Pset_dict[Pset_inst]['model'], 'bus':Pset_dict[Pset_inst]['bus'], 'mac':str(Pset_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
-        
-        event_queue=order_event_queue(event_queue)
-        total_duration=event_queue[-1]['time']+5        
-        pass
-
-    elif(scenario_params['Test Type']== 'P1_stp_profile'):
-        #scaling_factor=float(ProjectDetailsDict['PlantMW'])/(ProjectDetailsDict['genPerSite1']*ProjectDetailsDict['genMVA1'])# setpoint is defined in p.u. on Pltn MW base. However, the PSS/E model takes as input a p.u. setpoint expressed on MVA base.
-        #'Total_MVA in the test definition sheet shoudl be udpapted to list total inver rating instead. 
-        #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
-        #for SMA: change variable in HyCon per entry in spreadsheet. Interpolate profile based on points provided in profiles dict.
-        profile=(ProfilesDict[scenario_params['Test profile']])
-        scaling_factor=profile['scaling_factor_PSSE']
-        if(not is_number(scaling_factor)):
-            scaling_factor=1.0
-        offset=profile['offset_PSSE']
-        if(not is_number(offset)):
-            offset=0.0      
-        profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )          
-        Pset_params=[]
-        for key in PSSEmodelDict.keys():
-            if('P1set' in key):
-                Pset_params.append(key)
-        P1set_cnt=1
-        P1set_dict={}
-        while ( any( 'P1set'+str(P1set_cnt) in key for key in Pset_params)):
-            P1set_dict[P1set_cnt]={}
-            for param_cnt in range(0, len(Pset_params)):                
-                param=Pset_params[param_cnt]
-                if('P1set'+str(P1set_cnt) in param):
-                    P1set_dict[P1set_cnt][param.replace('P1set'+str(P1set_cnt)+'_', '')]=PSSEmodelDict[param]                     
-            P1set_cnt+=1
-        for Pset_inst in P1set_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
-            
-            if('var' in P1set_dict[Pset_inst].keys()): #It means the setpoint that needs to be changes is a variable
-                #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
-                #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
-                
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': P1set_dict[Pset_inst]['var'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': P1set_dict[Pset_inst]['var'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                       
-            elif('con' in P1set_dict[Pset_inst].keys()):    
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': P1set_dict[Pset_inst]['con'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': P1set_dict[Pset_inst]['con'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
-        
-        event_queue=order_event_queue(event_queue)
-        total_duration=event_queue[-1]['time']+5        
-        pass
-    
-    #Auxiliary profile used to alter Pprim
-    elif(scenario_params['Test Type']== 'Auxiliary_profile'):
-        #scaling_factor=0.001
-        #write changes to event queue --> specify in scenario spreadsheet, which VAR should change. This is used here to alter the vailabel power for tests per DMAT guideline
-        #for SMA: change constant per entry in test spreadsheet. Interpolate profile based on points provided in profiles dict.
-        profile=(ProfilesDict[scenario_params['Test profile']])
-        scaling_factor=profile['scaling_factor_PSSE']
-        if(not is_number(scaling_factor)):
-            scaling_factor=1.0
-        offset=profile['offset_PSSE']
-        if(not is_number(offset)):
-            offset=0.0      
-        profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=50.0, scaling=scaling_factor, offset=offset )       
-        Pprim_params=[]
-        for key in PSSEmodelDict.keys():
-            if('Pprim' in key):
-                Pprim_params.append(key)
-        Pprim_cnt=1
-        Pprim_dict={}
-        while ( any( 'Pprim'+str(Pprim_cnt) in key for key in Pprim_params)):
-            Pprim_dict[Pprim_cnt]={}
-            for param_cnt in range(0, len(Pprim_params)):                
-                param=Pprim_params[param_cnt]
-                if('Pprim'+str(Pprim_cnt) in param):
-                    Pprim_dict[Pprim_cnt][param.replace('Pprim'+str(Pprim_cnt)+'_', '')]=PSSEmodelDict[param]                     
-            Pprim_cnt+=1
-        for Pprim_inst in Pprim_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
-            
-            if('var' in Pprim_dict[Pprim_inst].keys()): #It means the setpoint that needs to be changes is a variable
-                #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
-                #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
-                
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': Pprim_dict[Pprim_inst]['var'], 'model_type':Pprim_dict[Pprim_inst]['type'], 'model':Pprim_dict[Pprim_inst]['model'], 'bus':Pprim_dict[Pprim_inst]['bus'], 'mac':str(Prim_dict[Pprim_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': Pprim_dict[Pprim_inst]['var'], 'model_type':Pprim_dict[Pprim_inst]['type'], 'model':Pprim_dict[Pprim_inst]['model'], 'bus':Pprim_dict[Pprim_inst]['bus'], 'mac':str(Pprim_dict[Pprim_inst]['mac']), 'value':profile['y_data'][cnt]})
-
-            elif('con' in Pprim_dict[Pprim_inst].keys()):    
-                if(profile['scaling']=='relative'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': Pprim_dict[Pprim_inst]['con'], 'model_type':Pprim_dict[Pprim_inst]['type'], 'model':Pprim_dict[Pprim_inst]['model'], 'bus':Pprim_dict[Pprim_inst]['bus'], 'mac':str(Pprim_dict[Pprim_inst]['mac']), 'value':profile['y_data'][cnt]})
-                elif(profile['scaling']=='absolute'):
-                    for cnt in range(0, len(profile['x_data'])):
-                        event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': Pprim_dict[Pprim_inst]['con'], 'model_type':Pprim_dict[Pprim_inst]['type'], 'model':Pprim_dict[Pprim_inst]['model'], 'bus':Pprim_dict[Pprim_inst]['bus'], 'mac':str(Pprim_dict[Pprim_inst]['mac']), 'value':profile['y_data'][cnt]})
-        
-        event_queue=order_event_queue(event_queue)
-        total_duration=event_queue[-1]['time']+5        
-        pass
-    #--------------------FAULT SCENARIOS/TOV-----------------------------------
-        
-    elif(scenario_params['Test Type']=='Fault'):
-        #add fault and and fault clearing to event queue
-        Fault_X_R=scenario_params['Fault X_R']
-        if(Fault_X_R==''):
-            Fault_X_R=3.0
-        if(scenario_params['F_Impedance']=='' and scenario_params['Vresidual']!=''):
-            Zfault, Fault_X_R=calc_fault_impedance(float(scenario_params['Vresidual']), Fault_X_R, V_POC, Vbase_POC, ProjectDetailsDict['SCRMVA'], SetpointsDict[scenario_params['setpoint ID']]['SCR'],GRID_MVA, GRID_X_R)        #for more accurate calculation V_POC should be replaced with Vth, but that would also need to be done in PSCAD to align scenarios.    
-#            Zfault, Fault_X_R=calc_fault_impedance(float(scenario_params['Vresidual']), Fault_X_R, Vth, ang, Vbase_POC, ProjectDetailsDict['SCRMVA'], SetpointsDict[scenario_params['setpoint ID']]['SCR'],GRID_MVA, GRID_X_R)        #for more accurate calculation V_POC should be replaced with Vth, but that would also need to be done in PSCAD to align scenarios. 
-            Rfault=Zfault/math.sqrt(1+math.pow(Fault_X_R,2))
-            Xfault=Rfault*Fault_X_R
-            scenario_params['F_Impedance']=Zfault
-        else:
-            Zfault=scenario_params['F_Impedance']
+                if('model' in Vset_dict[Vset_inst].keys()): #It means the setpoint that needs to be changes is a variable or constant
+                    #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
+                    #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
+                    if('var' in Vset_dict[Vset_inst].keys()):
+                        if(profile['scaling']=='relative'):
+                            for cnt in range(0, len(profile['x_data'])):
+                                event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': Vset_dict[Vset_inst]['var'], 'model_type':Vset_dict[Vset_inst]['type'], 'model':Vset_dict[Vset_inst]['model'], 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                        elif(profile['scaling']=='absolute'):
+                            for cnt in range(0, len(profile['x_data'])):
+                                event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': Vset_dict[Vset_inst]['var'], 'model_type':Vset_dict[Vset_inst]['type'], 'model':Vset_dict[Vset_inst]['model'], 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif('con' in Vset_dict[Vset_inst].keys()): 
+                        if(profile['scaling']=='relative'):
+                            for cnt in range(0, len(profile['x_data'])):
+                                event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': Vset_dict[Vset_inst]['con'], 'model_type':Vset_dict[Vset_inst]['type'], 'model':Vset_dict[Vset_inst]['model'], 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                        elif(profile['scaling']=='absolute'):
+                            for cnt in range(0, len(profile['x_data'])):
+                                event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': Vset_dict[Vset_inst]['con'], 'model_type':Vset_dict[Vset_inst]['type'], 'model':Vset_dict[Vset_inst]['model'], 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})
                         
-        Rfault=Zfault/math.sqrt(1+math.pow(Fault_X_R,2))
-        Xfault=Rfault*Fault_X_R
+                    #write every point from the profile vector into the event queue as a variable change
+                    pass
+                else: #It means the setpoint that needs to be changed is in the PSS/E Vref vector
+                    #write ever point from the profile vector into the event queue as a Vred change
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'VREF_change_rel', 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'chn':Vset_dict[Vset_inst]['chn'],'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'VREF_change_abs', 'bus':Vset_dict[Vset_inst]['bus'], 'mac':str(Vset_dict[Vset_inst]['mac']), 'value':profile['y_data'][cnt]})                    
+            event_queue=order_event_queue(event_queue)
+            total_duration=event_queue[-1]['time']+5
+            
+        elif(test_type== 'Q_stp_profile'):   
+            #scaling_factor=140.0/98.4# setpoint is defined in p.u. on Pltn MW base. However, the PSS/E model takes as input a p.u. setpoint expressed on MVA base.
+            #'Total_MVA in the test definition sheet shoudl be udpapted to list total inver rating instead. 
+            #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
+            #for SMA: change variable in HyCon per entry in spreadsheet. Interpolate profile based on points provided in profiles dict.
+            profile=(ProfilesDict[test_profile_name])
+            scaling_factor=profile['scaling_factor_PSSE']
+            if(not is_number(scaling_factor)):
+                scaling_factor=1.0
+            offset=profile['offset_PSSE']
+            if(not is_number(offset)):
+                offset=0.0      
+            profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )          
+            Qset_params=[]
+            for key in PSSEmodelDict.keys():
+                if('Qset' in key):
+                    Qset_params.append(key)
+            Qset_cnt=1
+            Qset_dict={}
+            while ( any( 'Qset'+str(Qset_cnt) in key for key in Qset_params)):
+                Qset_dict[Qset_cnt]={}
+                for param_cnt in range(0, len(Qset_params)):                
+                    param=Qset_params[param_cnt]
+                    if('Qset'+str(Qset_cnt) in param):
+                        Qset_dict[Qset_cnt][param.replace('Qset'+str(Qset_cnt)+'_', '')]=PSSEmodelDict[param]                     
+                Qset_cnt+=1
+            for Qset_inst in Qset_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
+                
+                if('var' in Qset_dict[Qset_inst].keys()): #It means the setpoint that needs to be changes is a variable
+                    #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
+                    #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
+                    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': Qset_dict[Qset_inst]['var'], 'model_type':Qset_dict[Qset_inst]['type'], 'model':Qset_dict[Qset_inst]['model'], 'bus':Qset_dict[Qset_inst]['bus'], 'mac':str(Qset_dict[Qset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': Qset_dict[Qset_inst]['var'], 'model_type':Qset_dict[Qset_inst]['type'], 'model':Qset_dict[Qset_inst]['model'], 'bus':Qset_dict[Qset_inst]['bus'], 'mac':str(Qset_dict[Qset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                           
+                elif('con' in Qset_dict[Qset_inst].keys()):    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': Qset_dict[Qset_inst]['con'], 'model_type':Qset_dict[Qset_inst]['type'], 'model':Qset_dict[Qset_inst]['model'], 'bus':Qset_dict[Qset_inst]['bus'], 'mac':str(Qset_dict[Qset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': Qset_dict[Qset_inst]['con'], 'model_type':Qset_dict[Qset_inst]['type'], 'model':Qset_dict[Qset_inst]['model'], 'bus':Qset_dict[Qset_inst]['bus'], 'mac':str(Qset_dict[Qset_inst]['mac']), 'value':profile['y_data'][cnt]})
+            
+            event_queue=order_event_queue(event_queue)
+            total_duration=event_queue[-1]['time']+5        
+            pass
+            
+            pass
+            
+        elif(test_type==  'PF_stp_profile'):
+            #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
+            profile=(ProfilesDict[test_profile_name])
+            scaling_factor=profile['scaling_factor_PSSE']
+            if(not is_number(scaling_factor)):
+                scaling_factor=1.0
+            offset=profile['offset_PSSE']
+            if(not is_number(offset)):
+                offset=0.0      
+            profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )          
+            PFsetset_params=[]
+            for key in PSSEmodelDict.keys():
+                if('PFset' in key):
+                    PFsetset_params.append(key)
+            PFset_cnt=1
+            PFset_dict={}
+            while ( any( 'PFset'+str(PFset_cnt) in key for key in PFsetset_params)):
+                PFset_dict[PFset_cnt]={}
+                for param_cnt in range(0, len(PFsetset_params)):                
+                    param=PFsetset_params[param_cnt]
+                    if('PFset'+str(PFset_cnt) in param):
+                        PFset_dict[PFset_cnt][param.replace('PFset'+str(PFset_cnt)+'_', '')]=PSSEmodelDict[param]                     
+                PFset_cnt+=1
+            for PFset_inst in PFset_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
+                
+                if('var' in PFset_dict[PFset_inst].keys()): #It means the setpoint that needs to be changes is a variable
+                    #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
+                    #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
+                    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': PFset_dict[PFset_inst]['var'], 'model_type':PFset_dict[PFset_inst]['type'], 'model':PFset_dict[PFset_inst]['model'], 'bus':PFset_dict[PFset_inst]['bus'], 'mac':str(PFset_dict[PFset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': PFset_dict[PFset_inst]['var'], 'model_type':PFset_dict[PFset_inst]['type'], 'model':PFset_dict[PFset_inst]['model'], 'bus':PFset_dict[PFset_inst]['bus'], 'mac':str(PFset_dict[PFset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                           
+                elif('con' in PFset_dict[PFset_inst].keys()):    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': PFset_dict[PFset_inst]['con'], 'model_type':PFset_dict[PFset_inst]['type'], 'model':PFset_dict[PFset_inst]['model'], 'bus':PFset_dict[PFset_inst]['bus'], 'mac':str(PFset_dict[PFset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': PFset_dict[PFset_inst]['con'], 'model_type':PFset_dict[PFset_inst]['type'], 'model':PFset_dict[PFset_inst]['model'], 'bus':PFset_dict[PFset_inst]['bus'], 'mac':str(PFset_dict[PFset_inst]['mac']), 'value':profile['y_data'][cnt]})
+            
+            event_queue=order_event_queue(event_queue)
+            total_duration=event_queue[-1]['time']+5            
+            pass
+            
+        elif(test_type== 'P_stp_profile'):
+            #scaling_factor=float(ProjectDetailsDict['PlantMW'])/(ProjectDetailsDict['genPerSite1']*ProjectDetailsDict['genMVA1'])# setpoint is defined in p.u. on Pltn MW base. However, the PSS/E model takes as input a p.u. setpoint expressed on MVA base.
+            #'Total_MVA in the test definition sheet shoudl be udpapted to list total inver rating instead. 
+            #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
+            #for SMA: change variable in HyCon per entry in spreadsheet. Interpolate profile based on points provided in profiles dict.
+            profile=(ProfilesDict[test_profile_name])
+            scaling_factor=profile['scaling_factor_PSSE']
+            if(not is_number(scaling_factor)):
+                scaling_factor=1.0
+            offset=profile['offset_PSSE']
+            if(not is_number(offset)):
+                offset=0.0      
+            profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )          
+            Pset_params=[]
+            for key in PSSEmodelDict.keys():
+                if('Pset' in key):
+                    Pset_params.append(key)
+            Pset_cnt=1
+            Pset_dict={}
+            while ( any( 'Pset'+str(Pset_cnt) in key for key in Pset_params)):
+                Pset_dict[Pset_cnt]={}
+                for param_cnt in range(0, len(Pset_params)):                
+                    param=Pset_params[param_cnt]
+                    if('Pset'+str(Pset_cnt) in param):
+                        Pset_dict[Pset_cnt][param.replace('Pset'+str(Pset_cnt)+'_', '')]=PSSEmodelDict[param]                     
+                Pset_cnt+=1
+            for Pset_inst in Pset_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
+                
+                if('var' in Pset_dict[Pset_inst].keys()): #It means the setpoint that needs to be changes is a variable
+                    #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
+                    #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
+                    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': Pset_dict[Pset_inst]['var'], 'model_type':Pset_dict[Pset_inst]['type'], 'model':Pset_dict[Pset_inst]['model'], 'bus':Pset_dict[Pset_inst]['bus'], 'mac':str(Pset_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': Pset_dict[Pset_inst]['var'], 'model_type':Pset_dict[Pset_inst]['type'], 'model':Pset_dict[Pset_inst]['model'], 'bus':Pset_dict[Pset_inst]['bus'], 'mac':str(Pset_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                           
+                elif('con' in Pset_dict[Pset_inst].keys()):    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': Pset_dict[Pset_inst]['con'], 'model_type':Pset_dict[Pset_inst]['type'], 'model':Pset_dict[Pset_inst]['model'], 'bus':Pset_dict[Pset_inst]['bus'], 'mac':str(Pset_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': Pset_dict[Pset_inst]['con'], 'model_type':Pset_dict[Pset_inst]['type'], 'model':Pset_dict[Pset_inst]['model'], 'bus':Pset_dict[Pset_inst]['bus'], 'mac':str(Pset_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+            
+            event_queue=order_event_queue(event_queue)
+            total_duration=event_queue[-1]['time']+5        
+            pass
+    
+        elif(test_type== 'P1_stp_profile'):
+            #scaling_factor=float(ProjectDetailsDict['PlantMW'])/(ProjectDetailsDict['genPerSite1']*ProjectDetailsDict['genMVA1'])# setpoint is defined in p.u. on Pltn MW base. However, the PSS/E model takes as input a p.u. setpoint expressed on MVA base.
+            #'Total_MVA in the test definition sheet shoudl be udpapted to list total inver rating instead. 
+            #write changes to event queue --> specify in scenario spreadsheet, which VAR should change
+            #for SMA: change variable in HyCon per entry in spreadsheet. Interpolate profile based on points provided in profiles dict.
+            profile=(ProfilesDict[test_profile_name])
+            scaling_factor=profile['scaling_factor_PSSE']
+            if(not is_number(scaling_factor)):
+                scaling_factor=1.0
+            offset=profile['offset_PSSE']
+            if(not is_number(offset)):
+                offset=0.0      
+            profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=20.0, scaling=scaling_factor, offset=offset )          
+            Pset_params=[]
+            for key in PSSEmodelDict.keys():
+                if('P1set' in key):
+                    Pset_params.append(key)
+            P1set_cnt=1
+            P1set_dict={}
+            while ( any( 'P1set'+str(P1set_cnt) in key for key in Pset_params)):
+                P1set_dict[P1set_cnt]={}
+                for param_cnt in range(0, len(Pset_params)):                
+                    param=Pset_params[param_cnt]
+                    if('P1set'+str(P1set_cnt) in param):
+                        P1set_dict[P1set_cnt][param.replace('P1set'+str(P1set_cnt)+'_', '')]=PSSEmodelDict[param]                     
+                P1set_cnt+=1
+            for Pset_inst in P1set_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
+                
+                if('var' in P1set_dict[Pset_inst].keys()): #It means the setpoint that needs to be changes is a variable
+                    #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
+                    #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
+                    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': P1set_dict[Pset_inst]['var'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': P1set_dict[Pset_inst]['var'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                           
+                elif('con' in P1set_dict[Pset_inst].keys()):    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': P1set_dict[Pset_inst]['con'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': P1set_dict[Pset_inst]['con'], 'model_type':P1set_dict[Pset_inst]['type'], 'model':P1set_dict[Pset_inst]['model'], 'bus':P1set_dict[Pset_inst]['bus'], 'mac':str(P1set_dict[Pset_inst]['mac']), 'value':profile['y_data'][cnt]})
+            
+            event_queue=order_event_queue(event_queue)
+            total_duration=event_queue[-1]['time']+5        
+            pass
         
-        event_queue.append({'time':scenario_params['Ftime'], 'type':'apply_'+scenario_params['Ftype'], 'reactance':Xfault, 'resistance':Rfault})
-        event_queue.append({'time':scenario_params['Ftime']+scenario_params['Fduration'], 'type':'clear_'+scenario_params['Ftype'] })            
-        pass
-        event_queue=order_event_queue(event_queue)
-        total_duration=event_queue[-1]['time']+5
-        
-    elif(scenario_params['Test Type']=='Multifault'):
-        #add all faults and fault clearing to event queue --> check PSCAD implementation onhow to access fault list provided by "readtestinfo" routine
-        for fault_cnt in range(0, len(scenario_params['Fduration'])): #pick duration vector as reference to determine how many faults are included in list
-            Fault_X_R=scenario_params['Fault X_R'][fault_cnt]
+        #Auxiliary profile used to alter Pprim
+        elif(test_type== 'Auxiliary_profile'):
+            #scaling_factor=0.001
+            #write changes to event queue --> specify in scenario spreadsheet, which VAR should change. This is used here to alter the vailabel power for tests per DMAT guideline
+            #for SMA: change constant per entry in test spreadsheet. Interpolate profile based on points provided in profiles dict.
+            profile=(ProfilesDict[test_profile_name])
+            scaling_factor=profile['scaling_factor_PSSE']
+            if(not is_number(scaling_factor)):
+                scaling_factor=1.0
+            offset=profile['offset_PSSE']
+            if(not is_number(offset)):
+                offset=0.0      
+            profile=interpolate(profile=profile, TimeStep=scenario_params['TimeStep']*0.001, density=50.0, scaling=scaling_factor, offset=offset )       
+            Pprim_params=[]
+            for key in PSSEmodelDict.keys():
+                if('Pprim' in key):
+                    Pprim_params.append(key)
+            Pprim_cnt=1
+            Pprim_dict={}
+            while ( any( 'Pprim'+str(Pprim_cnt) in key for key in Pprim_params)):
+                Pprim_dict[Pprim_cnt]={}
+                for param_cnt in range(0, len(Pprim_params)):                
+                    param=Pprim_params[param_cnt]
+                    if('Pprim'+str(Pprim_cnt) in param):
+                        Pprim_dict[Pprim_cnt][param.replace('Pprim'+str(Pprim_cnt)+'_', '')]=PSSEmodelDict[param]                     
+                Pprim_cnt+=1
+            for Pprim_inst in Pprim_dict.keys(): #iterate over all instances of voltage setpoints requiring to be changed (e.g. across different machines/control systems)
+                
+                if('var' in Pprim_dict[Pprim_inst].keys()): #It means the setpoint that needs to be changes is a variable
+                    #L = psspy.mdlind(322813, '1 ', 'EXC', 'VAR')[1]
+                    #L=psspy.mdlind(Vset_dict[Vset_inst]['bus'], Vset_dict[Vset_inst]['mac'], Vset_dict[Vset_inst]['type'], 'VAR')[1]
+                    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_rel', 'rel_id': Pprim_dict[Pprim_inst]['var'], 'model_type':Pprim_dict[Pprim_inst]['type'], 'model':Pprim_dict[Pprim_inst]['model'], 'bus':Pprim_dict[Pprim_inst]['bus'], 'mac':str(Prim_dict[Pprim_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'var_change_abs', 'rel_id': Pprim_dict[Pprim_inst]['var'], 'model_type':Pprim_dict[Pprim_inst]['type'], 'model':Pprim_dict[Pprim_inst]['model'], 'bus':Pprim_dict[Pprim_inst]['bus'], 'mac':str(Pprim_dict[Pprim_inst]['mac']), 'value':profile['y_data'][cnt]})
+    
+                elif('con' in Pprim_dict[Pprim_inst].keys()):    
+                    if(profile['scaling']=='relative'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_rel', 'rel_id': Pprim_dict[Pprim_inst]['con'], 'model_type':Pprim_dict[Pprim_inst]['type'], 'model':Pprim_dict[Pprim_inst]['model'], 'bus':Pprim_dict[Pprim_inst]['bus'], 'mac':str(Pprim_dict[Pprim_inst]['mac']), 'value':profile['y_data'][cnt]})
+                    elif(profile['scaling']=='absolute'):
+                        for cnt in range(0, len(profile['x_data'])):
+                            event_queue.append({'time':profile['x_data'][cnt], 'type':'con_change_abs', 'rel_id': Pprim_dict[Pprim_inst]['con'], 'model_type':Pprim_dict[Pprim_inst]['type'], 'model':Pprim_dict[Pprim_inst]['model'], 'bus':Pprim_dict[Pprim_inst]['bus'], 'mac':str(Pprim_dict[Pprim_inst]['mac']), 'value':profile['y_data'][cnt]})
+            
+            event_queue=order_event_queue(event_queue)
+            total_duration=event_queue[-1]['time']+5        
+            pass
+        #--------------------FAULT SCENARIOS/TOV-----------------------------------
+            
+        elif(test_type=='Fault'):
+            #add fault and and fault clearing to event queue
+            Fault_X_R=scenario_params['Fault X_R']
             if(Fault_X_R==''):
                 Fault_X_R=3.0
-            if(scenario_params['F_Impedance'][fault_cnt]=='' and scenario_params['Vresidual'][fault_cnt]!=''):
-                Zfault, Fault_X_R=calc_fault_impedance(float(scenario_params['Vresidual'][fault_cnt]), Fault_X_R, V_POC, Vbase_POC, ProjectDetailsDict['SCRMVA'], SetpointsDict[scenario_params['setpoint ID']]['SCR'],GRID_MVA, GRID_X_R)        #for more accurate calculation V_POC should be replaced with Vth, but that would also need to be done in PSCAD to align scenarios.    
-#                Zfault, Fault_X_R=calc_fault_impedance(float(scenario_params['Vresidual'][fault_cnt]), Fault_X_R, Vth, ang, Vbase_POC, ProjectDetailsDict['SCRMVA'], SetpointsDict[scenario_params['setpoint ID']]['SCR'],GRID_MVA, GRID_X_R)        #for more accurate calculation V_POC should be replaced with Vth, but that would also need to be done in PSCAD to align scenarios.
+            if(scenario_params['F_Impedance']=='' and scenario_params['Vresidual']!=''):
+                Zfault, Fault_X_R=calc_fault_impedance(float(scenario_params['Vresidual']), Fault_X_R, V_POC, Vbase_POC, ProjectDetailsDict['SCRMVA'], SetpointsDict[scenario_params['setpoint ID']]['SCR'],GRID_MVA, GRID_X_R)        #for more accurate calculation V_POC should be replaced with Vth, but that would also need to be done in PSCAD to align scenarios.    
+    #            Zfault, Fault_X_R=calc_fault_impedance(float(scenario_params['Vresidual']), Fault_X_R, Vth, ang, Vbase_POC, ProjectDetailsDict['SCRMVA'], SetpointsDict[scenario_params['setpoint ID']]['SCR'],GRID_MVA, GRID_X_R)        #for more accurate calculation V_POC should be replaced with Vth, but that would also need to be done in PSCAD to align scenarios. 
                 Rfault=Zfault/math.sqrt(1+math.pow(Fault_X_R,2))
                 Xfault=Rfault*Fault_X_R
-                scenario_params['F_Impedance'][fault_cnt]=Zfault
+                scenario_params['F_Impedance']=Zfault
             else:
-                Zfault=scenario_params['F_Impedance'][fault_cnt]
+                Zfault=scenario_params['F_Impedance']
                             
             Rfault=Zfault/math.sqrt(1+math.pow(Fault_X_R,2))
             Xfault=Rfault*Fault_X_R
             
-            event_queue.append({'time':scenario_params['Ftime'][fault_cnt], 'type':'apply_'+scenario_params['Ftype'][fault_cnt], 'reactance':Xfault, 'resistance':Rfault})
-            event_queue.append({'time':scenario_params['Ftime'][fault_cnt]+scenario_params['Fduration'][fault_cnt], 'type':'clear_'+scenario_params['Ftype'][fault_cnt] })    
-        pass
-        total_duration=event_queue[-1]['time']+5
-    
-    elif(scenario_params['Test Type']=='Multifault_random'):
-        #add all faults and fault clearing to event queue --> use routine from PSCAD for random fault events
-        random_times=[0.01, 0.01, 0.2, 0.2, 0.5, 0.5, 0.75, 1, 1.5, 2, 2, 3, 5, 7, 10]
-        random.shuffle(random_times)
-        random_fault_duration=[0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.43]
-        random.shuffle(random_fault_duration)
-        Zgrid=math.pow((ProjectDetailsDict['VbaseTestSrc']*1000),2)/setpoint_params['GridMVA']/1000000 #Zgrid
-        random_impedances=[0, 0, 0.2, 0.2, 0.2, 1, 1, 1, 1, 1, 2, 2, 2, 3.5, 3.5]
-        random.shuffle(random_impedances)
-        random_fault_types=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        random.shuffle(random_fault_types)
+            event_queue.append({'time':scenario_params['Ftime'], 'type':'apply_'+scenario_params['Ftype'], 'reactance':Xfault, 'resistance':Rfault})
+            event_queue.append({'time':scenario_params['Ftime']+scenario_params['Fduration'], 'type':'clear_'+scenario_params['Ftype'] })            
+            pass
+            event_queue=order_event_queue(event_queue)
+            total_duration=event_queue[-1]['time']+5
+            
+        elif(test_type=='Multifault'):
+            #add all faults and fault clearing to event queue --> check PSCAD implementation onhow to access fault list provided by "readtestinfo" routine
+            for fault_cnt in range(0, len(scenario_params['Fduration'])): #pick duration vector as reference to determine how many faults are included in list
+                Fault_X_R=scenario_params['Fault X_R'][fault_cnt]
+                if(Fault_X_R==''):
+                    Fault_X_R=3.0
+                if(scenario_params['F_Impedance'][fault_cnt]=='' and scenario_params['Vresidual'][fault_cnt]!=''):
+                    Zfault, Fault_X_R=calc_fault_impedance(float(scenario_params['Vresidual'][fault_cnt]), Fault_X_R, V_POC, Vbase_POC, ProjectDetailsDict['SCRMVA'], SetpointsDict[scenario_params['setpoint ID']]['SCR'],GRID_MVA, GRID_X_R)        #for more accurate calculation V_POC should be replaced with Vth, but that would also need to be done in PSCAD to align scenarios.    
+    #                Zfault, Fault_X_R=calc_fault_impedance(float(scenario_params['Vresidual'][fault_cnt]), Fault_X_R, Vth, ang, Vbase_POC, ProjectDetailsDict['SCRMVA'], SetpointsDict[scenario_params['setpoint ID']]['SCR'],GRID_MVA, GRID_X_R)        #for more accurate calculation V_POC should be replaced with Vth, but that would also need to be done in PSCAD to align scenarios.
+                    Rfault=Zfault/math.sqrt(1+math.pow(Fault_X_R,2))
+                    Xfault=Rfault*Fault_X_R
+                    scenario_params['F_Impedance'][fault_cnt]=Zfault
+                else:
+                    Zfault=scenario_params['F_Impedance'][fault_cnt]
+                                
+                Rfault=Zfault/math.sqrt(1+math.pow(Fault_X_R,2))
+                Xfault=Rfault*Fault_X_R
+                
+                event_queue.append({'time':scenario_params['Ftime'][fault_cnt], 'type':'apply_'+scenario_params['Ftype'][fault_cnt], 'reactance':Xfault, 'resistance':Rfault})
+                event_queue.append({'time':scenario_params['Ftime'][fault_cnt]+scenario_params['Fduration'][fault_cnt], 'type':'clear_'+scenario_params['Ftype'][fault_cnt] })    
+            pass
+            total_duration=event_queue[-1]['time']+5
         
-        faultTimeOffset=scenario_params['Ftime']
+        elif(test_type=='Multifault_random'):
+            #add all faults and fault clearing to event queue --> use routine from PSCAD for random fault events
+            random_times=[0.01, 0.01, 0.2, 0.2, 0.5, 0.5, 0.75, 1, 1.5, 2, 2, 3, 5, 7, 10]
+            random.shuffle(random_times)
+            random_fault_duration=[0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.43]
+            random.shuffle(random_fault_duration)
+            Zgrid=math.pow((ProjectDetailsDict['VbaseTestSrc']*1000),2)/setpoint_params['GridMVA']/1000000 #Zgrid
+            random_impedances=[0, 0, 0.2, 0.2, 0.2, 1, 1, 1, 1, 1, 2, 2, 2, 3.5, 3.5]
+            random.shuffle(random_impedances)
+            random_fault_types=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            random.shuffle(random_fault_types)
+            
+            faultTimeOffset=scenario_params['Ftime']
+            
+            scenario_params['F_Impedance']=[]
+            scenario_params['Fault X_R']=[setpoint_params['X_R']]
+            scenario_params['Ftime']=[]
+            scenario_params['Fduration']=[]
+            scenario_params['Ftype']=['3PHG'] #only 3PHG fault in PSS/E random multifault per DMAT guideline
+            for faultID in range(0, 15):     
+                Zfault=random_impedances[faultID]*Zgrid            
+                Fault_X_R=setpoint_params['X_R']            
+                Rfault=Zfault/math.sqrt(1+math.pow(Fault_X_R,2))
+                Xfault=Rfault*Fault_X_R             
+                event_queue.append({'time':faultTimeOffset, 'type':'apply_3PHG', 'reactance':Xfault, 'resistance':Rfault})
+                event_queue.append({'time':faultTimeOffset+random_fault_duration[faultID], 'type':'clear_3PHG' })
+                faultTimeOffset=faultTimeOffset+random_fault_duration[faultID]+random_times[faultID]
+                #write fault details back to scenario_params, so that it is correctly captured in the metadata
+                scenario_params['F_Impedance'].append(Zfault)
+                scenario_params['Ftime'].append(faultTimeOffset)
+                scenario_params['Fduration'].append(random_fault_duration[faultID])
+            total_duration=event_queue[-1]['time']+5
         
-        scenario_params['F_Impedance']=[]
-        scenario_params['Fault X_R']=[setpoint_params['X_R']]
-        scenario_params['Ftime']=[]
-        scenario_params['Fduration']=[]
-        scenario_params['Ftype']=['3PHG'] #only 3PHG fault in PSS/E random multifault per DMAT guideline
-        for faultID in range(0, 15):     
-            Zfault=random_impedances[faultID]*Zgrid            
-            Fault_X_R=setpoint_params['X_R']            
-            Rfault=Zfault/math.sqrt(1+math.pow(Fault_X_R,2))
-            Xfault=Rfault*Fault_X_R             
-            event_queue.append({'time':faultTimeOffset, 'type':'apply_3PHG', 'reactance':Xfault, 'resistance':Rfault})
-            event_queue.append({'time':faultTimeOffset+random_fault_duration[faultID], 'type':'clear_3PHG' })
-            faultTimeOffset=faultTimeOffset+random_fault_duration[faultID]+random_times[faultID]
-            #write fault details back to scenario_params, so that it is correctly captured in the metadata
-            scenario_params['F_Impedance'].append(Zfault)
-            scenario_params['Ftime'].append(faultTimeOffset)
-            scenario_params['Fduration'].append(random_fault_duration[faultID])
-        total_duration=event_queue[-1]['time']+5
-    
-    elif(scenario_params['Test Type']=='TOV'):
-        #add element to event queue to either alter setting of capacitive element at POC or add capacitive element at POC
-        #                    
-        if(is_number(scenario_params['Capacity(F)']) ):
-            capacity=float(scenario_params['Capacity(F)'])
-        else:
-            Qinj, capacity = TOV_calc.calc_capacity(setpoint_params['GridMVA'], setpoint_params['X_R'], setpoint_params['P'], setpoint_params['Q'], setpoint_params['V_POC'], ProjectDetailsDict['VbaseTestSrc']*1000, scenario_params['Vresidual']) #Vbase must be provided in volts
-            Qcap=Qinj/(scenario_params['Vresidual']*scenario_params['Vresidual'])
-            scenario_params['Capacity(F)']=round(capacity, 4)
-        psspy.shunt_data(FaultBus,r"""1""",0,[0.0,Qcap])
-        standalone_script+="psspy.shunt_data("+str(FaultBus)+",'1',0,[0.0,"+str(Qinj)+'])'
-        event_queue.append({'time':scenario_params['time'], 'type':'shunt_on', 'bus': FaultBus, 'id': '1'})#add event to switch shunt on
-        event_queue.append({'time':scenario_params['time']+scenario_params['Fduration'], 'type':'shunt_off', 'bus': FaultBus, 'id': '1'})
-        #add event to switch shunt off       
-        total_duration=event_queue[-1]['time']+5
+        elif(test_type=='TOV'):
+            #add element to event queue to either alter setting of capacitive element at POC or add capacitive element at POC
+            #                    
+            if(is_number(scenario_params['Capacity(F)']) ):
+                capacity=float(scenario_params['Capacity(F)'])
+            else:
+                Qinj, capacity = TOV_calc.calc_capacity(setpoint_params['GridMVA'], setpoint_params['X_R'], setpoint_params['P'], setpoint_params['Q'], setpoint_params['V_POC'], ProjectDetailsDict['VbaseTestSrc']*1000, scenario_params['Vresidual']) #Vbase must be provided in volts
+                Qcap=Qinj/(scenario_params['Vresidual']*scenario_params['Vresidual'])
+                scenario_params['Capacity(F)']=round(capacity, 4)
+            psspy.shunt_data(FaultBus,r"""1""",0,[0.0,Qcap])
+            standalone_script+="psspy.shunt_data("+str(FaultBus)+",'1',0,[0.0,"+str(Qinj)+'])'
+            event_queue.append({'time':scenario_params['time'], 'type':'shunt_on', 'bus': FaultBus, 'id': '1'})#add event to switch shunt on
+            event_queue.append({'time':scenario_params['time']+scenario_params['Fduration'], 'type':'shunt_off', 'bus': FaultBus, 'id': '1'})
+            #add event to switch shunt off       
+            total_duration=event_queue[-1]['time']+5
     
     dyr_to_use=PSSEmodelDict['dyrFileName']
     if('dyr' in SetpointsDict[scenario_params['setpoint ID']].keys()):

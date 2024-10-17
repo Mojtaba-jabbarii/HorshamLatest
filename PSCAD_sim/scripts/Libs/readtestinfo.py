@@ -183,6 +183,10 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
                     ScenariosDict[scenario_name][column_name]=TovSheet[column_name].iloc[row_cnt] 
                     
         print("Read Scenarios")
+        for scenario in ScenariosDict.keys():
+            ScenariosDict[scenario]['Test Type']=[word.strip() for word in ScenariosDict[scenario]['Test Type'].split(',') if word.strip()]
+            if 'Test profile' in ScenariosDict[scenario].keys():
+                ScenariosDict[scenario]['Test profile']=[word.strip() for word in ScenariosDict[scenario]['Test profile'].split(',') if word.strip()]
         return_dict['ScenariosSMIB']=ScenariosDict
        
     #-------------------------------------------------------------------------

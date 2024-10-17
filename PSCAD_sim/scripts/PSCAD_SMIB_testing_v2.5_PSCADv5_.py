@@ -189,7 +189,7 @@ TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 
 # simulation_batches=['S52511','S52513','S52514','S5255Iq1','S5255Iq2','S5255Iq3']
 #simulation_batches=['S5255Iq1','S5255Iq3']# last batch that Dao ran
-simulation_batches=['shallow_fault_dbg']#, []'Benchmarking2_frt_dbg', 'Benchmarking3_frt_dbg','Benchmarking_frt_dbg']#'Benchmarking_dbg', 
+simulation_batches= ['Benchmarking3_dbg']#['Benchmarking', 'Benchmarking2', 'Benchmarking3', 'Benchmarking3_dbg','Benchmarking_frt', 'Benchmarking2_frt','Benchmarking3_frt']##'Benchmarking','shallow_fault_dbg']#, []'Benchmarking2_frt_dbg', 'Benchmarking3_frt_dbg','Benchmarking_frt_dbg']#'Benchmarking_dbg', 
 #The below can alternatively be defined in the Excel sheet
 
 overwrite = False # 
@@ -603,340 +603,344 @@ def runTest(scenario_group, current_workspace_folder, testRun): #scenario_group 
                 #SET TEST COMPONENTS PER SCENARIO DEFINITION
                 simulation_duration = PSCADmodelDict['default_sim_duration']        
                 project=pscad.project(project_files['Project1'])    # The test components always need to be placed in file "Project1"
-                    
+
+                #NEW addition to allow for multiple test types and associated profiles in a single scenario.
+                for test_type_id in range (0, len(scenario_params['Test Type'])):
+                    test_type=scenario_params['Test Type'][test_type_id]
+                    test_profile_name=scenario_params['Test profile'][test_type_id] 
                     #test type
                         # for fault scenarios use context menu of the test block
-                #if test type is one of the known types, select appropriate setting in context menu of every test block
-                if (scenario_params['Test Type']=='F_profile'): 
-                    if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
-                        canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['GridSourceID'])
-                    #Set grid source to F_profile mode --> will disable all other modes
-                    parameters = {'mode': 1, 'FprofileMethod':0, 'FprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
-                    # set scaling option in context menu to "Hz"
-                    #set offset to none (in the long term, might add that function to the excel sheet)        
-                    parameters['FprofileScal']=0 #set mode to Hz
-                    #write settings into component
-                    comp_handle.set_parameters(**parameters)    
-                    
-                    
-            
-                elif(scenario_params['Test Type']=='V_profile'):
-                    if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
-                        canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['GridSourceID'])
-                    #Set grid source to V_profile mode
-                    #set scaling to Vbase (absolute) or Vpu (relative)
-                    parameters = {'mode': 2, 'VprofileMethod':0, 'VprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
-                    # set scaling option in context menu to "Hz"
-                    #set offset to none (in the long term, might add that function to the excel sheet)        
-                    if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                        parameters['VprofileScal']=2 #set mode to interpret profile as expressed in pu on Vbase x Vpu
-                    else:
-                        parameters['VprofileScal']=1 #set mode to interpret profile as expressed in pu on Vbase
-                    comp_handle.set_parameters(**parameters)    
-                        
-                elif(scenario_params['Test Type']=='ANG_profile'):
-                    if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
-                        canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['GridSourceID'])
-                    #Set grid source to F_profile mode --> will disable all other modes
-                    parameters = {'mode': 4, 'PHprofileMethod':0}
-                    comp_handle.set_parameters(**parameters)
-                    
-                elif(scenario_params['Test Type']== 'ORT'):
-                    if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
-                        canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['GridSourceID'])
-                    #Set grid source to F_profile mode --> will disable all other modes
-                    parameters = {'mode': 3, 'MagBase':float(scenario_params['Disturbance Magnitude']), 'Fdist': float(scenario_params['Disturbance Frequency']), 'PhDistMag': float(scenario_params['PhaseOsc Magnitude']), 'OscStartTime': float(scenario_params['time'])} ##ADD HERE THE PARAMETERS FOR THE DISTURBANCE
-                    comp_handle.set_parameters(**parameters)
-                    simulation_duration = 20 # 30/11/2022: run full 20sec as requested from AEMO
-                
-                #Setpoint profiles
-                #
-                elif(scenario_params['Test Type']== 'V_stp_profile'):
-                    if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                    #if test type is one of the known types, select appropriate setting in context menu of every test block
+                    if (test_type=='F_profile'): 
+                        if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
                             canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
-                    # For stp profile, set the corresponging profile in the 
-                    #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-                    #elif scaling = absolute: use parameterBase as scaling factor
-                    parameters = {'VstpMethod':0} #set profile entyr method to 'file'
-                    comp_handle.set_parameters(**parameters)  
-                    
-                    VstDefault=comp_handle.get_parameters()['VstpDefault']
-                    if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                        stpScal['V_stp_profile']=VstDefault
-                    else:
-                        stpScal['V_stp_profile']=1.0        
-                    
-                elif(scenario_params['Test Type']== 'Q_stp_profile'):
-                    if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                        canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
-                    # For stp profile, set the corresponging profile in the 
-                    #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-                    #elif scaling = absolute: use parameterBase as scaling factor
-                    parameters = {'QstpMethod':0} #set profile entyr method to 'file'
-                    comp_handle.set_parameters(**parameters)  
-                    
-                    QstDefault=comp_handle.get_parameters()['QstpDefault']
-                    if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                        stpScal['Q_stp_profile']=QstDefault
-                    else:
-                        stpScal['Q_stp_profile']=1.0 
-                                    
-                elif(scenario_params['Test Type']== 'Q1_stp_profile'):
-                    if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                        canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
-                    # For stp profile, set the corresponging profile in the 
-                    #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-                    #elif scaling = absolute: use parameterBase as scaling factor
-                    parameters = {'Q1stpMethod':0} #set profile entyr method to 'file'
-                    comp_handle.set_parameters(**parameters)  
-                    
-                    QstDefault=comp_handle.get_parameters()['Q1stpDefault']
-                    if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                        stpScal['Q1_stp_profile']=QstDefault
-                    else:
-                        stpScal['Q1_stp_profile']=1.0 
-                        
-                elif(scenario_params['Test Type']==  'PF_stp_profile'): 
-                    if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                            canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
-                    # For stp profile, set the corresponging profile in the 
-                    #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-                    #elif scaling = absolute: use parameterBase as scaling factor
-                    parameters = {'PFstpMethod':0} #set profile entyr method to 'file'
-                    comp_handle.set_parameters(**parameters)  
-                    
-                    PFstDefault=comp_handle.get_parameters()['PFstpDefault']
-                    if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                        stpScal['PF_stp_profile']=PFstDefault
-                    else:
-                        stpScal['PF_stp_profile']=1.0  
-                        
-                elif(scenario_params['Test Type']==  'PF1_stp_profile'): 
-                    if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                            canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
-                    # For stp profile, set the corresponging profile in the 
-                    #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-                    #elif scaling = absolute: use parameterBase as scaling factor
-                    parameters = {'PF1stpMethod':0} #set profile entyr method to 'file'
-                    comp_handle.set_parameters(**parameters)  
-                    
-                    PFstDefault=comp_handle.get_parameters()['PF1stpDefault']
-                    if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                        stpScal['PF1_stp_profile']=PFstDefault
-                    else:
-                        stpScal['PF1_stp_profile']=1.0  
-                        
-                elif(scenario_params['Test Type']== 'P_stp_profile'):
-                    if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                            canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
-                    # For stp profile, set the corresponging profile in the 
-                    #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-                    #elif scaling = absolute: use parameterBase as scaling factor
-                    parameters = {'PstpMethod':0} #set profile entyr method to 'file'
-                    comp_handle.set_parameters(**parameters)  
-                    
-                    PstDefault=comp_handle.get_parameters()['PstpDefault']
-                    if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                        stpScal['P_stp_profile']=PstDefault
-                    else:
-                        stpScal['P_stp_profile']=1.0    
-                
-                elif(scenario_params['Test Type']== 'P1_stp_profile'):
-                    if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                            canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
-                    # For stp profile, set the corresponging profile in the 
-                    #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-                    #elif scaling = absolute: use parameterBase as scaling factor
-                    parameters = {'P1stpMethod':0} #set profile entyr method to 'file'
-                    comp_handle.set_parameters(**parameters)  
-                    
-                    PstDefault=comp_handle.get_parameters()['P1stpDefault']
-                    if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                        stpScal['P1_stp_profile']=PstDefault
-                    else:
-                        stpScal['P1_stp_profile']=1.0    
-                        
-                elif(scenario_params['Test Type']== 'Auxiliary_profile'):
-                    if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                            canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
-                    # For stp profile, set the corresponging profile in the 
-                    #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-                    #elif scaling = absolute: use parameterBase as scaling factor
-                    parameters = {'AUXstpMethod':0} #set profile entyr method to 'file'
-                    comp_handle.set_parameters(**parameters)  
-                    
-                    AUXstpDefault=comp_handle.get_parameters()['AUXstpDefault']
-                    if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                        stpScal['Auxiliary_profile']=AUXstpDefault
-                    else:
-                        stpScal['Auxiliary_profile']=1.0 
-                        
-                elif(scenario_params['Test Type']=='Fault'):
-                    if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
-                            canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['FaultBlockID'])
-                    
-                    if(scenario_params['Ftype']=='3PHG'):fault_type=0
-                    elif(scenario_params['Ftype']=='2PHG'):fault_type=1
-                    elif(scenario_params['Ftype']=='1PHG'):fault_type=2
-                    elif(scenario_params['Ftype']=='L-L'):fault_type=3
-                    
-                    parameters = {'status':1,'N_faults':1, 'Time1':scenario_params['Ftime'], 'Duration1':scenario_params['Fduration'], 'Type1':fault_type} #set to block to 'active' and single fault
-                    #set impedance depending on if it is defined directly or via residual voltage
-                    if(scenario_params['Fault X_R']==''):
-                        scenario_params['Fault X_R']=3 #default to 3 if not defined
-                    if(scenario_params['F_Impedance']!=''): #impedance is defined
-                        parameters['Impedance1']=scenario_params['F_Impedance']
-                        parameters['X_R1']=scenario_params['Fault X_R']
-                    elif(scenario_params['Vresidual']!=''):
-                        Zfault, X_R_fault = calc_fault_impedance(scenario_params['Vresidual'],scenario_params['Fault X_R'],  SetpointsDict[scenario_params['setpoint ID']]['V_POC'],VbaseTestSrc, SCRMVAbase, SetpointsDict[scenario_params['setpoint ID']]['SCR'], SetpointsDict[scenario_params['setpoint ID']]['X_R'])#
-                        parameters['Impedance1']= Zfault  
-                        parameters['X_R1']=X_R_fault
-                    else:
-                        parameters['Impedance1']=0.01 #default to 0 Ohm fault
-                        parameters['X_R1']=scenario_params['Fault X_R']
-            
-                    comp_handle.set_parameters(**parameters)
-                    
-                    simulation_duration = round(scenario_params['Ftime']+scenario_params['Fduration']+5.0)
-                    # set up fault block
-                            #with data from table if type is fault
-                            #with data from table if type is Multifault
-                            # with data from table AND data from auto-generated Multifault profile if type is Mutlifault_random            
-                    # set scenario duration to Ftime+Fduration+5s if type=Fault
-                    # set scenario duration to Ftime+Fduration+5s of last fault in series if Type=Multifault
-                    # set scenario duration to Ftime+ProfileLength+5s if type=Multifault_random
-                    
-                elif(scenario_params['Test Type']=='Multifault'):
-                    if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
-                            canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['FaultBlockID'])
-                    
-                    N_faults = len(scenario_params['Ftype'])
-                    parameters = {'status':1, 'N_faults': N_faults}
-                    
-                    for faultID in range(0, len(scenario_params['Ftype'])):
-                        if(scenario_params['Ftype'][faultID]=='3PHG'):fault_type=0
-                        elif(scenario_params['Ftype'][faultID]=='2PHG'):fault_type=1
-                        elif(scenario_params['Ftype'][faultID]=='1PHG'):fault_type=2
-                        elif(scenario_params['Ftype'][faultID]=='L-L'):fault_type=3
-                        
-                        if(scenario_params['Fault X_R'][faultID]==''):
-                            scenario_params['Fault X_R'][faultID]=3 #default fault X_R to 3
-                        if(scenario_params['F_Impedance'][faultID] !=''): #If impedance is defined, set it directly                
-                            parameters['Impedance'+str(faultID+1)]=scenario_params['F_Impedance'][faultID]
-                            parameters['X_R'+str(faultID+1)]=scenario_params['Fault X_R'][faultID]
-                        elif(scenario_params['Vresidual'][faultID] !=''):
-                            Zfault, X_R_fault=calc_fault_impedance(scenario_params['Vresidual'][faultID],scenario_params['Fault X_R'][faultID], SetpointsDict[scenario_params['setpoint ID']]['V_POC'],VbaseTestSrc, SCRMVAbase, SetpointsDict[scenario_params['setpoint ID']]['SCR'], SetpointsDict[scenario_params['setpoint ID']]['X_R'])#
-                            parameters['Impedance'+str(faultID+1)]=Zfault
-                            parameters['X_R'+str(faultID+1)]=X_R_fault
                         else:
-                            parameters['Impedance'+str(faultID+1)]=0.01 #default to 0 Ohm fault
-                            scenario_params['Fault X_R'][faultID]
+                            canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['GridSourceID'])
+                        #Set grid source to F_profile mode --> will disable all other modes
+                        parameters = {'mode': 1, 'FprofileMethod':0, 'FprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
+                        # set scaling option in context menu to "Hz"
+                        #set offset to none (in the long term, might add that function to the excel sheet)        
+                        parameters['FprofileScal']=0 #set mode to Hz
+                        #write settings into component
+                        comp_handle.set_parameters(**parameters)    
                         
-                        parameters['Time'+str(faultID+1)]=scenario_params['Ftime'][faultID]
-                        parameters['Duration'+str(faultID+1)]=scenario_params['Fduration'][faultID]
-                        parameters['Type'+str(faultID+1)]=scenario_params['Ftype'][faultID]
-                        #parameters['Impedance'+str(faultID)]=scenario_params['F_Impedance'][faultID]
-                        #parameters['X_R'+str(faultID)]=scenario_params['Fault X_R'][faultID]
-                   
-                    comp_handle.set_parameters(**parameters)   
-                    simulation_duration = round(scenario_params['Ftime'][faultID]+scenario_params['Fduration'][faultID]+5.0) #faultID points to the last fault in the sequence. Take the values form this fault to determine the length of the simulation
+                        
                 
-                elif(scenario_params['Test Type']=='Multifault_random'):
-                    random_times=[0.01, 0.01, 0.2, 0.2, 0.5, 0.5, 0.75, 1, 1.5, 2, 2, 3, 5, 7, 10]
-                    random.shuffle(random_times)
-                    random_fault_duration=[0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.43]
-                    random.shuffle(random_fault_duration)
-                    Zgrid=math.pow((ProjectDetailsDict['VbaseTestSrc']*1000),2)/setpoint_params['GridMVA']/1000000 #Zgrid
-                    random_impedances=[0,0,0,0,0,0,0, 3,3,3,3,3, 2,2,2]
-                    random.shuffle(random_impedances)
-                    random_fault_types=[2,2,2,2,2,2,1,1,1,1,1,1,1,0,0]
-                    random.shuffle(random_fault_types)
-                    
-                    if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
-                        canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['FaultBlockID'])
-                    parameters = {'status':1, 'N_faults': 15}
-                    faultTimeOffset=scenario_params['Ftime']
-                    for faultID in range(0, 15):
-                        parameters['Impedance'+str(faultID+1)]=random_impedances[faultID]*Zgrid
-                        parameters['X_R'+str(faultID+1)]=setpoint_params['X_R']
-                        parameters['Time'+str(faultID+1)]=faultTimeOffset
-                        parameters['Duration'+str(faultID+1)]=random_fault_duration[faultID]
-                        parameters['Type'+str(faultID+1)]=random_fault_types[faultID]                
-                        faultTimeOffset=faultTimeOffset+random_fault_duration[faultID]+random_times[faultID]            
-                    comp_handle.set_parameters(**parameters)   
-                    simulation_duration = round(faultTimeOffset+5.0) 
-                
-                elif(scenario_params['Test Type']=='TOV'):
-                    if(is_number(scenario_params['Capacity(F)']) ):
-                        capacity=float(scenario_params['Capacity(F)'])
-                    else:
-                        Qinj, capacity = TOV_calc.calc_capacity(setpoint_params['GridMVA'], setpoint_params['X_R'], setpoint_params['P'], setpoint_params['Q'], setpoint_params['V_POC'], ProjectDetailsDict['VbaseTestSrc']*1000, scenario_params['Vresidual'])
-                    capacity_uF=math.pow(10,6)*capacity #scale to uF
-                    if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+                    elif(test_type=='V_profile'):
+                        if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
                             canvas_handle = project.user_canvas("Main")
-                    else:
-                        canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
-                    comp_handle = canvas_handle.user_cmp(PSCADmodelDict['FaultBlockID'])            
-                    parameters = {'status':1, 'N_faults': 1, 'Duration1':scenario_params['Fduration'], 'Time1':scenario_params['time'], 'Type1':4, 'Capacity1': capacity_uF}    
-                    
-                    comp_handle.set_parameters(**parameters)   
-                    simulation_duration = round(scenario_params['time']+scenario_params['Fduration']+5.0) #faultID points to the last fault in the sequence. Take the values form this fault to determine the length of the simulation
-        
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['GridSourceID'])
+                        #Set grid source to V_profile mode
+                        #set scaling to Vbase (absolute) or Vpu (relative)
+                        parameters = {'mode': 2, 'VprofileMethod':0, 'VprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
+                        # set scaling option in context menu to "Hz"
+                        #set offset to none (in the long term, might add that function to the excel sheet)        
+                        if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
+                            parameters['VprofileScal']=2 #set mode to interpret profile as expressed in pu on Vbase x Vpu
+                        else:
+                            parameters['VprofileScal']=1 #set mode to interpret profile as expressed in pu on Vbase
+                        comp_handle.set_parameters(**parameters)    
+                            
+                    elif(test_type=='ANG_profile'):
+                        if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
+                            canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['GridSourceID'])
+                        #Set grid source to F_profile mode --> will disable all other modes
+                        parameters = {'mode': 4, 'PHprofileMethod':0}
+                        comp_handle.set_parameters(**parameters)
                         
-                #-------------------------------------------------------------------------
-                #GENERATE TEST PROFILE FILES (either containing the test profile or default (to make the test library components work even if profile not required) )
-                    # for POC profile or stp profile tests, simply copy the profiles from the excel sheet
-                if('Test profile' in scenario_params.keys()): #check if the test type allows for a test profile
-                    if(scenario_params['Test profile'] !=''):#check if a test profile is actually listed
-                        if(scenario_params['Test profile'] in ProfilesDict.keys()): #check if profile has been properly defined
-                            simulation_duration = profileToFile(scenario_params['Test profile'], scenario_params['Test Type'], workspaceFileDir) #provide 
-                        else: print("ERROR: listed test profile has not been defined")
-                    else: print("LOG: No test profile defined")
+                    elif(test_type== 'ORT'):
+                        if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
+                            canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['GridSourceID'])
+                        #Set grid source to F_profile mode --> will disable all other modes
+                        parameters = {'mode': 3, 'MagBase':float(scenario_params['Disturbance Magnitude']), 'Fdist': float(scenario_params['Disturbance Frequency']), 'PhDistMag': float(scenario_params['PhaseOsc Magnitude']), 'OscStartTime': float(scenario_params['time'])} ##ADD HERE THE PARAMETERS FOR THE DISTURBANCE
+                        comp_handle.set_parameters(**parameters)
+                        simulation_duration = 20 # 30/11/2022: run full 20sec as requested from AEMO
+                    
+                    #Setpoint profiles
+                    #
+                    elif(test_type== 'V_stp_profile'):
+                        if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                                canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
+                        # For stp profile, set the corresponging profile in the 
+                        #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                        #elif scaling = absolute: use parameterBase as scaling factor
+                        parameters = {'VstpMethod':0} #set profile entyr method to 'file'
+                        comp_handle.set_parameters(**parameters)  
+                        
+                        VstDefault=comp_handle.get_parameters()['VstpDefault']
+                        if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                            stpScal['V_stp_profile']=VstDefault
+                        else:
+                            stpScal['V_stp_profile']=1.0        
+                        
+                    elif(test_type== 'Q_stp_profile'):
+                        if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                            canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
+                        # For stp profile, set the corresponging profile in the 
+                        #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                        #elif scaling = absolute: use parameterBase as scaling factor
+                        parameters = {'QstpMethod':0} #set profile entyr method to 'file'
+                        comp_handle.set_parameters(**parameters)  
+                        
+                        QstDefault=comp_handle.get_parameters()['QstpDefault']
+                        if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                            stpScal['Q_stp_profile']=QstDefault
+                        else:
+                            stpScal['Q_stp_profile']=1.0 
+                                        
+                    elif(test_type== 'Q1_stp_profile'):
+                        if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                            canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
+                        # For stp profile, set the corresponging profile in the 
+                        #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                        #elif scaling = absolute: use parameterBase as scaling factor
+                        parameters = {'Q1stpMethod':0} #set profile entyr method to 'file'
+                        comp_handle.set_parameters(**parameters)  
+                        
+                        QstDefault=comp_handle.get_parameters()['Q1stpDefault']
+                        if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                            stpScal['Q1_stp_profile']=QstDefault
+                        else:
+                            stpScal['Q1_stp_profile']=1.0 
+                            
+                    elif(test_type==  'PF_stp_profile'): 
+                        if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                                canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
+                        # For stp profile, set the corresponging profile in the 
+                        #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                        #elif scaling = absolute: use parameterBase as scaling factor
+                        parameters = {'PFstpMethod':0} #set profile entyr method to 'file'
+                        comp_handle.set_parameters(**parameters)  
+                        
+                        PFstDefault=comp_handle.get_parameters()['PFstpDefault']
+                        if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                            stpScal['PF_stp_profile']=PFstDefault
+                        else:
+                            stpScal['PF_stp_profile']=1.0  
+                            
+                    elif(test_type==  'PF1_stp_profile'): 
+                        if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                                canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
+                        # For stp profile, set the corresponging profile in the 
+                        #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                        #elif scaling = absolute: use parameterBase as scaling factor
+                        parameters = {'PF1stpMethod':0} #set profile entyr method to 'file'
+                        comp_handle.set_parameters(**parameters)  
+                        
+                        PFstDefault=comp_handle.get_parameters()['PF1stpDefault']
+                        if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                            stpScal['PF1_stp_profile']=PFstDefault
+                        else:
+                            stpScal['PF1_stp_profile']=1.0  
+                            
+                    elif(test_type== 'P_stp_profile'):
+                        if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                                canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
+                        # For stp profile, set the corresponging profile in the 
+                        #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                        #elif scaling = absolute: use parameterBase as scaling factor
+                        parameters = {'PstpMethod':0} #set profile entyr method to 'file'
+                        comp_handle.set_parameters(**parameters)  
+                        
+                        PstDefault=comp_handle.get_parameters()['PstpDefault']
+                        if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                            stpScal['P_stp_profile']=PstDefault
+                        else:
+                            stpScal['P_stp_profile']=1.0    
+                    
+                    elif(test_type== 'P1_stp_profile'):
+                        if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                                canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
+                        # For stp profile, set the corresponging profile in the 
+                        #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                        #elif scaling = absolute: use parameterBase as scaling factor
+                        parameters = {'P1stpMethod':0} #set profile entyr method to 'file'
+                        comp_handle.set_parameters(**parameters)  
+                        
+                        PstDefault=comp_handle.get_parameters()['P1stpDefault']
+                        if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                            stpScal['P1_stp_profile']=PstDefault
+                        else:
+                            stpScal['P1_stp_profile']=1.0    
+                            
+                    elif(test_type== 'Auxiliary_profile'):
+                        if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                                canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['StpBlockID'])
+                        # For stp profile, set the corresponging profile in the 
+                        #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                        #elif scaling = absolute: use parameterBase as scaling factor
+                        parameters = {'AUXstpMethod':0} #set profile entyr method to 'file'
+                        comp_handle.set_parameters(**parameters)  
+                        
+                        AUXstpDefault=comp_handle.get_parameters()['AUXstpDefault']
+                        if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                            stpScal['Auxiliary_profile']=AUXstpDefault
+                        else:
+                            stpScal['Auxiliary_profile']=1.0 
+                            
+                    elif(test_type=='Fault'):
+                        if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+                                canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['FaultBlockID'])
+                        
+                        if(scenario_params['Ftype']=='3PHG'):fault_type=0
+                        elif(scenario_params['Ftype']=='2PHG'):fault_type=1
+                        elif(scenario_params['Ftype']=='1PHG'):fault_type=2
+                        elif(scenario_params['Ftype']=='L-L'):fault_type=3
+                        
+                        parameters = {'status':1,'N_faults':1, 'Time1':scenario_params['Ftime'], 'Duration1':scenario_params['Fduration'], 'Type1':fault_type} #set to block to 'active' and single fault
+                        #set impedance depending on if it is defined directly or via residual voltage
+                        if(scenario_params['Fault X_R']==''):
+                            scenario_params['Fault X_R']=3 #default to 3 if not defined
+                        if(scenario_params['F_Impedance']!=''): #impedance is defined
+                            parameters['Impedance1']=scenario_params['F_Impedance']
+                            parameters['X_R1']=scenario_params['Fault X_R']
+                        elif(scenario_params['Vresidual']!=''):
+                            Zfault, X_R_fault = calc_fault_impedance(scenario_params['Vresidual'],scenario_params['Fault X_R'],  SetpointsDict[scenario_params['setpoint ID']]['V_POC'],VbaseTestSrc, SCRMVAbase, SetpointsDict[scenario_params['setpoint ID']]['SCR'], SetpointsDict[scenario_params['setpoint ID']]['X_R'])#
+                            parameters['Impedance1']= Zfault  
+                            parameters['X_R1']=X_R_fault
+                        else:
+                            parameters['Impedance1']=0.01 #default to 0 Ohm fault
+                            parameters['X_R1']=scenario_params['Fault X_R']
+                
+                        comp_handle.set_parameters(**parameters)
+                        
+                        simulation_duration = round(scenario_params['Ftime']+scenario_params['Fduration']+5.0)
+                        # set up fault block
+                                #with data from table if type is fault
+                                #with data from table if type is Multifault
+                                # with data from table AND data from auto-generated Multifault profile if type is Mutlifault_random            
+                        # set scenario duration to Ftime+Fduration+5s if type=Fault
+                        # set scenario duration to Ftime+Fduration+5s of last fault in series if Type=Multifault
+                        # set scenario duration to Ftime+ProfileLength+5s if type=Multifault_random
+                        
+                    elif(test_type=='Multifault'):
+                        if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+                                canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['FaultBlockID'])
+                        
+                        N_faults = len(scenario_params['Ftype'])
+                        parameters = {'status':1, 'N_faults': N_faults}
+                        
+                        for faultID in range(0, len(scenario_params['Ftype'])):
+                            if(scenario_params['Ftype'][faultID]=='3PHG'):fault_type=0
+                            elif(scenario_params['Ftype'][faultID]=='2PHG'):fault_type=1
+                            elif(scenario_params['Ftype'][faultID]=='1PHG'):fault_type=2
+                            elif(scenario_params['Ftype'][faultID]=='L-L'):fault_type=3
+                            
+                            if(scenario_params['Fault X_R'][faultID]==''):
+                                scenario_params['Fault X_R'][faultID]=3 #default fault X_R to 3
+                            if(scenario_params['F_Impedance'][faultID] !=''): #If impedance is defined, set it directly                
+                                parameters['Impedance'+str(faultID+1)]=scenario_params['F_Impedance'][faultID]
+                                parameters['X_R'+str(faultID+1)]=scenario_params['Fault X_R'][faultID]
+                            elif(scenario_params['Vresidual'][faultID] !=''):
+                                Zfault, X_R_fault=calc_fault_impedance(scenario_params['Vresidual'][faultID],scenario_params['Fault X_R'][faultID], SetpointsDict[scenario_params['setpoint ID']]['V_POC'],VbaseTestSrc, SCRMVAbase, SetpointsDict[scenario_params['setpoint ID']]['SCR'], SetpointsDict[scenario_params['setpoint ID']]['X_R'])#
+                                parameters['Impedance'+str(faultID+1)]=Zfault
+                                parameters['X_R'+str(faultID+1)]=X_R_fault
+                            else:
+                                parameters['Impedance'+str(faultID+1)]=0.01 #default to 0 Ohm fault
+                                scenario_params['Fault X_R'][faultID]
+                            
+                            parameters['Time'+str(faultID+1)]=scenario_params['Ftime'][faultID]
+                            parameters['Duration'+str(faultID+1)]=scenario_params['Fduration'][faultID]
+                            parameters['Type'+str(faultID+1)]=scenario_params['Ftype'][faultID]
+                            #parameters['Impedance'+str(faultID)]=scenario_params['F_Impedance'][faultID]
+                            #parameters['X_R'+str(faultID)]=scenario_params['Fault X_R'][faultID]
+                    
+                        comp_handle.set_parameters(**parameters)   
+                        simulation_duration = round(scenario_params['Ftime'][faultID]+scenario_params['Fduration'][faultID]+5.0) #faultID points to the last fault in the sequence. Take the values form this fault to determine the length of the simulation
+                    
+                    elif(test_type=='Multifault_random'):
+                        random_times=[0.01, 0.01, 0.2, 0.2, 0.5, 0.5, 0.75, 1, 1.5, 2, 2, 3, 5, 7, 10]
+                        random.shuffle(random_times)
+                        random_fault_duration=[0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.43]
+                        random.shuffle(random_fault_duration)
+                        Zgrid=math.pow((ProjectDetailsDict['VbaseTestSrc']*1000),2)/setpoint_params['GridMVA']/1000000 #Zgrid
+                        random_impedances=[0,0,0,0,0,0,0, 3,3,3,3,3, 2,2,2]
+                        random.shuffle(random_impedances)
+                        random_fault_types=[2,2,2,2,2,2,1,1,1,1,1,1,1,0,0]
+                        random.shuffle(random_fault_types)
+                        
+                        if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+                            canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['FaultBlockID'])
+                        parameters = {'status':1, 'N_faults': 15}
+                        faultTimeOffset=scenario_params['Ftime']
+                        for faultID in range(0, 15):
+                            parameters['Impedance'+str(faultID+1)]=random_impedances[faultID]*Zgrid
+                            parameters['X_R'+str(faultID+1)]=setpoint_params['X_R']
+                            parameters['Time'+str(faultID+1)]=faultTimeOffset
+                            parameters['Duration'+str(faultID+1)]=random_fault_duration[faultID]
+                            parameters['Type'+str(faultID+1)]=random_fault_types[faultID]                
+                            faultTimeOffset=faultTimeOffset+random_fault_duration[faultID]+random_times[faultID]            
+                        comp_handle.set_parameters(**parameters)   
+                        simulation_duration = round(faultTimeOffset+5.0) 
+                    
+                    elif(test_type=='TOV'):
+                        if(is_number(scenario_params['Capacity(F)']) ):
+                            capacity=float(scenario_params['Capacity(F)'])
+                        else:
+                            Qinj, capacity = TOV_calc.calc_capacity(setpoint_params['GridMVA'], setpoint_params['X_R'], setpoint_params['P'], setpoint_params['Q'], setpoint_params['V_POC'], ProjectDetailsDict['VbaseTestSrc']*1000, scenario_params['Vresidual'])
+                        capacity_uF=math.pow(10,6)*capacity #scale to uF
+                        if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+                                canvas_handle = project.user_canvas("Main")
+                        else:
+                            canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
+                        comp_handle = canvas_handle.user_cmp(PSCADmodelDict['FaultBlockID'])            
+                        parameters = {'status':1, 'N_faults': 1, 'Duration1':scenario_params['Fduration'], 'Time1':scenario_params['time'], 'Type1':4, 'Capacity1': capacity_uF}    
+                        
+                        comp_handle.set_parameters(**parameters)   
+                        simulation_duration = round(scenario_params['time']+scenario_params['Fduration']+5.0) #faultID points to the last fault in the sequence. Take the values form this fault to determine the length of the simulation
+            
+                        
+                    #-------------------------------------------------------------------------
+                    #GENERATE TEST PROFILE FILES (either containing the test profile or default (to make the test library components work even if profile not required) )
+                        # for POC profile or stp profile tests, simply copy the profiles from the excel sheet
+                    if('Test profile' in scenario_params.keys()): #check if the test type allows for a test profile
+                        if(test_profile_name !=''):#check if a test profile is actually listed
+                            if(test_profile_name in ProfilesDict.keys()): #check if profile has been properly defined
+                                simulation_duration = max(profileToFile(test_profile_name, test_type, workspaceFileDir), simulation_duration) #provide 
+                            else: print("ERROR: listed test profile has not been defined")
+                        else: print("LOG: No test profile defined")
             
                 #-------------------------------------------------------------------------
                 #SET SIMULATION PARAMETERS (partly depending on scenario definition)
@@ -1154,357 +1158,361 @@ def runTest(scenario_group, current_workspace_folder, testRun): #scenario_group 
         #SET TEST COMPONENTS PER SCENARIO DEFINITION
         simulation_duration = PSCADmodelDict['default_sim_duration']        
         project=pscad.project(project_files['Project1'])    
-            
-            #test type
-                # for fault scenarios use context menu of the test block
-        #if test type is one of the known types, select appropriate setting in context menu of every test block
-        if (scenario_params['Test Type']=='F_profile'): 
-            if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
-                canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['GridSourceID']))
-            #Set grid source to F_profile mode --> will disable all other modes
-            parameters = {'mode': 1, 'FprofileMethod':0, 'FprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
-            # set scaling option in context menu to "Hz"
-            #set offset to none (in the long term, might add that function to the excel sheet)        
-            parameters['FprofileScal']=0 #set mode to Hz
-            #write settings into component
-            comp_handle.set_parameters(**parameters)        
-    
-        elif(scenario_params['Test Type']=='V_profile'):
-            if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
-                canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['GridSourceID']))
-            #Set grid source to V_profile mode
-            #set scaling to Vbase (absolute) or Vpu (relative)
-            parameters = {'mode': 2, 'VprofileMethod':0, 'VprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
-            # set scaling option in context menu to "Hz"
-            #set offset to none (in the long term, might add that function to the excel sheet)        
-            if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                parameters['VprofileScal']=2 #set mode to interpret profile as expressed in pu on Vbase x Vpu
-            else:
-                parameters['VprofileScal']=1 #set mode to interpret profile as expressed in pu on Vbase
-            comp_handle.set_parameters(**parameters)    
-                
-        elif(scenario_params['Test Type']=='ANG_profile'):
-            if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
-                canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['GridSourceID']))
-            #Set grid source to F_profile mode --> will disable all other modes
-            parameters = {'mode': 4, 'PHprofileMethod':0}
-            comp_handle.set_parameters(**parameters)
-            
-        elif(scenario_params['Test Type']== 'ORT'):
-            if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
-                canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['GridSourceID']))
-            #Set grid source to F_profile mode --> will disable all other modes
-            parameters = {'mode': 3, 'MagDist':float(scenario_params['Disturbance Magnitude']),'MagBase':1, 'Fdist': float(scenario_params['Disturbance Frequency']), 'PhDistMag': float(scenario_params['PhaseOsc Magnitude']), 'OscStartTime': float(scenario_params['time'])} ##ADD HERE THE PARAMETERS FOR THE DISTURBANCE
-            comp_handle.set_parameters(**parameters)
-            simulation_duration = 20 # 30/11/2022: run full 20sec as requested from AEMO
-        
-        #Setpoint profiles
-        #
-        elif(scenario_params['Test Type']== 'V_stp_profile'):
-            if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+
+        #NEW addition to allow for multiple test types and associated profiles in a single scenario.
+        for test_type_id in range (0, len(scenario_params['Test Type'])):
+            test_type=scenario_params['Test Type'][test_type_id]
+            test_profile_name=scenario_params['Test profile'][test_type_id]  
+
+                #test type
+                    # for fault scenarios use context menu of the test block
+            #if test type is one of the known types, select appropriate setting in context menu of every test block
+            if (test_type=='F_profile'): 
+                if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
                     canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
-            # For stp profile, set the corresponging profile in the 
-            #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-            #elif scaling = absolute: use parameterBase as scaling factor
-            parameters = {'VstpMethod':0} #set profile entyr method to 'file'
-            comp_handle.set_parameters(**parameters)  
-            
-            VstDefault=comp_handle.get_parameters()['VstpDefault']
-            if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                stpScal['V_stp_profile']=VstDefault
-            else:
-                stpScal['V_stp_profile']=1.0        
-            
-        elif(scenario_params['Test Type']== 'Q_stp_profile'):
-            if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
-            # For stp profile, set the corresponging profile in the 
-            #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-            #elif scaling = absolute: use parameterBase as scaling factor
-            parameters = {'QstpMethod':0} #set profile entyr method to 'file'
-            comp_handle.set_parameters(**parameters)  
-            
-            QstDefault=comp_handle.get_parameters()['QstpDefault']
-            if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                stpScal['Q_stp_profile']=QstDefault
-            else:
-                stpScal['Q_stp_profile']=1.0  
-                    
-        elif(scenario_params['Test Type']== 'Q1_stp_profile'):
-            if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
-            # For stp profile, set the corresponging profile in the 
-            #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-            #elif scaling = absolute: use parameterBase as scaling factor
-            parameters = {'Q1stpMethod':0} #set profile entyr method to 'file'
-            comp_handle.set_parameters(**parameters)  
-            
-            QstDefault=comp_handle.get_parameters()['Q1stpDefault']
-            if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                stpScal['Q1_stp_profile']=QstDefault
-            else:
-                stpScal['Q1_stp_profile']=1.0
-                
-        elif(scenario_params['Test Type']==  'PF_stp_profile'): 
-            if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                    canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
-            # For stp profile, set the corresponging profile in the 
-            #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-            #elif scaling = absolute: use parameterBase as scaling factor
-            parameters = {'PFstpMethod':0} #set profile entyr method to 'file'
-            comp_handle.set_parameters(**parameters)  
-            
-            PFstDefault=comp_handle.get_parameters()['PFstpDefault']
-            if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                stpScal['PF_stp_profile']=PFstDefault
-            else:
-                stpScal['PF_stp_profile']=1.0  
-                
-        elif(scenario_params['Test Type']==  'PF1_stp_profile'): 
-            if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                    canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
-            # For stp profile, set the corresponging profile in the 
-            #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-            #elif scaling = absolute: use parameterBase as scaling factor
-            parameters = {'PF1stpMethod':0} #set profile entyr method to 'file'
-            comp_handle.set_parameters(**parameters)  
-            
-            PFstDefault=comp_handle.get_parameters()['PF1stpDefault']
-            if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                stpScal['PF1_stp_profile']=PFstDefault
-            else:
-                stpScal['PF1_stp_profile']=1.0                 
-                
-        elif(scenario_params['Test Type']== 'P_stp_profile'):
-            if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                    canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
-            # For stp profile, set the corresponging profile in the 
-            #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-            #elif scaling = absolute: use parameterBase as scaling factor
-            parameters = {'PstpMethod':0} #set profile entyr method to 'file'
-            comp_handle.set_parameters(**parameters)  
-            
-            PstDefault=comp_handle.get_parameters()['PstpDefault']
-            if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                stpScal['P_stp_profile']=PstDefault
-            else:
-                stpScal['P_stp_profile']=1.0              
-                
-        elif(scenario_params['Test Type']== 'P1_stp_profile'):
-            if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                    canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
-            # For stp profile, set the corresponging profile in the 
-            #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-            #elif scaling = absolute: use parameterBase as scaling factor
-            parameters = {'P1stpMethod':0} #set profile entyr method to 'file' --
-            comp_handle.set_parameters(**parameters)  
-            
-            PstDefault=comp_handle.get_parameters()['P1stpDefault']
-            if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                stpScal['P1_stp_profile']=PstDefault
-            else:
-                stpScal['P1_stp_profile']=1.0    
-                
-        elif(scenario_params['Test Type']== 'Auxiliary_profile'):
-            if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
-                    canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
-            # For stp profile, set the corresponging profile in the 
-            #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
-            #elif scaling = absolute: use parameterBase as scaling factor
-            parameters = {'AUXstpMethod':0} #set profile entyr method to 'file'
-            comp_handle.set_parameters(**parameters)  
-            
-            PstDefault=comp_handle.get_parameters()['AUXstpDefault']
-            if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
-                stpScal['Auxiliary_profile']=PstDefault
-            else:
-                stpScal['Auxiliary_profile']=1.0 
-        
-        # Faults                
-        elif(scenario_params['Test Type']=='Fault'):
-            if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
-                    canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['FaultBlockID']))
-            
-            if(scenario_params['Ftype']=='3PHG'):fault_type=0
-            elif(scenario_params['Ftype']=='2PHG'):fault_type=1
-            elif(scenario_params['Ftype']=='1PHG'):fault_type=2
-            elif(scenario_params['Ftype']=='L-L'):fault_type=3
-            
-            parameters = {'status':1,'N_faults':1, 'Time1':scenario_params['Ftime'], 'Duration1':scenario_params['Fduration'], 'Type1':fault_type} #set to block to 'active' and single fault
-            #set impedance depending on if it is defined directly or via residual voltage
-            if(scenario_params['Fault X_R']==''):
-                scenario_params['Fault X_R']=3 #default to 3 if not defined
-                ScenariosDict[scenario]['Fault X_R']
-            if(scenario_params['F_Impedance']!=''): #impedance is defined
-                parameters['Impedance1']=scenario_params['F_Impedance']
-                parameters['X_R1']=scenario_params['Fault X_R']
-            elif(scenario_params['Vresidual']!=''):
-                Zfault, X_R_fault = calc_fault_impedance(scenario_params['Vresidual'],scenario_params['Fault X_R'],  SetpointsDict[scenario_params['setpoint ID']]['V_POC'],VbaseTestSrc, SCRMVAbase, SetpointsDict[scenario_params['setpoint ID']]['SCR'], SetpointsDict[scenario_params['setpoint ID']]['X_R'])#
-                parameters['Impedance1']= Zfault  
-                parameters['X_R1']=X_R_fault
-                ScenariosDict[scenario]['F_Impedance']=round(Zfault,2)
-            else:
-                parameters['Impedance1']=0.01 #default to 0 Ohm fault
-                parameters['X_R1']=scenario_params['Fault X_R']
-                ScenariosDict[scenario]['F_Impedance']=0.01
-    
-            comp_handle.set_parameters(**parameters)
-            
-            simulation_duration = round(scenario_params['Ftime']+scenario_params['Fduration']+5.0)
-            # set up fault block
-                    #with data from table if type is fault
-                    #with data from table if type is Multifault
-                    # with data from table AND data from auto-generated Multifault profile if type is Mutlifault_random            
-            # set scenario duration to Ftime+Fduration+5s if type=Fault
-            # set scenario duration to Ftime+Fduration+5s of last fault in series if Type=Multifault
-            # set scenario duration to Ftime+ProfileLength+5s if type=Multifault_random
-            
-        elif(scenario_params['Test Type']=='Multifault'):
-            if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
-                    canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['FaultBlockID']))
-            
-            N_faults = len(scenario_params['Ftype'])
-            parameters = {'status':1, 'N_faults': N_faults}
-            
-            for faultID in range(0, len(scenario_params['Ftype'])):
-                if(scenario_params['Ftype'][faultID]=='3PHG'):fault_type=0
-                elif(scenario_params['Ftype'][faultID]=='2PHG'):fault_type=1
-                elif(scenario_params['Ftype'][faultID]=='1PHG'):fault_type=2
-                elif(scenario_params['Ftype'][faultID]=='L-L'):fault_type=3
-                
-                if(scenario_params['Fault X_R'][faultID]==''):
-                    scenario_params['Fault X_R'][faultID]=3 #default fault X_R to 3
-                if(scenario_params['F_Impedance'][faultID] !=''): #If impedance is defined, set it directly                
-                    parameters['Impedance'+str(faultID+1)]=scenario_params['F_Impedance'][faultID]
-                    parameters['X_R'+str(faultID+1)]=scenario_params['Fault X_R'][faultID]
-                elif(scenario_params['Vresidual'][faultID] !=''):
-                    Zfault, X_R_fault=calc_fault_impedance(scenario_params['Vresidual'][faultID],scenario_params['Fault X_R'][faultID], SetpointsDict[scenario_params['setpoint ID']]['V_POC'],VbaseTestSrc, SCRMVAbase, SetpointsDict[scenario_params['setpoint ID']]['SCR'], SetpointsDict[scenario_params['setpoint ID']]['X_R'])#
-                    parameters['Impedance'+str(faultID+1)]=Zfault
-                    parameters['X_R'+str(faultID+1)]=X_R_fault
-                    ScenariosDict[scenario]['F_Impedance'][faultID]=round(Zfault, 2)
                 else:
-                    parameters['Impedance'+str(faultID+1)]=0.01 #default to 0 Ohm fault
-                    ScenariosDict[scenario]['F_Impedance'][fault_ID]=0.01
-                
-                parameters['Time'+str(faultID+1)]=scenario_params['Ftime'][faultID]
-                parameters['Duration'+str(faultID+1)]=scenario_params['Fduration'][faultID]
-                parameters['Type'+str(faultID+1)]=scenario_params['Ftype'][faultID]
-                #parameters['Impedance'+str(faultID)]=scenario_params['F_Impedance'][faultID]
-                #parameters['X_R'+str(faultID)]=scenario_params['Fault X_R'][faultID]
-           
-            comp_handle.set_parameters(**parameters)   
-            simulation_duration = round(scenario_params['Ftime'][faultID]+scenario_params['Fduration'][faultID]+5.0) #faultID points to the last fault in the sequence. Take the values form this fault to determine the length of the simulation
+                    canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['GridSourceID']))
+                #Set grid source to F_profile mode --> will disable all other modes
+                parameters = {'mode': 1, 'FprofileMethod':0, 'FprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
+                # set scaling option in context menu to "Hz"
+                #set offset to none (in the long term, might add that function to the excel sheet)        
+                parameters['FprofileScal']=0 #set mode to Hz
+                #write settings into component
+                comp_handle.set_parameters(**parameters)        
         
-        elif(scenario_params['Test Type']=='Multifault_random'):
-            random_times=[0.01, 0.01, 0.2, 0.2, 0.5, 0.5, 0.75, 1, 1.5, 2, 2, 3, 5, 7, 10]
-            random.shuffle(random_times)
-            random_fault_duration=[0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.43]
-            random.shuffle(random_fault_duration)
-            Zgrid=math.pow((ProjectDetailsDict['VbaseTestSrc']*1000),2)/setpoint_params['GridMVA']/1000000 #Zgrid
-            random_impedances=[0,0,0,0,0,0,0, 3,3,3,3,3, 2,2,2]
-            random.shuffle(random_impedances)
-            random_fault_types=[2,2,2,2,2,2,1,1,1,1,1,1,1,0,0]
-            random.shuffle(random_fault_types)
-            
-            if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
-                canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['FaultBlockID']))
-            parameters = {'status':1, 'N_faults': 15}
-            faultTimeOffset=scenario_params['Ftime']
-            ScenariosDict[scenario]['F_Impedance']=[]
-            ScenariosDict[scenario]['Fault X_R']=[]
-            ScenariosDict[scenario]['Ftime']=[]
-            ScenariosDict[scenario]['Fduration']=[]
-            ScenariosDict[scenario]['Ftype']=[]
-            for faultID in range(0, 15):
-                parameters['Impedance'+str(faultID+1)]=random_impedances[faultID]*Zgrid
-                parameters['X_R'+str(faultID+1)]=setpoint_params['X_R']
-                parameters['Time'+str(faultID+1)]=faultTimeOffset
-                parameters['Duration'+str(faultID+1)]=random_fault_duration[faultID]
-                parameters['Type'+str(faultID+1)]=random_fault_types[faultID]                
-                faultTimeOffset=faultTimeOffset+random_fault_duration[faultID]+random_times[faultID]   
-                ScenariosDict[scenario]['F_Impedance'].append(round(random_impedances[faultID]*Zgrid, 2))
-                ScenariosDict[scenario]['Fault X_R'].append(setpoint_params['X_R'])
-                ScenariosDict[scenario]['Ftime'].append(faultTimeOffset)
-                ScenariosDict[scenario]['Fduration'].append(random_fault_duration[faultID])
-                ScenariosDict[scenario]['Ftype'].append(random_fault_types[faultID])
-                
-            comp_handle.set_parameters(**parameters)   
-            simulation_duration = round(faultTimeOffset+5.0)             
-        
-        elif(scenario_params['Test Type']=='TOV'):
-            if(is_number(scenario_params['Capacity(F)']) ):
-               capacity=float(scenario_params['Capacity(F)'])
-            else:
-               Qinj, capacity = TOV_calc.calc_capacity(setpoint_params['GridMVA'], setpoint_params['X_R'], setpoint_params['P'], setpoint_params['Q'], setpoint_params['V_POC'], ProjectDetailsDict['VbaseTestSrc']*1000, scenario_params['Vresidual']) #Vbase must be provided in volts
-               ScenariosDict[scenario]['Capacity(F)']=round(capacity,4)
-            capacity_uF=math.pow(10,6)*capacity #scale to uF
-            if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+            elif(test_type=='V_profile'):
+                if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
                     canvas_handle = project.user_canvas("Main")
-            else:
-                canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
-            comp_handle = canvas_handle.user_cmp((PSCADmodelDict['FaultBlockID']))            
-            parameters = {'status':1, 'N_faults': 1, 'Duration1':scenario_params['Fduration'], 'Time1':scenario_params['time'], 'Type1':4, 'Capacity1': capacity_uF}    
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['GridSourceID']))
+                #Set grid source to V_profile mode
+                #set scaling to Vbase (absolute) or Vpu (relative)
+                parameters = {'mode': 2, 'VprofileMethod':0, 'VprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
+                # set scaling option in context menu to "Hz"
+                #set offset to none (in the long term, might add that function to the excel sheet)        
+                if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
+                    parameters['VprofileScal']=2 #set mode to interpret profile as expressed in pu on Vbase x Vpu
+                else:
+                    parameters['VprofileScal']=1 #set mode to interpret profile as expressed in pu on Vbase
+                comp_handle.set_parameters(**parameters)    
+                    
+            elif(test_type=='ANG_profile'):
+                if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
+                    canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['GridSourceID']))
+                #Set grid source to F_profile mode --> will disable all other modes
+                parameters = {'mode': 4, 'PHprofileMethod':0}
+                comp_handle.set_parameters(**parameters)
+                
+            elif(test_type== 'ORT'):
+                if(PSCADmodelDict['GridSourceCanvas (optional)']==''):
+                    canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['GridSourceCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['GridSourceID']))
+                #Set grid source to F_profile mode --> will disable all other modes
+                parameters = {'mode': 3, 'MagDist':float(scenario_params['Disturbance Magnitude']),'MagBase':1, 'Fdist': float(scenario_params['Disturbance Frequency']), 'PhDistMag': float(scenario_params['PhaseOsc Magnitude']), 'OscStartTime': float(scenario_params['time'])} ##ADD HERE THE PARAMETERS FOR THE DISTURBANCE
+                comp_handle.set_parameters(**parameters)
+                simulation_duration = 20 # 30/11/2022: run full 20sec as requested from AEMO
             
-            comp_handle.set_parameters(**parameters)   
-            simulation_duration = round(scenario_params['time']+scenario_params['Fduration']+5.0) #faultID points to the last fault in the sequence. Take the values form this fault to determine the length of the simulation
-
+            #Setpoint profiles
+            #
+            elif(test_type== 'V_stp_profile'):
+                if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                        canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
+                # For stp profile, set the corresponging profile in the 
+                #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                #elif scaling = absolute: use parameterBase as scaling factor
+                parameters = {'VstpMethod':0} #set profile entyr method to 'file'
+                comp_handle.set_parameters(**parameters)  
+                
+                VstDefault=comp_handle.get_parameters()['VstpDefault']
+                if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                    stpScal['V_stp_profile']=VstDefault
+                else:
+                    stpScal['V_stp_profile']=1.0        
+                
+            elif(test_type== 'Q_stp_profile'):
+                if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                    canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
+                # For stp profile, set the corresponging profile in the 
+                #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                #elif scaling = absolute: use parameterBase as scaling factor
+                parameters = {'QstpMethod':0} #set profile entyr method to 'file'
+                comp_handle.set_parameters(**parameters)  
+                
+                QstDefault=comp_handle.get_parameters()['QstpDefault']
+                if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                    stpScal['Q_stp_profile']=QstDefault
+                else:
+                    stpScal['Q_stp_profile']=1.0  
+                        
+            elif(test_type== 'Q1_stp_profile'):
+                if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                    canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
+                # For stp profile, set the corresponging profile in the 
+                #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                #elif scaling = absolute: use parameterBase as scaling factor
+                parameters = {'Q1stpMethod':0} #set profile entyr method to 'file'
+                comp_handle.set_parameters(**parameters)  
+                
+                QstDefault=comp_handle.get_parameters()['Q1stpDefault']
+                if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                    stpScal['Q1_stp_profile']=QstDefault
+                else:
+                    stpScal['Q1_stp_profile']=1.0
+                    
+            elif(test_type==  'PF_stp_profile'): 
+                if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                        canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
+                # For stp profile, set the corresponging profile in the 
+                #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                #elif scaling = absolute: use parameterBase as scaling factor
+                parameters = {'PFstpMethod':0} #set profile entyr method to 'file'
+                comp_handle.set_parameters(**parameters)  
+                
+                PFstDefault=comp_handle.get_parameters()['PFstpDefault']
+                if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                    stpScal['PF_stp_profile']=PFstDefault
+                else:
+                    stpScal['PF_stp_profile']=1.0  
+                    
+            elif(test_type==  'PF1_stp_profile'): 
+                if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                        canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
+                # For stp profile, set the corresponging profile in the 
+                #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                #elif scaling = absolute: use parameterBase as scaling factor
+                parameters = {'PF1stpMethod':0} #set profile entyr method to 'file'
+                comp_handle.set_parameters(**parameters)  
+                
+                PFstDefault=comp_handle.get_parameters()['PF1stpDefault']
+                if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                    stpScal['PF1_stp_profile']=PFstDefault
+                else:
+                    stpScal['PF1_stp_profile']=1.0                 
+                    
+            elif(test_type== 'P_stp_profile'):
+                if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                        canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
+                # For stp profile, set the corresponging profile in the 
+                #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                #elif scaling = absolute: use parameterBase as scaling factor
+                parameters = {'PstpMethod':0} #set profile entyr method to 'file'
+                comp_handle.set_parameters(**parameters)  
+                
+                PstDefault=comp_handle.get_parameters()['PstpDefault']
+                if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                    stpScal['P_stp_profile']=PstDefault
+                else:
+                    stpScal['P_stp_profile']=1.0              
+                    
+            elif(test_type== 'P1_stp_profile'):
+                if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                        canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
+                # For stp profile, set the corresponging profile in the 
+                #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                #elif scaling = absolute: use parameterBase as scaling factor
+                parameters = {'P1stpMethod':0} #set profile entyr method to 'file' --
+                comp_handle.set_parameters(**parameters)  
+                
+                PstDefault=comp_handle.get_parameters()['P1stpDefault']
+                if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                    stpScal['P1_stp_profile']=PstDefault
+                else:
+                    stpScal['P1_stp_profile']=1.0    
+                    
+            elif(test_type== 'Auxiliary_profile'):
+                if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
+                        canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['StpBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['StpBlockID']))
+                # For stp profile, set the corresponging profile in the 
+                #if scaling = relative: use "default" value times paramterBase as scaling factor --> read the value and then use it at basis for setting the profile
+                #elif scaling = absolute: use parameterBase as scaling factor
+                parameters = {'AUXstpMethod':0} #set profile entyr method to 'file'
+                comp_handle.set_parameters(**parameters)  
+                
+                PstDefault=comp_handle.get_parameters()['AUXstpDefault']
+                if(ProfilesDict[test_profile_name]['scaling']=='relative'):
+                    stpScal['Auxiliary_profile']=PstDefault
+                else:
+                    stpScal['Auxiliary_profile']=1.0 
+            
+            # Faults                
+            elif(test_type=='Fault'):
+                if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+                        canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['FaultBlockID']))
+                
+                if(scenario_params['Ftype']=='3PHG'):fault_type=0
+                elif(scenario_params['Ftype']=='2PHG'):fault_type=1
+                elif(scenario_params['Ftype']=='1PHG'):fault_type=2
+                elif(scenario_params['Ftype']=='L-L'):fault_type=3
+                
+                parameters = {'status':1,'N_faults':1, 'Time1':scenario_params['Ftime'], 'Duration1':scenario_params['Fduration'], 'Type1':fault_type} #set to block to 'active' and single fault
+                #set impedance depending on if it is defined directly or via residual voltage
+                if(scenario_params['Fault X_R']==''):
+                    scenario_params['Fault X_R']=3 #default to 3 if not defined
+                    ScenariosDict[scenario]['Fault X_R']
+                if(scenario_params['F_Impedance']!=''): #impedance is defined
+                    parameters['Impedance1']=scenario_params['F_Impedance']
+                    parameters['X_R1']=scenario_params['Fault X_R']
+                elif(scenario_params['Vresidual']!=''):
+                    Zfault, X_R_fault = calc_fault_impedance(scenario_params['Vresidual'],scenario_params['Fault X_R'],  SetpointsDict[scenario_params['setpoint ID']]['V_POC'],VbaseTestSrc, SCRMVAbase, SetpointsDict[scenario_params['setpoint ID']]['SCR'], SetpointsDict[scenario_params['setpoint ID']]['X_R'])#
+                    parameters['Impedance1']= Zfault  
+                    parameters['X_R1']=X_R_fault
+                    ScenariosDict[scenario]['F_Impedance']=round(Zfault,2)
+                else:
+                    parameters['Impedance1']=0.01 #default to 0 Ohm fault
+                    parameters['X_R1']=scenario_params['Fault X_R']
+                    ScenariosDict[scenario]['F_Impedance']=0.01
         
-        #-------------------------------------------------------------------------
-        #GENERATE TEST PROFILE FILES (either containing the test profile or default (to make the test library components work even if profile not required) )
-            # for POC profile or stp profile tests, simply copy the profiles from the excel sheet
-        if('Test profile' in scenario_params.keys()): #check if the test type allows for a test profile
-            if(scenario_params['Test profile'] !=''):#check if a test profile is actually listed
-                if(scenario_params['Test profile'] in ProfilesDict.keys()): #check if profile has been properly defined
-                    simulation_duration = profileToFile(scenario_params['Test profile'], scenario_params['Test Type'], workspaceFileDir, scenario) #provide 
+                comp_handle.set_parameters(**parameters)
+                
+                simulation_duration = round(scenario_params['Ftime']+scenario_params['Fduration']+5.0)
+                # set up fault block
+                        #with data from table if type is fault
+                        #with data from table if type is Multifault
+                        # with data from table AND data from auto-generated Multifault profile if type is Mutlifault_random            
+                # set scenario duration to Ftime+Fduration+5s if type=Fault
+                # set scenario duration to Ftime+Fduration+5s of last fault in series if Type=Multifault
+                # set scenario duration to Ftime+ProfileLength+5s if type=Multifault_random
+                
+            elif(test_type=='Multifault'):
+                if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+                        canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['FaultBlockID']))
+                
+                N_faults = len(scenario_params['Ftype'])
+                parameters = {'status':1, 'N_faults': N_faults}
+                
+                for faultID in range(0, len(scenario_params['Ftype'])):
+                    if(scenario_params['Ftype'][faultID]=='3PHG'):fault_type=0
+                    elif(scenario_params['Ftype'][faultID]=='2PHG'):fault_type=1
+                    elif(scenario_params['Ftype'][faultID]=='1PHG'):fault_type=2
+                    elif(scenario_params['Ftype'][faultID]=='L-L'):fault_type=3
+                    
+                    if(scenario_params['Fault X_R'][faultID]==''):
+                        scenario_params['Fault X_R'][faultID]=3 #default fault X_R to 3
+                    if(scenario_params['F_Impedance'][faultID] !=''): #If impedance is defined, set it directly                
+                        parameters['Impedance'+str(faultID+1)]=scenario_params['F_Impedance'][faultID]
+                        parameters['X_R'+str(faultID+1)]=scenario_params['Fault X_R'][faultID]
+                    elif(scenario_params['Vresidual'][faultID] !=''):
+                        Zfault, X_R_fault=calc_fault_impedance(scenario_params['Vresidual'][faultID],scenario_params['Fault X_R'][faultID], SetpointsDict[scenario_params['setpoint ID']]['V_POC'],VbaseTestSrc, SCRMVAbase, SetpointsDict[scenario_params['setpoint ID']]['SCR'], SetpointsDict[scenario_params['setpoint ID']]['X_R'])#
+                        parameters['Impedance'+str(faultID+1)]=Zfault
+                        parameters['X_R'+str(faultID+1)]=X_R_fault
+                        ScenariosDict[scenario]['F_Impedance'][faultID]=round(Zfault, 2)
+                    else:
+                        parameters['Impedance'+str(faultID+1)]=0.01 #default to 0 Ohm fault
+                        ScenariosDict[scenario]['F_Impedance'][fault_ID]=0.01
+                    
+                    parameters['Time'+str(faultID+1)]=scenario_params['Ftime'][faultID]
+                    parameters['Duration'+str(faultID+1)]=scenario_params['Fduration'][faultID]
+                    parameters['Type'+str(faultID+1)]=scenario_params['Ftype'][faultID]
+                    #parameters['Impedance'+str(faultID)]=scenario_params['F_Impedance'][faultID]
+                    #parameters['X_R'+str(faultID)]=scenario_params['Fault X_R'][faultID]
+            
+                comp_handle.set_parameters(**parameters)   
+                simulation_duration = round(scenario_params['Ftime'][faultID]+scenario_params['Fduration'][faultID]+5.0) #faultID points to the last fault in the sequence. Take the values form this fault to determine the length of the simulation
+            
+            elif(test_type=='Multifault_random'):
+                random_times=[0.01, 0.01, 0.2, 0.2, 0.5, 0.5, 0.75, 1, 1.5, 2, 2, 3, 5, 7, 10]
+                random.shuffle(random_times)
+                random_fault_duration=[0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.22, 0.22, 0.22, 0.22, 0.22, 0.22, 0.43]
+                random.shuffle(random_fault_duration)
+                Zgrid=math.pow((ProjectDetailsDict['VbaseTestSrc']*1000),2)/setpoint_params['GridMVA']/1000000 #Zgrid
+                random_impedances=[0,0,0,0,0,0,0, 3,3,3,3,3, 2,2,2]
+                random.shuffle(random_impedances)
+                random_fault_types=[2,2,2,2,2,2,1,1,1,1,1,1,1,0,0]
+                random.shuffle(random_fault_types)
+                
+                if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+                    canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp(int(PSCADmodelDict['FaultBlockID']))
+                parameters = {'status':1, 'N_faults': 15}
+                faultTimeOffset=scenario_params['Ftime']
+                ScenariosDict[scenario]['F_Impedance']=[]
+                ScenariosDict[scenario]['Fault X_R']=[]
+                ScenariosDict[scenario]['Ftime']=[]
+                ScenariosDict[scenario]['Fduration']=[]
+                ScenariosDict[scenario]['Ftype']=[]
+                for faultID in range(0, 15):
+                    parameters['Impedance'+str(faultID+1)]=random_impedances[faultID]*Zgrid
+                    parameters['X_R'+str(faultID+1)]=setpoint_params['X_R']
+                    parameters['Time'+str(faultID+1)]=faultTimeOffset
+                    parameters['Duration'+str(faultID+1)]=random_fault_duration[faultID]
+                    parameters['Type'+str(faultID+1)]=random_fault_types[faultID]                
+                    faultTimeOffset=faultTimeOffset+random_fault_duration[faultID]+random_times[faultID]   
+                    ScenariosDict[scenario]['F_Impedance'].append(round(random_impedances[faultID]*Zgrid, 2))
+                    ScenariosDict[scenario]['Fault X_R'].append(setpoint_params['X_R'])
+                    ScenariosDict[scenario]['Ftime'].append(faultTimeOffset)
+                    ScenariosDict[scenario]['Fduration'].append(random_fault_duration[faultID])
+                    ScenariosDict[scenario]['Ftype'].append(random_fault_types[faultID])
+                    
+                comp_handle.set_parameters(**parameters)   
+                simulation_duration = round(faultTimeOffset+5.0)             
+            
+            elif(test_type=='TOV'):
+                if(is_number(scenario_params['Capacity(F)']) ):
+                    capacity=float(scenario_params['Capacity(F)'])
+                else:
+                    Qinj, capacity = TOV_calc.calc_capacity(setpoint_params['GridMVA'], setpoint_params['X_R'], setpoint_params['P'], setpoint_params['Q'], setpoint_params['V_POC'], ProjectDetailsDict['VbaseTestSrc']*1000, scenario_params['Vresidual']) #Vbase must be provided in volts
+                ScenariosDict[scenario]['Capacity(F)']=round(capacity,4)
+                capacity_uF=math.pow(10,6)*capacity #scale to uF
+                if(PSCADmodelDict['FaultBlockCanvas (optional)']==''):
+                        canvas_handle = project.user_canvas("Main")
+                else:
+                    canvas_handle = project.user_canvas(PSCADmodelDict['FaultBlockCanvas (optional)'])
+                comp_handle = canvas_handle.user_cmp((PSCADmodelDict['FaultBlockID']))            
+                parameters = {'status':1, 'N_faults': 1, 'Duration1':scenario_params['Fduration'], 'Time1':scenario_params['time'], 'Type1':4, 'Capacity1': capacity_uF}    
+                
+                comp_handle.set_parameters(**parameters)   
+                simulation_duration = round(scenario_params['time']+scenario_params['Fduration']+5.0) #faultID points to the last fault in the sequence. Take the values form this fault to determine the length of the simulation
 
-                else: print("ERROR: listed test profile has not been defined")
-            else: print("LOG: No test profile defined")
-            #adjust file names in the voltageSource block and SetpointProfile block for the different project file copies
+            
+            #-------------------------------------------------------------------------
+            #GENERATE TEST PROFILE FILES (either containing the test profile or default (to make the test library components work even if profile not required) )
+                # for POC profile or stp profile tests, simply copy the profiles from the excel sheet
+            if('Test profile' in scenario_params.keys()): #check if the test type allows for a test profile
+                if(test_profile_name !=''):#check if a test profile is actually listed
+                    if(test_profile_name in ProfilesDict.keys()): #check if profile has been properly defined
+                        simulation_duration = max(profileToFile(test_profile_name, test_type, workspaceFileDir, scenario), simulation_duration) #provide 
+                    else: print("ERROR: listed test profile has not been defined")
+                else: print("LOG: No test profile defined")
+                #adjust file names in the voltageSource block and SetpointProfile block for the different project file copies
 
         if(PSCADmodelDict['StpBlockCanvas (optional)']==''):
             canvas_handle=project.canvas("Main").component(int(PSCADmodelDict['StpBlockID'])).canvas()

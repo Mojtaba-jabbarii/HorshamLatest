@@ -4,6 +4,6 @@
     <Window defn="HSFBESS_V1:Main" call="0" />
   </ViewContext>
   <List classid="View">
-    <View name="Main" zoomscale="1.5" scrollx="596" scrolly="1440" />
+    <View name="Main" zoomscale="1.5" scrollx="1127" scrolly="0" />
   </List>
 </Meta>

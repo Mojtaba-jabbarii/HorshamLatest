@@ -22,7 +22,7 @@
     <param name="Warn" value="0" />
     <param name="Check" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="SIMULATION, 1721958287" />
+    <param name="revisor" value="SIMULATION, 1723527136" />
     <param name="architecture" value="windows" />
     <param name="Source" value="" />
     <param name="Debug" value="0" />
@@ -351,7 +351,7 @@
         <grouping />
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="84611050" instances="1" key="" view="false" date="1721954707" id="1293568247">
+    <Definition classid="UserCmpDefn" name="Main" group="" url="" version="" build="" crc="117593793" instances="1" key="" view="false" date="1721954707" id="1293568247">
       <paramlist>
         <param name="Description" value="" />
       </paramlist>
@@ -4369,21 +4369,13 @@ OX2 Australia - Jul 2024
             <param name="Cz" value="6.4046636E-6" />
           </paramlist>
         </User>
-        <Wire classid="WireOrthogonal" id="1008540548" name="" x="1260" y="1998" w="10" h="64" orient="0" disable="false">
-          <vertex x="0" y="0" />
-          <vertex x="0" y="-54" />
-        </Wire>
-        <Wire classid="WireOrthogonal" id="558418180" name="" x="1188" y="1998" w="10" h="82" orient="0" disable="false">
+        <Wire classid="WireOrthogonal" id="1008540548" name="" x="1224" y="1998" w="10" h="82" orient="0" disable="false">
           <vertex x="0" y="0" />
           <vertex x="0" y="-72" />
         </Wire>
-        <Wire classid="WireOrthogonal" id="1177663443" name="" x="1188" y="1926" w="136" h="10" orient="0" disable="false">
+        <Wire classid="WireOrthogonal" id="558418180" name="" x="1152" y="1998" w="10" h="82" orient="0" disable="false">
           <vertex x="0" y="0" />
-          <vertex x="126" y="0" />
-        </Wire>
-        <Wire classid="WireOrthogonal" id="67564234" name="" x="1260" y="1944" w="64" h="10" orient="0" disable="false">
-          <vertex x="0" y="0" />
-          <vertex x="54" y="0" />
+          <vertex x="0" y="-72" />
         </Wire>
         <Sticky classid="Sticky" x="1386" y="1314" w="198" h="36" colors="10526880, 15792890" id="1578756140">
           <paramlist>
@@ -7093,21 +7085,13 @@ OX2 Australia - Jul 2024
             <param name="gaddress" value="100663307" />
           </paramlist>
         </User>
-        <Wire classid="WireOrthogonal" id="1270326910" name="" x="1386" y="1998" w="10" h="64" orient="0" disable="false">
-          <vertex x="0" y="0" />
-          <vertex x="0" y="-54" />
-        </Wire>
-        <Wire classid="WireOrthogonal" id="2020887516" name="" x="1458" y="1998" w="10" h="82" orient="0" disable="false">
+        <Wire classid="WireOrthogonal" id="1270326910" name="" x="1404" y="1998" w="10" h="82" orient="0" disable="false">
           <vertex x="0" y="0" />
           <vertex x="0" y="-72" />
         </Wire>
-        <Wire classid="WireOrthogonal" id="1706961946" name="" x="1314" y="1926" w="154" h="10" orient="0" disable="false">
+        <Wire classid="WireOrthogonal" id="2020887516" name="" x="1476" y="1998" w="10" h="82" orient="0" disable="false">
           <vertex x="0" y="0" />
-          <vertex x="144" y="0" />
-        </Wire>
-        <Wire classid="WireOrthogonal" id="1307820404" name="" x="1314" y="1944" w="82" h="10" orient="0" disable="false">
-          <vertex x="0" y="0" />
-          <vertex x="72" y="0" />
+          <vertex x="0" y="-72" />
         </Wire>
         <Wire classid="WireOrthogonal" name="" x="3330" y="522" w="100" h="10" orient="0" id="1614855791" disable="false">
           <vertex x="0" y="0" />
@@ -7213,7 +7197,7 @@ OX2 Australia - Jul 2024
           <vertex x="0" y="18" />
           <vertex x="54" y="18" />
         </Wire>
-        <User classid="UserCmp" defn="master:capacitive_load" id="985103063" x="1458" y="1998" w="70" h="67" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:capacitive_load" id="985103063" x="1476" y="1998" w="70" h="67" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="81332344">
             <param name="S" value="2.0 [MVAR]" />
             <param name="V" value="33.0 [kV]" />
@@ -7222,7 +7206,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:capacitive_load" id="1645242931" x="1386" y="1998" w="70" h="67" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:capacitive_load" id="1645242931" x="1404" y="1998" w="70" h="67" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="81332344">
             <param name="S" value="6.0 [MVAR]" />
             <param name="V" value="33.0 [kV]" />
@@ -7231,7 +7215,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:capacitive_load" id="1283867777" x="1260" y="1998" w="70" h="67" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:capacitive_load" id="1283867777" x="1224" y="1998" w="70" h="67" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="81332344">
             <param name="S" value="3.0 [MVAR]" />
             <param name="V" value="33.0 [kV]" />
@@ -7240,7 +7224,7 @@ OX2 Australia - Jul 2024
             <param name="Name" value="" />
           </paramlist>
         </User>
-        <User classid="UserCmp" defn="master:capacitive_load" id="1696299870" x="1188" y="1998" w="70" h="67" z="1" orient="0" link="-1" q="4" disable="false">
+        <User classid="UserCmp" defn="master:capacitive_load" id="1696299870" x="1152" y="1998" w="70" h="67" z="1" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="81332344">
             <param name="S" value="1.0 [MVAR]" />
             <param name="V" value="33.0 [kV]" />
@@ -7643,6 +7627,96 @@ OX2 Australia - Jul 2024
             <param name="Dim" value="1" />
           </paramlist>
         </User>
+        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="151804995" x="1278" y="1926" w="80" h="41" z="620" orient="4" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="72525059">
+            <param name="Ctrl" value="0" />
+            <param name="OPCUR" value="0" />
+            <param name="ENAB" value="0" />
+            <param name="CLVL" value="0.0 [kA]" />
+            <param name="View" value="1" />
+            <param name="ViewB" value="1" />
+            <param name="DisPQ" value="0" />
+            <param name="NAME" value="PCU2_BRK" />
+            <param name="NAMEA" value="BRKA" />
+            <param name="NAMEB" value="BRKB" />
+            <param name="NAMEC" value="BRKC" />
+            <param name="ROFF" value="1.0e8 [ohm]" />
+            <param name="RON" value="0.0001 [ohm]" />
+            <param name="PRER" value="0.5 [ohm]" />
+            <param name="TDA" value="0.0 [s]" />
+            <param name="TDB" value="0.0 [s]" />
+            <param name="TDC" value="0.0 [s]" />
+            <param name="TDRA" value="0.05 [s]" />
+            <param name="TDRB" value="0.05 [s]" />
+            <param name="TDRC" value="0.05 [s]" />
+            <param name="PostIns" value="0" />
+            <param name="TDBOA" value="0.005 [s]" />
+            <param name="IBRA" value="" />
+            <param name="IBRB" value="" />
+            <param name="IBRC" value="" />
+            <param name="IBR0" value="" />
+            <param name="SBRA" value="" />
+            <param name="SBRB" value="" />
+            <param name="SBRC" value="" />
+            <param name="BP" value="" />
+            <param name="BQ" value="" />
+            <param name="BOpen1" value="0" />
+            <param name="BOpen2" value="0" />
+            <param name="BOpen3" value="0" />
+            <param name="P" value="0.0" />
+            <param name="Q" value="0.0" />
+            <param name="Vbr" value="" />
+          </paramlist>
+        </User>
+        <Wire classid="WireOrthogonal" id="392847001" name="" x="1242" y="1926" w="100" h="10" orient="0" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="-90" y="0" />
+        </Wire>
+        <User classid="UserCmp" name="master:breaker3" defn="master:breaker3" id="1365129883" x="1350" y="1926" w="80" h="41" z="1310" orient="4" link="-1" q="4" disable="false">
+          <paramlist link="-1" name="" crc="72525059">
+            <param name="Ctrl" value="0" />
+            <param name="OPCUR" value="0" />
+            <param name="ENAB" value="0" />
+            <param name="CLVL" value="0.0 [kA]" />
+            <param name="View" value="1" />
+            <param name="ViewB" value="1" />
+            <param name="DisPQ" value="0" />
+            <param name="NAME" value="PCU1_BRK" />
+            <param name="NAMEA" value="BRKA" />
+            <param name="NAMEB" value="BRKB" />
+            <param name="NAMEC" value="BRKC" />
+            <param name="ROFF" value="1.0e8 [ohm]" />
+            <param name="RON" value="0.0001 [ohm]" />
+            <param name="PRER" value="0.5 [ohm]" />
+            <param name="TDA" value="0.0 [s]" />
+            <param name="TDB" value="0.0 [s]" />
+            <param name="TDC" value="0.0 [s]" />
+            <param name="TDRA" value="0.05 [s]" />
+            <param name="TDRB" value="0.05 [s]" />
+            <param name="TDRC" value="0.05 [s]" />
+            <param name="PostIns" value="0" />
+            <param name="TDBOA" value="0.005 [s]" />
+            <param name="IBRA" value="" />
+            <param name="IBRB" value="" />
+            <param name="IBRC" value="" />
+            <param name="IBR0" value="" />
+            <param name="SBRA" value="" />
+            <param name="SBRB" value="" />
+            <param name="SBRC" value="" />
+            <param name="BP" value="" />
+            <param name="BQ" value="" />
+            <param name="BOpen1" value="0" />
+            <param name="BOpen2" value="0" />
+            <param name="BOpen3" value="0" />
+            <param name="P" value="0.0" />
+            <param name="Q" value="0.0" />
+            <param name="Vbr" value="" />
+          </paramlist>
+        </User>
+        <Wire classid="WireOrthogonal" id="1780488103" name="" x="1386" y="1926" w="100" h="10" orient="0" disable="false">
+          <vertex x="0" y="0" />
+          <vertex x="90" y="0" />
+        </Wire>
       </schematic>
       <references>
         <using namespace="master" />
@@ -66946,6 +67020,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
       <ref link="1270028776" />
       <ref link="505537438" />
       <ref link="125049930" />
+      <ref link="1365129883" />
     </Layer>
     <Layer id="791068409" classid="Layer" name="PCU2" state="Enabled">
       <paramlist>
@@ -67036,6 +67111,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
       <ref link="1797797615" />
       <ref link="1124809764" />
       <ref link="1622624242" />
+      <ref link="151804995" />
     </Layer>
     <Layer id="281745507" classid="Layer" name="PCU3" state="Disabled">
       <paramlist>
@@ -74989,7 +75065,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
     </paramlist>
   </GlobalSubstitutions>
   <hierarchy>
-    <call link="1879421105" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
+    <call link="1929564042" name="HSFBESS_V1:Station" z="-1" view="false" instance="0">
       <call link="1089318121" name="HSFBESS_V1:Main" z="-1" view="true" instance="0">
         <call link="1231646374" name="HyCtl_PSCAD_Lib:InvFbDummy" z="210" view="false" instance="0" />
         <call link="1286594197" name="SCAvg_Lib:DPS_Dummy" z="480" view="false" instance="0" />
@@ -75042,7 +75118,7 @@ to_do: maybe mode impedance to main canvas?]]></Sticky>
           <call link="1205552122" name="DDSRF_PLL_Lib:DDSRF_PLL_2" z="300" view="false" instance="1" />
         </call>
         <call link="1961074036" name="HyCtl_PSCAD_Lib:HyCtl" z="990" view="false" instance="0">
-          <call link="1725717277" name="HyCtl_PSCAD_Lib:PQ_Select" z="1540" view="false" instance="0" />
+          <call link="1725717277" name="HyCtl_PSCAD_Lib:PQ_Select" z="1530" view="false" instance="0" />
           <call link="735071606" name="HyCtl_PSCAD_Lib:PQ_Select" z="1660" view="false" instance="1" />
         </call>
         <call link="1309533768" name="SCAvg_Lib:SCxxxx" z="1000" view="false" instance="0">
