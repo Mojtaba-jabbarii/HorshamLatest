@@ -47,12 +47,12 @@ TestDefinitionSheet=r'20240403_HSFBESS_TESTINFO_V1.xlsx'
     """
 
 # different datasets for SMIB and Network tests
-datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20241015-2129_Benchmarking", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
+datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20241017-1455_Benchmarking3_dbg", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
                   'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.007815126, }, # #negative due to the reversed Q measurement
                                   {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.00661375661, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
                                   {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.0056818, },],  
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":-1.0, } ], } #calculate power factor from P and Q results scaling -1 due to reversed power measure
-datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20241015-2129_Benchmarking", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
+datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20241017-1558_Benchmarking3_dbg", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
                   'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.007815126, }, 
                                   {"P":"PCU1_P_LV", "Q":"PCU1_Q_LV", "V":"PCU1_V_LV_pu", "nameLabel":"PV", "scaling":36.0, },
                                    {"P":"PCU2_P_LV", "Q":"PCU2_Q_LV", "V":"PCU2_V_LV_pu", "nameLabel":"BESS", "scaling":40.0, }],
@@ -3195,7 +3195,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
                 row_cells=table.add_row().cells
                 cell_paragraph=row_cells[0].paragraphs[0]
                 add_link(paragraph=cell_paragraph, link_to=str(cases[case_id]), text=str(cases[case_id]), tool_tip="link to test results")
-                row_cells[1].text=str(test_details['scenario_params']['Test Type'])
+                row_cells[1].text=', '.join(test_details['scenario_params']['Test Type'])
 #                row_cells[1].text=str(test_details['scenario_params']['Test Type'])
                 row_cells[2].text=str(test_details['scenario_params']['Test profile'])
                 row_cells[3].text=str(round(test_details['setpoint']['V_POC'],3))

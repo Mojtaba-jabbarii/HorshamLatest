@@ -189,7 +189,7 @@ TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 
 # simulation_batches=['S52511','S52513','S52514','S5255Iq1','S5255Iq2','S5255Iq3']
 #simulation_batches=['S5255Iq1','S5255Iq3']# last batch that Dao ran
-simulation_batches= ['Benchmarking3_dbg']#['Benchmarking', 'Benchmarking2', 'Benchmarking3', 'Benchmarking3_dbg','Benchmarking_frt', 'Benchmarking2_frt','Benchmarking3_frt']##'Benchmarking','shallow_fault_dbg']#, []'Benchmarking2_frt_dbg', 'Benchmarking3_frt_dbg','Benchmarking_frt_dbg']#'Benchmarking_dbg', 
+simulation_batches= ['Benchmarking', 'Benchmarking2', 'Benchmarking3','Benchmarking_frt', 'Benchmarking2_frt','Benchmarking3_frt']##'Benchmarking','shallow_fault_dbg']#, []'Benchmarking2_frt_dbg', 'Benchmarking3_frt_dbg','Benchmarking_frt_dbg']#'Benchmarking_dbg', 
 #The below can alternatively be defined in the Excel sheet
 
 overwrite = False # 
@@ -607,7 +607,8 @@ def runTest(scenario_group, current_workspace_folder, testRun): #scenario_group 
                 #NEW addition to allow for multiple test types and associated profiles in a single scenario.
                 for test_type_id in range (0, len(scenario_params['Test Type'])):
                     test_type=scenario_params['Test Type'][test_type_id]
-                    test_profile_name=scenario_params['Test profile'][test_type_id] 
+                    if('Test profile' in scenario_params.keys()):
+                        test_profile_name=scenario_params['Test profile'][test_type_id] 
                     #test type
                         # for fault scenarios use context menu of the test block
                     #if test type is one of the known types, select appropriate setting in context menu of every test block
@@ -638,7 +639,7 @@ def runTest(scenario_group, current_workspace_folder, testRun): #scenario_group 
                         parameters = {'mode': 2, 'VprofileMethod':0, 'VprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
                         # set scaling option in context menu to "Hz"
                         #set offset to none (in the long term, might add that function to the excel sheet)        
-                        if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
+                        if(ProfilesDict[test_profile_name]['scaling']=='relative'):
                             parameters['VprofileScal']=2 #set mode to interpret profile as expressed in pu on Vbase x Vpu
                         else:
                             parameters['VprofileScal']=1 #set mode to interpret profile as expressed in pu on Vbase
@@ -1162,7 +1163,8 @@ def runTest(scenario_group, current_workspace_folder, testRun): #scenario_group 
         #NEW addition to allow for multiple test types and associated profiles in a single scenario.
         for test_type_id in range (0, len(scenario_params['Test Type'])):
             test_type=scenario_params['Test Type'][test_type_id]
-            test_profile_name=scenario_params['Test profile'][test_type_id]  
+            if('Test profile' in scenario_params.keys()):
+                test_profile_name=scenario_params['Test profile'][test_type_id]  
 
                 #test type
                     # for fault scenarios use context menu of the test block
@@ -1192,7 +1194,7 @@ def runTest(scenario_group, current_workspace_folder, testRun): #scenario_group 
                 parameters = {'mode': 2, 'VprofileMethod':0, 'VprofileOffset':0} #set operating mode to F_profile and profile entry method to 'file' and offset to 'none'
                 # set scaling option in context menu to "Hz"
                 #set offset to none (in the long term, might add that function to the excel sheet)        
-                if(ProfilesDict[scenario_params['Test profile']]['scaling']=='relative'):
+                if(ProfilesDict[test_profile_name]['scaling']=='relative'):
                     parameters['VprofileScal']=2 #set mode to interpret profile as expressed in pu on Vbase x Vpu
                 else:
                     parameters['VprofileScal']=1 #set mode to interpret profile as expressed in pu on Vbase
@@ -1660,7 +1662,10 @@ def runTest(scenario_group, current_workspace_folder, testRun): #scenario_group 
         testInfo['setpoint']=setpoint_params
         if('Test profile' in scenario_params.keys()):
             if( (scenario_params['Test profile']!= None) and (scenario_params['Test profile']!='') ):
-                testInfo['profile']=ProfilesDict[scenario_params['Test profile']]
+                testInfo['profile']=[]
+                for test_type_id in range (0, len(scenario_params['Test Type'])):
+                    test_profile_name=scenario_params['Test profile'][test_type_id] 
+                    testInfo['profile'].append(ProfilesDict[test_profile_name])
         testInfo.close()  
     
     #delete scenario_group folder content

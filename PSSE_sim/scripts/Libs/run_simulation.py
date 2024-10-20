@@ -1356,7 +1356,10 @@ def save_test_description(testInfoDir, scenario, scenario_params, setpoint_param
     testInfo['setpoint']=setpoint_params
     if('Test profile' in scenario_params.keys()):
         if( (scenario_params['Test profile']!= None) and (scenario_params['Test profile']!='') ):
-            testInfo['profile']=ProfilesDict[scenario_params['Test profile']]
+            testInfo['profile']=[]
+            for test_type_id in range (0, len(scenario_params['Test Type'])):
+                test_profile_name=scenario_params['Test profile'][test_type_id] 
+                testInfo['profile'].append(ProfilesDict[test_profile_name])
     testInfo.close() 
     pass
 
@@ -1474,7 +1477,8 @@ def run(OutputDir, scenario, scenario_params, workspace_folder, testRun_, Projec
     
     for test_type_id in range (0, len(scenario_params['Test Type'])):
         test_type=scenario_params['Test Type'][test_type_id]
-        test_profile_name=scenario_params['Test profile'][test_type_id]  
+        if('Test profile' in scenario_params.keys()):
+            test_profile_name=scenario_params['Test profile'][test_type_id]  
     
         if (test_type=='F_profile'):        
             # write profile to zingen file
