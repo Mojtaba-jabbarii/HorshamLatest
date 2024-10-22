@@ -25,7 +25,7 @@
 @!/Poi_power_flt_tm                        HyconToInv_AtPwr_TmDelay                HyconToInv_RtPwr_TmDelay                PvPwrAtMaxTot                           PvPwrRtMaxTot                           
    0.02                                    0.02                                    0.02                                    151200                                  90720                                   
 @!/BESSPwrAtMaxTot                         BESSPwrRtMaxTot                         ExtPwrApLim                             ExtPwrAtLimHi                           ExtPwrAtLimLo                           
-   176000                                   176000                                   327200                                  119000                                  -100000                                 
+   180400                                  127947                                   331600                                  119000                                  -100000                                 
 @!/PwrAtLimSale                            ExtPwrRtLimHi                           ExtPwrRtLimLo                           QVARScale                               PvPwrAtSpt                              
    119000                                   47005                                   -47005                                  0.6                                     151200                                       
 @!/Reserved                                Reserved                                Reserved                                BatPwrAtCtrl.CtrlKi                     BatPwrAtCtrl.CtrlKp                     
@@ -83,7 +83,7 @@
 @!/PoCo.K_I                                PoCo.K_P                                PoCo.OutMax                             PoCo.OutMin                             PoCo.OvershootReInitHystTicks           
    4                                       0                                       1                                       -1                                      10                                      
 @!/PoCo.OvershootReInitHystWNom            PoCo.WGraMeasTarget                     PoCo.WGraOpenLoop                       PoCo.WGraTarget                         PoCo.WaitTmsDevAtLimit                  
-   1                                       0.2                                     0.2                                     1.0                                     3                                       
+   1                                       0.2                                     1.0                                     1.0                                     3                                       
 @!/PvPwrAtCtrl.CtrlKi                      PvPwrAtCtrl.CtrlKp                      PvPwrAtCtrl.DynSpntSwitchHysPc          PvPwrAtCtrl.Ena                         PvPwrAtCtrl.EnaAdapCtrl                 
    1                                       0                                       0                                       0                                       0                                       
 @!/PvPwrAtCtrl.EnaDynSpntSwitch            PvPwrAtCtrl.EnaStepReset                PvPwrAtCtrl.FeedForwardOffset           PvPwrAtCtrl.MeasFilterTm                PvPwrAtCtrl.OvershootResetPc            

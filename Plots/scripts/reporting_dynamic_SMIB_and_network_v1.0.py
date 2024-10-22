@@ -47,12 +47,12 @@ TestDefinitionSheet=r'20240403_HSFBESS_TESTINFO_V1.xlsx'
     """
 
 # different datasets for SMIB and Network tests
-datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20241017-1455_Benchmarking3_dbg", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
+datasets_PSSE = {'label':'PSSE_Data', 'path':r"PSSE_sim\result_data\dynamic_smib\20241021-1347_Benchmarking", 'ID': 0, 'timeID':'Time(s)', 'timeoffset':-3.0,#-3.0,
                   'calcCurrents':[{"P":"P_POC1", "Q":"Q_POC1", "V":"U_POC1", "nameLabel":"PLANT", "scaling":-0.007815126, }, # #negative due to the reversed Q measurement
                                   {"P":"P_LV1", "Q":"Q_LV1", "V":"U_LV1", "nameLabel":"PV", "scaling":0.00661375661, }, #1/Sbase_POC for Iq at POC or 1/Sbase_INV for Iq at INV -> convert QMVAr to Qpu for calculation
                                   {"P":"P_LV2", "Q":"Q_LV2", "V":"U_LV2", "nameLabel":"BESS", "scaling":0.0056818, },],  
                   'calPFs':[{"P":"P_POC1", "Q":"Q_POC1", "nameLabel":"PLANT", "scaling":-1.0, } ], } #calculate power factor from P and Q results scaling -1 due to reversed power measure
-datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20241017-1558_Benchmarking3_dbg", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
+datasets_PSCAD = {'label':'PSCAD_Data', 'path':r"PSCAD_sim\result_data\dynamic_smib\20241021-1347_Benchmarking", 'ID': 4, 'timeID':'time(s)', 'timeoffset':-3.0,#-3.0, 
                   'calcCurrents':[{"P":"PLANT_P_HV", "Q":"PLANT_Q_HV", "V":"PLANT_V_HV_pu", "nameLabel":"PLANT", "scaling":0.007815126, }, 
                                   {"P":"PCU1_P_LV", "Q":"PCU1_Q_LV", "V":"PCU1_V_LV_pu", "nameLabel":"PV", "scaling":36.0, },
                                    {"P":"PCU2_P_LV", "Q":"PCU2_Q_LV", "V":"PCU2_V_LV_pu", "nameLabel":"BESS", "scaling":40.0, }],
@@ -3177,7 +3177,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
         p.add_run('Table '+str(tableCnt)+': Scenario list - Small Disturbance tests').bold=True        
 
 #            headers=['Case Nr.', 'Test Type', 'Test profile', 'POC voltage', 'Grid SCR', 'Grid X/R', 'P at POC (MW)', 'Q at POC (MVAr)', 'PSSE time step (ms)', 'PSSE acc. factor', 'DMAT id', 'passed']
-        headers=['Case Nr.', 'Test Type', 'Test profile', 'POC voltage', 'Grid SCR', 'Grid X/R', 'P at POC (MW)', 'P BESS (MW)', 'Q at POC (MVAr)', 'DMAT id', 'Control mode']
+        headers=['Case Nr.', 'Test Type', 'Test profile', 'POC voltage', 'Grid SCR', 'Grid X/R', 'P at POC (MW)', 'P BESS (MW)', 'Q at POC (MVAr)', 'DMAT id', 'Control mode & test group']
         table=report.add_table(rows=1, cols=len(headers))
         table.style='ListTable3-Accent3'
         hdr_cells=table.rows[0].cells
@@ -3195,7 +3195,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
                 row_cells=table.add_row().cells
                 cell_paragraph=row_cells[0].paragraphs[0]
                 add_link(paragraph=cell_paragraph, link_to=str(cases[case_id]), text=str(cases[case_id]), tool_tip="link to test results")
-                row_cells[1].text=', '.join(test_details['scenario_params']['Test Type'])
+                row_cells[1].text=', '.join(str(test_details['scenario_params']['Test Type']))
 #                row_cells[1].text=str(test_details['scenario_params']['Test Type'])
                 row_cells[2].text=str(test_details['scenario_params']['Test profile'])
                 row_cells[3].text=str(round(test_details['setpoint']['V_POC'],3))
@@ -3210,6 +3210,8 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
                 except: row_cells[9].text='N/A'
                 try: row_cells[10].text=str(test_details['scenario_params']['test group'])
                 except: row_cells[10].text='test group'
+#                try: row_cells[11].text=str(test_details['scenario_params']['simulation batch'])
+#                except: row_cells[11].text='test group'
         for row in table.rows:
             for cell in row.cells:
                 paragraphs = cell.paragraphs
@@ -3224,7 +3226,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
         p=report.add_paragraph('')
     if(any('large' in case for case in cases)):
         p.add_run('Table '+str(tableCnt)+': Scenario list - Large Disturbance tests').bold=True  
-        headers=['Case Nr.', 'Test Type', 'Fault Type', 'Fault time', 'Fault duration', 'Fault impedance', 'V residual', 'Fault X/R', 'POC voltage', 'Grid SCR', 'Grid X/R', 'Grid SCR post-fault','Grid X/R post-fault', 'P at POC (MW)', 'Q at POC (MVAr)', 'DMAT id', 'Control mode','passed']
+        headers=['Case Nr.', 'Test Type', 'Fault Type', 'Fault time', 'Fault duration', 'Fault impedance', 'V residual', 'Fault X/R', 'POC voltage', 'Grid SCR', 'Grid X/R', 'Grid SCR post-fault','Grid X/R post-fault', 'P at POC (MW)', 'Q at POC (MVAr)', 'DMAT id', 'Control mode & Test group','passed']
         table1=report.add_table(rows=1, cols=len(headers))
         table1.style='ListTable3-Accent3'
         hdr_cells1=table1.rows[0].cells
@@ -3242,7 +3244,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
                 row_cells=table1.add_row().cells
                 cell_paragraph=row_cells[0].paragraphs[0]
                 add_link(paragraph=cell_paragraph, link_to=str(cases[case_id]), text=str(cases[case_id]), tool_tip="link to test results")
-                row_cells[1].text=str(test_details['scenario_params']['Test Type'])
+                row_cells[1].text=', '.join(str(test_details['scenario_params']['Test Type']))
 
                 if(not 'Multifault' in test_details['scenario_params']['Test Type'] ):#single fault test
                     row_cells[2].text=str(test_details['scenario_params']['Ftype'])
@@ -3302,7 +3304,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
         p=report.add_paragraph('')
     if(any('ort' in case for case in cases)):
         p.add_run('Table '+str(tableCnt)+': Scenario list - Oscillatory Rejection tests').bold=True        
-        headers=['Case Nr.', 'Test Type', 'Time', 'Disturbance Frequency', 'Disturbance Magnitude', 'Phase Oscillation Magnitude', 'POC voltage', 'Grid SCR', 'Grid X/R',  'P at POC (MW)', 'Q at POC (MVAr)', 'DMAT id', 'Control mode', 'passed']
+        headers=['Case Nr.', 'Test Type', 'Time', 'Disturbance Frequency', 'Disturbance Magnitude', 'Phase Oscillation Magnitude', 'POC voltage', 'Grid SCR', 'Grid X/R',  'P at POC (MW)', 'Q at POC (MVAr)', 'DMAT id', 'Control mode & Test group', 'passed']
         table1=report.add_table(rows=1, cols=len(headers))
         table1.style='ListTable3-Accent3'
         hdr_cells1=table1.rows[0].cells
@@ -3320,7 +3322,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
                 row_cells=table1.add_row().cells
                 cell_paragraph=row_cells[0].paragraphs[0]
                 add_link(paragraph=cell_paragraph, link_to=str(cases[case_id]), text=str(cases[case_id]), tool_tip="link to test results")
-                row_cells[1].text=str(test_details['scenario_params']['Test Type'])
+                row_cells[1].text=', '.join(str(test_details['scenario_params']['Test Type']))
                 if('time' in test_details['scenario_params'].keys()):
                     row_cells[2].text=str(test_details['scenario_params']['time'])
                 else:
@@ -3351,7 +3353,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
         p=report.add_paragraph('')
     if(any('tov' in case for case in cases)):
         p.add_run('Table '+str(tableCnt)+': Scenario list - Temporary Over-Voltage tests').bold=True        
-        headers=['Case Nr.', 'Test Type', 'Time', 'TOV duration', 'Capacity(uF)', 'V residual', 'POC voltage', 'Grid SCR', 'Grid X/R', 'Grid SCR post-TOV','Grid X/R post-TOV', 'P at POC (MW)', 'Q at POC (MVAr)', 'DMAT id', 'Control mode', 'passed']
+        headers=['Case Nr.', 'Test Type', 'Time', 'TOV duration', 'Capacity(uF)', 'V residual', 'POC voltage', 'Grid SCR', 'Grid X/R', 'Grid SCR post-TOV','Grid X/R post-TOV', 'P at POC (MW)', 'Q at POC (MVAr)', 'DMAT id', 'Control mode & Test group', 'passed']
         table1=report.add_table(rows=1, cols=len(headers))
         table1.style='ListTable3-Accent3'
         hdr_cells1=table1.rows[0].cells
@@ -3369,7 +3371,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
                 row_cells=table1.add_row().cells
                 cell_paragraph=row_cells[0].paragraphs[0]
                 add_link(paragraph=cell_paragraph, link_to=str(cases[case_id]), text=str(cases[case_id]), tool_tip="link to test results")
-                row_cells[1].text=str(test_details['scenario_params']['Test Type'])
+                row_cells[1].text=', '.join(str(test_details['scenario_params']['Test Type']))
                 row_cells[2].text=str(test_details['scenario_params']['time'])
                 row_cells[3].text=str(test_details['scenario_params']['Fduration'])
                 if('Capacity(uF)' in test_details['scenario_params'].keys()):
@@ -3438,7 +3440,7 @@ def add_summary_table(report, report_type, datasets, cases): #change it so that 
                 row_cells=table.add_row().cells
                 cell_paragraph=row_cells[0].paragraphs[0]
                 add_link(paragraph=cell_paragraph, link_to=str(cases[case_id]), text=str(cases[case_id]), tool_tip="link to test results")
-                row_cells[1].text=str(test_details['scenario_params']['Test Type'])
+                row_cells[1].text=', '.join(str(test_details['scenario_params']['Test Type']))
                 row_cells[2].text=str(test_details['scenario_params']['Test profile'])
                 row_cells[3].text=str(test_details['scenario_params']['Event_Element'])
                 row_cells[4].text=str(test_details['scenario_params']['Event_Type'])
@@ -3525,7 +3527,7 @@ def add_plots_to_report(case, report, datasets, plots, plot_list, assessment):
         row_cells[0].text='Test Type'
         row_cells[1].text=str(test_details['scenario_params']['Test Type'])
         try: 
-            row_cells[2].text='Control mode'
+            row_cells[2].text='Control mode & Test group'
             row_cells[3].text=str(test_details['scenario_params']['test group'])
         except:
             row_cells[2].text='Test profile'

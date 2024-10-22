@@ -58,6 +58,9 @@ TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 #simulation_batches=['S52514']
 #simulation_batches=['S5255Iq1','S5255Iq3'] #last batch that Dao ran
 simulation_batches=['Benchmarking', 'Benchmarking2', 'Benchmarking3', 'Benchmarking_frt', 'Benchmarking2_frt','Benchmarking3_frt']#'Benchmarking2_frt_dbg', 'Benchmarking3_frt_dbg','Benchmarking_frt_dbg']#'Benchmarking_dbg','Benchmarking2_dbg_dbg',
+#simulation_batches=['DMAT_HyExp_sl', 'DMAT_HyExp_sl1', 'DMAT_HyExp_sl2', 'DMAT_HyExp_sl3,', 'DMAT_HyExp_sl4', 'DMAT_HyExp_sl5', 'DMAT_HyExp_sl6']
+#simulation_batches=['Benchmarking_dbg','Benchmarking2_dbg','Benchmarking3_dbg', 'Benchmarking3_frt_dbg']
+
 #The below can alternatively be defined in the Excel sheet
 
 overwrite = False # 
