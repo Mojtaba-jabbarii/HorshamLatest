@@ -64,11 +64,10 @@ _s=psspy.getdefaultchar()
 
 import dyntools
 
-
+import numpy as np
 #import other stuff
 import pandas as pd
 import datetime as dt
-import numpy as np
 
 import multiprocessing as mp
 from multiprocessing import Pool

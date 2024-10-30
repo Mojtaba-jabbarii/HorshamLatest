@@ -22,7 +22,7 @@ Created on Mon Jun 29 09:44:38 2020
 import pandas as pd
 import os
 from subprocess import call
-
+import time
 def readTestdef(testdefSheetPath, relevant_tabs='all'):
 
     return_dict={}
@@ -32,7 +32,8 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
     fileName, fileExt = os.path.splitext(testdefSheetPath) #separate file and extention
     autoFile = fileName + "-AUTO" + fileExt # new file will be created
     if os.path.isfile(autoFile): # If the file exits, remove it before creating a new one.
-        os.remove(autoFile)
+        time.sleep(1)
+        # os.remove(autoFile)
     copycmd = r"echo F|" + "xcopy /Y /R /K /H /C \"" + testdefSheetPath + "\" \"" + autoFile + "\""
     call(copycmd, shell=True)
     testdefSheetPath = autoFile

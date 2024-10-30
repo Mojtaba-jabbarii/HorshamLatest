@@ -22,7 +22,7 @@ ATTENTION:
 
 NOTES:
         + 30/3/2022: Update the path to store results and model copies
-        + 31/3/2022: Update base_model to base_model_workspace for copying only model in the work space  
+        + 31/3/2022: Update base_model teo base_model_workspace for copying only model in the work space  
         + 06/12/2023: copy the plot folder to local drive so the plot activities can be done locally
         
 @author: Mervin Kall
@@ -42,7 +42,7 @@ from win32com.client import Dispatch
 import time
 #timestr = time.strftime("%Y%m%d")
 timestr = str(datetime.datetime.now().strftime("%Y%m%d-%H%M"))
-
+import concurrent.futures
 #-----------------------------------------------------------------------------
 # USER CONFIGURABLE PARAMETERS
 #-----------------------------------------------------------------------------
@@ -242,24 +242,61 @@ def main():
                 activeScenarios.append(scenario)
                 
     activeScenarios=sorted(activeScenarios)
- 
-    #uncomment this section for debugging, to execute simulation without multiprocessing. 
-    for scenario_counter in range (0, len(activeScenarios)):
-        scenario=activeScenarios[scenario_counter]
-        workspace_folder, testRun_ = createModelCopy(scenario, testRun) # SCRIPT CHANGE: create one new folder for the simulation set. In that folder, 
-        # if(base_model != base_model_workspace): #workspace can be subfolder of model folder
-        #     workspace_folder=workspace_folder+"\\"+os.path.basename(os.path.normpath(base_model_workspace))
-        scenario_params = ScenariosDict[scenario]
-        # run_simulation.run(main_folder, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict)
-        run_simulation.run(ResultsDir, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict)
-    
-    pass
-    
-#    l = Semaphore(1)
-#    sem = Semaphore(max_processes)
-#    p = Pool(processes = max_processes, initializer = initializer, initargs = (l, sem))
-#    p.map(worker, activeScenarios)
-    
+
+    Run_MultiProcessing = False
+    if not Run_MultiProcessing:
+        # uncomment this section for debugging, to execute simulation without multiprocessing. 
+        for scenario_counter in range (0, len(activeScenarios)):
+            scenario=activeScenarios[scenario_counter]
+            workspace_folder, testRun_ = createModelCopy(scenario, testRun) # SCRIPT CHANGE: create one new folder for the simulation set. In that folder, 
+            # if(base_model != base_model_workspace): #workspace can be subfolder of model folder
+            #     workspace_folder=workspace_folder+"\\"+os.path.basename(os.path.normpath(base_model_workspace))
+            scenario_params = ScenariosDict[scenario]
+            # run_simulation.run(main_folder, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict)
+            run_simulation.run(ResultsDir, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict)
+        pass
+    else:
+        
+        def run_scenario(scenario):
+            workspace_folder, testRun_ = createModelCopy(scenario, testRun)
+            scenario_params = ScenariosDict[scenario]
+            # Run the simulation for this scenario
+            run_simulation.run(
+                ResultsDir, scenario, scenario_params, workspace_folder, 
+                testRun_, ProjectDetailsDict, PSSEmodelDict, 
+                SetpointsDict, ProfilesDict, OutChansDict
+            )
+
+        # Use ThreadPoolExecutor or ProcessPoolExecutor
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            # Launch the scenarios in parallel
+            executor.map(run_scenario, activeScenarios)
+
+        # def run_scenario(scenario):
+        #     workspace_folder, testRun_ = createModelCopy(scenario, testRun)
+        #     scenario_params = ScenariosDict[scenario]
+        #     run_simulation.run(
+        #         ResultsDir, scenario, scenario_params, workspace_folder, 
+        #         testRun_, ProjectDetailsDict, PSSEmodelDict, 
+        #         SetpointsDict, ProfilesDict, OutChansDict
+        #     )
+
+        # if __name__ == "__main__":
+        #     # Create a pool of processes
+        #     with Pool() as pool:
+        #         # Distribute the scenarios across the pool
+        #     Pool.map(run_scenario, activeScenarios)
+
+
+
+
+
+
+        # l = Semaphore(1)
+        # sem = Semaphore(max_processes)
+        # p = Pool(processes = max_processes, initializer = initializer, initargs = (l, sem))
+        # p.map(worker, activeScenarios)
+        
 
 if __name__ == '__main__':
     main()
