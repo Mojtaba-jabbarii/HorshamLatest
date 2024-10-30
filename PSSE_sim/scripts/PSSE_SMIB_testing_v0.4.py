@@ -29,6 +29,7 @@ NOTES:
  """
 import os, sys
 from multiprocessing import*
+from multiprocessing import Pool
 import time
 import datetime
 from subprocess import*
@@ -51,13 +52,23 @@ TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 #simulation_batches=['S5253','S5254','S52511','S52513','S52514']
 #simulation_batches=['S5255Iq1dbg']
 #simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl', 'DMATsl1_db','DMATsl2_db','DMATsl3_db','DMATsl4_db','DMATsl5_db','DMATsl6_db','DMATsl_db']
-#simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl','Benchmarking','Benchmarking2','Benchmarking3']
+#simulation_batches=['DMAT_HyExp_sl1','DMAT_HyExp_sl2','DMAT_HyExp_sl3','DMAT_HyExp_sl4','DMAT_HyExp_sl5','DMAT_HyExp_sl6','DMAT_HyExp_sl']
+#simulation_batches=['DMAT_HyImp_sl1','DMAT_HyImp_sl2','DMAT_HyImp_sl3','DMAT_HyImp_sl4','DMAT_HyImp_sl5','DMAT_HyImp_sl6','DMAT_HyImp_sl']
+#simulation_batches=['DMAT_BsExp_sl1','DMAT_BsExp_sl2','DMAT_BsExp_sl3','DMAT_BsExp_sl4','DMAT_BsExp_sl5','DMAT_BsExp_sl6','DMAT_BsExp_sl']
+#simulation_batches=['DMAT_BsExp_sl1', 'DMAT_BsImp_sl1','DMAT_BsImp_sl2','DMAT_BsImp_sl3','DMAT_BsImp_sl4','DMAT_BsImp_sl5','DMAT_BsImp_sl6','DMAT_BsImp_sl']
+#simulation_batches = ['DMAT_HyImp_sl3_dbg', 'DMAT_HyImp_sl6_dbg']
+#simulation_batches = ['DMAT_HyExp_sl3_dbg', 'DMAT_HyImp_sl3_dbg', 'DMAT_BsExp_sl3_dbg', 'DMAT_BsImp_sl3_dbg']
+#simulation_batches=['S5255Iq1', 'S5255Iq3', 'S5255Iq4', 'S5255Iq5']
+simulation_batches=['S5257', 'S5258']
+#simulation_batches = ['DMAT_HyExp_sl5_dbg', 'DMAT_HyImp_sl5_dbg', 'DMAT_BsExp_sl5_dbg', 'DMAT_BsImp_sl5_dbg', 'DMAT_HyExp_sl6_dbg', 'DMAT_HyImp_sl6_dbg', 'DMAT_BsExp_sl6_dbg', 'DMAT_BsImp_sl6_dbg']
+#simulation_batches=['DMAT_BsImp_sl3_dbg']
 #simulation_batches=['Benchmarking' ]
 #simulation_batches=['DMATsl1dbg']
 #simulation_batches=['S5258']#,'S5257','S52511','S52513','S52514', 'S52516']
 #simulation_batches=['S52514']
 #simulation_batches=['S5255Iq1','S5255Iq3'] #last batch that Dao ran
-simulation_batches=['Benchmarking', 'Benchmarking2', 'Benchmarking3', 'Benchmarking_frt', 'Benchmarking2_frt','Benchmarking3_frt']#'Benchmarking2_frt_dbg', 'Benchmarking3_frt_dbg','Benchmarking_frt_dbg']#'Benchmarking_dbg','Benchmarking2_dbg_dbg',
+#simulation_batches=['Benchmarking', 'Benchmarking2', 'Benchmarking3', 'Benchmarking_frt', 'Benchmarking2_frt','Benchmarking3_frt']#'Benchmarking2_frt_dbg', 'Benchmarking3_frt_dbg','Benchmarking_frt_dbg']#'Benchmarking_dbg','Benchmarking2_dbg_dbg',
+#simulation_batches=['Benchmarking3_dbg']
 #simulation_batches=['DMAT_HyExp_sl', 'DMAT_HyExp_sl1', 'DMAT_HyExp_sl2', 'DMAT_HyExp_sl3,', 'DMAT_HyExp_sl4', 'DMAT_HyExp_sl5', 'DMAT_HyExp_sl6']
 #simulation_batches=['Benchmarking_dbg','Benchmarking2_dbg','Benchmarking3_dbg', 'Benchmarking3_frt_dbg']
 
@@ -229,9 +240,12 @@ def main():
                     activeScenarios.append(scenario)
             else:
                 activeScenarios.append(scenario)
+                
+    activeScenarios=sorted(activeScenarios)
  
     #uncomment this section for debugging, to execute simulation without multiprocessing. 
-    for scenario in activeScenarios:
+    for scenario_counter in range (0, len(activeScenarios)):
+        scenario=activeScenarios[scenario_counter]
         workspace_folder, testRun_ = createModelCopy(scenario, testRun) # SCRIPT CHANGE: create one new folder for the simulation set. In that folder, 
         # if(base_model != base_model_workspace): #workspace can be subfolder of model folder
         #     workspace_folder=workspace_folder+"\\"+os.path.basename(os.path.normpath(base_model_workspace))

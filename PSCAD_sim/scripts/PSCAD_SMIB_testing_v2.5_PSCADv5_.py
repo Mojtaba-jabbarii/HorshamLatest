@@ -179,7 +179,15 @@ def createPath(main_path_out):
 ##############################################################################
 TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 #simulation_batches=['DMAT', 'Prof_chng', 'AEMO_fdb', 'missing', 'legend', 'SCR_chng', 'timing'] #specify batch from spreadsheet that shall be run. If empty, run all batches
-# simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl','Benchmarking']
+#simulation_batches=['DMAT_HyExp_sl1','DMAT_HyExp_sl2','DMAT_HyExp_sl3','DMAT_HyExp_sl4','DMAT_HyExp_sl5','DMAT_HyExp_sl6','DMAT_HyExp_sl']
+#simulation_batches=['DMAT_HyImp_sl1','DMAT_HyImp_sl2','DMAT_HyImp_sl3','DMAT_HyImp_sl4','DMAT_HyImp_sl5','DMAT_HyImp_sl6','DMAT_HyImp_sl']
+#simulation_batches=['DMAT_HyImp_sl1','DMAT_BsExp_sl2','DMAT_BsExp_sl3','DMAT_BsExp_sl4','DMAT_BsExp_sl5','DMAT_BsExp_sl6','DMAT_BsExp_sl']
+#simulation_batches=['DMAT_BsExp_sl1', 'DMAT_BsImp_sl1','DMAT_BsImp_sl2','DMAT_BsImp_sl3','DMAT_BsImp_sl4','DMAT_BsImp_sl5','DMAT_BsImp_sl6','DMAT_BsImp_sl']
+#simulation_batches = ['DMAT_HyImp_sl3_dbg', 'DMAT_HyImp_sl6_dbg']
+simulation_batches = ['DMAT_HyExp_sl3_dbg', 'DMAT_HyImp_sl3_dbg', 'DMAT_BsExp_sl3_dbg', 'DMAT_BsImp_sl3_dbg']
+#simulation_batches=['S5255Iq1', 'S5255Iq3', 'S5255Iq4', 'S5255Iq5']
+#simulation_batches = ['DMAT_HyExp_sl5_dbg', 'DMAT_HyImp_sl5_dbg', 'DMAT_BsExp_sl5_dbg', 'DMAT_BsImp_sl5_dbg', 'DMAT_HyExp_sl6_dbg', 'DMAT_HyImp_sl6_dbg', 'DMAT_BsExp_sl6_dbg', 'DMAT_BsImp_sl6_dbg']
+#simulation_batches=['DMAT_BsImp_sl3_dbg']
 #simulation_batches=['DMATsl1','DMATsl2','DMATsl3','DMATsl4','DMATsl5','DMATsl6','DMATsl','DMATsl1_db','DMATsl2_db','DMATsl3_db','DMATsl4_db','DMATsl5_db','DMATsl6_db','DMATsl_db']
 #simulation_batches=['DMATsl1_db','DMATsl2_db','DMATsl3_db','DMATsl4_db','DMATsl5_db','DMATsl6_db','DMATsl_db', 'Benchmarking_db']
 #simulation_batches=['Benchmarking', 'Benchmarking_db']
@@ -189,7 +197,7 @@ TestDefinitionSheet = r'20240403_HSFBESS_TESTINFO_V1.xlsx'
 
 # simulation_batches=['S52511','S52513','S52514','S5255Iq1','S5255Iq2','S5255Iq3']
 #simulation_batches=['S5255Iq1','S5255Iq3']# last batch that Dao ran
-simulation_batches= ['Benchmarking', 'Benchmarking2', 'Benchmarking3','Benchmarking_frt', 'Benchmarking2_frt','Benchmarking3_frt']##'Benchmarking','shallow_fault_dbg']#, []'Benchmarking2_frt_dbg', 'Benchmarking3_frt_dbg','Benchmarking_frt_dbg']#'Benchmarking_dbg', 
+#simulation_batches= ['Benchmarking', 'Benchmarking2', 'Benchmarking3','Benchmarking_frt', 'Benchmarking2_frt','Benchmarking3_frt']##'Benchmarking','shallow_fault_dbg']#, []'Benchmarking2_frt_dbg', 'Benchmarking3_frt_dbg','Benchmarking_frt_dbg']#'Benchmarking_dbg', 
 #simulation_batches=['DMAT_HyExp_sl', 'DMAT_HyExp_sl1', 'DMAT_HyExp_sl2', 'DMAT_HyExp_sl3,', 'DMAT_HyExp_sl4', 'DMAT_HyExp_sl5', 'DMAT_HyExp_sl6']
 #simulation_batches=['Benchmarking_dbg','Benchmarking2_dbg','Benchmarking3_dbg', 'Benchmarking3_frt_dbg']
 #The below can alternatively be defined in the Excel sheet

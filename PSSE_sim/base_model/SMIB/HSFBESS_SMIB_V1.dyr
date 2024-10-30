@@ -185,9 +185,9 @@
 @!/VREps                                   FRT_AmpDLim                             FRT_AmpQLim                             Reserved                                Reserved                                
    0.1                                     2                                       2                                       0                                       0                                       
 @!/GriMngInvVArMod                         VarCtlVolLoVolRef3                      VarCtlVolLoVolRef2                      VarCtlVolLoVolRef1HiVolRef1             VarCtlVolHiVolRef2                      
-   1                                       0                                       0.945                                   1                                       1.055                                    
+   1                                       0                                       0.945                                     1                                       1.055                                    
 @!/VarCtlVolHiVolRef3                      VarCtlVolLoGra3                         VarCtlVolLoGra2                         VarCtlVolLoGra1                         VarCtlVolHiGra1                         
-   2                                       2                                       2                                       0                                       2                                     
+   2                                       2                                       2                                       0                                       2.0                                     
 @!/VarCtlVolHiGra2                         VarCtlVolHiGra3                         VarCtlVolVArSptFilTm                    VolNomSpt                               Frt_AmpQFilTm                           
    2                                       2                                       0.01                                    1                                       1                                      
 @!/IniSchemeFlag                           VArCtlVolVolNomSptMod                   VarCtlVolVolFilTm                       VarCtlVolVolMin                         VarCtlVolVolMax                         
