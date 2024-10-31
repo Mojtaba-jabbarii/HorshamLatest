@@ -44,7 +44,7 @@ import time
 timestr = str(datetime.datetime.now().strftime("%Y%m%d-%H%M"))
 # import concurrent.futures
 import multiprocessing
-
+from datetime import datetime
 #-----------------------------------------------------------------------------
 # USER CONFIGURABLE PARAMETERS
 #-----------------------------------------------------------------------------
@@ -214,8 +214,23 @@ import auxiliary_functions as af
 import readtestinfo as readtestinfo
 import run_simulation
 
+def UpdateInputSheet(testdefSheetPath):
+    #--------------------------------------------------------------------------
+    #MAKE A COPY OF THE FILE
+    fileName, fileExt = os.path.splitext(testdefSheetPath) #separate file and extention
+    autoFile = fileName + "-AUTO" + fileExt # new file will be created
+    if os.path.isfile(autoFile): # If the file exits, remove it before creating a new one.
+        os.remove(autoFile)
+    copycmd = r"echo F|" + "xcopy /Y /R /K /H /C \"" + testdefSheetPath + "\" \"" + autoFile + "\""
+    call(copycmd, shell=True)
+UpdateInputSheet(testDefinitionDir+"\\"+TestDefinitionSheet)
+
+
 # return_dict =  readtestinfo.readTestdef(testDefinitionDir+"\\"+TestDefinitionSheet, ['ProjectDetails', 'SimulationSettings', 'ModelDetailsPSSE', 'SetpointsDict', 'ScenariosSMIB', 'Profiles'])
 return_dict =  readtestinfo.readTestdef(testDefinitionDir+"\\"+TestDefinitionSheet, ['ProjectDetails', 'ModelDetailsPSSE', 'Setpoints', 'ScenariosSMIB', 'Profiles', 'OutputChannels'])
+
+
+
 ProjectDetailsDict = return_dict['ProjectDetails']
 # SimulationSettingsDict = return_dict['SimulationSettings']
 PSSEmodelDict = return_dict['ModelDetailsPSSE']
@@ -270,7 +285,7 @@ def main():
 
         # Prepare for multiprocessing
         num_cores = multiprocessing.cpu_count()
-        num_cores = 1
+        num_cores = 5
         pool = multiprocessing.Pool(processes=num_cores)
 
         # Generate a list of arguments for each process
