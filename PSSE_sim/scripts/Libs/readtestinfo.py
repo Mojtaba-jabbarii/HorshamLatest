@@ -31,11 +31,11 @@ def readTestdef(testdefSheetPath, relevant_tabs='all'):
     #MAKE A COPY OF THE FILE
     fileName, fileExt = os.path.splitext(testdefSheetPath) #separate file and extention
     autoFile = fileName + "-AUTO" + fileExt # new file will be created
-    if os.path.isfile(autoFile): # If the file exits, remove it before creating a new one.
-        time.sleep(1)
-        # os.remove(autoFile)
-    copycmd = r"echo F|" + "xcopy /Y /R /K /H /C \"" + testdefSheetPath + "\" \"" + autoFile + "\""
-    call(copycmd, shell=True)
+    # if os.path.isfile(autoFile): # If the file exits, remove it before creating a new one.
+    #     time.sleep(1)
+    #     os.remove(autoFile)
+    # copycmd = r"echo F|" + "xcopy /Y /R /K /H /C \"" + testdefSheetPath + "\" \"" + autoFile + "\""
+    # call(copycmd, shell=True)
     testdefSheetPath = autoFile
 
     #--------------------------------------------------------------------------

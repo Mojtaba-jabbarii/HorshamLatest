@@ -42,7 +42,9 @@ from win32com.client import Dispatch
 import time
 #timestr = time.strftime("%Y%m%d")
 timestr = str(datetime.datetime.now().strftime("%Y%m%d-%H%M"))
-import concurrent.futures
+# import concurrent.futures
+import multiprocessing
+
 #-----------------------------------------------------------------------------
 # USER CONFIGURABLE PARAMETERS
 #-----------------------------------------------------------------------------
@@ -225,6 +227,14 @@ OutChansDict = return_dict['OutputChannels']
 #-----------------------------------------------------------------------------
 # Main
 #-----------------------------------------------------------------------------
+
+# Define the wrapper function for each simulation
+def run_simulation_wrapper(args):
+    scenario, ResultsDir, ScenariosDict, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict, testRun = args
+    scenario_params = ScenariosDict[scenario]
+    workspace_folder, testRun_ = createModelCopy(scenario, testRun)
+    run_simulation.run(ResultsDir, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict)
+
 def main():
     pass
 
@@ -243,7 +253,7 @@ def main():
                 
     activeScenarios=sorted(activeScenarios)
 
-    Run_MultiProcessing = False
+    Run_MultiProcessing = True
     if not Run_MultiProcessing:
         # uncomment this section for debugging, to execute simulation without multiprocessing. 
         for scenario_counter in range (0, len(activeScenarios)):
@@ -256,21 +266,39 @@ def main():
             run_simulation.run(ResultsDir, scenario, scenario_params, workspace_folder, testRun_, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict)
         pass
     else:
-        
-        def run_scenario(scenario):
-            workspace_folder, testRun_ = createModelCopy(scenario, testRun)
-            scenario_params = ScenariosDict[scenario]
-            # Run the simulation for this scenario
-            run_simulation.run(
-                ResultsDir, scenario, scenario_params, workspace_folder, 
-                testRun_, ProjectDetailsDict, PSSEmodelDict, 
-                SetpointsDict, ProfilesDict, OutChansDict
-            )
 
-        # Use ThreadPoolExecutor or ProcessPoolExecutor
-        with concurrent.futures.ProcessPoolExecutor() as executor:
-            # Launch the scenarios in parallel
-            executor.map(run_scenario, activeScenarios)
+
+        # Prepare for multiprocessing
+        num_cores = multiprocessing.cpu_count()
+        num_cores = 1
+        pool = multiprocessing.Pool(processes=num_cores)
+
+        # Generate a list of arguments for each process
+        args = [
+            (scenario, ResultsDir, ScenariosDict, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict, testRun)
+            for scenario in activeScenarios
+        ]
+
+        # Run simulations in parallel
+        pool.map(run_simulation_wrapper, args)
+        pool.close()
+        pool.join()
+
+
+        # def run_scenario(scenario):
+        #     workspace_folder, testRun_ = createModelCopy(scenario, testRun)
+        #     scenario_params = ScenariosDict[scenario]
+        #     # Run the simulation for this scenario
+        #     run_simulation.run(
+        #         ResultsDir, scenario, scenario_params, workspace_folder, 
+        #         testRun_, ProjectDetailsDict, PSSEmodelDict, 
+        #         SetpointsDict, ProfilesDict, OutChansDict
+        #     )
+
+        # # Use ThreadPoolExecutor or ProcessPoolExecutor
+        # with concurrent.futures.ProcessPoolExecutor() as executor:
+        #     # Launch the scenarios in parallel
+        #     executor.map(run_scenario, activeScenarios)
 
         # def run_scenario(scenario):
         #     workspace_folder, testRun_ = createModelCopy(scenario, testRun)
