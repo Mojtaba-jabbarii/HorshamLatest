@@ -45,6 +45,9 @@ timestr = str(datetime.datetime.now().strftime("%Y%m%d-%H%M"))
 # import concurrent.futures
 import multiprocessing
 from datetime import datetime
+
+start_time = time.time()
+
 #-----------------------------------------------------------------------------
 # USER CONFIGURABLE PARAMETERS
 #-----------------------------------------------------------------------------
@@ -214,7 +217,7 @@ import auxiliary_functions as af
 import readtestinfo as readtestinfo
 import run_simulation
 
-def UpdateInputSheet(testdefSheetPath):
+def CopyInputSheet(testdefSheetPath):
     #--------------------------------------------------------------------------
     #MAKE A COPY OF THE FILE
     fileName, fileExt = os.path.splitext(testdefSheetPath) #separate file and extention
@@ -223,13 +226,16 @@ def UpdateInputSheet(testdefSheetPath):
         os.remove(autoFile)
     copycmd = r"echo F|" + "xcopy /Y /R /K /H /C \"" + testdefSheetPath + "\" \"" + autoFile + "\""
     call(copycmd, shell=True)
-UpdateInputSheet(testDefinitionDir+"\\"+TestDefinitionSheet)
 
+# To copy 20240403_HSFBESS_TESTINFO_V1.xlsx and rename it to 20240403_HSFBESS_TESTINFO_V1.xlsx
+# NOTE: Mojtaba: Commented out the UpdateInputSheet function below, as it causes an error in multiprocessing. It just needs a bit of review to resolve.
+# NOTE: It means you need manually copy if needed
 
+# CopyInputSheet(testDefinitionDir+"\\"+TestDefinitionSheet)
+
+#-----------------------------------------------------------------------------
 # return_dict =  readtestinfo.readTestdef(testDefinitionDir+"\\"+TestDefinitionSheet, ['ProjectDetails', 'SimulationSettings', 'ModelDetailsPSSE', 'SetpointsDict', 'ScenariosSMIB', 'Profiles'])
 return_dict =  readtestinfo.readTestdef(testDefinitionDir+"\\"+TestDefinitionSheet, ['ProjectDetails', 'ModelDetailsPSSE', 'Setpoints', 'ScenariosSMIB', 'Profiles', 'OutputChannels'])
-
-
 
 ProjectDetailsDict = return_dict['ProjectDetails']
 # SimulationSettingsDict = return_dict['SimulationSettings']
@@ -268,7 +274,7 @@ def main():
                 
     activeScenarios=sorted(activeScenarios)
 
-    Run_MultiProcessing = True
+    Run_MultiProcessing = True # Switch between multiprocessing and for loop run
     if not Run_MultiProcessing:
         # uncomment this section for debugging, to execute simulation without multiprocessing. 
         for scenario_counter in range (0, len(activeScenarios)):
@@ -282,64 +288,17 @@ def main():
         pass
     else:
 
-
-        # Prepare for multiprocessing
-        num_cores = multiprocessing.cpu_count()
-        num_cores = 5
+        num_cores = multiprocessing.cpu_count()-1
+        # num_cores = 5
         pool = multiprocessing.Pool(processes=num_cores)
-
-        # Generate a list of arguments for each process
-        args = [
-            (scenario, ResultsDir, ScenariosDict, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict, testRun)
-            for scenario in activeScenarios
-        ]
-
-        # Run simulations in parallel
+        args = [(scenario, ResultsDir, ScenariosDict, ProjectDetailsDict, PSSEmodelDict, SetpointsDict, ProfilesDict, OutChansDict, testRun) for scenario in activeScenarios ]
         pool.map(run_simulation_wrapper, args)
         pool.close()
         pool.join()
 
-
-        # def run_scenario(scenario):
-        #     workspace_folder, testRun_ = createModelCopy(scenario, testRun)
-        #     scenario_params = ScenariosDict[scenario]
-        #     # Run the simulation for this scenario
-        #     run_simulation.run(
-        #         ResultsDir, scenario, scenario_params, workspace_folder, 
-        #         testRun_, ProjectDetailsDict, PSSEmodelDict, 
-        #         SetpointsDict, ProfilesDict, OutChansDict
-        #     )
-
-        # # Use ThreadPoolExecutor or ProcessPoolExecutor
-        # with concurrent.futures.ProcessPoolExecutor() as executor:
-        #     # Launch the scenarios in parallel
-        #     executor.map(run_scenario, activeScenarios)
-
-        # def run_scenario(scenario):
-        #     workspace_folder, testRun_ = createModelCopy(scenario, testRun)
-        #     scenario_params = ScenariosDict[scenario]
-        #     run_simulation.run(
-        #         ResultsDir, scenario, scenario_params, workspace_folder, 
-        #         testRun_, ProjectDetailsDict, PSSEmodelDict, 
-        #         SetpointsDict, ProfilesDict, OutChansDict
-        #     )
-
-        # if __name__ == "__main__":
-        #     # Create a pool of processes
-        #     with Pool() as pool:
-        #         # Distribute the scenarios across the pool
-        #     Pool.map(run_scenario, activeScenarios)
-
-
-
-
-
-
-        # l = Semaphore(1)
-        # sem = Semaphore(max_processes)
-        # p = Pool(processes = max_processes, initializer = initializer, initargs = (l, sem))
-        # p.map(worker, activeScenarios)
-        
+        end_time = time.time()
+        execution_time_minutes = (end_time - start_time) / 60
+        print("Execution time: {:.2f} minutes".format(execution_time_minutes))
 
 if __name__ == '__main__':
     main()
